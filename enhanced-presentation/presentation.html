@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Acumen Program - Enhanced Presentation System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Core Color System from colors.md */
+            --primary: #1B9AAA;        /* Primary teal blue */
+            --primary-light: #6AD5CB;   /* Light cyan-mint */
+            --primary-dark: #1C3144;    /* Dark blue-grey */
+            --secondary: #58B09C;       /* Teal-green */
+            --accent: #A1E8CC;          /* Light mint */
+            --success: #BDD9BF;         /* Sage green */
+            --dark: #2E4052;            /* Background dark */
+            --light: #CAF7E2;           /* Very light mint */
+            --neutral: #D2D7DF;         /* Light grey */
+            --text-primary: #1C3144;    /* Dark blue-grey for text */
+            --text-secondary: #6F7D8C;  /* Medium blue-grey */
+            --white: #ffffff;
+            --black: #050505;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--white);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Presentation Container */
+        .presentation-system {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Slide Navigation Sidebar */
+        .slide-nav {
+            width: 280px;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            border-right: 2px solid var(--neutral);
+            padding: 1.5rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .program-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .program-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .program-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .session-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .session-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            margin: 0.25rem 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border-left: 3px solid transparent;
+        }
+
+        .slide-item:hover {
+            background: var(--light);
+            border-left-color: var(--primary-light);
+        }
+
+        .slide-item.active {
+            background: var(--accent);
+            color: var(--primary-dark);
+            font-weight: 600;
+            border-left-color: var(--primary);
+        }
+
+        .slide-number {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        /* Main Slide Area */
+        .slide-container {
+            margin-left: 280px;
+            flex: 1;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            min-height: 100vh;
+            padding: 3rem 4rem;
+            position: relative;
+            background: var(--white);
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        /* Slide Controls */
+        .slide-controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 200;
+        }
+
+        .control-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(27, 154, 170, 0.3);
+        }
+
+        .control-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(27, 154, 170, 0.4);
+        }
+
+        .control-btn:disabled {
+            background: var(--neutral);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Slide Typography */
+        .slide h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .slide h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .slide h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .slide p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            max-width: 800px;
+        }
+
+        .slide ul, .slide ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .slide li {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        /* Content Boxes */
+        .content-box {
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 6px solid;
+        }
+
+        .objective-box {
+            background: linear-gradient(135deg, var(--light) 0%, var(--accent) 100%);
+            border-left-color: var(--secondary);
+            color: var(--primary-dark);
+        }
+
+        .exercise-box {
+            background: linear-gradient(135deg, #e6f3ff 0%, #cce7ff 100%);
+            border-left-color: var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .takeaway-box {
+            background: linear-gradient(135deg, var(--success) 0%, #a8d5aa 100%);
+            border-left-color: var(--secondary);
+            color: var(--primary-dark);
+        }
+
+        .speaker-notes {
+            background: #fff5f5;
+            border-left-color: #dc3545;
+            color: var(--text-primary);
+            font-style: italic;
+        }
+
+        /* Interactive Elements */
+        .interactive-element {
+            background: var(--white);
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-element:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px rgba(27, 154, 170, 0.15);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--neutral);
+            font-size: 0.95rem;
+        }
+
+        tr:hover {
+            background: var(--light);
+        }
+
+        /* Progress Indicator */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 280px;
+            right: 0;
+            height: 4px;
+            background: var(--neutral);
+            z-index: 150;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            transition: width 0.3s ease;
+        }
+
+        /* Visual Elements */
+        .visual-element {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
+            border-radius: 12px;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .slide-nav {
+                width: 240px;
+            }
+            
+            .slide-container {
+                margin-left: 240px;
+            }
+            
+            .progress-bar {
+                left: 240px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide-nav {
+                width: 200px;
+            }
+            
+            .slide-container {
+                margin-left: 200px;
+            }
+            
+            .progress-bar {
+                left: 200px;
+            }
+            
+            .slide {
+                padding: 2rem;
+            }
+            
+            .slide h1 {
+                font-size: 2.2rem;
+            }
+            
+            .slide h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .bg-primary { background-color: var(--primary); }
+        .bg-light { background-color: var(--light); }
+        .mt-2 { margin-top: 2rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .p-2 { padding: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="presentation-system">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <!-- Slide Navigation -->
+        <nav class="slide-nav">
+            <div class="program-header">
+                <h1 class="program-title">AI Acumen Program</h1>
+                <p class="program-subtitle">24 Sessions • Visual Training System</p>
+            </div>
+
+            <div class="session-section">
+                <div class="session-header">Session 1: The AI Landscape</div>
+                <div class="slide-item active" data-slide="0">
+                    <span class="slide-number">1</span>
+                    Title & Overview
+                </div>
+                <div class="slide-item" data-slide="1">
+                    <span class="slide-number">2</span>
+                    Session Objectives
+                </div>
+                <div class="slide-item" data-slide="2">
+                    <span class="slide-number">3</span>
+                    Today's Agenda
+                </div>
+                <div class="slide-item" data-slide="3">
+                    <span class="slide-number">4</span>
+                    The Three AI Ecosystems
+                </div>
+                <div class="slide-item" data-slide="4">
+                    <span class="slide-number">5</span>
+                    OpenAI: The Reasoning Engine
+                </div>
+                <div class="slide-item" data-slide="5">
+                    <span class="slide-number">6</span>
+                    Google: The Integrated Workflow
+                </div>
+                <div class="slide-item" data-slide="6">
+                    <span class="slide-number">7</span>
+                    Anthropic: The Trusted Partner
+                </div>
+                <div class="slide-item" data-slide="7">
+                    <span class="slide-number">8</span>
+                    Platform Comparison Matrix
+                </div>
+                <div class="slide-item" data-slide="8">
+                    <span class="slide-number">9</span>
+                    Exercise: Platform-Problem Fit
+                </div>
+                <div class="slide-item" data-slide="9">
+                    <span class="slide-number">10</span>
+                    Interactive Scenarios
+                </div>
+                <div class="slide-item" data-slide="10">
+                    <span class="slide-number">11</span>
+                    Key Takeaways
+                </div>
+                <div class="slide-item" data-slide="11">
+                    <span class="slide-number">12</span>
+                    Manager's AI Playbook Entry
+                </div>
+            </div>
+
+            <div class="session-section">
+                <div class="session-header">Session 2: Business Value & ROI</div>
+                <div class="slide-item" data-slide="12">
+                    <span class="slide-number">13</span>
+                    Session 2 Title
+                </div>
+                <div class="slide-item" data-slide="13">
+                    <span class="slide-number">14</span>
+                    The AI Value Framework
+                </div>
+                <div class="slide-item" data-slide="14">
+                    <span class="slide-number">15</span>
+                    Three Pillars of AI ROI
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Slide Container -->
+        <main class="slide-container">
+            <!-- Slide 1: Title & Overview -->
+            <section class="slide active">
+                <div class="text-center">
+                    <h1>AI Acumen Program</h1>
+                    <h2 class="text-primary">Session 1: The AI Landscape</h2>
+                    <p class="mt-2" style="font-size: 1.3rem; color: var(--text-secondary);">Beyond the Hype: Strategic Understanding for Managers</p>
+                    
+                    <div class="visual-element mt-2">
+                        <div class="icon">🧠</div>
+                        <h3>15 Minutes • Interactive Learning</h3>
+                        <p>Transform from AI novice to confident strategist</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 2: Session Objectives -->
+            <section class="slide">
+                <h2>Session Objectives</h2>
+                <div class="objective-box">
+                    <h3>🎯 What You'll Achieve Today</h3>
+                    <p><strong>Primary Goal:</strong> Equip managers with strategic understanding of key AI players and their distinct philosophies for informed platform selection decisions.</p>
+                </div>
+                
+                <div class="mt-2">
+                    <h3>Learning Outcomes:</h3>
+                    <ul>
+                        <li>Understand the three major AI ecosystems and their unique strengths</li>
+                        <li>Make informed decisions about AI platform selection for business needs</li>
+                        <li>Apply platform-problem fit methodology to real scenarios</li>
+                        <li>Build your first Manager's AI Playbook entry</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 3: Today's Agenda -->
+            <section class="slide">
+                <h2>Today's Agenda</h2>
+                <div class="interactive-element">
+                    <h3>📋 15-Minute Breakdown</h3>
+                    <table>
+                        <tr>
+                            <th>Time</th>
+                            <th>Activity</th>
+                            <th>Focus</th>
+                        </tr>
+                        <tr>
+                            <td><strong>5 min</strong></td>
+                            <td>The Three AI Ecosystems</td>
+                            <td>Concept Understanding</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7 min</strong></td>
+                            <td>Platform-Problem Fit Exercise</td>
+                            <td>Interactive Application</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3 min</strong></td>
+                            <td>Takeaways & Playbook Entry</td>
+                            <td>Knowledge Consolidation</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Slide 4: The Three AI Ecosystems -->
+            <section class="slide">
+                <h2>The Three AI Ecosystems</h2>
+                <div class="visual-element">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem;">
+                        <div style="text-align: center; padding: 1.5rem; background: var(--white); border-radius: 12px; border: 2px solid var(--primary-light);">
+                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🧠</div>
+                            <h3 style="color: var(--primary);">OpenAI</h3>
+                            <p style="font-weight: 600;">"The Reasoning Engine"</p>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Advanced problem-solving & creativity</p>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--white); border-radius: 12px; border: 2px solid var(--secondary);">
+                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚙️</div>
+                            <h3 style="color: var(--secondary);">Google</h3>
+                            <p style="font-weight: 600;">"The Integrated Workflow"</p>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Seamless productivity integration</p>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--white); border-radius: 12px; border: 2px solid var(--primary-dark);">
+                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛡️</div>
+                            <h3 style="color: var(--primary-dark);">Anthropic</h3>
+                            <p style="font-weight: 600;">"The Trusted Partner"</p>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Safety & reliability focus</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: OpenAI Deep Dive -->
+            <section class="slide">
+                <h2>OpenAI: The Reasoning Engine</h2>
+                <div class="content-box" style="background: linear-gradient(135deg, #e6f3ff 0%, #cce7ff 100%); border-left-color: var(--primary);">
+                    <h3>🧠 Core Philosophy: Advanced Reasoning</h3>
+                    <p>OpenAI focuses on building AI that can think through complex problems step-by-step, similar to human reasoning processes.</p>
+                </div>
+                
+                <div class="mt-2">
+                    <h3>Key Strengths (2025):</h3>
+                    <ul>
+                        <li><strong>o-series Models:</strong> Advanced reasoning and planning capabilities</li>
+                        <li><strong>Creative Generation:</strong> Writing, art, code with high quality</li>
+                        <li><strong>Agentic Capabilities:</strong> AI that can take actions and make decisions</li>
+                        <li><strong>Research Integration:</strong> Deep Research agent for complex analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="takeaway-box">
+                    <h3>💡 Best Use Cases</h3>
+                    <p>Complex problem-solving, strategic research, creative content generation, code development, M&A analysis</p>
+                </div>
+            </section>
+
+            <!-- Slide 6: Google Deep Dive -->
+            <section class="slide">
+                <h2>Google: The Integrated Workflow</h2>
+                <div class="content-box" style="background: linear-gradient(135deg, var(--light) 0%, var(--accent) 100%); border-left-color: var(--secondary);">
+                    <h3>⚙️ Core Philosophy: Seamless Integration</h3>
+                    <p>Google's AI is designed to work within existing business workflows, especially Google Workspace ecosystem.</p>
+                </div>
+                
+                <div class="mt-2">
+                    <h3>Key Strengths (2025):</h3>
+                    <ul>
+                        <li><strong>Workspace Integration:</strong> Native AI in Gmail, Docs, Sheets</li>
+                        <li><strong>Multimodal Capabilities:</strong> Text, images, video in one model</li>
+                        <li><strong>Enterprise Agents:</strong> Business process automation</li>
+                        <li><strong>Real-time Collaboration:</strong> AI-enhanced team productivity</li>
+                    </ul>
+                </div>
+                
+                <div class="takeaway-box">
+                    <h3>💡 Best Use Cases</h3>
+                    <p>Business process automation, collaborative content creation, data analysis in spreadsheets</p>
+                </div>
+            </section>
+
+            <!-- Slide 7: Anthropic Deep Dive -->
+            <section class="slide">
+                <h2>Anthropic: The Trusted Partner</h2>
+                <div class="content-box" style="background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); border-left-color: var(--primary-dark);">
+                    <h3>🛡️ Core Philosophy: Safety & Reliability</h3>
+                    <p>Anthropic prioritizes constitutional AI with built-in safety measures and transparent reasoning processes for enterprise trust.</p>
+                </div>
+                
+                <div class="mt-2">
+                    <h3>Key Strengths (2025):</h3>
+                    <ul>
+                        <li><strong>Large Context Window:</strong> 200K+ tokens for comprehensive document analysis</li>
+                        <li><strong>Low Hallucination Rate:</strong> Most accurate responses for factual queries</li>
+                        <li><strong>Constitutional AI:</strong> Built-in ethical guidelines and safety measures</li>
+                        <li><strong>Transparent Reasoning:</strong> Shows work and explains decision-making process</li>
+                    </ul>
+                </div>
+                
+                <div class="takeaway-box">
+                    <h3>💡 Best Use Cases</h3>
+                    <p>Legal document analysis, financial compliance, regulatory research, sensitive data processing</p>
+                </div>
+            </section>
+
+            <!-- Slide 8: Platform Comparison Matrix -->
+            <section class="slide">
+                <h2>Platform Comparison Matrix</h2>
+                <div class="interactive-element">
+                    <h3>🔍 Strategic Decision Framework</h3>
+                    <table>
+                        <tr>
+                            <th>Platform</th>
+                            <th>Core Philosophy</th>
+                            <th>Key Strengths (2025)</th>
+                            <th>Ideal Use Cases</th>
+                            <th>Business Fit</th>
+                        </tr>
+                        <tr>
+                            <td><strong>OpenAI</strong></td>
+                            <td>Reasoning Engine</td>
+                            <td>Advanced reasoning, creative generation, agentic capabilities</td>
+                            <td>Complex problem-solving, research, code generation</td>
+                            <td>Innovation-focused teams</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Google</strong></td>
+                            <td>Integrated Workflow</td>
+                            <td>Workspace integration, multimodal capabilities, enterprise agents</td>
+                            <td>Business process automation, collaborative content</td>
+                            <td>Google Workspace users</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anthropic</strong></td>
+                            <td>Trusted Partner</td>
+                            <td>Large context window, low hallucination, safety focus</td>
+                            <td>Legal/financial analysis, compliance monitoring</td>
+                            <td>Risk-sensitive industries</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="speaker-notes content-box">
+                    <h3>🎤 Speaker Notes</h3>
+                    <p><strong>Key Point:</strong> Platform choice should be driven by specific business needs, not marketing claims. Each has distinct strengths for different organizational contexts.</p>
+                </div>
+            </section>
+
+            <!-- Slide 9: Exercise - Platform-Problem Fit -->
+            <section class="slide">
+                <h2>Exercise: Platform-Problem Fit</h2>
+                <div class="exercise-box">
+                    <h3>🎯 Interactive Challenge (5 minutes)</h3>
+                    <p><strong>Instructions:</strong> Match each business scenario to the optimal AI platform. Consider the unique strengths we just discussed.</p>
+                </div>
+                
+                <div class="mt-2">
+                    <div class="interactive-element" style="margin: 1rem 0;">
+                        <h4>Scenario 1: M&A Due Diligence</h4>
+                        <p><em>Your team needs to analyze 500+ legal documents, contracts, and financial reports for a potential acquisition. Accuracy is critical.</em></p>
+                        <div style="background: var(--light); padding: 1rem; border-radius: 8px; margin-top: 0.5rem;">
+                            <strong>Best Platform:</strong> <span style="color: var(--primary-dark);">Anthropic Claude</span> - Large context window, low hallucination rate
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-element" style="margin: 1rem 0;">
+                        <h4>Scenario 2: Creative Marketing Campaign</h4>
+                        <p><em>Marketing needs to generate 50 unique slogans and ad copy variations for a new product launch with innovative messaging.</em></p>
+                        <div style="background: var(--light); padding: 1rem; border-radius: 8px; margin-top: 0.5rem;">
+                            <strong>Best Platform:</strong> <span style="color: var(--primary);">OpenAI GPT</span> - Advanced creative generation and reasoning
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-element" style="margin: 1rem 0;">
+                        <h4>Scenario 3: Automated Reporting</h4>
+                        <p><em>Operations needs AI to automatically generate weekly reports from Google Sheets data and share via Gmail.</em></p>
+                        <div style="background: var(--light); padding: 1rem; border-radius: 8px; margin-top: 0.5rem;">
+                            <strong>Best Platform:</strong> <span style="color: var(--secondary);">Google Gemini</span> - Native Workspace integration
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 10: Interactive Scenarios -->
+            <section class="slide">
+                <h2>Interactive Scenarios</h2>
+                <div class="exercise-box">
+                    <h3>🎮 Hands-On Practice</h3>
+                    <p><strong>Your Turn:</strong> Apply the platform-problem fit methodology to your own business challenges.</p>
+                </div>
+                
+                <div class="visual-element">
+                    <h3>Decision Framework</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
+                        <div class="interactive-element">
+                            <h4>Step 1: Define the Problem</h4>
+                            <ul style="text-align: left; margin-left: 1rem;">
+                                <li>What type of task? (Analysis, Creation, Automation)</li>
+                                <li>What's the required accuracy level?</li>
+                                <li>How complex is the reasoning needed?</li>
+                                <li>What systems need integration?</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="interactive-element">
+                            <h4>Step 2: Match Platform Strengths</h4>
+                            <ul style="text-align: left; margin-left: 1rem;">
+                                <li><strong>Complex Analysis:</strong> Anthropic</li>
+                                <li><strong>Creative Work:</strong> OpenAI</li>
+                                <li><strong>Workflow Integration:</strong> Google</li>
+                                <li><strong>Hybrid Needs:</strong> Multi-platform approach</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="takeaway-box">
+                    <h3>💭 Reflection Exercise</h3>
+                    <p>Think of one specific AI use case in your department. Which platform would you choose and why? Write down your reasoning using the decision framework above.</p>
+                </div>
+            </section>
+
+            <!-- Slide 11: Key Takeaways -->
+            <section class="slide">
+                <h2>Key Takeaways</h2>
+                <div class="takeaway-box">
+                    <h3>🎯 Strategic Insights from Session 1</h3>
+                    <p><strong>Core Learning:</strong> AI platform selection is a strategic decision that should align with specific business needs and organizational context.</p>
+                </div>
+                
+                <div class="mt-2">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0;">
+                        <div class="content-box objective-box">
+                            <h4>1. Platform Awareness</h4>
+                            <p>Each AI ecosystem has distinct strengths: OpenAI for reasoning, Google for integration, Anthropic for reliability.</p>
+                        </div>
+                        
+                        <div class="content-box exercise-box">
+                            <h4>2. Strategic Matching</h4>
+                            <p>Success comes from matching platform capabilities to specific business problems, not choosing based on hype.</p>
+                        </div>
+                        
+                        <div class="content-box takeaway-box">
+                            <h4>3. Decision Framework</h4>
+                            <p>Use systematic evaluation: problem type, accuracy needs, integration requirements, and organizational fit.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visual-element">
+                    <div class="icon">🧠</div>
+                    <h3>Manager's Mindset Shift</h3>
+                    <p><strong>From:</strong> "Which AI tool is best?"</p>
+                    <p><strong>To:</strong> "Which AI platform best serves this specific business need?"</p>
+                </div>
+            </section>
+
+            <!-- Slide 12: Manager's AI Playbook Entry -->
+            <section class="slide">
+                <h2>Manager's AI Playbook Entry</h2>
+                <div class="objective-box">
+                    <h3>📚 Session 1 Playbook Addition</h3>
+                    <p><strong>Tool:</strong> Strategic AI Platform Comparison Guide</p>
+                    <p><strong>Purpose:</strong> Quick reference for platform selection decisions</p>
+                </div>
+                
+                <div class="interactive-element mt-2">
+                    <h3>🔧 Actionable Template</h3>
+                    <div style="background: var(--white); border: 2px solid var(--primary-light); border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+                        <h4>Platform Selection Checklist</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 1rem;">
+                            <div>
+                                <h5>Problem Analysis:</h5>
+                                <ul style="font-size: 0.9rem; margin-left: 1rem;">
+                                    <li>☐ Task type defined (Analysis/Creation/Automation)</li>
+                                    <li>☐ Accuracy requirements identified</li>
+                                    <li>☐ Integration needs mapped</li>
+                                    <li>☐ Risk tolerance assessed</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5>Platform Matching:</h5>
+                                <ul style="font-size: 0.9rem; margin-left: 1rem;">
+                                    <li>☐ OpenAI: Complex reasoning needed?</li>
+                                    <li>☐ Google: Workspace integration priority?</li>
+                                    <li>☐ Anthropic: High accuracy/safety critical?</li>
+                                    <li>☐ Multi-platform: Hybrid approach required?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="speaker-notes content-box">
+                    <h3>🎤 Speaker Notes</h3>
+                    <p><strong>Action Item:</strong> "Take 30 seconds to bookmark this template. You'll use it in real decisions within the next two weeks. This isn't theoretical - this is your practical guide for AI platform decisions."</p>
+                </div>
+                
+                <div class="visual-element">
+                    <div class="icon">✅</div>
+                    <h3>Session 1 Complete</h3>
+                    <p><strong>Next Session:</strong> Understanding AI Business Value & ROI</p>
+                    <p><em>Transform from AI awareness to strategic value creation</em></p>
+                </div>
+            </section>
+
+        </main>
+            
+        </main>
+
+        <!-- Slide Controls -->
+        <div class="slide-controls">
+            <button class="control-btn" id="prevBtn" onclick="changeSlide(-1)">‹</button>
+            <button class="control-btn" id="nextBtn" onclick="changeSlide(1)">›</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slideItems = document.querySelectorAll('.slide-item');
+        const totalSlides = slides.length;
+        const progressFill = document.getElementById('progressFill');
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            slideItems.forEach(item => item.classList.remove('active'));
+            
+            // Show current slide
+            slides[index].classList.add('active');
+            slideItems[index].classList.add('active');
+            
+            // Update progress bar
+            const progress = ((index + 1) / totalSlides) * 100;
+            progressFill.style.width = progress + '%';
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+            
+            currentSlide = index;
+        }
+
+        function changeSlide(direction) {
+            const newSlide = currentSlide + direction;
+            if (newSlide >= 0 && newSlide < totalSlides) {
+                showSlide(newSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Click navigation
+        slideItems.forEach((item, index) => {
+            item.addEventListener('click', () => showSlide(index));
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

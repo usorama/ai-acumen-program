@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Platform Decision Worksheet - Session 1 Artifact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1B9AAA;
+            --primary-light: #6AD5CB;
+            --primary-dark: #1C3144;
+            --secondary: #58B09C;
+            --accent: #A1E8CC;
+            --light: #CAF7E2;
+            --neutral: #D2D7DF;
+            --text-primary: #1C3144;
+            --text-secondary: #6F7D8C;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            border-radius: 12px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .worksheet-section {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(27, 154, 170, 0.08);
+            border-left: 6px solid var(--primary);
+        }
+
+        .worksheet-section h2 {
+            color: var(--primary-dark);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .worksheet-section h2::before {
+            content: attr(data-step);
+            background: var(--primary);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--neutral);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(27, 154, 170, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .checkbox-item:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 1rem;
+            transform: scale(1.3);
+            accent-color: var(--primary);
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        .priority-matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .priority-card {
+            background: var(--white);
+            border: 2px solid var(--neutral);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .priority-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .priority-card.selected {
+            border-color: var(--primary);
+            background: var(--accent);
+        }
+
+        .priority-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .priority-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .evaluation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .evaluation-table th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .evaluation-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--neutral);
+            vertical-align: top;
+        }
+
+        .score-input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 1px solid var(--neutral);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--neutral);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-secondary);
+            color: var(--white);
+        }
+
+        .recommendation-box {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--light) 100%);
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .recommendation-box h3 {
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-result {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .help-text {
+            background: #f8f9fa;
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .priority-matrix {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI Platform Decision Worksheet</h1>
+            <p>Strategic Framework for Platform Selection • Session 1</p>
+        </div>
+
+        <form id="platformDecisionForm">
+            <div class="worksheet-section">
+                <h2 data-step="1">Define Your Business Challenge</h2>
+                
+                <div class="form-group">
+                    <label for="businessProblem">What specific business problem are you trying to solve?</label>
+                    <textarea id="businessProblem" name="businessProblem" placeholder="Describe the current challenge, pain point, or opportunity in detail..."></textarea>
+                    <div class="help-text">
+                        <strong>Examples:</strong> "Manual contract review takes 40 hours per deal" or "Marketing team struggles to create consistent brand content at scale"
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="successMetrics">How will you measure success?</label>
+                    <textarea id="successMetrics" name="successMetrics" placeholder="Define specific, measurable outcomes..."></textarea>
+                    <div class="help-text">
+                        <strong>Be specific:</strong> "Reduce contract review time by 70%" rather than "Improve efficiency"
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeline">What's your implementation timeline?</label>
+                    <select id="timeline" name="timeline">
+                        <option value="">Select timeline...</option>
+                        <option value="immediate">Immediate (1-4 weeks)</option>
+                        <option value="short">Short-term (1-3 months)</option>
+                        <option value="medium">Medium-term (3-6 months)</option>
+                        <option value="long">Long-term (6+ months)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="worksheet-section">
+                <h2 data-step="2">Assess Your Requirements</h2>
+                
+                <div class="form-group">
+                    <label>What capabilities do you need? (Check all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="reasoning" name="capabilities" value="reasoning">
+                            <label for="reasoning">Advanced reasoning & problem-solving</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="creative" name="capabilities" value="creative">
+                            <label for="creative">Creative content generation</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="integration" name="capabilities" value="integration">
+                            <label for="integration">Workflow integration</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="document" name="capabilities" value="document">
+                            <label for="document">Large document analysis</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="multimodal" name="capabilities" value="multimodal">
+                            <label for="multimodal">Image/video processing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="automation" name="capabilities" value="automation">
+                            <label for="automation">Process automation</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>What's your accuracy requirement?</label>
+                    <div class="priority-matrix">
+                        <div class="priority-card" data-value="high">
+                            <h4>Mission Critical</h4>
+                            <p>99%+ accuracy required (legal, financial)</p>
+                        </div>
+                        <div class="priority-card" data-value="medium">
+                            <h4>Business Important</h4>
+                            <p>95%+ accuracy needed (operations)</p>
+                        </div>
+                        <div class="priority-card" data-value="low">
+                            <h4>Creative/Exploratory</h4>
+                            <p>90%+ accuracy acceptable (marketing)</p>
+                        </div>
+                    </div>
+                    <input type="hidden" id="accuracyLevel" name="accuracyLevel">
+                </div>
+
+                <div class="form-group">
+                    <label for="dataVolume">What's your typical data volume per task?</label>
+                    <select id="dataVolume" name="dataVolume">
+                        <option value="">Select data volume...</option>
+                        <option value="small">Small (1-10 pages/documents)</option>
+                        <option value="medium">Medium (10-100 pages/documents)</option>
+                        <option value="large">Large (100+ pages/documents)</option>
+                        <option value="massive">Massive (1000+ pages/documents)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="worksheet-section">
+                <h2 data-step="3">Evaluate Platform Fit</h2>
+                
+                <table class="evaluation-table">
+                    <thead>
+                        <tr>
+                            <th>Criteria</th>
+                            <th>Weight (1-5)</th>
+                            <th>OpenAI Score</th>
+                            <th>Google Score</th>
+                            <th>Anthropic Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Reasoning Capability</strong><br>Complex problem-solving ability</td>
+                            <td><input type="number" class="score-input weight-input" min="1" max="5" data-criteria="reasoning"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="openai" data-criteria="reasoning"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="google" data-criteria="reasoning"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="anthropic" data-criteria="reasoning"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Creative Generation</strong><br>Content creation quality</td>
+                            <td><input type="number" class="score-input weight-input" min="1" max="5" data-criteria="creative"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="openai" data-criteria="creative"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="google" data-criteria="creative"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="anthropic" data-criteria="creative"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Integration Ease</strong><br>Workflow compatibility</td>
+                            <td><input type="number" class="score-input weight-input" min="1" max="5" data-criteria="integration"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="openai" data-criteria="integration"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="google" data-criteria="integration"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="anthropic" data-criteria="integration"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Accuracy & Reliability</strong><br>Consistent, trustworthy results</td>
+                            <td><input type="number" class="score-input weight-input" min="1" max="5" data-criteria="accuracy"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="openai" data-criteria="accuracy"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="google" data-criteria="accuracy"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="anthropic" data-criteria="accuracy"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Document Handling</strong><br>Large context processing</td>
+                            <td><input type="number" class="score-input weight-input" min="1" max="5" data-criteria="document"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="openai" data-criteria="document"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="google" data-criteria="document"></td>
+                            <td><input type="number" class="score-input platform-score" min="1" max="10" data-platform="anthropic" data-criteria="document"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="help-text">
+                    <strong>Scoring Guide:</strong> Weight importance 1-5 (5=critical). Rate platform capability 1-10 (10=excellent). 
+                    <br><strong>Suggested defaults:</strong> OpenAI - Reasoning:9, Creative:10, Integration:7, Accuracy:8, Document:7 | 
+                    Google - Reasoning:7, Creative:8, Integration:10, Accuracy:8, Document:8 | 
+                    Anthropic - Reasoning:8, Creative:7, Integration:7, Accuracy:10, Document:10
+                </div>
+            </div>
+
+            <div class="worksheet-section">
+                <h2 data-step="4">Additional Considerations</h2>
+                
+                <div class="form-group">
+                    <label for="budget">What's your monthly budget range?</label>
+                    <select id="budget" name="budget">
+                        <option value="">Select budget range...</option>
+                        <option value="low">Under $500/month</option>
+                        <option value="medium">$500-$2,000/month</option>
+                        <option value="high">$2,000-$10,000/month</option>
+                        <option value="enterprise">$10,000+/month</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="teamSize">How many people will use the AI platform?</label>
+                    <select id="teamSize" name="teamSize">
+                        <option value="">Select team size...</option>
+                        <option value="individual">Just me (1 person)</option>
+                        <option value="small">Small team (2-10 people)</option>
+                        <option value="medium">Medium team (11-50 people)</option>
+                        <option value="large">Large team (50+ people)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dataPrivacy">Do you have specific data privacy requirements?</label>
+                    <textarea id="dataPrivacy" name="dataPrivacy" placeholder="Describe any compliance, security, or privacy constraints..."></textarea>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" class="btn btn-primary" onclick="calculateRecommendation()">Get Platform Recommendation</button>
+                <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset Form</button>
+                <button type="button" class="btn btn-secondary" onclick="printWorksheet()">Print Worksheet</button>
+            </div>
+        </form>
+
+        <div class="recommendation-box" id="recommendationBox" style="display: none;">
+            <h3>🎯 Your Recommended AI Platform</h3>
+            <div class="recommendation-result" id="recommendationResult">
+                <!-- Recommendation will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Priority card selection
+        document.querySelectorAll('.priority-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove selected class from siblings
+                this.parentElement.querySelectorAll('.priority-card').forEach(sibling => {
+                    sibling.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked card
+                this.classList.add('selected');
+                
+                // Update hidden input
+                const value = this.getAttribute('data-value');
+                document.getElementById('accuracyLevel').value = value;
+            });
+        });
+
+        function calculateRecommendation() {
+            const form = document.getElementById('platformDecisionForm');
+            const formData = new FormData(form);
+            
+            // Calculate weighted scores
+            const platforms = ['openai', 'google', 'anthropic'];
+            const criteria = ['reasoning', 'creative', 'integration', 'accuracy', 'document'];
+            
+            let scores = {
+                openai: 0,
+                google: 0,
+                anthropic: 0
+            };
+            
+            let totalWeight = 0;
+            
+            criteria.forEach(criterion => {
+                const weight = parseFloat(document.querySelector(`.weight-input[data-criteria="${criterion}"]`).value) || 0;
+                totalWeight += weight;
+                
+                platforms.forEach(platform => {
+                    const score = parseFloat(document.querySelector(`.platform-score[data-platform="${platform}"][data-criteria="${criterion}"]`).value) || 0;
+                    scores[platform] += weight * score;
+                });
+            });
+            
+            // Normalize scores
+            Object.keys(scores).forEach(platform => {
+                scores[platform] = totalWeight > 0 ? (scores[platform] / totalWeight).toFixed(2) : 0;
+            });
+            
+            // Determine recommendation
+            let recommendedPlatform = 'openai';
+            let highestScore = scores.openai;
+            
+            if (scores.google > highestScore) {
+                recommendedPlatform = 'google';
+                highestScore = scores.google;
+            }
+            
+            if (scores.anthropic > highestScore) {
+                recommendedPlatform = 'anthropic';
+                highestScore = scores.anthropic;
+            }
+            
+            // Generate recommendation text
+            const platformNames = {
+                openai: 'OpenAI (GPT-4/o1)',
+                google: 'Google Gemini',
+                anthropic: 'Anthropic Claude'
+            };
+            
+            const platformDescriptions = {
+                openai: 'Best for complex reasoning, creative content, and strategic analysis',
+                google: 'Ideal for workflow integration, collaboration, and process automation',
+                anthropic: 'Perfect for accuracy-critical tasks, document analysis, and compliance'
+            };
+            
+            const recommendationHtml = `
+                <h4 style="color: var(--primary); margin-bottom: 1rem;">Recommended: ${platformNames[recommendedPlatform]}</h4>
+                <p style="margin-bottom: 1rem;"><strong>Confidence Score:</strong> ${highestScore}/10</p>
+                <p style="margin-bottom: 1rem;">${platformDescriptions[recommendedPlatform]}</p>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin-top: 1rem;">
+                    <strong>All Scores:</strong><br>
+                    OpenAI: ${scores.openai}/10<br>
+                    Google: ${scores.google}/10<br>
+                    Anthropic: ${scores.anthropic}/10
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                    <strong>Next Step:</strong> Start with a pilot project to validate this recommendation before full deployment.
+                </p>
+            `;
+            
+            document.getElementById('recommendationResult').innerHTML = recommendationHtml;
+            document.getElementById('recommendationBox').style.display = 'block';
+            
+            // Scroll to recommendation
+            document.getElementById('recommendationBox').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function resetForm() {
+            document.getElementById('platformDecisionForm').reset();
+            document.querySelectorAll('.priority-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById('recommendationBox').style.display = 'none';
+        }
+        
+        function printWorksheet() {
+            window.print();
+        }
+        
+        // Auto-save functionality
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('change', function() {
+                localStorage.setItem('aiPlatformWorksheet', JSON.stringify(getFormData()));
+            });
+        });
+        
+        function getFormData() {
+            const form = document.getElementById('platformDecisionForm');
+            const formData = new FormData(form);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            return data;
+        }
+        
+        // Load saved data on page load
+        window.addEventListener('load', function() {
+            const savedData = localStorage.getItem('aiPlatformWorksheet');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                Object.keys(data).forEach(key => {
+                    const element = document.querySelector(`[name="${key}"]`);
+                    if (element) {
+                        if (element.type === 'checkbox') {
+                            element.checked = Array.isArray(data[key]) ? data[key].includes(element.value) : data[key] === element.value;
+                        } else {
+                            element.value = Array.isArray(data[key]) ? data[key][0] : data[key];
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager's AI Playbook Template - Session 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1B9AAA;
+            --primary-light: #6AD5CB;
+            --primary-dark: #1C3144;
+            --secondary: #58B09C;
+            --accent: #A1E8CC;
+            --success: #BDD9BF;
+            --light: #CAF7E2;
+            --neutral: #D2D7DF;
+            --text-primary: #1C3144;
+            --text-secondary: #6F7D8C;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .playbook-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .playbook-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(27, 154, 170, 0.2);
+        }
+
+        .playbook-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .playbook-header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .user-info {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 6px solid var(--primary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-group {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .info-group h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-group h3::before {
+            content: attr(data-icon);
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .info-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--neutral);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .info-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(27, 154, 170, 0.1);
+        }
+
+        .session-entry {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 6px solid var(--secondary);
+        }
+
+        .session-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .session-title {
+            display: flex;
+            align-items: center;
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .session-number {
+            background: var(--primary);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 1rem;
+        }
+
+        .session-date {
+            background: var(--accent);
+            color: var(--primary-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .key-concepts {
+            margin-bottom: 2rem;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .concept-card {
+            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(27, 154, 170, 0.15);
+        }
+
+        .concept-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .actionable-insights {
+            background: var(--success);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .actionable-insights h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .insight-list {
+            list-style: none;
+        }
+
+        .insight-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: var(--white);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .insight-item::before {
+            content: "💡";
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .personal-notes {
+            background: #f8f9fa;
+            border: 2px dashed var(--neutral);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .personal-notes h3 {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .notes-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            border: 1px solid var(--neutral);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        .action-items {
+            background: var(--white);
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .action-items h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .checklist-item:hover {
+            background: var(--light);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 1rem;
+            transform: scale(1.3);
+            accent-color: var(--primary);
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .next-session {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+        }
+
+        .next-session h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .export-controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .export-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(27, 154, 170, 0.3);
+        }
+
+        .export-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .progress-tracker {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .progress-bar {
+            background: var(--neutral);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            height: 100%;
+            width: 4.17%; /* 1/24 sessions */
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .playbook-container {
+                padding: 1rem;
+            }
+            
+            .playbook-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .session-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="playbook-container">
+        <div class="playbook-header">
+            <h1>Manager's AI Playbook</h1>
+            <p>Your Strategic Guide to AI Leadership Excellence</p>
+        </div>
+
+        <div class="user-info">
+            <div class="info-grid">
+                <div class="info-group">
+                    <h3 data-icon="👤">Personal Information</h3>
+                    <input type="text" class="info-input" placeholder="Your Name" id="userName">
+                    <br><br>
+                    <input type="text" class="info-input" placeholder="Job Title" id="userTitle">
+                    <br><br>
+                    <input type="text" class="info-input" placeholder="Department" id="userDept">
+                </div>
+                <div class="info-group">
+                    <h3 data-icon="🏢">Organization Details</h3>
+                    <input type="text" class="info-input" placeholder="Company Name" id="companyName">
+                    <br><br>
+                    <input type="text" class="info-input" placeholder="Industry" id="industry">
+                    <br><br>
+                    <input type="text" class="info-input" placeholder="Team Size" id="teamSize">
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-tracker">
+            <h3>Program Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p>Session 1 of 24 Complete • Next: Understanding AI Business Value & ROI</p>
+        </div>
+
+        <div class="session-entry">
+            <div class="session-header">
+                <div class="session-title">
+                    <div class="session-number">1</div>
+                    The AI Landscape: Beyond the Hype
+                </div>
+                <div class="session-date" contenteditable="true">Click to add date</div>
+            </div>
+
+            <div class="key-concepts">
+                <h3>🎯 Key Concepts Mastered</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-title">
+                            <span class="concept-icon">🧠</span>
+                            OpenAI: The Reasoning Engine
+                        </div>
+                        <p>Advanced problem-solving with o-series models. Best for complex research, M&A analysis, and strategic thinking.</p>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title">
+                            <span class="concept-icon">⚙️</span>
+                            Google: The Integrated Workflow
+                        </div>
+                        <p>Seamless Workspace integration. Ideal for business process automation and collaborative content creation.</p>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title">
+                            <span class="concept-icon">🛡️</span>
+                            Anthropic: The Trusted Partner
+                        </div>
+                        <p>Safety-first with large context windows. Perfect for legal analysis, compliance, and sensitive documents.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actionable-insights">
+                <h3>💡 Actionable Insights</h3>
+                <ul class="insight-list">
+                    <li class="insight-item">Platform choice should be driven by specific business needs, not marketing claims or popularity</li>
+                    <li class="insight-item">Different AI platforms excel in different areas - there's no "one size fits all" solution</li>
+                    <li class="insight-item">Start with pilot projects to validate platform choice before full deployment</li>
+                    <li class="insight-item">Consider integration requirements with existing business systems</li>
+                    <li class="insight-item">Match platform strengths to your team's primary use cases for maximum ROI</li>
+                </ul>
+            </div>
+
+            <div class="action-items">
+                <h3>✅ Action Items</h3>
+                <div class="checklist-item">
+                    <input type="checkbox" id="action1">
+                    <label for="action1">Identify 3 specific business problems AI could solve in my department</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="action2">
+                    <label for="action2">Complete the Platform Decision Worksheet for my top priority use case</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="action3">
+                    <label for="action3">Research integration requirements with our current tech stack</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="action4">
+                    <label for="action4">Schedule platform demos/trials for shortlisted solutions</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="action5">
+                    <label for="action5">Share Strategic AI Platform Guide with team members</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="action6">
+                    <label for="action6">Begin documenting current manual processes that could benefit from AI</label>
+                </div>
+            </div>
+
+            <div class="personal-notes">
+                <h3>📝 Personal Notes & Reflections</h3>
+                <textarea class="notes-textarea" placeholder="What resonated most with you from this session? What questions do you still have? How will you apply these concepts in your role?"></textarea>
+            </div>
+        </div>
+
+        <div class="next-session">
+            <h3>🚀 Coming Up Next</h3>
+            <p><strong>Session 2:</strong> Understanding AI Business Value & ROI</p>
+            <p>Learn to measure AI success beyond simple cost savings and build compelling business cases</p>
+        </div>
+
+        <div class="export-controls">
+            <button class="export-btn" onclick="savePlaybook()" title="Save Progress">💾</button>
+            <button class="export-btn" onclick="printPlaybook()" title="Print Playbook">🖨️</button>
+            <button class="export-btn" onclick="sharePlaybook()" title="Share">📤</button>
+        </div>
+    </div>
+
+    <script>
+        // Auto-save functionality
+        const inputs = document.querySelectorAll('input, textarea, [contenteditable]');
+        inputs.forEach(input => {
+            const eventType = input.tagName === 'INPUT' ? 'change' : 'input';
+            input.addEventListener(eventType, function() {
+                saveToLocalStorage();
+            });
+        });
+
+        // Checkbox completion tracking
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    this.parentElement.style.background = 'var(--success)';
+                    this.parentElement.style.borderRadius = '6px';
+                } else {
+                    this.parentElement.style.background = 'transparent';
+                }
+                updateProgress();
+                saveToLocalStorage();
+            });
+        });
+
+        function saveToLocalStorage() {
+            const playbookData = {
+                userName: document.getElementById('userName').value,
+                userTitle: document.getElementById('userTitle').value,
+                userDept: document.getElementById('userDept').value,
+                companyName: document.getElementById('companyName').value,
+                industry: document.getElementById('industry').value,
+                teamSize: document.getElementById('teamSize').value,
+                personalNotes: document.querySelector('.notes-textarea').value,
+                completedActions: Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.id),
+                lastUpdated: new Date().toISOString()
+            };
+            
+            localStorage.setItem('aiPlaybookSession1', JSON.stringify(playbookData));
+        }
+
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem('aiPlaybookSession1');
+            if (saved) {
+                const data = JSON.parse(saved);
+                document.getElementById('userName').value = data.userName || '';
+                document.getElementById('userTitle').value = data.userTitle || '';
+                document.getElementById('userDept').value = data.userDept || '';
+                document.getElementById('companyName').value = data.companyName || '';
+                document.getElementById('industry').value = data.industry || '';
+                document.getElementById('teamSize').value = data.teamSize || '';
+                document.querySelector('.notes-textarea').value = data.personalNotes || '';
+                
+                if (data.completedActions) {
+                    data.completedActions.forEach(actionId => {
+                        const checkbox = document.getElementById(actionId);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                            checkbox.parentElement.style.background = 'var(--success)';
+                            checkbox.parentElement.style.borderRadius = '6px';
+                        }
+                    });
+                }
+                updateProgress();
+            }
+        }
+
+        function updateProgress() {
+            const totalActions = document.querySelectorAll('input[type="checkbox"]').length;
+            const completedActions = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            const sessionProgress = (completedActions / totalActions) * 100;
+            
+            // Update session completion indicator if needed
+            console.log(`Session 1 Progress: ${sessionProgress.toFixed(0)}%`);
+        }
+
+        function savePlaybook() {
+            saveToLocalStorage();
+            
+            // Visual feedback
+            const btn = event.target;
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '✅';
+            btn.style.background = 'var(--success)';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                btn.style.background = 'var(--primary)';
+            }, 2000);
+            
+            // Show toast notification
+            showToast('Playbook saved successfully!');
+        }
+
+        function printPlaybook() {
+            window.print();
+        }
+
+        function sharePlaybook() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My AI Playbook - Session 1',
+                    text: 'Check out my progress in the AI Acumen Program',
+                    url: url
+                });
+            } else {
+                navigator.clipboard.writeText(url);
+                showToast('Link copied to clipboard!');
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+                background: var(--success);
+                color: var(--white);
+                padding: 1rem 2rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 3000);
+        }
+
+        // Date functionality
+        document.querySelector('.session-date').addEventListener('blur', function() {
+            if (this.textContent.trim() === '' || this.textContent === 'Click to add date') {
+                this.textContent = new Date().toLocaleDateString();
+            }
+            saveToLocalStorage();
+        });
+
+        // Load saved data on page load
+        window.addEventListener('load', loadFromLocalStorage);
+
+        // CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

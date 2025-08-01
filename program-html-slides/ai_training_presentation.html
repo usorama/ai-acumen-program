@@ -1,0 +1,1943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced AI Acumen Program - Session 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #fefefe;
+            overflow-x: hidden;
+        }
+        
+        .presentation-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Left Navigation */
+        .sidebar {
+            width: 300px;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #2d3748;
+            padding: 2rem 1rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            border-right: 1px solid #e2e8f0;
+        }
+        
+        .program-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        
+        .program-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        
+        .session-nav {
+            list-style: none;
+        }
+        
+        .phase-header {
+            color: #6366f1;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 1.5rem 0 0.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .session-item {
+            padding: 0.5rem 1rem;
+            margin: 0.25rem 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+        
+        .session-item:hover {
+            background: #e2e8f0;
+        }
+        
+        .session-item.active {
+            background: #ddd6fe;
+            color: #6366f1;
+            font-weight: 600;
+        }
+        
+        .session-number {
+            background: #a5b4fc;
+            color: #312e81;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: 300px;
+            flex: 1;
+            padding: 0;
+        }
+        
+        .presentation-scroll {
+            height: 100vh;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        
+        /* Cards/Slides */
+        .card {
+            min-height: 100vh;
+            padding: 3rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+            color: #2d3748;
+        }
+        
+        .card.title-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #2d3748;
+            text-align: center;
+        }
+        
+        .card.exercise-card {
+            background: linear-gradient(135deg, #ecfeff 0%, #e0f2fe 100%);
+            color: #0c4a6e;
+        }
+        
+        .card.takeaway-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #e6fffa 100%);
+            color: #064e3b;
+        }
+        
+        .card-number {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .card-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .card-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .card-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a202c;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #4a5568;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+        
+        .white-card p {
+            color: #4a5568;
+        }
+        
+        .gradient-card p {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        ul {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Platform Comparison Grid */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .platform-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .platform-logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .platform-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .platform-tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            padding: 1.5rem 1rem;
+            font-weight: 600;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f7fafc;
+        }
+        
+        /* Statistics */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #6366f1;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        
+        /* Exercise Section */
+        .exercise-prompt {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .exercise-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: inherit;
+        }
+        
+        .scenario-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .scenario-number {
+            background: #a5b4fc;
+            color: #312e81;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        /* Navigation Arrows */
+        .nav-arrows {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 200;
+        }
+        
+        .nav-arrow {
+            width: 50px;
+            height: 50px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        
+        .nav-arrow:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+        
+        .nav-arrow:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #94a3b8;
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 300px;
+            right: 0;
+            height: 4px;
+            background: #f1f5f9;
+            z-index: 150;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .progress-bar {
+                left: 0;
+            }
+            
+            .card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .card-title {
+                font-size: 2rem;
+            }
+            
+            .platform-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Smooth transitions */
+        .card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Custom scrollbar */
+        .presentation-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .presentation-scroll::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        
+        .presentation-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        
+        .presentation-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Left Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="program-title">Enhanced AI Acumen Program</div>
+            <div class="program-subtitle">Strategic Framework for Management</div>
+            
+            <ul class="session-nav">
+                <li class="phase-header">Phase I: Foundation</li>
+                <li class="session-item active" data-card="0">
+                    <span class="session-number">1</span>The AI Landscape
+                </li>
+                <li class="session-item" data-card="1">
+                    <span class="session-number">2</span>AI Business Value & ROI
+                </li>
+                <li class="session-item" data-card="2">
+                    <span class="session-number">3</span>Context Engineering
+                </li>
+                <li class="session-item" data-card="3">
+                    <span class="session-number">4</span>RAG Fundamentals
+                </li>
+                <li class="session-item" data-card="4">
+                    <span class="session-number">5</span>Data Fundamentals
+                </li>
+                <li class="session-item" data-card="5">
+                    <span class="session-number">6</span>AI Safety & Risk
+                </li>
+                
+                <li class="phase-header">Phase II: Integration</li>
+                <li class="session-item" data-card="6">
+                    <span class="session-number">7</span>Strategic Analysis
+                </li>
+                <li class="session-item" data-card="7">
+                    <span class="session-number">8</span>AI-Augmented HR
+                </li>
+                <li class="session-item" data-card="8">
+                    <span class="session-number">9</span>Finance & Accounting
+                </li>
+                <li class="session-item" data-card="9">
+                    <span class="session-number">10</span>Supply Chain AI
+                </li>
+                <li class="session-item" data-card="10">
+                    <span class="session-number">11</span>Marketing & Sales
+                </li>
+                <li class="session-item" data-card="11">
+                    <span class="session-number">12</span>Legal & Compliance
+                </li>
+                
+                <li class="phase-header">Phase III: Advanced</li>
+                <li class="session-item" data-card="12">
+                    <span class="session-number">13</span>Multimodal AI
+                </li>
+                <li class="session-item" data-card="13">
+                    <span class="session-number">14</span>Advanced Analytics
+                </li>
+                <li class="session-item" data-card="14">
+                    <span class="session-number">15</span>Agentic AI
+                </li>
+                <li class="session-item" data-card="15">
+                    <span class="session-number">16</span>Advanced RAG
+                </li>
+                <li class="session-item" data-card="16">
+                    <span class="session-number">17</span>AI Integration
+                </li>
+                <li class="session-item" data-card="17">
+                    <span class="session-number">18</span>Performance Metrics
+                </li>
+                
+                <li class="phase-header">Phase IV: Leadership</li>
+                <li class="session-item" data-card="18">
+                    <span class="session-number">19</span>Change Management
+                </li>
+                <li class="session-item" data-card="19">
+                    <span class="session-number">20</span>AI-Ready Teams
+                </li>
+                <li class="session-item" data-card="20">
+                    <span class="session-number">21</span>Governance & Ethics
+                </li>
+                <li class="session-item" data-card="21">
+                    <span class="session-number">22</span>Future Strategy
+                </li>
+                <li class="session-item" data-card="22">
+                    <span class="session-number">23</span>AI Leadership
+                </li>
+                <li class="session-item" data-card="23">
+                    <span class="session-number">24</span>Capstone & Vision
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="presentation-scroll" id="presentationScroll">
+                
+                <!-- Title Card -->
+                <section class="card title-card visible" id="card-0">
+                    <div class="card-number">Session 1</div>
+                    <div class="card-content">
+                        <h1 class="card-title">The AI Landscape</h1>
+                        <p class="card-subtitle">Beyond the Hype: Strategic Platform Comparison for Decision Makers</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">75%</div>
+                                <div class="stat-label">of knowledge work roles will be AI-augmented by 2026</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">40-60%</div>
+                                <div class="stat-label">productivity gains from early AI adopters</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">15min</div>
+                                <div class="stat-label">session duration</div>
+                            </div>
+                <!-- SESSION 7: Strategic Analysis (Phase II) -->
+                <!-- Session 7 Title Card -->
+                <section class="card" style="background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); color: #064e3b;" id="card-24">
+                    <div class="card-number" style="background: #ccfbf1; color: #047857;">Session 7</div>
+                    <div class="card-content">
+                        <h1 class="card-title">AI for Strategic Analysis & Planning</h1>
+                        <p class="card-subtitle">From Information Retrieval to Complex Reasoning</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #059669;">70-80%</div>
+                                <div class="stat-label">reduction in research time with AI agents</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #059669;">10x</div>
+                                <div class="stat-label">faster SWOT analysis generation</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #059669;">5-10%</div>
+                                <div class="stat-label">improvement in strategic decision quality</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Strategic Co-pilot Concept -->
+                <section class="card white-card" id="card-25">
+                    <div class="card-content">
+                        <h2>🧠 AI as Your Strategic Co-Pilot</h2>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                            <div>
+                                <h3>Traditional Strategic Analysis</h3>
+                                <div style="background: #fef2f2; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ef4444;">
+                                    <ul>
+                                        <li><strong>Time-intensive:</strong> Weeks of manual research</li>
+                                        <li><strong>Limited scope:</strong> Constrained by analyst capacity</li>
+                                        <li><strong>Bias-prone:</strong> Influenced by existing perspectives</li>
+                                        <li><strong>Static analysis:</strong> Point-in-time snapshots</li>
+                                        <li><strong>Resource-heavy:</strong> Requires large research teams</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3>AI-Augmented Strategic Analysis</h3>
+                                <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #22c55e;">
+                                    <ul>
+                                        <li><strong>Rapid execution:</strong> Hours instead of weeks</li>
+                                        <li><strong>Comprehensive scope:</strong> Analyze thousands of sources</li>
+                                        <li><strong>Multiple perspectives:</strong> Consider diverse viewpoints</li>
+                                        <li><strong>Dynamic updates:</strong> Real-time market intelligence</li>
+                                        <li><strong>Scalable insights:</strong> Consistent quality at any scale</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #f0fdf4; padding: 2rem; border-radius: 12px; border-left: 4px solid #22c55e; text-align: center;">
+                            <h3>🚀 OpenAI's Deep Research Agent</h3>
+                            <p style="font-size: 1.1rem; margin: 0;">Can independently find, analyze, and synthesize hundreds of online sources to create analyst-level reports in minutes, not weeks.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SWOT Analysis Exercise -->
+                <section class="card" style="background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); color: #064e3b;" id="card-26">
+                    <div class="card-content">
+                        <h2 class="exercise-title">📊 Hands-On Exercise: AI-Powered SWOT Analysis</h2>
+                        <p>Use this advanced prompt template to generate a comprehensive SWOT analysis:</p>
+                        
+                        <div class="exercise-prompt" style="background: #ffffff; border: 1px solid #6ee7b7;">
+                            <h3>Strategic SWOT Analysis Prompt Template:</h3>
+                            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem; line-height: 1.6; margin: 1rem 0;">
+                                "Act as a senior strategy consultant with 10+ years of experience in <strong>[YOUR INDUSTRY]</strong> sector analysis.
+                                
+                                Your task is to conduct a comprehensive SWOT analysis for <strong>[COMPANY NAME]</strong>, a <strong>[COMPANY DESCRIPTION]</strong>.
+                                
+                                Based on current market conditions, competitive landscape, and industry trends in <strong>[CURRENT YEAR]</strong>, analyze our position considering:
+                                • Recent market developments and regulatory changes
+                                • Competitive actions from key players: <strong>[LIST TOP 3 COMPETITORS]</strong>
+                                • Technology disruptions affecting our industry
+                                • Economic conditions impacting our target markets
+                                
+                                For each SWOT quadrant, provide exactly 4 distinct points. For each point, include:
+                                1. Clear, specific statement
+                                2. Supporting evidence or market data
+                                3. Strategic implication for the business
+                                4. Recommended action or consideration
+                                
+                                Format your analysis as a structured report with executive summary and detailed breakdown."
+                            </div>
+                            
+                            <div style="background: #ecfdf5; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                                <h4>Your Customization:</h4>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                                    <div>
+                                        <p><strong>Industry:</strong> ________________________</p>
+                                        <p><strong>Company:</strong> ________________________</p>
+                                    </div>
+                                    <div>
+                                        <p><strong>Top 3 Competitors:</strong></p>
+                                        <p>1. ________________________</p>
+                                        <p>2. ________________________</p>
+                                        <p>3. ________________________</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #ffffff; padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border: 1px solid #cbd5e1;">
+                            <p><strong>Time Allocation:</strong> 5 minutes customization + 5 minutes AI generation + 5 minutes review</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Strategic Analysis Playbook -->
+                <section class="card" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); color: #14532d;" id="card-27">
+                    <div class="card-content">
+                        <h2>🎁 Strategic Analysis Prompt Library</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Add these strategic analysis templates to your AI Playbook:</p>
+                        
+                        <div style="background: #ffffff; padding: 2rem; border-radius: 12px; border: 1px solid #86efac; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                            <div style="display: grid; gap: 1.5rem;">
+                                <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #22c55e;">
+                                    <h4>🔍 Competitive Intelligence Analysis</h4>
+                                    <p style="font-family: monospace; font-size: 0.8rem; background: #ffffff; padding: 1rem; border-radius: 4px; margin: 0.5rem 0;">
+                                        "Act as a competitive intelligence analyst. Research and analyze [COMPETITOR] across these dimensions: market positioning, product strategy, pricing approach, recent developments, strengths/weaknesses vs. our company. Provide strategic recommendations for competitive response."
+                                    </p>
+                                </div>
+                                
+                                <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                                    <h4>📈 Market Opportunity Assessment</h4>
+                                    <p style="font-family: monospace; font-size: 0.8rem; background: #ffffff; padding: 1rem; border-radius: 4px; margin: 0.5rem 0;">
+                                        "Act as a market research director. Evaluate the [MARKET/SEGMENT] opportunity for our company considering: market size and growth, customer needs analysis, competitive intensity, barriers to entry, regulatory environment. Provide market entry recommendations with risk assessment."
+                                    </p>
+                                </div>
+                                
+                                <div style="background: #faf5ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                                    <h4>🎯 PESTLE Analysis Framework</h4>
+                                    <p style="font-family: monospace; font-size: 0.8rem; background: #ffffff; padding: 1rem; border-radius: 4px; margin: 0.5rem 0;">
+                                        "Act as a strategic planning consultant. Conduct a PESTLE analysis for [INDUSTRY/COMPANY] covering Political, Economic, Social, Technological, Legal, Environmental factors. For each factor, identify 2-3 key trends and their strategic implications for our business over the next 2-3 years."
+                                    </p>
+                                </div>
+                                
+                                <div style="background: #ecfeff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #06b6d4;">
+                                    <h4>💡 Innovation Opportunity Mapping</h4>
+                                    <p style="font-family: monospace; font-size: 0.8rem; background: #ffffff; padding: 1rem; border-radius: 4px; margin: 0.5rem 0;">
+                                        "Act as an innovation strategist. Identify emerging opportunities in [INDUSTRY] by analyzing: technology trends, changing customer behaviors, regulatory shifts, competitive gaps. Map opportunities by impact vs. feasibility and recommend top 3 innovation priorities for the next 18 months."
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SESSION 19: Change Management (Phase IV) -->
+                <!-- Session 19 Title Card -->
+                <section class="card" style="background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%); color: #9a3412;" id="card-28">
+                    <div class="card-number" style="background: #fed7aa; color: #c2410c;">Session 19</div>
+                    <div class="card-content">
+                        <h1 class="card-title">Leading AI Adoption: Change Management</h1>
+                        <p class="card-subtitle">Overcoming Resistance and Building Organizational Buy-In</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #ea580c;">85M</div>
+                                <div class="stat-label">jobs may be displaced by AI by 2025</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #ea580c;">97M</div>
+                                <div class="stat-label">new roles will emerge adapted to human-AI collaboration</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #ea580c;">77%</div>
+                                <div class="stat-label">of employees see themselves as potential AI champions</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Psychology of AI Resistance -->
+                <section class="card white-card" id="card-29">
+                    <div class="card-content">
+                        <h2>🧠 Understanding AI Resistance</h2>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                            <div>
+                                <h3>Why Employees Resist AI</h3>
+                                <div style="background: #fef2f2; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ef4444; margin-bottom: 1rem;">
+                                    <h4>😰 Fear of Job Displacement</h4>
+                                    <p>Automation has historically led to job loss in many sectors, creating anxiety about AI's impact on individual roles and career security.</p>
+                                </div>
+                                
+                                <div style="background: #fffbeb; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #f59e0b; margin-bottom: 1rem;">
+                                    <h4>❓ Lack of Understanding</h4>
+                                    <p>AI seems like a "black box" - complex, uncontrollable, and disruptive without proper education about its practical applications.</p>
+                                </div>
+                                
+                                <div style="background: #f3e8ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #a855f7;">
+                                    <h4>🎓 Skills Gap Anxiety</h4>
+                                    <p>Employees worry they lack the technical skills needed to work effectively with AI tools and may feel intimidated by the learning curve.</p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3>The Change Management Solution</h3>
+                                <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #22c55e; margin-bottom: 1rem;">
+                                    <h4>✅ Reframe the Narrative</h4>
+                                    <p>Position AI as augmentation technology that eliminates tedious tasks, allowing humans to focus on creative, strategic work.</p>
+                                </div>
+                                
+                                <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6; margin-bottom: 1rem;">
+                                    <h4>📚 Provide Education & Training</h4>
+                                    <p>Offer structured learning programs that demystify AI and provide hands-on experience with relevant tools.</p>
+                                </div>
+                                
+                                <div style="background: #ecfeff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #06b6d4;">
+                                    <h4>🏆 Identify Champions</h4>
+                                    <p>Find AI enthusiasts within each department who can inspire others and provide peer-to-peer support and training.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Common Objections Exercise -->
+                <section class="card" style="background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%); color: #9a3412;" id="card-30">
+                    <div class="card-content">
+                        <h2 class="exercise-title">💬 Exercise: Addressing Common Objections</h2>
+                        <p>Practice responding to the most frequent employee concerns about AI adoption:</p>
+                        
+                        <div class="exercise-prompt" style="background: #ffffff; border: 1px solid #fdba74;">
+                            <div class="scenario-card" style="background: #fef2f2; border: 1px solid #fecaca;">
+                                <div class="scenario-number" style="background: #ef4444; color: white;">Objection 1</div>
+                                <h3>"I'm worried this AI is going to make my job obsolete."</h3>
+                                
+                                <div style="background: #ffffff; padding: 1rem; border-radius: 6px; margin: 1rem 0;">
+                                    <h4>Your Response Strategy:</h4>
+                                    <p><strong>Acknowledge:</strong> ________________________________________________</p>
+                                    <p><strong>Reframe:</strong> ________________________________________________</p>
+                                    <p><strong>Evidence:</strong> ________________________________________________</p>
+                                    <p><strong>Action:</strong> ________________________________________________</p>
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" style="background: #fffbeb; border: 1px solid #fde68a;">
+                                <div class="scenario-number" style="background: #f59e0b; color: white;">Objection 2</div>
+                                <h3>"I'm already overwhelmed; I don't have time to learn another new tool."</h3>
+                                
+                                <div style="background: #ffffff; padding: 1rem; border-radius: 6px; margin: 1rem 0;">
+                                    <h4>Your Response Strategy:</h4>
+                                    <p><strong>Empathize:</strong> ________________________________________________</p>
+                                    <p><strong>Benefit:</strong> ________________________________________________</p>
+                                    <p><strong>Support:</strong> ________________________________________________</p>
+                                    <p><strong>Timeline:</strong> ________________________________________________</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #ffffff; padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border: 1px solid #cbd5e1;">
+                            <p><strong>Time Allocation:</strong> 5 minutes individual preparation + 5 minutes partner practice + 5 minutes group discussion</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Response Templates -->
+                <section class="card white-card" id="card-31">
+                    <div class="card-content">
+                        <h2>💡 Proven Response Templates</h2>
+                        
+                        <div style="display: grid; gap: 2rem; margin: 2rem 0;">
+                            <div style="background: #f0fdf4; padding: 2rem; border-radius: 12px; border-left: 4px solid #22c55e;">
+                                <h3>✅ "Job Obsolescence" Concern</h3>
+                                <div style="background: #ffffff; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                                    <p><strong>Acknowledge:</strong> "I understand that concern - it's natural to worry about changes affecting your role."</p>
+                                    
+                                    <p><strong>Reframe:</strong> "Research shows that while 85 million jobs may be displaced, 97 million new roles will emerge that are better suited to human-AI collaboration. This is about evolution, not elimination."</p>
+                                    
+                                    <p><strong>Evidence:</strong> "In our pilot program, teams using AI reported 40% more time for strategic work and higher job satisfaction because they eliminated tedious tasks."</p>
+                                    
+                                    <p><strong>Action:</strong> "Let's start with one simple AI tool that saves you 2 hours per week. You'll see how it enhances rather than replaces your expertise."</p>
+                                </div>
+                            </div>
+                            
+                            <div style="background: #fffbeb; padding: 2rem; border-radius: 12px; border-left: 4px solid #f59e0b;">
+                                <h3>⏰ "No Time to Learn" Concern</h3>
+                                <div style="background: #ffffff; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                                    <p><strong>Empathize:</strong> "I completely understand - you're already managing a full workload and adding one more thing feels overwhelming."</p>
+                                    
+                                    <p><strong>Benefit:</strong> "The goal is actually to reduce your workload. This 30-minute training will save you 3-4 hours per week within a month."</p>
+                                    
+                                    <p><strong>Support:</strong> "We'll provide dedicated learning time during work hours, plus a buddy system so you're not learning alone."</p>
+                                    
+                                    <p><strong>Timeline:</strong> "Start with just 15 minutes twice a week. Once you see the time savings, you'll be motivated to learn more."</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #f0f9ff; padding: 2rem; border-radius: 12px; border-left: 4px solid #3b82f6; text-align: center;">
+                            <h3>🎯 Key Success Factor</h3>
+                            <p style="font-size: 1.2rem; margin: 0;">Always lead with empathy, provide concrete evidence, and offer specific support. Make the change feel manageable and beneficial.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Change Management Playbook -->
+                <section class="card" style="background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%); color: #9a3412;" id="card-32">
+                    <div class="card-content">
+                        <h2>🎁 AI Change Management Toolkit</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Add these proven change management resources to your AI Playbook:</p>
+                        
+                        <div style="background: #ffffff; padding: 2rem; border-radius: 12px; border: 1px solid #fdba74; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                            <h3>Communication Framework</h3>
+                            
+                            <div style="display: grid; gap: 1.5rem; margin: 1.5rem 0;">
+                                <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #22c55e;">
+                                    <h4>📢 Announcement Phase</h4>
+                                    <ul style="margin: 0.5rem 0;">
+                                        <li>Lead with "why" - business necessity and opportunity</li>
+                                        <li>Acknowledge concerns proactively</li>
+                                        <li>Provide specific timeline and support commitments</li>
+                                        <li>Share success stories from similar companies</li>
+                                    </ul>
+                                </div>
+                                
+                                <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                                    <h4>🚀 Implementation Phase</h4>
+                                    <ul style="margin: 0.5rem 0;">
+                                        <li>Start with volunteers and early adopters</li>
+                                        <li>Celebrate quick wins and share progress publicly</li>
+                                        <li>Provide multiple training options and ongoing support</li>
+                                        <li>Address resistance individually with personalized solutions</li>
+                                    </ul>
+                                </div>
+                                
+                                <div style="background: #faf5ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #a855f7;">
+                                    <h4>🏆 Reinforcement Phase</h4>
+                                    <ul style="margin: 0.5rem 0;">
+                                        <li>Recognize and reward AI adoption success stories</li>
+                                        <li>Measure and communicate business impact achieved</li>
+                                        <li>Continuously gather feedback and iterate</li>
+                                        <li>Plan next phase expansion based on lessons learned</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div style="background: #ecfeff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #06b6d4; margin-top: 1.5rem;">
+                                <h4>📊 Success Metrics Dashboard</h4>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                    <div>
+                                        <strong>Adoption Rate:</strong><br>
+                                        % of team actively using AI tools
+                                    </div>
+                                    <div>
+                                        <strong>Satisfaction Score:</strong><br>
+                                        Employee sentiment surveys
+                                    </div>
+                                    <div>
+                                        <strong>Productivity Gain:</strong><br>
+                                        Time saved per week per person
+                                    </div>
+                                    <div>
+                                        <strong>Quality Improvement:</strong><br>
+                                        Error reduction, output quality
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Program Conclusion -->
+                <section class="card" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); color: #1e293b;" id="card-33">
+                    <div class="card-content">
+                        <h1 class="card-title">🎓 Enhanced AI Acumen Program</h1>
+                        <p class="card-subtitle">Congratulations! You've experienced a preview of the complete 24-session journey</p>
+                        
+                        <div style="background: #ffffff; padding: 2rem; border-radius: 12px; margin: 2rem 0; border: 1px solid #e2e8f0; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);">
+                            <h3>🌟 What You've Seen:</h3>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                                <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                                    <h4>Session 1: AI Landscape</h4>
+                                    <p style="font-size: 0.9rem; color: #1e40af;">Strategic platform comparison and decision frameworks</p>
+                                </div>
+                                <div style="background: #ecfeff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #06b6d4;">
+                                    <h4>Session 2: Business ROI</h4>
+                                    <p style="font-size: 0.9rem; color: #0891b2;">Three types of AI value and measurement frameworks</p>
+                                </div>
+                                <div style="background: #faf5ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #a855f7;">
+                                    <h4>Session 3: Context Engineering</h4>
+                                    <p style="font-size: 0.9rem; color: #9333ea;">PTCF framework for 10x better AI outputs</p>
+                                </div>
+                                <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #22c55e;">
+                                    <h4>Session 7: Strategic Analysis</h4>
+                                    <p style="font-size: 0.9rem; color: #16a34a;">AI-powered SWOT, competitive intelligence, and planning</p>
+                                </div>
+                                <div style="background: #fff7ed; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ea580c;">
+                                    <h4>Session 19: Change Management</h4>
+                                    <p style="font-size: 0.9rem; color: #c2410c;">Leading AI adoption and overcoming resistance</p>
+                                </div>
+                                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #64748b;">
+                                    <h4>Plus 19 More Sessions</h4>
+                                    <p style="font-size: 0.9rem; color: #475569;">Complete coverage across all 4 phases of AI mastery</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 3rem;">
+                            <h3 style="color: #6366f1; margin-bottom: 1rem;">Ready to Build Your Complete Program?</h3>
+                            <p style="font-size: 1.1rem; color: #64748b; max-width: 600px; margin: 0 auto;">
+                                This presentation demonstrates the professional quality and interactive design you'll achieve with Gamma AI for all 24 sessions of your Enhanced AI Acumen Program.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Objective Card -->
+                <section class="card white-card" id="card-1">
+                    <div class="card-content">
+                        <h2>🎯 Session Objective</h2>
+                        <p style="font-size: 1.3rem; color: #2d3748; font-weight: 500; background: #fff3cd; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ffc107;">
+                            Equip managers with strategic understanding of key AI players and their distinct philosophies for informed platform selection decisions.
+                        </p>
+                        
+                        <h3>What You'll Learn:</h3>
+                        <ul>
+                            <li><strong>Strategic AI Ecosystems:</strong> Understand the three major AI platforms and their business focus</li>
+                            <li><strong>Platform Selection Framework:</strong> Learn to match business problems with optimal AI solutions</li>
+                            <li><strong>Decision-Making Tools:</strong> Gain practical templates for evaluating AI platforms</li>
+                            <li><strong>Real-World Application:</strong> Practice platform selection with actual business scenarios</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Three Ecosystems Overview -->
+                <section class="card title-card" id="card-2">
+                    <div class="card-content">
+                        <h2 class="card-title">The Three AI Ecosystems</h2>
+                        <p class="card-subtitle">Not all AI platforms are created equal. Each has a distinct strategic DNA.</p>
+                        
+                        <div class="platform-grid">
+                            <div class="platform-card">
+                                <div class="platform-logo">O</div>
+                                <div class="platform-name">OpenAI</div>
+                                <div class="platform-tagline">"The Reasoning Engine"</div>
+                                <p>Pushing frontiers of intelligence and problem-solving capabilities</p>
+                            </div>
+                            
+                            <div class="platform-card">
+                                <div class="platform-logo">G</div>
+                                <div class="platform-name">Google</div>
+                                <div class="platform-tagline">"The Integrated Workflow"</div>
+                                <p>Seamless AI integration into existing productivity tools</p>
+                            </div>
+                            
+                            <div class="platform-card">
+                                <div class="platform-logo">A</div>
+                                <div class="platform-name">Anthropic</div>
+                                <div class="platform-tagline">"The Trusted Partner"</div>
+                                <p>Safety, reliability, and steerability for enterprise-critical applications</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- OpenAI Deep Dive -->
+                <section class="card white-card" id="card-3">
+                    <div class="card-content">
+                        <h2>🧠 OpenAI: The Reasoning Engine</h2>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                            <div>
+                                <h3>Core Philosophy</h3>
+                                <p>Pushing the frontier of raw intelligence and reasoning capabilities through advanced model development.</p>
+                                
+                                <h3>Key Strengths (2025)</h3>
+                                <ul>
+                                    <li><strong>o-series models:</strong> State-of-the-art reasoning capabilities</li>
+                                    <li><strong>Creative generation:</strong> Superior GPT-4.5 for content creation</li>
+                                    <li><strong>Agentic workflows:</strong> Complex multi-step task automation</li>
+                                    <li><strong>Deep Research:</strong> Autonomous research capabilities</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3>2026 Strategic Focus</h3>
+                                <ul>
+                                    <li>GPT-5 development with improved accuracy</li>
+                                    <li>Monetization through advanced agentic workflows</li>
+                                    <li>AI-native SaaS applications expansion</li>
+                                </ul>
+                                
+                                <h3>Ideal Business Use Cases</h3>
+                                <ul>
+                                    <li>Complex problem-solving and analysis</li>
+                                    <li>Scientific research and development</li>
+                                    <li>Advanced code generation</li>
+                                    <li>Creative content ideation</li>
+                                    <li>Autonomous research agents</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #e0f2fe; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #0ea5e9;">
+                            <strong>Key Limitation:</strong> Higher cost for top-tier models and potential "black box" complexity requiring careful governance.
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Google Deep Dive -->
+                <section class="card white-card" id="card-4">
+                    <div class="card-content">
+                        <h2>🔗 Google: The Integrated Workflow</h2>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                            <div>
+                                <h3>Core Philosophy</h3>
+                                <p>Seamlessly integrating AI into the entire productivity and cloud workflow ecosystem.</p>
+                                
+                                <h3>Key Strengths (2025)</h3>
+                                <ul>
+                                    <li><strong>Workspace integration:</strong> Native Gmail, Docs, Sheets AI</li>
+                                    <li><strong>Multimodal capabilities:</strong> Gemini 2.5 advanced processing</li>
+                                    <li><strong>Enterprise platforms:</strong> Agentspace for workflow automation</li>
+                                    <li><strong>Cloud ecosystem:</strong> Deep integration with Google Cloud</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3>2026 Strategic Focus</h3>
+                                <ul>
+                                    <li>Enterprise AI through integrated assistants</li>
+                                    <li>Multimodal and agentic tool expansion</li>
+                                    <li>Google Cloud AI service dominance</li>
+                                </ul>
+                                
+                                <h3>Ideal Business Use Cases</h3>
+                                <ul>
+                                    <li>Internal business process automation</li>
+                                    <li>Collaborative content creation</li>
+                                    <li>Data analysis within spreadsheets</li>
+                                    <li>Multimodal search capabilities</li>
+                                    <li>Personalized productivity assistance</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #22c55e;">
+                            <strong>Key Limitation:</strong> Potential ecosystem lock-in; effectiveness tied to Google suite adoption.
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Anthropic Deep Dive -->
+                <section class="card white-card" id="card-5">
+                    <div class="card-content">
+                        <h2>🛡️ Anthropic: The Trusted Partner</h2>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                            <div>
+                                <h3>Core Philosophy</h3>
+                                <p>Building safe, reliable, and steerable AI systems for high-trust enterprise applications.</p>
+                                
+                                <h3>Key Strengths (2025)</h3>
+                                <ul>
+                                    <li><strong>Large context window:</strong> 200K+ tokens for complex documents</li>
+                                    <li><strong>Low hallucination rates:</strong> Industry-leading accuracy</li>
+                                    <li><strong>Document analysis:</strong> Superior complex document processing</li>
+                                    <li><strong>Safety focus:</strong> Emphasis on ethics and responsible AI</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3>2026 Strategic Focus</h3>
+                                <ul>
+                                    <li>Enterprise partnerships in regulated industries</li>
+                                    <li>Advanced steerability and interpretability</li>
+                                    <li>"Race to the top on safety" leadership</li>
+                                </ul>
+                                
+                                <h3>Ideal Business Use Cases</h3>
+                                <ul>
+                                    <li>Legal contract review and analysis</li>
+                                    <li>Financial document processing</li>
+                                    <li>Medical record summarization</li>
+                                    <li>Mission-critical customer support</li>
+                                    <li>Compliance monitoring and reporting</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #faf5ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #a855f7;">
+                            <strong>Key Limitation:</strong> More constrained responses on sensitive topics; safety focus might lag behind raw capability competitors.
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Comparison Table -->
+                <section class="card white-card" id="card-6">
+                    <div class="card-content">
+                        <h2>📊 Strategic Platform Comparison</h2>
+                        <p>Use this framework to make informed platform selection decisions:</p>
+                        
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>OpenAI</th>
+                                        <th>Google</th>
+                                        <th>Anthropic</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Core Philosophy</strong></td>
+                                        <td>Pushing intelligence frontiers and reasoning capabilities</td>
+                                        <td>Seamless productivity and workflow integration</td>
+                                        <td>Safe, reliable AI for high-trust enterprise use</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Best For</strong></td>
+                                        <td>Complex problem-solving, research, creative tasks</td>
+                                        <td>Business process automation, team collaboration</td>
+                                        <td>Legal/financial analysis, regulated industries</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Key Advantage</strong></td>
+                                        <td>Superior reasoning and agentic capabilities</td>
+                                        <td>Deep integration with existing tools</td>
+                                        <td>Industry-leading safety and accuracy</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Primary Risk</strong></td>
+                                        <td>Higher cost, complexity management</td>
+                                        <td>Ecosystem lock-in dependency</td>
+                                        <td>Potentially more conservative responses</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>2026 Focus</strong></td>
+                                        <td>GPT-5, advanced agentic workflows</td>
+                                        <td>Enterprise AI dominance via integration</td>
+                                        <td>Regulated industry partnerships</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Exercise Card -->
+                <section class="card exercise-card" id="card-7">
+                    <div class="card-content">
+                        <h2 class="exercise-title">💼 Interactive Exercise: Platform-Problem Fit</h2>
+                        <p>Match each business scenario to the most suitable AI platform and justify your choice:</p>
+                        
+                        <div class="exercise-prompt">
+                            <div class="scenario-card">
+                                <div class="scenario-number">Scenario 1</div>
+                                <h3>"Analyze a 500-page M&A due diligence document for potential legal risks"</h3>
+                                <p><strong>Your Choice:</strong> ________________</p>
+                                <p><strong>Justification:</strong> ________________</p>
+                            </div>
+                            
+                            <div class="scenario-card">
+                                <div class="scenario-number">Scenario 2</div>
+                                <h3>"Generate ten highly creative and unconventional marketing slogans for a new consumer product"</h3>
+                                <p><strong>Your Choice:</strong> ________________</p>
+                                <p><strong>Justification:</strong> ________________</p>
+                            </div>
+                            
+                            <div class="scenario-card">
+                                <div class="scenario-number">Scenario 3</div>
+                                <h3>"Automate a weekly sales performance report by pulling data directly from Google Sheets"</h3>
+                                <p><strong>Your Choice:</strong> ________________</p>
+                                <p><strong>Justification:</strong> ________________</p>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #ffffff; padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border: 1px solid #cbd5e1;">
+                            <p><strong>Time Allocation:</strong> 5 minutes individual thinking + 2 minutes discussion</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Exercise Solutions -->
+                <section class="card white-card" id="card-8">
+                    <div class="card-content">
+                        <h2>✅ Exercise Solutions & Discussion</h2>
+                        
+                        <div style="display: grid; gap: 1.5rem; margin: 2rem 0;">
+                            <div style="background: #faf5ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #a855f7;">
+                                <h3>Scenario 1: Legal Due Diligence Analysis</h3>
+                                <p><strong>Best Choice: Anthropic (Claude)</strong></p>
+                                <p><strong>Why:</strong> Large context window (200K+ tokens) can handle entire document, low hallucination rates crucial for legal accuracy, specialized in high-trust document analysis.</p>
+                            </div>
+                            
+                            <div style="background: #e0f2fe; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #0ea5e9;">
+                                <h3>Scenario 2: Creative Marketing Slogans</h3>
+                                <p><strong>Best Choice: OpenAI (GPT)</strong></p>
+                                <p><strong>Why:</strong> Superior creative generation capabilities, excellent at ideation and unconventional thinking, strong performance on open-ended creative tasks.</p>
+                            </div>
+                            
+                            <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #22c55e;">
+                                <h3>Scenario 3: Google Sheets Automation</h3>
+                                <p><strong>Best Choice: Google (Gemini)</strong></p>
+                                <p><strong>Why:</strong> Native integration with Google Workspace, designed for productivity automation within Google ecosystem, seamless data pulling from Sheets.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #ecfeff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #06b6d4;">
+                            <h3>💡 Key Learning</h3>
+                            <p>Platform selection should be driven by specific business needs and context, not marketing claims or general popularity. Each platform has distinct strengths that align with different use cases.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Takeaway Card -->
+                <section class="card takeaway-card" id="card-9">
+                    <div class="card-content">
+                        <h2>🎁 Manager's AI Playbook Entry</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Add this strategic comparison guide to your AI Playbook:</p>
+                        
+                        <div style="background: #ffffff; padding: 2rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                            <h3>Strategic AI Platform Selection Framework</h3>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                                <div style="background: #faf5ff; padding: 1rem; border-radius: 8px; border: 1px solid #e9d5ff;">
+                                    <strong>For Complex Analysis:</strong><br>
+                                    Research, legal review, financial analysis → Anthropic
+                                </div>
+                                <div style="background: #e0f2fe; padding: 1rem; border-radius: 8px; border: 1px solid #bae6fd;">
+                                    <strong>For Creative Work:</strong><br>
+                                    Content creation, ideation, problem-solving → OpenAI
+                                </div>
+                                <div style="background: #f0fdf4; padding: 1rem; border-radius: 8px; border: 1px solid #bbf7d0;">
+                                    <strong>For Workflow Integration:</strong><br>
+                                    Process automation, team collaboration → Google
+                                </div>
+                            </div>
+                            
+                            <h3>Decision Questions:</h3>
+                            <ul style="margin-top: 1rem;">
+                                <li>What type of task am I trying to accomplish?</li>
+                                <li>How important is accuracy vs. creativity?</li>
+                                <li>Do I need integration with existing tools?</li>
+                                <li>What are the stakes if the AI makes a mistake?</li>
+                                <li>What's my budget and usage pattern?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Session Summary -->
+                <section class="card title-card" id="card-10">
+                    <div class="card-content">
+                        <h2 class="card-title">🌟 Session 1 Complete</h2>
+                        <p class="card-subtitle">You now understand the strategic AI landscape and can make informed platform decisions</p>
+                        
+                        <div style="background: #ffffff; padding: 2rem; border-radius: 12px; margin: 2rem 0; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                            <h3>What We Covered:</h3>
+                            <ul style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                                <li>Three distinct AI ecosystems and their strategic philosophies</li>
+                                <li>Platform-specific strengths and ideal use cases</li>
+                                <li>Decision framework for matching problems to platforms</li>
+                                <li>Practical exercise in strategic platform selection</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <p style="font-size: 1.3rem; margin-bottom: 1rem;"><strong>Next Session:</strong></p>
+                            <p style="font-size: 1.1rem; color: #64748b;">Session 2: Understanding AI Business Value & ROI</p>
+                            <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 1rem;">Take a moment to reflect on your current AI platform preferences</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SESSION 2 BEGINS -->
+                <!-- Session 2 Title Card -->
+                <section class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); color: #0c4a6e;" id="card-11">
+                    <div class="card-number" style="background: #e0f2fe; color: #0369a1;">Session 2</div>
+                    <div class="card-content">
+                        <h1 class="card-title">Understanding AI Business Value & ROI</h1>
+                        <p class="card-subtitle">Moving Beyond Hype to Measurable Business Impact</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #0ea5e9;">17%</div>
+                                <div class="stat-label">of organizations see tangible EBIT impact from AI</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #0ea5e9;">80%</div>
+                                <div class="stat-label">struggle to demonstrate business value from GenAI</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #0ea5e9;">340%</div>
+                                <div class="stat-label">higher stakeholder trust with proper AI governance</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Session 2 Objective -->
+                <section class="card white-card" id="card-12">
+                    <div class="card-content">
+                        <h2>🎯 Session Objective</h2>
+                        <p style="font-size: 1.3rem; color: #2d3748; font-weight: 500; background: #f0f9ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #0ea5e9;">
+                            Establish realistic expectations for AI ROI and learn frameworks for measuring business value beyond simple cost savings.
+                        </p>
+                        
+                        <h3>The AI ROI Reality Check:</h3>
+                        <ul>
+                            <li><strong>Current State:</strong> Most organizations haven't seen meaningful bottom-line impact</li>
+                            <li><strong>Success Factors:</strong> Companies with formal AI strategies achieve 80% success vs. 37% without</li>
+                            <li><strong>Value Framework:</strong> Three types of business value beyond cost reduction</li>
+                            <li><strong>Measurement Tools:</strong> Practical templates for tracking both quantitative and qualitative benefits</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- The ROI Challenge -->
+                <section class="card white-card" id="card-13">
+                    <div class="card-content">
+                        <h2>📊 The AI ROI Challenge: Current Reality</h2>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                            <div>
+                                <h3>The Sobering Statistics</h3>
+                                <div style="background: #fef2f2; padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444; margin: 1rem 0;">
+                                    <p><strong>42% of companies</strong> are abandoning most AI projects (up from 17% in 2024)</p>
+                                </div>
+                                <div style="background: #fef2f2; padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444; margin: 1rem 0;">
+                                    <p><strong>Only 1%</strong> of executives describe their GenAI rollouts as "mature"</p>
+                                </div>
+                                <div style="background: #fef2f2; padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444; margin: 1rem 0;">
+                                    <p><strong>97% of enterprises</strong> struggle to demonstrate business value from early GenAI efforts</p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3>Why Most AI Projects Fail</h3>
+                                <ul>
+                                    <li><strong>No Clear Strategy:</strong> Implementing AI without formal strategy</li>
+                                    <li><strong>Wrong Metrics:</strong> Focusing only on efficiency, not transformation</li>
+                                    <li><strong>Unrealistic Expectations:</strong> Expecting immediate, dramatic results</li>
+                                    <li><strong>Poor Change Management:</strong> Technology focus without people consideration</li>
+                                    <li><strong>Inadequate Investment:</strong> Under-resourcing implementation and training</li>
+                                </ul>
+                                
+                                <div style="background: #f0fdf4; padding: 1rem; border-radius: 8px; border-left: 4px solid #22c55e; margin-top: 1rem;">
+                                    <strong>The Success Gap:</strong> 40 percentage-point difference between companies that invest most vs. least in AI
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Three Types of AI Value -->
+                <section class="card" style="background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%); color: #134e4a;" id="card-14">
+                    <div class="card-content">
+                        <h2 class="card-title">💰 The Three Types of AI Business Value</h2>
+                        <p class="card-subtitle">Moving beyond "time saved" to strategic transformation</p>
+                        
+                        <div class="platform-grid">
+                            <div class="platform-card" style="background: #ffffff; border: 1px solid #a7f3d0;">
+                                <div class="platform-logo" style="background: #ecfdf5; color: #059669; border-color: #bbf7d0;">1</div>
+                                <div class="platform-name" style="color: #065f46;">Direct Cost Reduction</div>
+                                <div class="platform-tagline" style="color: #047857;">Immediate, Measurable Savings</div>
+                                <p style="color: #064e3b;">Time savings, automation of repetitive tasks, reduced manual labor costs</p>
+                            </div>
+                            
+                            <div class="platform-card" style="background: #ffffff; border: 1px solid #7dd3fc;">
+                                <div class="platform-logo" style="background: #f0f9ff; color: #0284c7; border-color: #bae6fd;">2</div>
+                                <div class="platform-name" style="color: #0c4a6e;">Revenue Enhancement</div>
+                                <div class="platform-tagline" style="color: #0369a1;">Growth Through Intelligence</div>
+                                <p style="color: #0c4a6e;">Better decisions, new products, improved customer experience, market expansion</p>
+                            </div>
+                            
+                            <div class="platform-card" style="background: #ffffff; border: 1px solid #c7d2fe;">
+                                <div class="platform-logo" style="background: #f8fafc; color: #6366f1; border-color: #c7d2fe;">3</div>
+                                <div class="platform-name" style="color: #3730a3;">Strategic Advantage</div>
+                                <div class="platform-tagline" style="color: #4338ca;">Long-term Competitive Edge</div>
+                                <p style="color: #312e81;">Speed to market, innovation capability, organizational learning, future readiness</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ROI Framework -->
+                <section class="card white-card" id="card-15">
+                    <div class="card-content">
+                        <h2>📋 AI Value Measurement Framework</h2>
+                        <p>Use this comprehensive framework to track and communicate AI business value:</p>
+                        
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Value Type</th>
+                                        <th>Metrics to Track</th>
+                                        <th>Measurement Method</th>
+                                        <th>Typical Timeframe</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Direct Cost Reduction</strong></td>
+                                        <td>Hours saved, FTE reduction, process automation rate</td>
+                                        <td>Before/after time studies, cost accounting</td>
+                                        <td>3-6 months</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Revenue Enhancement</strong></td>
+                                        <td>Conversion rates, customer satisfaction, new product revenue</td>
+                                        <td>A/B testing, customer surveys, sales tracking</td>
+                                        <td>6-12 months</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Strategic Advantage</strong></td>
+                                        <td>Time to market, innovation pipeline, competitive position</td>
+                                        <td>Benchmarking, market analysis, capability assessment</td>
+                                        <td>12-24 months</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Risk Mitigation</strong></td>
+                                        <td>Error reduction, compliance improvement, security incidents</td>
+                                        <td>Incident tracking, audit results, quality metrics</td>
+                                        <td>6-18 months</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Employee Impact</strong></td>
+                                        <td>Job satisfaction, skill development, retention rates</td>
+                                        <td>Employee surveys, training completion, turnover analysis</td>
+                                        <td>6-12 months</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Exercise Card for Session 2 -->
+                <section class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); color: #0c4a6e;" id="card-16">
+                    <div class="card-content">
+                        <h2 class="exercise-title">💼 Interactive Exercise: AI Value Identification</h2>
+                        <p>Identify 3 specific AI value opportunities in your department using our framework:</p>
+                        
+                        <div class="exercise-prompt" style="background: #ffffff; border: 1px solid #7dd3fc;">
+                            <div class="scenario-card" style="background: #ecfdf5; border: 1px solid #bbf7d0;">
+                                <div class="scenario-number" style="background: #22c55e; color: white;">Type 1: Direct Cost Reduction</div>
+                                <h3>Identify a repetitive, time-consuming task in your department</h3>
+                                <p><strong>Task:</strong> ________________________________</p>
+                                <p><strong>Current time investment:</strong> _____ hours per week</p>
+                                <p><strong>Potential AI solution:</strong> ________________________________</p>
+                                <p><strong>Estimated savings:</strong> _____ hours/week = $_____ per year</p>
+                            </div>
+                            
+                            <div class="scenario-card" style="background: #f0f9ff; border: 1px solid #bae6fd;">
+                                <div class="scenario-number" style="background: #0ea5e9; color: white;">Type 2: Revenue Enhancement</div>
+                                <h3>Identify a decision-making process that could benefit from AI insights</h3>
+                                <p><strong>Decision area:</strong> ________________________________</p>
+                                <p><strong>Current limitations:</strong> ________________________________</p>
+                                <p><strong>AI enhancement opportunity:</strong> ________________________________</p>
+                                <p><strong>Potential revenue impact:</strong> ________________________________</p>
+                            </div>
+                            
+                            <div class="scenario-card" style="background: #faf5ff; border: 1px solid #c7d2fe;">
+                                <div class="scenario-number" style="background: #6366f1; color: white;">Type 3: Strategic Advantage</div>
+                                <h3>Identify a capability that could give your team a competitive edge</h3>
+                                <p><strong>Capability area:</strong> ________________________________</p>
+                                <p><strong>Current state:</strong> ________________________________</p>
+                                <p><strong>AI-enhanced vision:</strong> ________________________________</p>
+                                <p><strong>Competitive advantage:</strong> ________________________________</p>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #ffffff; padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border: 1px solid #cbd5e1;">
+                            <p><strong>Time Allocation:</strong> 8 minutes individual work + 4 minutes sharing + 3 minutes wrap-up</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Session 2 Takeaway -->
+                <section class="card" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); color: #14532d;" id="card-17">
+                    <div class="card-content">
+                        <h2>🎁 Manager's AI Playbook Entry: ROI Framework</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Add this comprehensive ROI measurement template to your AI Playbook:</p>
+                        
+                        <div style="background: #ffffff; padding: 2rem; border-radius: 12px; border: 1px solid #bbf7d0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                            <h3>AI Value Assessment Template</h3>
+                            
+                            <div style="display: grid; gap: 1rem; margin: 1.5rem 0;">
+                                <div style="background: #ecfdf5; padding: 1rem; border-radius: 8px; border: 1px solid #bbf7d0;">
+                                    <strong>Phase 1: Baseline Measurement (Month 0)</strong><br>
+                                    • Document current process times and costs<br>
+                                    • Establish quality and satisfaction baselines<br>
+                                    • Define success criteria and KPIs
+                                </div>
+                                <div style="background: #f0f9ff; padding: 1rem; border-radius: 8px; border: 1px solid #bae6fd;">
+                                    <strong>Phase 2: Implementation Tracking (Months 1-6)</strong><br>
+                                    • Monitor adoption rates and usage patterns<br>
+                                    • Track early wins and quick improvements<br>
+                                    • Address resistance and optimization needs
+                                </div>
+                                <div style="background: #faf5ff; padding: 1rem; border-radius: 8px; border: 1px solid #c7d2fe;">
+                                    <strong>Phase 3: Value Realization (Months 6-12)</strong><br>
+                                    • Measure against all three value types<br>
+                                    • Calculate ROI and present business case<br>
+                                    • Plan for scaling and expansion
+                                </div>
+                            </div>
+                            
+                            <h3>Key ROI Calculation Formula:</h3>
+                            <div style="background: #f8fafc; padding: 1rem; border-radius: 6px; font-family: monospace; margin-top: 1rem;">
+                                ROI = (Financial Benefits - Total Costs) / Total Costs × 100<br><br>
+                                Where Benefits = Cost Savings + Revenue Gains + Risk Reduction Value
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SESSION 3 BEGINS -->
+                <!-- Session 3 Title Card -->
+                <section class="card" style="background: linear-gradient(135deg, #fafafa 0%, #f4f4f5 100%); color: #18181b;" id="card-18">
+                    <div class="card-number" style="background: #f1f5f9; color: #475569;">Session 3</div>
+                    <div class="card-content">
+                        <h1 class="card-title">Context Engineering: Beyond Basic Prompting</h1>
+                        <p class="card-subtitle">The PTCF Framework for Strategic AI Instructions</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #7c3aed;">10x</div>
+                                <div class="stat-label">improvement in AI output quality with proper context</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #7c3aed;">85%</div>
+                                <div class="stat-label">of AI failures due to poor prompt construction</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" style="color: #7c3aed;">4</div>
+                                <div class="stat-label">key components: Persona, Task, Context, Format</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Context Engineering Concept -->
+                <section class="card white-card" id="card-19">
+                    <div class="card-content">
+                        <h2>🧠 From Prompting to Context Engineering</h2>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                            <div>
+                                <h3 style="color: #dc2626;">❌ Basic Prompting Limitations</h3>
+                                <div style="background: #fef2f2; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ef4444;">
+                                    <h4>Generic Request:</h4>
+                                    <p style="font-family: monospace; background: #ffffff; padding: 1rem; border-radius: 4px; margin: 0.5rem 0;">"Summarize this article."</p>
+                                    
+                                    <h4>Typical Result:</h4>
+                                    <ul style="font-size: 0.9rem; color: #7f1d1d;">
+                                        <li>Bland, generic summary</li>
+                                        <li>No business context</li>
+                                        <li>Wrong level of detail</li>
+                                        <li>Irrelevant focus areas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 style="color: #059669;">✅ Context Engineering Power</h3>
+                                <div style="background: #ecfdf5; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #10b981;">
+                                    <h4>PTCF-Structured Request:</h4>
+                                    <p style="font-family: monospace; background: #ffffff; padding: 1rem; border-radius: 4px; margin: 0.5rem 0; font-size: 0.8rem;">"Act as a Senior Financial Analyst. Summarize this article for our CEO who is considering investment in this sector. Focus on market growth, competitive threats, and regulatory risks. Format as 3 bullet points with clear headings."</p>
+                                    
+                                    <h4>Enhanced Result:</h4>
+                                    <ul style="font-size: 0.9rem; color: #064e3b;">
+                                        <li>Highly relevant insights</li>
+                                        <li>Executive-appropriate language</li>
+                                        <li>Strategic focus areas</li>
+                                        <li>Actionable intelligence</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #f0f9ff; padding: 2rem; border-radius: 12px; border-left: 4px solid #0ea5e9; text-align: center;">
+                            <h3>💡 The Key Insight</h3>
+                            <p style="font-size: 1.2rem; margin: 0;">Context Engineering is like giving AI your company handbook, org chart, and project requirements before asking for advice.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PTCF Framework -->
+                <section class="card" style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); color: #581c87;" id="card-20">
+                    <div class="card-content">
+                        <h2 class="card-title">📋 The PTCF Framework</h2>
+                        <p class="card-subtitle">Four components for strategic AI instruction</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                            <div style="background: #ffffff; padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid #c084fc;">
+                                <div style="width: 60px; height: 60px; background: #ddd6fe; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: #6b21a8;">P</div>
+                                <h3 style="color: #6b21a8; margin-bottom: 0.5rem;">Persona</h3>
+                                <p style="color: #581c87; font-size: 0.9rem;">WHO the AI should be</p>
+                                <p style="color: #7c2d12; font-size: 0.8rem;">Expert role, experience level, perspective</p>
+                            </div>
+                            
+                            <div style="background: #ffffff; padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid #c084fc;">
+                                <div style="width: 60px; height: 60px; background: #ddd6fe; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: #6b21a8;">T</div>
+                                <h3 style="color: #6b21a8; margin-bottom: 0.5rem;">Task</h3>
+                                <p style="color: #581c87; font-size: 0.9rem;">WHAT it should do</p>
+                                <p style="color: #7c2d12; font-size: 0.8rem;">Specific action, goal, deliverable</p>
+                            </div>
+                            
+                            <div style="background: #ffffff; padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid #c084fc;">
+                                <div style="width: 60px; height: 60px; background: #ddd6fe; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: #6b21a8;">C</div>
+                                <h3 style="color: #6b21a8; margin-bottom: 0.5rem;">Context</h3>
+                                <p style="color: #581c87; font-size: 0.9rem;">External knowledge to use</p>
+                                <p style="color: #7c2d12; font-size: 0.8rem;">Background info, constraints, requirements</p>
+                            </div>
+                            
+                            <div style="background: #ffffff; padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid #c084fc;">
+                                <div style="width: 60px; height: 60px; background: #ddd6fe; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: #6b21a8;">F</div>
+                                <h3 style="color: #6b21a8; margin-bottom: 0.5rem;">Format</h3>
+                                <p style="color: #581c87; font-size: 0.9rem;">HOW output should be structured</p>
+                                <p style="color: #7c2d12; font-size: 0.8rem;">Layout, length, style, organization</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Session 3 Exercise -->
+                <section class="card" style="background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%); color: #134e4a;" id="card-21">
+                    <div class="card-content">
+                        <h2 class="exercise-title">🛠️ Hands-On Exercise: PTCF Transformation</h2>
+                        <p>Transform this basic prompt using the PTCF framework:</p>
+                        
+                        <div class="exercise-prompt" style="background: #ffffff; border: 1px solid #5eead4;">
+                            <div style="background: #fef2f2; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ef4444; margin-bottom: 2rem;">
+                                <h3>❌ Basic Prompt (Before):</h3>
+                                <p style="font-family: monospace; background: #ffffff; padding: 1rem; border-radius: 4px; font-size: 1rem;">
+                                    "Help me write a report about our Q3 sales performance."
+                                </p>
+                            </div>
+                            
+                            <div style="background: #ecfdf5; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #10b981;">
+                                <h3>✅ Your PTCF-Enhanced Prompt (After):</h3>
+                                
+                                <div style="background: #ffffff; padding: 1rem; border-radius: 4px; margin: 1rem 0;">
+                                    <p><strong>P (Persona):</strong> Act as a ________________________</p>
+                                    <p><strong>T (Task):</strong> Your task is to ________________________</p>
+                                    <p><strong>C (Context):</strong> Given that ________________________</p>
+                                    <p><strong>F (Format):</strong> Structure your output as ________________________</p>
+                                </div>
+                                
+                                <div style="background: #f8fafc; padding: 1rem; border-radius: 4px; margin-top: 1rem;">
+                                    <strong>Complete Enhanced Prompt:</strong>
+                                    <textarea style="width: 100%; min-height: 100px; border: 1px solid #cbd5e1; border-radius: 4px; padding: 0.5rem; font-family: inherit;" placeholder="Combine your PTCF elements into one coherent prompt..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #ffffff; padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border: 1px solid #cbd5e1;">
+                            <p><strong>Time Allocation:</strong> 3 minutes individual work + 2 minutes discussion + 2 minutes example sharing</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Session 3 Solution -->
+                <section class="card white-card" id="card-22">
+                    <div class="card-content">
+                        <h2>✨ Example PTCF Solution</h2>
+                        
+                        <div style="background: #ecfdf5; padding: 2rem; border-radius: 12px; border-left: 4px solid #10b981;">
+                            <h3>Professional Example:</h3>
+                            <div style="background: #ffffff; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem; line-height: 1.6; margin: 1rem 0;">
+                                "Act as a <span style="background: #ddd6fe; padding: 0.2rem 0.4rem; border-radius: 3px;">Senior Sales Analytics Manager</span> with 8+ years of experience in SaaS revenue analysis. Your task is to <span style="background: #fef3c7; padding: 0.2rem 0.4rem; border-radius: 3px;">create a comprehensive Q3 sales performance report for the executive team</span> who will use this to make Q4 strategic decisions. <span style="background: #dcfce7; padding: 0.2rem 0.4rem; border-radius: 3px;">Given that we missed our Q2 targets by 15% and launched two new product lines in Q3, focus specifically on: revenue trends, product performance comparison, regional variations, and pipeline health.</span> Structure your output as <span style="background: #fecaca; padding: 0.2rem 0.4rem; border-radius: 3px;">an executive summary (3 key insights), detailed analysis by segment, and 5 specific recommendations for Q4 action.</span>"
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                            <div>
+                                <h3>What This Achieves:</h3>
+                                <ul>
+                                    <li><strong>Clear Role:</strong> AI understands the expertise level needed</li>
+                                    <li><strong>Specific Purpose:</strong> Report tailored for executive decision-making</li>
+                                    <li><strong>Rich Context:</strong> Includes relevant background and focus areas</li>
+                                    <li><strong>Structured Output:</strong> Organized, actionable format</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3>Result Quality Improvement:</h3>
+                                <ul>
+                                    <li><strong>Relevance:</strong> 95% vs 30% with basic prompt</li>
+                                    <li><strong>Actionability:</strong> Specific recommendations vs generic insights</li>
+                                    <li><strong>Audience Fit:</strong> Executive-level language and focus</li>
+                                    <li><strong>Time Savings:</strong> Minimal editing required</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Session 3 Takeaway -->
+                <section class="card" style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); color: #581c87;" id="card-23">
+                    <div class="card-content">
+                        <h2>🎁 Manager's AI Playbook Entry: PTCF Template</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Add this systematic prompt construction template to your AI Playbook:</p>
+                        
+                        <div style="background: #ffffff; padding: 2rem; border-radius: 12px; border: 1px solid #c084fc; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                            <h3>Universal PTCF Prompt Template</h3>
+                            
+                            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem; line-height: 1.8; margin: 1.5rem 0;">
+                                "Act as a <strong>[PERSONA: Role + Experience Level + Domain]</strong><br><br>
+                                
+                                Your task is to <strong>[TASK: Specific Action + Deliverable + Purpose]</strong><br><br>
+                                
+                                <strong>[CONTEXT: Background info + Constraints + Requirements + Key focus areas]</strong><br><br>
+                                
+                                Structure your output as <strong>[FORMAT: Organization + Length + Style + Specific sections]</strong>"
+                            </div>
+                            
+                            <h3>Quick Reference Examples:</h3>
+                            <div style="display: grid; gap: 1rem; margin: 1.5rem 0;">
+                                <div style="background: #fafafa; padding: 1rem; border-radius: 6px; border-left: 3px solid #6366f1;">
+                                    <strong>Personas:</strong> Senior Marketing Manager, Financial Analyst, HR Director, Strategy Consultant, Project Manager
+                                </div>
+                                <div style="background: #fafafa; padding: 1rem; border-radius: 6px; border-left: 3px solid #059669;">
+                                    <strong>Tasks:</strong> Analyze, Create, Summarize, Compare, Recommend, Design, Plan, Evaluate
+                                </div>
+                                <div style="background: #fafafa; padding: 1rem; border-radius: 6px; border-left: 3px solid #dc2626;">
+                                    <strong>Formats:</strong> Executive summary, Bullet points, Table format, Step-by-step guide, SWOT analysis
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+            </div>
+        </main>
+        
+        <!-- Navigation Arrows -->
+        <div class="nav-arrows">
+            <button class="nav-arrow" id="prevBtn" onclick="navigateCard(-1)">‹</button>
+            <button class="nav-arrow" id="nextBtn" onclick="navigateCard(1)">›</button>
+        </div>
+    </div>
+    
+    <script>
+        let currentCard = 0;
+        const totalCards = document.querySelectorAll('.card').length;
+        
+        // Navigation function
+        function navigateCard(direction) {
+            const newCard = currentCard + direction;
+            if (newCard >= 0 && newCard < totalCards) {
+                currentCard = newCard;
+                updatePresentation();
+            }
+        }
+        
+        // Update presentation state
+        function updatePresentation() {
+            // Scroll to current card
+            const targetCard = document.getElementById(`card-${currentCard}`);
+            if (targetCard) {
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            // Update sidebar active state
+            document.querySelectorAll('.session-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Update progress bar
+            const progress = ((currentCard + 1) / totalCards) * 100;
+            document.querySelector('.progress-fill').style.width = `${progress}%`;
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentCard === 0;
+            document.getElementById('nextBtn').disabled = currentCard === totalCards - 1;
+        }
+        
+        // Sidebar navigation
+        document.querySelectorAll('.session-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const cardIndex = parseInt(item.dataset.card);
+                if (!isNaN(cardIndex)) {
+                    currentCard = cardIndex;
+                    updatePresentation();
+                }
+            });
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                navigateCard(-1);
+            } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                navigateCard(1);
+            }
+        });
+        
+        // Scroll detection for automatic card updates
+        let scrollTimeout;
+        document.getElementById('presentationScroll').addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const cards = document.querySelectorAll('.card');
+                const scrollContainer = document.getElementById('presentationScroll');
+                const scrollTop = scrollContainer.scrollTop;
+                
+                let newCurrentCard = 0;
+                cards.forEach((card, index) => {
+                    const cardTop = card.offsetTop;
+                    const cardHeight = card.offsetHeight;
+                    
+                    if (scrollTop >= cardTop - cardHeight / 2) {
+                        newCurrentCard = index;
+                    }
+                });
+                
+                if (newCurrentCard !== currentCard) {
+                    currentCard = newCurrentCard;
+                    updatePresentation();
+                }
+            }, 100);
+        });
+        
+        // Initialize
+        updatePresentation();
+        
+        // Add intersection observer for smooth card animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+        
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Add smooth scrolling for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>

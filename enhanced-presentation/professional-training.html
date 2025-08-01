@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced AI Acumen Program - Professional Training System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* PROFESSIONAL COLOR SYSTEM - Fortune 500 Inspired */
+            
+            /* Dominant Colors (60%) - Backgrounds */
+            --color-white: #FFFFFF;
+            --color-background-primary: #F8FAFC;
+            --color-background-secondary: #F1F5F9;
+            --color-background-tertiary: #E2E8F0;
+            
+            /* Secondary Colors (30%) - Content Areas */
+            --color-blue-50: #EFF6FF;
+            --color-blue-100: #DBEAFE;
+            --color-blue-200: #BFDBFE;
+            --color-blue-300: #93C5FD;
+            --color-grey-50: #F9FAFB;
+            --color-grey-100: #F3F4F6;
+            --color-grey-200: #E5E7EB;
+            --color-grey-300: #D1D5DB;
+            
+            /* Accent Colors (10%) - CTAs & Highlights */
+            --color-primary: #2563EB;
+            --color-primary-dark: #1D4ED8;
+            --color-secondary: #0EA5E9;
+            --color-success: #10B981;
+            --color-warning: #F59E0B;
+            --color-info: #06B6D4;
+            --color-neutral: #6B7280;
+            
+            /* Soft Pastels */
+            --color-pastel-blue: #E0F2FE;
+            --color-pastel-cyan: #CFFAFE;
+            --color-pastel-emerald: #D1FAE5;
+            --color-pastel-sky: #E0F2FE;
+            --color-pastel-slate: #F1F5F9;
+            --color-pastel-mint: #ECFDF5;
+            
+            /* TYPOGRAPHY SYSTEM */
+            --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            
+            /* Responsive Typography */
+            --font-size-display: clamp(2.5rem, 6vw, 4rem);
+            --font-size-h1: clamp(2rem, 4vw, 3rem);
+            --font-size-h2: clamp(1.5rem, 3vw, 2.2rem);
+            --font-size-h3: clamp(1.2rem, 2.5vw, 1.8rem);
+            --font-size-h4: clamp(1rem, 2vw, 1.4rem);
+            --font-size-large: clamp(1.1rem, 2vw, 1.3rem);
+            --font-size-base: clamp(0.9rem, 1.8vw, 1.1rem);
+            --font-size-small: clamp(0.8rem, 1.5vw, 1rem);
+            --font-size-tiny: clamp(0.75rem, 1.2vw, 0.9rem);
+            
+            /* Font Weights */
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --font-weight-black: 900;
+            
+            /* SPACING SYSTEM - 8pt Grid */
+            --space-1: 0.5rem;
+            --space-2: 1rem;
+            --space-3: 1.5rem;
+            --space-4: 2rem;
+            --space-5: 2.5rem;
+            --space-6: 3rem;
+            --space-8: 4rem;
+            --space-10: 5rem;
+            --space-12: 6rem;
+            
+            /* Viewport-responsive spacing */
+            --space-xs: clamp(0.5rem, 1vh, 1rem);
+            --space-sm: clamp(1rem, 2vh, 2rem);
+            --space-md: clamp(1.5rem, 3vh, 3rem);
+            --space-lg: clamp(2rem, 4vh, 4rem);
+            --space-xl: clamp(3rem, 6vh, 6rem);
+            
+            /* SHADOWS & EFFECTS */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            /* TRANSITIONS */
+            --transition-fast: 0.15s ease-out;
+            --transition-normal: 0.2s ease-out;
+            --transition-slow: 0.3s ease-out;
+            --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family-primary);
+            background: var(--color-background-primary);
+            overflow: hidden;
+            color: var(--color-neutral);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .presentation-container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        /* PROFESSIONAL SIDEBAR NAVIGATION */
+        .sidebar {
+            width: 380px;
+            background: linear-gradient(180deg, var(--color-white) 0%, var(--color-background-secondary) 100%);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            border-right: 1px solid var(--color-grey-200);
+            transition: transform var(--transition-slow);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .sidebar.collapsed {
+            transform: translateX(-340px);
+        }
+        
+        .sidebar-header {
+            padding: var(--space-6) var(--space-4);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-white);
+            position: relative;
+        }
+        
+        .program-title {
+            font-size: var(--font-size-h3);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-1);
+            line-height: 1.2;
+        }
+        
+        .program-subtitle {
+            font-size: var(--font-size-small);
+            opacity: 0.9;
+            font-weight: var(--font-weight-normal);
+        }
+        
+        .toggle-btn {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: var(--color-white);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-normal);
+            backdrop-filter: blur(10px);
+        }
+        
+        .toggle-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .sidebar-content {
+            padding: var(--space-4);
+        }
+        
+        .phase-header {
+            color: var(--color-primary);
+            font-size: var(--font-size-tiny);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: var(--space-6) 0 var(--space-3) 0;
+            padding: var(--space-2) var(--space-3);
+            background: var(--color-blue-50);
+            border-radius: 8px;
+            border-left: 3px solid var(--color-primary);
+        }
+        
+        .session-group {
+            margin-bottom: var(--space-2);
+        }
+        
+        .session-header {
+            padding: var(--space-3) var(--space-4);
+            margin: var(--space-1) 0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-size: var(--font-size-base);
+            color: var(--color-neutral);
+            display: flex;
+            align-items: center;
+            background: var(--color-white);
+            border: 1px solid var(--color-grey-100);
+            font-weight: var(--font-weight-medium);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .session-header:hover {
+            background: var(--color-blue-50);
+            transform: translateX(4px);
+            border-color: var(--color-blue-200);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .session-header.active {
+            background: linear-gradient(135deg, var(--color-blue-100) 0%, var(--color-pastel-blue) 100%);
+            color: var(--color-primary-dark);
+            font-weight: var(--font-weight-semibold);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-primary);
+        }
+        
+        .session-number {
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: var(--space-1) var(--space-2);
+            border-radius: 20px;
+            font-size: var(--font-size-tiny);
+            font-weight: var(--font-weight-bold);
+            margin-right: var(--space-3);
+            min-width: 32px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .session-header.active .session-number {
+            background: var(--color-primary-dark);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .session-duration {
+            margin-left: auto;
+            font-size: var(--font-size-tiny);
+            background: var(--color-grey-100);
+            color: var(--color-neutral);
+            padding: var(--space-1) var(--space-2);
+            border-radius: 12px;
+            font-weight: var(--font-weight-medium);
+        }
+        
+        .slide-list {
+            list-style: none;
+            margin-left: var(--space-4);
+            margin-top: var(--space-2);
+            display: none;
+        }
+        
+        .session-group.expanded .slide-list {
+            display: block;
+        }
+        
+        .slide-item {
+            padding: var(--space-2) var(--space-3);
+            margin: var(--space-1) 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-size: var(--font-size-small);
+            color: var(--color-neutral);
+            border-left: 2px solid transparent;
+            background: var(--color-grey-50);
+        }
+        
+        .slide-item:hover {
+            background: var(--color-blue-50);
+            border-left: 2px solid var(--color-secondary);
+            transform: translateX(2px);
+        }
+        
+        .slide-item.active {
+            background: var(--color-pastel-cyan);
+            color: var(--color-primary-dark);
+            font-weight: var(--font-weight-semibold);
+            border-left: 2px solid var(--color-secondary);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .slide-number {
+            font-size: var(--font-size-tiny);
+            opacity: 0.7;
+            margin-right: var(--space-2);
+            font-weight: var(--font-weight-bold);
+        }
+        
+        /* MAIN CONTENT AREA */
+        .main-content {
+            margin-left: 380px;
+            flex: 1;
+            transition: margin-left var(--transition-slow);
+        }
+        
+        .main-content.expanded {
+            margin-left: 40px;
+        }
+        
+        .slide-display {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: var(--space-4);
+        }
+        
+        .slide {
+            width: calc(100% - 2rem);
+            max-width: 1400px;
+            height: calc(100vh - 2rem);
+            background: var(--color-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-2xl);
+            padding: var(--space-xl) var(--space-lg);
+            display: none;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            border: 1px solid var(--color-grey-100);
+        }
+        
+        .slide.active {
+            display: flex;
+            animation: slideEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes slideEnter {
+            from {
+                opacity: 0;
+                transform: translateX(30px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+        
+        .slide-number-indicator {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-6);
+            background: var(--color-grey-100);
+            color: var(--color-neutral);
+            padding: var(--space-2) var(--space-4);
+            border-radius: 25px;
+            font-size: var(--font-size-small);
+            font-weight: var(--font-weight-semibold);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-grey-200);
+        }
+        
+        /* SLIDE TYPES WITH PROFESSIONAL BACKGROUNDS */
+        .slide.title-slide {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-white);
+            text-align: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide.title-slide::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.05"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        
+        .slide.concept-slide {
+            background: var(--color-white);
+        }
+        
+        .slide.exercise-slide {
+            background: linear-gradient(135deg, var(--color-pastel-cyan) 0%, var(--color-blue-50) 100%);
+        }
+        
+        .slide.takeaway-slide {
+            background: linear-gradient(135deg, var(--color-pastel-mint) 0%, var(--color-pastel-emerald) 100%);
+        }
+        
+        .slide.break-slide {
+            background: linear-gradient(135deg, var(--color-pastel-blue) 0%, var(--color-blue-100) 100%);
+            text-align: center;
+            justify-content: center;
+        }
+        
+        /* PROFESSIONAL TYPOGRAPHY */
+        .slide h1 {
+            font-size: var(--font-size-h1);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-md);
+            line-height: 1.1;
+            color: inherit;
+        }
+        
+        .slide h2 {
+            font-size: var(--font-size-h2);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-sm);
+            color: var(--color-neutral);
+            line-height: 1.2;
+        }
+        
+        .slide h3 {
+            font-size: var(--font-size-h3);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-sm);
+            color: var(--color-neutral);
+        }
+        
+        .slide h4 {
+            font-size: var(--font-size-h4);
+            font-weight: var(--font-weight-medium);
+            margin-bottom: var(--space-xs);
+            color: var(--color-neutral);
+        }
+        
+        .slide p {
+            font-size: var(--font-size-base);
+            line-height: 1.7;
+            margin-bottom: var(--space-sm);
+            color: var(--color-neutral);
+        }
+        
+        .slide.title-slide h1,
+        .slide.title-slide h2,
+        .slide.title-slide p {
+            color: var(--color-white);
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* PROFESSIONAL COMPONENTS */
+        .session-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: var(--space-2) var(--space-4);
+            border-radius: 25px;
+            font-size: var(--font-size-small);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-sm);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .session-badge i {
+            margin-right: var(--space-2);
+            font-size: 1.2em;
+        }
+        
+        .objective-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-left: 4px solid var(--color-warning);
+            padding: var(--space-lg);
+            border-radius: 12px;
+            margin: var(--space-md) 0;
+        }
+        
+        .objective-box strong {
+            color: var(--color-warning);
+            font-weight: var(--font-weight-bold);
+        }
+        
+        .agenda-list {
+            list-style: none;
+            margin: var(--space-md) 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+        
+        .agenda-item {
+            background: var(--color-white);
+            padding: var(--space-lg);
+            border-radius: 16px;
+            border: 1px solid var(--color-grey-100);
+            box-shadow: var(--shadow-md);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .agenda-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+        }
+        
+        .agenda-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-blue-200);
+        }
+        
+        .agenda-time {
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            font-size: var(--font-size-large);
+            margin-bottom: var(--space-xs);
+            display: flex;
+            align-items: center;
+        }
+        
+        .agenda-time i {
+            margin-right: var(--space-2);
+            background: var(--color-blue-100);
+            color: var(--color-primary);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+        }
+        
+        /* INFOGRAPHIC GRID SYSTEM */
+        .infographic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-md) 0;
+            flex: 1;
+        }
+        
+        .info-card {
+            background: var(--color-white);
+            padding: var(--space-lg);
+            border-radius: 16px;
+            border: 1px solid var(--color-grey-100);
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .info-card.primary {
+            border-top: 4px solid var(--color-primary);
+        }
+        
+        .info-card.secondary {
+            border-top: 4px solid var(--color-secondary);
+        }
+        
+        .info-card.success {
+            border-top: 4px solid var(--color-success);
+        }
+        
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: var(--space-4);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .info-card.primary .card-icon {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-white);
+        }
+        
+        .info-card.secondary .card-icon {
+            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-info) 100%);
+            color: var(--color-white);
+        }
+        
+        .info-card.success .card-icon {
+            background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+            color: var(--color-white);
+        }
+        
+        .card-title {
+            font-size: var(--font-size-h4);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-neutral);
+            margin-bottom: var(--space-2);
+        }
+        
+        .card-subtitle {
+            font-size: var(--font-size-small);
+            color: var(--color-primary);
+            font-weight: var(--font-weight-semibold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-2);
+        }
+        
+        .card-description {
+            font-size: var(--font-size-base);
+            color: var(--color-neutral);
+            line-height: 1.6;
+            margin-bottom: var(--space-3);
+        }
+        
+        .card-features {
+            list-style: none;
+            margin-top: auto;
+        }
+        
+        .card-features li {
+            font-size: var(--font-size-small);
+            color: var(--color-neutral);
+            margin-bottom: var(--space-1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-features li::before {
+            content: '✓';
+            color: var(--color-success);
+            font-weight: var(--font-weight-bold);
+            margin-right: var(--space-2);
+            font-size: 1.1em;
+        }
+        
+        /* PROFESSIONAL DATA VISUALIZATION */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-md) 0;
+            background: var(--color-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-grey-100);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-white);
+            padding: var(--space-4);
+            font-weight: var(--font-weight-semibold);
+            text-align: left;
+            font-size: var(--font-size-base);
+        }
+        
+        .comparison-table td {
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--color-grey-100);
+            vertical-align: top;
+            font-size: var(--font-size-base);
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: var(--color-grey-50);
+        }
+        
+        .comparison-table tr:hover {
+            background: var(--color-blue-50);
+            transition: background var(--transition-normal);
+        }
+        
+        .comparison-table strong {
+            color: var(--color-primary-dark);
+            font-weight: var(--font-weight-bold);
+        }
+        
+        /* EXERCISE COMPONENTS */
+        .exercise-container {
+            background: linear-gradient(135deg, var(--color-pastel-cyan) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border: 2px solid var(--color-secondary);
+            border-radius: 20px;
+            padding: var(--space-xl);
+            margin: var(--space-md) 0;
+            position: relative;
+        }
+        
+        .exercise-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .exercise-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-info) 100%);
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: var(--space-4);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .exercise-title {
+            font-size: var(--font-size-h3);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary-dark);
+            margin: 0;
+        }
+        
+        .scenario-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-lg) 0;
+        }
+        
+        .scenario-card {
+            background: var(--color-white);
+            padding: var(--space-lg);
+            border-radius: 16px;
+            border: 2px solid var(--color-grey-100);
+            transition: all var(--transition-normal);
+            position: relative;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .scenario-card:hover {
+            border-color: var(--color-secondary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .scenario-header {
+            font-size: var(--font-size-h4);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary-dark);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+        }
+        
+        .scenario-number {
+            background: var(--color-primary);
+            color: var(--color-white);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-small);
+            font-weight: var(--font-weight-bold);
+            margin-right: var(--space-3);
+        }
+        
+        .recommendation {
+            background: var(--color-pastel-mint);
+            border: 1px solid var(--color-success);
+            border-radius: 8px;
+            padding: var(--space-3);
+            margin-top: var(--space-3);
+            font-weight: var(--font-weight-semibold);
+            color: #065f46;
+        }
+        
+        /* TAKEAWAY COMPONENTS */
+        .takeaway-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-md) 0;
+            flex: 1;
+        }
+        
+        .takeaway-card {
+            text-align: center;
+            padding: var(--space-lg);
+            background: var(--color-white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-grey-100);
+            transition: all var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .takeaway-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .takeaway-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            color: var(--color-white);
+            font-size: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .takeaway-title {
+            font-size: var(--font-size-h4);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-3);
+            color: var(--color-neutral);
+        }
+        
+        .takeaway-description {
+            font-size: var(--font-size-base);
+            color: var(--color-neutral);
+            line-height: 1.6;
+        }
+        
+        /* NAVIGATION CONTROLS */
+        .nav-controls {
+            position: fixed;
+            bottom: var(--space-6);
+            right: var(--space-6);
+            display: flex;
+            gap: var(--space-3);
+            z-index: 200;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-white);
+            border: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: var(--shadow-xl);
+            transition: all var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .nav-btn:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        .nav-btn:disabled {
+            background: var(--color-grey-300);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .slide-counter {
+            position: fixed;
+            bottom: var(--space-6);
+            left: var(--space-6);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: var(--space-3) var(--space-5);
+            border-radius: 25px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-neutral);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-grey-200);
+            font-size: var(--font-size-base);
+        }
+        
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 320px;
+            }
+            
+            .main-content {
+                margin-left: 320px;
+            }
+            
+            .infographic-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: var(--space-md);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 90%;
+                z-index: 1000;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .slide {
+                padding: var(--space-lg) var(--space-md);
+            }
+            
+            .infographic-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .scenario-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .takeaway-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+        
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: var(--space-4);
+            left: var(--space-4);
+            z-index: 1100;
+            background: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        
+        /* ACCESSIBILITY ENHANCEMENTS */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+        
+        /* HIGH CONTRAST MODE SUPPORT */
+        @media (prefers-contrast: high) {
+            :root {
+                --color-primary: #0000FF;
+                --color-neutral: #000000;
+                --color-background-primary: #FFFFFF;
+            }
+        }
+        
+        /* REDUCED MOTION SUPPORT */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            ::before,
+            ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" onclick="toggleMobileSidebar()" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="presentation-container">
+        <!-- Professional Navigation Sidebar -->
+        <nav class="sidebar" id="sidebar" role="navigation" aria-label="Session navigation">
+            <div class="sidebar-header">
+                <h1 class="program-title">Enhanced AI Acumen Program</h1>
+                <p class="program-subtitle">Professional Training System • 24 Sessions</p>
+                <button class="toggle-btn" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-content">
+                <ul class="session-nav">
+                    <li class="phase-header" role="heading" aria-level="2">PHASE I: FOUNDATION</li>
+                    
+                    <!-- Session 1 -->
+                    <li class="session-group" id="session-1">
+                        <div class="session-header active" onclick="toggleSession(1)" role="button" tabindex="0">
+                            <span class="session-number">1</span>
+                            <span>The AI Landscape</span>
+                            <span class="session-duration">15m</span>
+                        </div>
+                        <ul class="slide-list" role="menu">
+                            <li class="slide-item active" onclick="showSlide('s1-title')" role="menuitem" tabindex="0">
+                                <span class="slide-number">1.1</span>Title
+                            </li>
+                            <li class="slide-item" onclick="showSlide('s1-agenda')" role="menuitem" tabindex="0">
+                                <span class="slide-number">1.2</span>Agenda
+                            </li>
+                            <li class="slide-item" onclick="showSlide('s1-concept')" role="menuitem" tabindex="0">
+                                <span class="slide-number">1.3</span>Three AI Ecosystems
+                            </li>
+                            <li class="slide-item" onclick="showSlide('s1-comparison')" role="menuitem" tabindex="0">
+                                <span class="slide-number">1.4</span>Platform Comparison
+                            </li>
+                            <li class="slide-item" onclick="showSlide('s1-exercise')" role="menuitem" tabindex="0">
+                                <span class="slide-number">1.5</span>Exercise
+                            </li>
+                            <li class="slide-item" onclick="showSlide('s1-takeaway')" role="menuitem" tabindex="0">
+                                <span class="slide-number">1.6</span>Key Takeaways
+                            </li>
+                            <li class="slide-item" onclick="showSlide('s1-break')" role="menuitem" tabindex="0">
+                                <span class="slide-number">1.7</span>Session Break
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Additional sessions would follow the same pattern -->
+                    <li class="session-group" id="session-2">
+                        <div class="session-header" onclick="toggleSession(2)" role="button" tabindex="0">
+                            <span class="session-number">2</span>
+                            <span>AI Business Value & ROI</span>
+                            <span class="session-duration">15m</span>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Presentation Display -->
+        <main class="main-content" id="mainContent" role="main">
+            <div class="slide-display">
+                
+                <!-- Session 1 Slides -->
+                
+                <!-- S1.1: Professional Title Slide -->
+                <section class="slide title-slide active" id="s1-title" role="slide" aria-labelledby="slide-title-1">
+                    <div class="slide-number-indicator">Session 1 • Slide 1 of 7</div>
+                    <div class="session-badge">
+                        <i class="fas fa-brain"></i>
+                        AI Strategic Foundation
+                    </div>
+                    <h1 id="slide-title-1">The AI Landscape: Beyond the Hype</h1>
+                    <p style="font-size: var(--font-size-large); margin: var(--space-lg) 0; font-weight: var(--font-weight-medium);">
+                        Understanding key AI players and their strategic philosophies for informed business decisions
+                    </p>
+                    <div style="margin-top: var(--space-xl); display: flex; align-items: center; justify-content: center; gap: var(--space-4);">
+                        <div style="display: flex; align-items: center; gap: var(--space-2);">
+                            <i class="fas fa-clock" style="font-size: 1.2em;"></i>
+                            <span>15 minutes</span>
+                        </div>
+                        <div style="width: 2px; height: 20px; background: rgba(255,255,255,0.3);"></div>
+                        <div style="display: flex; align-items: center; gap: var(--space-2);">
+                            <i class="fas fa-users" style="font-size: 1.2em;"></i>
+                            <span>Interactive Training</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- S1.2: Professional Agenda Slide - REDESIGNED -->
+                <section class="slide concept-slide" id="s1-agenda" role="slide" aria-labelledby="slide-title-2">
+                    <div class="slide-number-indicator">Session 1 • Slide 2 of 7</div>
+                    
+                    <!-- POWERFUL HEADER SECTION -->
+                    <div style="text-align: center; margin-bottom: var(--space-xl);">
+                        <div class="session-badge" style="font-size: var(--font-size-large); padding: var(--space-4) var(--space-8); margin-bottom: var(--space-lg);">
+                            <i class="fas fa-list-check" style="font-size: 1.5em; margin-right: var(--space-3);"></i>
+                            SESSION OVERVIEW
+                        </div>
+                        <h1 id="slide-title-2" style="font-size: var(--font-size-display); color: var(--color-primary-dark); margin-bottom: var(--space-lg); font-weight: var(--font-weight-black);">Session Agenda</h1>
+                    </div>
+                    
+                    <!-- PROMINENT OBJECTIVE BOX -->
+                    <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.05) 100%); border: 2px solid var(--color-warning); border-radius: 20px; padding: var(--space-xl); margin-bottom: var(--space-xl); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -20px; left: -20px; width: 80px; height: 80px; background: var(--color-warning); border-radius: 50%; opacity: 0.1;"></div>
+                        <div style="position: absolute; bottom: -30px; right: -30px; width: 120px; height: 120px; background: var(--color-warning); border-radius: 50%; opacity: 0.05;"></div>
+                        <div style="display: flex; align-items: center; margin-bottom: var(--space-4); position: relative; z-index: 2;">
+                            <div style="width: 60px; height: 60px; background: var(--color-warning); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: var(--space-4); box-shadow: var(--shadow-lg);">
+                                <i class="fas fa-target" style="color: white; font-size: 1.5rem;"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: var(--font-size-large); font-weight: var(--font-weight-bold); color: var(--color-warning); margin-bottom: var(--space-1);">🎯 LEARNING OBJECTIVE</div>
+                                <div style="font-size: var(--font-size-h4); color: var(--color-neutral); line-height: 1.4;">Equip managers with strategic understanding of key AI players and their distinct philosophies for informed platform selection decisions.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ENHANCED AGENDA ITEMS WITH VISUAL IMPACT -->
+                    <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-lg); margin-top: var(--space-xl);">
+                        
+                        <!-- Agenda Item 1 - Enhanced Design -->
+                        <div style="background: linear-gradient(135deg, var(--color-white) 0%, var(--color-blue-50) 100%); padding: var(--space-xl); border-radius: 20px; border: 2px solid var(--color-primary); box-shadow: var(--shadow-xl); position: relative; overflow: hidden; transition: transform 0.3s ease;">
+                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);"></div>
+                            <div style="display: flex; align-items: center; margin-bottom: var(--space-4);">
+                                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-right: var(--space-5); box-shadow: var(--shadow-lg);">
+                                    <i class="fas fa-lightbulb" style="color: white; font-size: 2rem;"></i>
+                                </div>
+                                <div>
+                                    <div style="font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-primary); margin-bottom: var(--space-2);">5 Minutes: Concept Deep-Dive</div>
+                                    <div style="font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); color: var(--color-neutral); margin-bottom: var(--space-3);">The Three AI Ecosystems</div>
+                                    <div style="font-size: var(--font-size-large); color: var(--color-neutral); line-height: 1.6;">Understanding OpenAI, Google, and Anthropic's unique approaches, philosophies, and competitive advantages in the enterprise AI space.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Agenda Item 2 - Enhanced Design -->
+                        <div style="background: linear-gradient(135deg, var(--color-white) 0%, var(--color-pastel-cyan) 100%); padding: var(--space-xl); border-radius: 20px; border: 2px solid var(--color-secondary); box-shadow: var(--shadow-xl); position: relative; overflow: hidden; transition: transform 0.3s ease;">
+                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, var(--color-secondary) 0%, var(--color-info) 100%);"></div>
+                            <div style="display: flex; align-items: center; margin-bottom: var(--space-4);">
+                                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-info) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-right: var(--space-5); box-shadow: var(--shadow-lg);">
+                                    <i class="fas fa-puzzle-piece" style="color: white; font-size: 2rem;"></i>
+                                </div>
+                                <div>
+                                    <div style="font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2);">7 Minutes: Interactive Exercise</div>
+                                    <div style="font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); color: var(--color-neutral); margin-bottom: var(--space-3);">Platform-Problem Fit Analysis</div>
+                                    <div style="font-size: var(--font-size-large); color: var(--color-neutral); line-height: 1.6;">Hands-on matching of business scenarios to optimal AI platforms through collaborative problem-solving and strategic thinking.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Agenda Item 3 - Enhanced Design -->
+                        <div style="background: linear-gradient(135deg, var(--color-white) 0%, var(--color-pastel-mint) 100%); padding: var(--space-xl); border-radius: 20px; border: 2px solid var(--color-success); box-shadow: var(--shadow-xl); position: relative; overflow: hidden; transition: transform 0.3s ease;">
+                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, var(--color-success) 0%, #059669 100%);"></div>
+                            <div style="display: flex; align-items: center; margin-bottom: var(--space-4);">
+                                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-right: var(--space-5); box-shadow: var(--shadow-lg);">
+                                    <i class="fas fa-bookmark" style="color: white; font-size: 2rem;"></i>
+                                </div>
+                                <div>
+                                    <div style="font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-success); margin-bottom: var(--space-2);">3 Minutes: Knowledge Consolidation</div>
+                                    <div style="font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); color: var(--color-neutral); margin-bottom: var(--space-3);">Strategic Framework & Playbook Entry</div>
+                                    <div style="font-size: var(--font-size-large); color: var(--color-neutral); line-height: 1.6;">Document key insights in your Manager's AI Playbook with actionable decision-making framework for future platform selection.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </section>
+
+                <!-- S1.3: Infographic-Rich Concept Slide -->
+                <section class="slide concept-slide" id="s1-concept" role="slide" aria-labelledby="slide-title-3">
+                    <div class="slide-number-indicator">Session 1 • Slide 3 of 7</div>
+                    <div class="session-badge">
+                        <i class="fas fa-sitemap"></i>
+                        Strategic Analysis
+                    </div>
+                    <h2 id="slide-title-3">The Three AI Ecosystems</h2>
+                    <p style="font-size: var(--font-size-large); color: var(--color-neutral); margin-bottom: var(--space-lg); text-align: center;">
+                        Each major AI platform has a distinct philosophy that determines their strengths and ideal use cases for enterprise deployment.
+                    </p>
+                    
+                    <div class="infographic-grid">
+                        <div class="info-card primary">
+                            <div class="card-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="card-subtitle">OpenAI Philosophy</div>
+                            <div class="card-title">"The Reasoning Engine"</div>
+                            <div class="card-description">Push the frontier of raw intelligence and reasoning capabilities through advanced model development.</div>
+                            <div class="card-subtitle">2025 Strategic Focus</div>
+                            <ul class="card-features">
+                                <li>o-series models with advanced reasoning</li>
+                                <li>Creative generation capabilities</li>
+                                <li>Agentic workflow automation</li>
+                                <li>Complex problem-solving applications</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="info-card secondary">
+                            <div class="card-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="card-subtitle">Google Philosophy</div>
+                            <div class="card-title">"The Integrated Workflow"</div>
+                            <div class="card-description">Seamless integration with existing productivity tools and enterprise infrastructure.</div>
+                            <div class="card-subtitle">2025 Strategic Focus</div>
+                            <ul class="card-features">
+                                <li>Workspace integration excellence</li>
+                                <li>Enterprise-grade AI agents</li>
+                                <li>Multimodal capabilities</li>
+                                <li>Business process automation</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="info-card success">
+                            <div class="card-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="card-subtitle">Anthropic Philosophy</div>
+                            <div class="card-title">"The Trusted Partner"</div>
+                            <div class="card-description">Safety, reliability, and constitutional AI principles for enterprise-grade deployment.</div>
+                            <div class="card-subtitle">2025 Strategic Focus</div>
+                            <ul class="card-features">
+                                <li>Large context windows (1M+ tokens)</li>
+                                <li>Low hallucination rates</li>
+                                <li>Enterprise safety standards</li>
+                                <li>Regulatory compliance ready</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- S1.4: Professional Comparison Table -->
+                <section class="slide concept-slide" id="s1-comparison" role="slide" aria-labelledby="slide-title-4">
+                    <div class="slide-number-indicator">Session 1 • Slide 4 of 7</div>
+                    <div class="session-badge">
+                        <i class="fas fa-chart-bar"></i>
+                        Competitive Analysis
+                    </div>
+                    <h2 id="slide-title-4">Strategic Platform Comparison Matrix</h2>
+                    <p style="margin-bottom: var(--space-lg); font-size: var(--font-size-large); text-align: center;">
+                        Platform choice should be driven by specific business needs and strategic objectives, not marketing claims or industry hype.
+                    </p>
+                    
+                    <table class="comparison-table" role="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">AI Platform</th>
+                                <th scope="col">Core Philosophy</th>
+                                <th scope="col">Key Differentiators (2025)</th>
+                                <th scope="col">Optimal Use Cases</th>
+                                <th scope="col">Enterprise Readiness</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>OpenAI</strong><br><small>GPT-4, o1-series</small></td>
+                                <td>Reasoning Engine</td>
+                                <td>Advanced reasoning, creative generation, agentic capabilities</td>
+                                <td>Complex problem-solving, research, strategic analysis, code generation</td>
+                                <td><strong>High</strong> - Enterprise APIs, security controls</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Google</strong><br><small>Gemini, Workspace AI</small></td>
+                                <td>Integrated Workflow</td>
+                                <td>Workspace integration, multimodal capabilities, enterprise agents</td>
+                                <td>Business process automation, collaborative content, productivity enhancement</td>
+                                <td><strong>Excellent</strong> - Native enterprise integration</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Anthropic</strong><br><small>Claude 3.5 Sonnet</small></td>
+                                <td>Trusted Partner</td>
+                                <td>Large context windows, safety focus, constitutional AI</td>
+                                <td>Legal/financial analysis, compliance monitoring, sensitive data processing</td>
+                                <td><strong>Premium</strong> - Highest safety standards</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div style="background: var(--color-blue-50); padding: var(--space-lg); border-radius: 12px; margin-top: var(--space-lg); border-left: 4px solid var(--color-primary);">
+                        <strong style="color: var(--color-primary);">💡 Strategic Insight:</strong> 
+                        <em>"We're not here to get caught up in AI hype. We're here to make strategic decisions. Platform choice should align with specific business objectives and risk tolerance levels."</em>
+                    </div>
+                </section>
+
+                <!-- S1.5: Interactive Exercise with Infographics -->
+                <section class="slide exercise-slide" id="s1-exercise" role="slide" aria-labelledby="slide-title-5">
+                    <div class="slide-number-indicator">Session 1 • Slide 5 of 7</div>
+                    <div class="exercise-container">
+                        <div class="exercise-header">
+                            <div class="exercise-icon">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                            <div>
+                                <div class="exercise-title">Interactive Exercise: Platform-Problem Fit</div>
+                                <p style="margin: 0; color: var(--color-neutral);">Match each business scenario to the optimal AI platform and justify your strategic reasoning.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="scenario-cards">
+                            <div class="scenario-card">
+                                <div class="scenario-header">
+                                    <div class="scenario-number">A</div>
+                                    M&A Due Diligence Analysis
+                                </div>
+                                <p style="margin-bottom: var(--space-3);">Analyze 500+ legal documents to identify potential risks, liabilities, and hidden issues in a $2.5B acquisition target. Requires high accuracy and comprehensive analysis.</p>
+                                <div style="background: var(--color-grey-50); padding: var(--space-3); border-radius: 8px; margin-bottom: var(--space-3);">
+                                    <strong>Key Requirements:</strong> Accuracy, large context processing, risk assessment, regulatory compliance
+                                </div>
+                                <div class="recommendation">
+                                    <strong>🎯 Recommended Platform:</strong> Claude (Anthropic)<br>
+                                    <small>Reasoning: Large context windows, safety focus, low hallucination rates ideal for high-stakes financial analysis</small>
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card">
+                                <div class="scenario-header">
+                                    <div class="scenario-number">B</div>
+                                    Creative Marketing Campaign
+                                </div>
+                                <p style="margin-bottom: var(--space-3);">Generate compelling slogans, ad copy, social media content, and creative concepts for a new product launch targeting Gen Z consumers.</p>
+                                <div style="background: var(--color-grey-50); padding: var(--space-3); border-radius: 8px; margin-bottom: var(--space-3);">
+                                    <strong>Key Requirements:</strong> Creativity, cultural relevance, brand voice, multiple iterations
+                                </div>
+                                <div class="recommendation">
+                                    <strong>🎯 Recommended Platform:</strong> GPT-4 (OpenAI)<br>
+                                    <small>Reasoning: Superior creative generation capabilities and cultural understanding for innovative marketing content</small>
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card">
+                                <div class="scenario-header">
+                                    <div class="scenario-number">C</div>
+                                    Automated Business Reporting
+                                </div>
+                                <p style="margin-bottom: var(--space-3);">Create weekly performance reports directly from Google Sheets data with automated charts, insights, and executive summaries for board presentations.</p>
+                                <div style="background: var(--color-grey-50); padding: var(--space-3); border-radius: 8px; margin-bottom: var(--space-3);">
+                                    <strong>Key Requirements:</strong> Workspace integration, data visualization, automation, consistency
+                                </div>
+                                <div class="recommendation">
+                                    <strong>🎯 Recommended Platform:</strong> Gemini (Google)<br>
+                                    <small>Reasoning: Native Workspace integration eliminates data transfer risks and enables seamless automation workflows</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: var(--color-white); padding: var(--space-lg); border-radius: 12px; margin-top: var(--space-lg); border: 2px solid var(--color-secondary);">
+                            <strong style="color: var(--color-secondary);"><i class="fas fa-users"></i> Group Discussion (2 minutes):</strong>
+                            <p style="margin: var(--space-2) 0 0;">What factors influenced your platform choice for each scenario? Consider cost, security, integration complexity, and strategic alignment with business objectives.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- S1.6: Professional Takeaways -->
+                <section class="slide takeaway-slide" id="s1-takeaway" role="slide" aria-labelledby="slide-title-6">
+                    <div class="slide-number-indicator">Session 1 • Slide 6 of 7</div>
+                    <div class="session-badge">
+                        <i class="fas fa-key"></i>
+                        Strategic Insights
+                    </div>
+                    <h2 id="slide-title-6" style="text-align: center; margin-bottom: var(--space-lg);">Key Strategic Takeaways</h2>
+                    
+                    <div class="takeaway-grid">
+                        <div class="takeaway-card">
+                            <div class="takeaway-icon">
+                                <i class="fas fa-target"></i>
+                            </div>
+                            <div class="takeaway-title">Strategic Platform Selection</div>
+                            <div class="takeaway-description">Choose AI platforms based on specific business needs, risk tolerance, and strategic objectives rather than industry hype or marketing claims.</div>
+                        </div>
+                        
+                        <div class="takeaway-card">
+                            <div class="takeaway-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="takeaway-title">Understand Trade-offs</div>
+                            <div class="takeaway-description">Each platform has distinct strengths and limitations. Leverage the right tool for the right job to maximize ROI and minimize risk.</div>
+                        </div>
+                        
+                        <div class="takeaway-card">
+                            <div class="takeaway-icon">
+                                <i class="fas fa-shield-check"></i>
+                            </div>
+                            <div class="takeaway-title">Enterprise Readiness Varies</div>
+                            <div class="takeaway-description">Evaluate security, compliance, integration capabilities, and support levels based on your organization's specific requirements.</div>
+                        </div>
+                        
+                        <div class="takeaway-card">
+                            <div class="takeaway-icon">
+                                <i class="fas fa-compass"></i>
+                            </div>
+                            <div class="takeaway-title">Strategic Framework</div>
+                            <div class="takeaway-description">Use the Platform Comparison Matrix as a decision-making tool for future AI implementation and vendor selection processes.</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%); color: var(--color-white); padding: var(--space-xl); border-radius: 16px; margin-top: var(--space-lg); text-align: center; box-shadow: var(--shadow-xl);">
+                        <h3 style="margin-bottom: var(--space-3); display: flex; align-items: center; justify-content: center; gap: var(--space-3);">
+                            <i class="fas fa-download" style="font-size: 1.5em;"></i>
+                            Added to Your Manager's AI Playbook
+                        </h3>
+                        <p style="font-size: var(--font-size-large); margin: 0;"><strong>Strategic AI Platform Comparison Matrix</strong></p>
+                        <p style="margin: var(--space-2) 0 0; opacity: 0.9;">Decision framework for platform selection based on business context, risk assessment, and strategic requirements</p>
+                    </div>
+                </section>
+
+                <!-- S1.7: Professional Break Slide -->
+                <section class="slide break-slide" id="s1-break" role="slide" aria-labelledby="slide-title-7">
+                    <div class="slide-number-indicator">Session 1 • Slide 7 of 7</div>
+                    <div style="text-align: center;">
+                        <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg); box-shadow: var(--shadow-2xl);">
+                            <i class="fas fa-star" style="font-size: 3rem; color: var(--color-white);"></i>
+                        </div>
+                        <h1 id="slide-title-7" style="color: var(--color-primary-dark); margin-bottom: var(--space-lg);">Session 1 Complete</h1>
+                        <p style="font-size: var(--font-size-large); margin: var(--space-lg) 0; color: var(--color-neutral);">
+                            Take a moment to reflect on your current AI platform preferences and how this strategic framework might influence your organization's technology decisions.
+                        </p>
+                        
+                        <div style="background: var(--color-white); padding: var(--space-xl); border-radius: 16px; margin-top: var(--space-xl); box-shadow: var(--shadow-lg); border: 1px solid var(--color-grey-200);">
+                            <h3 style="color: var(--color-primary); margin-bottom: var(--space-4); display: flex; align-items: center; justify-content: center; gap: var(--space-3);">
+                                <i class="fas fa-arrow-right"></i>
+                                Coming Up Next: Session 2
+                            </h3>
+                            <h4 style="margin-bottom: var(--space-3); color: var(--color-neutral);">Understanding AI Business Value & ROI</h4>
+                            <p style="margin: 0; color: var(--color-neutral);">Learn frameworks for measuring business value beyond simple cost savings and establish realistic expectations for AI return on investment.</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            
+            <!-- Professional Navigation Controls -->
+            <div class="nav-controls">
+                <button class="nav-btn" id="prevBtn" onclick="previousSlide()" aria-label="Previous slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-btn" id="nextBtn" onclick="nextSlide()" aria-label="Next slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Slide Counter -->
+            <div class="slide-counter" id="slideCounter">
+                Slide 1 of 7
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Slide management
+        let slides = [
+            's1-title', 's1-agenda', 's1-concept', 's1-comparison', 's1-exercise', 's1-takeaway', 's1-break'
+        ];
+        let currentSlideIndex = 0;
+
+        // Professional sidebar functionality
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            const toggleBtn = document.querySelector('.toggle-btn i');
+            
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
+            
+            if (sidebar.classList.contains('collapsed')) {
+                toggleBtn.className = 'fas fa-angle-right';
+            } else {
+                toggleBtn.className = 'fas fa-angle-left';
+            }
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Session management
+        function toggleSession(sessionNum) {
+            const sessionGroup = document.getElementById(`session-${sessionNum}`);
+            sessionGroup.classList.toggle('expanded');
+            
+            // Update active session
+            document.querySelectorAll('.session-header').forEach(header => {
+                header.classList.remove('active');
+            });
+            sessionGroup.querySelector('.session-header').classList.add('active');
+        }
+
+        // Professional slide navigation
+        function showSlide(slideId) {
+            // Hide all slides
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Show selected slide
+            document.getElementById(slideId).classList.add('active');
+            
+            // Update current slide index
+            currentSlideIndex = slides.indexOf(slideId);
+            updateSlideCounter();
+            updateNavigationButtons();
+            updateSidebarActiveState(slideId);
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                currentSlideIndex++;
+                showSlideByIndex(currentSlideIndex);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                showSlideByIndex(currentSlideIndex);
+            }
+        }
+
+        function showSlideByIndex(index) {
+            const slideId = slides[index];
+            showSlide(slideId);
+        }
+
+        function updateSidebarActiveState(slideId) {
+            // Update active slide in sidebar
+            document.querySelectorAll('.slide-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Find and activate the corresponding sidebar item
+            const slideItems = document.querySelectorAll('.slide-item');
+            slideItems.forEach(item => {
+                if (item.getAttribute('onclick').includes(slideId)) {
+                    item.classList.add('active');
+                    
+                    // Expand the session if needed
+                    const sessionGroup = item.closest('.session-group');
+                    if (sessionGroup && !sessionGroup.classList.contains('expanded')) {
+                        sessionGroup.classList.add('expanded');
+                        sessionGroup.querySelector('.session-header').classList.add('active');
+                    }
+                }
+            });
+        }
+
+        function updateSlideCounter() {
+            const counter = document.getElementById('slideCounter');
+            counter.textContent = `Slide ${currentSlideIndex + 1} of ${slides.length}`;
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSlideIndex === 0;
+            nextBtn.disabled = currentSlideIndex === slides.length - 1;
+        }
+
+        // Enhanced keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                case 'Space':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    currentSlideIndex = 0;
+                    showSlideByIndex(0);
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    currentSlideIndex = slides.length - 1;
+                    showSlideByIndex(slides.length - 1);
+                    break;
+                case 'f':
+                case 'F':
+                    // Toggle fullscreen
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                    } else {
+                        document.documentElement.requestFullscreen();
+                    }
+                    break;
+                case 'Escape':
+                    // Exit fullscreen
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                    }
+                    break;
+            }
+        });
+
+        // Accessibility enhancements
+        document.querySelectorAll('[role="button"], [role="menuitem"]').forEach(element => {
+            element.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+
+        // Initialize presentation system
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSlideCounter();
+            updateNavigationButtons();
+            
+            // Expand first session by default
+            document.getElementById('session-1').classList.add('expanded');
+            
+            // Add hover effects to interactive elements
+            document.querySelectorAll('.info-card, .takeaway-card, .scenario-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            console.log('Professional AI Training Presentation System Loaded');
+            console.log('Features: Enterprise-grade design, WCAG accessibility, responsive infographics');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic AI Platform Selection Guide - Session 1 Artifact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1B9AAA;
+            --primary-light: #6AD5CB;
+            --primary-dark: #1C3144;
+            --secondary: #58B09C;
+            --accent: #A1E8CC;
+            --success: #BDD9BF;
+            --light: #CAF7E2;
+            --neutral: #D2D7DF;
+            --text-primary: #1C3144;
+            --text-secondary: #6F7D8C;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            border-radius: 12px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(27, 154, 170, 0.1);
+            border-left: 6px solid var(--primary);
+        }
+
+        .section h2 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .platform-card {
+            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 2px solid var(--primary-light);
+            transition: all 0.3s ease;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(27, 154, 170, 0.15);
+            border-color: var(--primary);
+        }
+
+        .platform-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+
+        .platform-title {
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .platform-subtitle {
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .strengths-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .strengths-list li {
+            background: var(--white);
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 6px;
+            border-left: 3px solid var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        .use-cases {
+            background: var(--success);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .use-cases h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .decision-matrix {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .decision-matrix th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .decision-matrix td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--neutral);
+            vertical-align: top;
+        }
+
+        .decision-matrix tr:nth-child(even) {
+            background: var(--light);
+        }
+
+        .decision-matrix tr:hover {
+            background: var(--accent);
+        }
+
+        .scenario-box {
+            background: linear-gradient(135deg, #e6f3ff 0%, #cce7ff 100%);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .scenario-title {
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .scenario-solution {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .checklist {
+            background: var(--white);
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .checklist h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .checklist-item:hover {
+            background: var(--light);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 1rem;
+            transform: scale(1.2);
+            accent-color: var(--primary);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background: var(--neutral);
+            border-radius: 8px;
+            color: var(--text-secondary);
+        }
+
+        @media print {
+            .container {
+                max-width: none;
+                padding: 1rem;
+            }
+            
+            .section {
+                break-inside: avoid;
+                margin-bottom: 2rem;
+            }
+            
+            .platform-card {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Strategic AI Platform Selection Guide</h1>
+            <p>Manager's Playbook Entry • Session 1 Artifact</p>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Executive Summary</h2>
+            <p>This guide provides strategic decision-making framework for selecting AI platforms based on business needs, not marketing hype. Use this as your go-to reference for AI platform evaluation and team guidance.</p>
+        </div>
+
+        <div class="section">
+            <h2>🏗️ The Three AI Ecosystems</h2>
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-icon">🧠</div>
+                        <div>
+                            <div class="platform-title">OpenAI</div>
+                            <div class="platform-subtitle">"The Reasoning Engine"</div>
+                        </div>
+                    </div>
+                    <ul class="strengths-list">
+                        <li>Advanced reasoning & problem-solving (o-series models)</li>
+                        <li>Superior creative content generation</li>
+                        <li>Agentic AI capabilities for autonomous tasks</li>
+                        <li>Code generation and technical analysis</li>
+                    </ul>
+                    <div class="use-cases">
+                        <h4>💡 Best For:</h4>
+                        <p>Complex research, M&A due diligence, creative campaigns, strategic analysis, code development</p>
+                    </div>
+                </div>
+
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-icon">⚙️</div>
+                        <div>
+                            <div class="platform-title">Google</div>
+                            <div class="platform-subtitle">"The Integrated Workflow"</div>
+                        </div>
+                    </div>
+                    <ul class="strengths-list">
+                        <li>Native Google Workspace integration</li>
+                        <li>Multimodal capabilities (text, images, video)</li>
+                        <li>Enterprise-grade security and compliance</li>
+                        <li>Real-time collaborative AI features</li>
+                    </ul>
+                    <div class="use-cases">
+                        <h4>💡 Best For:</h4>
+                        <p>Business process automation, collaborative content, spreadsheet analysis, workflow optimization</p>
+                    </div>
+                </div>
+
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-icon">🛡️</div>
+                        <div>
+                            <div class="platform-title">Anthropic</div>
+                            <div class="platform-subtitle">"The Trusted Partner"</div>
+                        </div>
+                    </div>
+                    <ul class="strengths-list">
+                        <li>Largest context window (200K+ tokens)</li>
+                        <li>Lowest hallucination rates in industry</li>
+                        <li>Constitutional AI for safety and alignment</li>
+                        <li>Superior document analysis capabilities</li>
+                    </ul>
+                    <div class="use-cases">
+                        <h4>💡 Best For:</h4>
+                        <p>Legal document review, financial analysis, compliance monitoring, sensitive data processing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 Strategic Decision Matrix</h2>
+            <table class="decision-matrix">
+                <thead>
+                    <tr>
+                        <th>Business Need</th>
+                        <th>Recommended Platform</th>
+                        <th>Key Reason</th>
+                        <th>Alternative Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Complex Strategic Analysis</strong><br>Market research, competitive intelligence</td>
+                        <td>OpenAI (o1)</td>
+                        <td>Superior reasoning capabilities</td>
+                        <td>Claude for document-heavy analysis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Content Creation & Marketing</strong><br>Campaigns, social media, copywriting</td>
+                        <td>OpenAI (GPT-4)</td>
+                        <td>Best-in-class creativity</td>
+                        <td>Google for brand-consistent content</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Business Process Automation</strong><br>Workflows, data processing, reports</td>
+                        <td>Google Gemini</td>
+                        <td>Native workspace integration</td>
+                        <td>Claude for complex document workflows</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legal & Compliance</strong><br>Contract review, risk assessment</td>
+                        <td>Anthropic Claude</td>
+                        <td>Highest accuracy, large context</td>
+                        <td>OpenAI for contract generation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Financial Analysis</strong><br>Due diligence, forecasting, modeling</td>
+                        <td>Anthropic Claude</td>
+                        <td>Low hallucination, context length</td>
+                        <td>OpenAI for predictive modeling</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>🎮 Practice Scenarios</h2>
+            
+            <div class="scenario-box">
+                <div class="scenario-title">Scenario 1: M&A Due Diligence</div>
+                <p>Your team needs to analyze 500+ legal documents, financial statements, and contracts for a potential acquisition. Time-sensitive with high accuracy requirements.</p>
+                <div class="scenario-solution">
+                    <strong>Recommended Solution:</strong> Anthropic Claude
+                    <br><strong>Reasoning:</strong> Large context window handles multiple documents simultaneously, low hallucination rate critical for financial accuracy, constitutional AI ensures consistent analysis approach.
+                </div>
+            </div>
+
+            <div class="scenario-box">
+                <div class="scenario-title">Scenario 2: Creative Marketing Campaign</div>
+                <p>Launch campaign for new product targeting Gen Z consumers. Need innovative concepts, social media content, and video scripts across multiple platforms.</p>
+                <div class="scenario-solution">
+                    <strong>Recommended Solution:</strong> OpenAI GPT-4
+                    <br><strong>Reasoning:</strong> Superior creative capabilities, understanding of cultural trends, ability to generate diverse content formats, strong brand voice consistency.
+                </div>
+            </div>
+
+            <div class="scenario-box">
+                <div class="scenario-title">Scenario 3: Automated Reporting</div>
+                <p>Monthly sales reports combining data from Google Sheets, requiring charts, analysis, and distribution to 50+ stakeholders via email.</p>
+                <div class="scenario-solution">
+                    <strong>Recommended Solution:</strong> Google Gemini
+                    <br><strong>Reasoning:</strong> Native Sheets integration, automated email distribution through Gmail, real-time data processing, enterprise security compliance.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2">✅ Platform Selection Checklist</h2>
+            <div class="checklist">
+                <h3>Before Choosing Your AI Platform:</h3>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="check1">
+                    <label for="check1">Define specific business problem and success metrics</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">Assess existing technology stack and integration requirements</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="check3">
+                    <label for="check3">Evaluate data sensitivity and security requirements</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="check4">
+                    <label for="check4">Consider team skill level and training needs</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="check5">
+                    <label for="check5">Review budget constraints and ROI expectations</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="check6">
+                    <label for="check6">Test platform with pilot project before full deployment</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="check7">
+                    <label for="check7">Plan change management and adoption strategy</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="check8">
+                    <label for="check8">Establish governance framework and usage policies</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔄 Implementation Framework</h2>
+            <table class="decision-matrix">
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Timeline</th>
+                        <th>Key Activities</th>
+                        <th>Success Metrics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Discovery</strong></td>
+                        <td>Week 1-2</td>
+                        <td>Business needs assessment, platform evaluation, stakeholder alignment</td>
+                        <td>Clear requirements document, platform selection</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pilot</strong></td>
+                        <td>Week 3-6</td>
+                        <td>Limited deployment, team training, initial use cases</td>
+                        <td>Successful pilot outcomes, user adoption rate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scale</strong></td>
+                        <td>Week 7-12</td>
+                        <td>Full deployment, process integration, governance</td>
+                        <td>Business value delivery, efficiency gains</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Optimize</strong></td>
+                        <td>Ongoing</td>
+                        <td>Performance monitoring, continuous improvement</td>
+                        <td>ROI achievement, strategic advantage</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p><strong>AI Acumen Program • Session 1 Artifact</strong></p>
+            <p>Keep this guide accessible for platform decisions and team guidance</p>
+            <p>Next Session: Understanding AI Business Value & ROI</p>
+        </div>
+    </div>
+
+    <script>
+        // Add interactivity for checklist
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    this.parentElement.style.background = 'var(--success)';
+                } else {
+                    this.parentElement.style.background = 'transparent';
+                }
+            });
+        });
+
+        // Print functionality
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'p') {
+                window.print();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced AI Acumen Program - Interactive Training</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fefefe;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .presentation-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Collapsible Left Navigation */
+        .sidebar {
+            width: 320px;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #2d3748;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            border-right: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+        }
+        
+        .sidebar.collapsed {
+            transform: translateX(-280px);
+        }
+        
+        .sidebar-header {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+        }
+        
+        .program-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+        
+        .program-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .toggle-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .sidebar-content {
+            padding: 1rem;
+        }
+        
+        .session-nav {
+            list-style: none;
+        }
+        
+        .phase-header {
+            color: #6366f1;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 1.5rem 0 0.8rem 0;
+            padding: 0.5rem 0.8rem;
+            background: #f1f5f9;
+            border-radius: 6px;
+            border-left: 3px solid #6366f1;
+        }
+        
+        .session-item {
+            padding: 0.8rem 1rem;
+            margin: 0.3rem 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .session-item:hover {
+            background: #e2e8f0;
+            transform: translateX(2px);
+        }
+        
+        .session-item.active {
+            background: linear-gradient(135deg, #ddd6fe 0%, #e0e7ff 100%);
+            color: #6366f1;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+        }
+        
+        .session-number {
+            background: #a5b4fc;
+            color: #312e81;
+            padding: 0.3rem 0.6rem;
+            border-radius: 16px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-right: 0.8rem;
+            min-width: 28px;
+            text-align: center;
+        }
+        
+        .session-item.active .session-number {
+            background: #6366f1;
+            color: white;
+        }
+        
+        .session-duration {
+            margin-left: auto;
+            font-size: 0.7rem;
+            opacity: 0.6;
+            background: #f1f5f9;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+        }
+        
+        /* Mobile Toggle Button */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 200;
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: 320px;
+            flex: 1;
+            transition: margin-left 0.3s ease;
+        }
+        
+        .main-content.expanded {
+            margin-left: 40px;
+        }
+        
+        .presentation-scroll {
+            height: 100vh;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        
+        /* Cards/Slides - Fixed sizing */
+        .card {
+            min-height: 100vh;
+            padding: 2rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+            color: #2d3748;
+            box-sizing: border-box;
+        }
+        
+        .card-content {
+            max-width: 1000px;
+            margin: 2rem auto 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card.title-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            justify-content: center;
+        }
+        
+        .card.title-card .card-content {
+            margin: 0 auto;
+        }
+        
+        .card.exercise-card {
+            background: linear-gradient(135deg, #ecfeff 0%, #e0f2fe 100%);
+            color: #0c4a6e;
+        }
+        
+        .card.takeaway-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #e6fffa 100%);
+            color: #064e3b;
+        }
+        
+        .card.metrics-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+        }
+        
+        .card-number {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: rgba(255,255,255,0.9);
+            color: #64748b;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        
+        .card-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a202c;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #2d3748;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            color: #4a5568;
+        }
+        
+        /* Interactive Elements */
+        .evolution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+            align-items: center;
+        }
+        
+        .evolution-stage {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .stage-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+        
+        .stage-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        
+        .stage-description {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Process Steps */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .process-step {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid #6366f1;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #1a202c;
+        }
+        
+        .step-description {
+            font-size: 1rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        /* SWOT Framework */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 3rem 0;
+            height: 400px;
+        }
+        
+        .swot-quadrant {
+            padding: 2rem;
+            border-radius: 16px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .swot-quadrant::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .swot-quadrant > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .swot-strengths {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .swot-weaknesses {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        
+        .swot-opportunities {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+        
+        .swot-threats {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        .swot-letter {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .swot-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        
+        /* Workshop Exercise */
+        .workshop-container {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border-left: 6px solid #0ea5e9;
+            position: relative;
+        }
+        
+        .workshop-icon {
+            position: absolute;
+            top: -15px;
+            left: 3rem;
+            background: #0ea5e9;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .workshop-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .prompt-example {
+            background: rgba(255,255,255,0.8);
+            padding: 2rem;
+            border-radius: 12px;
+            font-style: italic;
+            margin: 1.5rem 0;
+            border-left: 4px solid #0ea5e9;
+            position: relative;
+        }
+        
+        .prompt-example::before {
+            content: '"';
+            font-size: 4rem;
+            color: #0ea5e9;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+        }
+        
+        .task-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #3b82f6;
+            margin-top: 2rem;
+        }
+        
+        .task-icon {
+            color: #3b82f6;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        /* ROI Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .metric-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+        }
+        
+        .metric-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #1a202c;
+        }
+        
+        .metric-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .metric-description {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+        
+        /* Key Takeaways */
+        .takeaways-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .takeaway-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.8);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .takeaway-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .takeaway-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a202c;
+        }
+        
+        .takeaway-description {
+            font-size: 1rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        /* Next Steps */
+        .next-steps-list {
+            margin: 2rem 0;
+        }
+        
+        .next-step {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border-left: 4px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .step-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .main-content.expanded {
+                margin-left: 0;
+            }
+            
+            .card {
+                padding: 1.5rem 1rem;
+            }
+            
+            .card-title {
+                font-size: 2rem;
+            }
+            
+            .evolution-grid,
+            .metrics-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .swot-grid {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Scrollbar Styling */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .sidebar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="presentation-container">
+        <!-- Left Navigation Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="program-title">Enhanced AI Acumen Program</h1>
+                <p class="program-subtitle">Strategic Framework for Management</p>
+                <button class="toggle-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-content">
+                <ul class="session-nav">
+                    <li class="phase-header">PHASE I: FOUNDATION</li>
+                    <li class="session-item active" data-card="1">
+                        <span class="session-number">1</span>
+                        <span>The AI Landscape</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="2">
+                        <span class="session-number">2</span>
+                        <span>AI Business Value & ROI</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="3">
+                        <span class="session-number">3</span>
+                        <span>Context Engineering</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="4">
+                        <span class="session-number">4</span>
+                        <span>RAG Fundamentals</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="5">
+                        <span class="session-number">5</span>
+                        <span>Data Fundamentals</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="6">
+                        <span class="session-number">6</span>
+                        <span>AI Safety & Risk</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    
+                    <li class="phase-header">PHASE II: INTEGRATION</li>
+                    <li class="session-item" data-card="7">
+                        <span class="session-number">7</span>
+                        <span>Strategic Analysis</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="8">
+                        <span class="session-number">8</span>
+                        <span>AI-Augmented HR</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="9">
+                        <span class="session-number">9</span>
+                        <span>Finance & Accounting</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="10">
+                        <span class="session-number">10</span>
+                        <span>Supply Chain AI</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="11">
+                        <span class="session-number">11</span>
+                        <span>Marketing & Sales</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="12">
+                        <span class="session-number">12</span>
+                        <span>Legal & Compliance</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    
+                    <li class="phase-header">PHASE III: ADVANCED</li>
+                    <li class="session-item" data-card="13">
+                        <span class="session-number">13</span>
+                        <span>Multimodal AI</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="14">
+                        <span class="session-number">14</span>
+                        <span>AI Agents & Automation</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="15">
+                        <span class="session-number">15</span>
+                        <span>Custom Model Training</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="16">
+                        <span class="session-number">16</span>
+                        <span>AI Governance</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="17">
+                        <span class="session-number">17</span>
+                        <span>Performance Optimization</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="18">
+                        <span class="session-number">18</span>
+                        <span>Competitive Intelligence</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    
+                    <li class="phase-header">PHASE IV: MASTERY</li>
+                    <li class="session-item" data-card="19">
+                        <span class="session-number">19</span>
+                        <span>AI Strategy Development</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="20">
+                        <span class="session-number">20</span>
+                        <span>Change Management</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="21">
+                        <span class="session-number">21</span>
+                        <span>Innovation Labs</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="22">
+                        <span class="session-number">22</span>
+                        <span>Future Trends</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="23">
+                        <span class="session-number">23</span>
+                        <span>Implementation Roadmap</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                    <li class="session-item" data-card="24">
+                        <span class="session-number">24</span>
+                        <span>Program Completion</span>
+                        <span class="session-duration">15m</span>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <div class="presentation-scroll" id="presentationScroll">
+                
+                <!-- Card 1: Title Card -->
+                <section class="card title-card" id="card-1">
+                    <div class="card-number">Session 1 of 24</div>
+                    <div class="card-content">
+                        <div class="section-badge">🧠 AI STRATEGIC CO-PILOT</div>
+                        <h1 class="card-title">AI as Your Strategic Co-Pilot</h1>
+                        <p class="card-subtitle">Advanced Market Analysis and Planning</p>
+                        <p style="font-size: 1.2rem; margin: 2rem 0;">
+                            Empowering senior managers and strategic planners with intelligent AI capabilities.
+                        </p>
+                        <div style="margin-top: 3rem; font-size: 1rem; opacity: 0.9;">
+                            <i class="fas fa-clock"></i> 15 minutes • Interactive Training
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Card 2: The Shift -->
+                <section class="card" id="card-2">
+                    <div class="card-number">1 of 9</div>
+                    <div class="card-content">
+                        <div class="section-badge">THE SHIFT</div>
+                        <h1>From Retrieval to Reasoning: The Evolution of AI</h1>
+                        
+                        <p style="font-size: 1.2rem; color: #6b7280; font-style: italic; margin-bottom: 3rem;">
+                            AI has evolved beyond simple information retrieval. Today's models engage in complex reasoning, analyzing vast datasets to generate strategic insights, predict trends, and support nuanced decision-making.
+                        </p>
+
+                        <div class="evolution-grid">
+                            <div class="evolution-stage">
+                                <div class="stage-number">1</div>
+                                <div class="stage-title">Early AI</div>
+                                <div class="stage-description">Information Retrieval & Pattern Recognition</div>
+                            </div>
+                            <div class="evolution-stage">
+                                <div class="stage-number">2</div>
+                                <div class="stage-title">Modern AI</div>
+                                <div class="stage-description">Complex Reasoning & Strategic Synthesis</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Card 3: Real-World Application -->
+                <section class="card" id="card-3">
+                    <div class="card-number">2 of 9</div>
+                    <div class="card-content">
+                        <div class="section-badge">REAL-WORLD APPLICATION</div>
+                        <h1>Deep Research with OpenAI's Agents</h1>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin: 3rem 0;">
+                            <div>
+                                <p>OpenAI's advanced research agents exemplify AI's cognitive capabilities. They can autonomously scour vast information sources, synthesize findings, and generate comprehensive reports on complex topics, mirroring human analysts but at unprecedented speed and scale.</p>
+                                
+                                <ul style="margin-top: 2rem; color: #4a5568;">
+                                    <li><strong>Autonomous data aggregation</strong> - Processes multiple sources simultaneously</li>
+                                    <li><strong>Cross-referencing diverse sources</strong> - Validates information across platforms</li>
+                                    <li><strong>Synthesizing complex information</strong> - Creates coherent narratives from data</li>
+                                    <li><strong>Generating executive summaries</strong> - Distills insights for decision-makers</li>
+                                </ul>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 200px; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; color: white; font-size: 4rem;">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h3 style="color: #1a202c; margin-bottom: 1rem;">AI Research Assistant</h3>
+                                <p style="color: #6b7280;">Processes thousands of documents in minutes, identifying patterns and insights that would take human analysts weeks to discover.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Card 4: Step-by-Step Guide -->
+                <section class="card" id="card-4">
+                    <div class="card-number">3 of 9</div>
+                    <div class="card-content">
+                        <div class="section-badge">DELEGATING COGNITIVE TASKS</div>
+                        <h1>Your AI Research Assistant: A Step-by-Step Guide</h1>
+                        
+                        <p style="font-size: 1.2rem; margin-bottom: 3rem;">Seamlessly integrate AI into your strategic workflow by delegating time-consuming, cognitive-heavy research tasks.</p>
+
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-target"></i>
+                                </div>
+                                <div class="step-title">Define Scope</div>
+                                <div class="step-description">Clearly articulate your research question and objectives for the AI. Provide specific parameters and expected outcomes.</div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="step-title">Provide Context</div>
+                                <div class="step-description">Supply relevant background data, constraints, and any specific methodologies or frameworks to guide analysis.</div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <div class="step-title">Iterate & Refine</div>
+                                <div class="step-description">Review initial AI outputs and refine prompts for deeper insights. Use follow-up questions to drill down into specific areas.</div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div class="step-title">Synthesize & Act</div>
+                                <div class="step-description">Incorporate AI-generated findings into your strategic plan. Validate recommendations and implement actionable insights.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Card 5: SWOT Framework -->
+                <section class="card" id="card-5">
+                    <div class="card-number">4 of 9</div>
+                    <div class="card-content">
+                        <div class="section-badge">STRATEGIC FRAMEWORKS</div>
+                        <h1>AI-Powered SWOT Analysis Generation</h1>
+                        
+                        <p style="font-size: 1.2rem; margin-bottom: 3rem;">Leverage AI's analytical power to rapidly generate robust SWOT analyses using structured prompts. This accelerates your planning cycle and ensures a comprehensive view of internal and external factors.</p>
+
+                        <div class="swot-grid">
+                            <div class="swot-quadrant swot-strengths">
+                                <div class="swot-letter">S</div>
+                                <div class="swot-title">Strengths</div>
+                                <div class="swot-description">Internal capabilities and advantages</div>
+                            </div>
+                            <div class="swot-quadrant swot-weaknesses">
+                                <div class="swot-letter">W</div>
+                                <div class="swot-title">Weaknesses</div>
+                                <div class="swot-description">Internal limitations or disadvantages</div>
+                            </div>
+                            <div class="swot-quadrant swot-opportunities">
+                                <div class="swot-letter">O</div>
+                                <div class="swot-title">Opportunities</div>
+                                <div class="swot-description">External factors that can be leveraged</div>
+                            </div>
+                            <div class="swot-quadrant swot-threats">
+                                <div class="swot-letter">T</div>
+                                <div class="swot-title">Threats</div>
+                                <div class="swot-description">External factors that could pose challenges</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Card 6: Workshop Exercise -->
+                <section class="card exercise-card" id="card-6">
+                    <div class="card-number">5 of 9</div>
+                    <div class="card-content">
+                        <div class="section-badge" style="background: rgba(12, 74, 110, 0.1); color: #0c4a6e;">WORKSHOP</div>
+                        <h1>Hands-on Exercise: Building Your SWOT Prompt</h1>
+                        
+                        <div class="workshop-container">
+                            <div class="workshop-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="workshop-title">Practice crafting effective prompts to guide AI in generating a tailored SWOT analysis for your specific business context.</div>
+                            
+                            <div class="prompt-example">
+                                "Generate a SWOT analysis for [Your Company Name], a [Industry] company specializing in [Key Product/Service]. Consider recent market trends in [Specific Market Trends] and the impact of [Recent Industry Event]. Provide specific, actionable insights for each quadrant with supporting data and strategic recommendations."
+                            </div>
+                            
+                            <div class="task-box">
+                                <strong><i class="fas fa-tasks task-icon"></i>Interactive Task:</strong> Work in groups to write a detailed AI prompt for a SWOT analysis relevant to your department or a hypothetical business scenario. Focus on specificity and context to generate the most valuable insights.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Card 7: ROI Metrics -->
+                <section class="card metrics-card" id="card-7">
+                    <div class="card-number">6 of 9</div>
+                    <div class="card-content">
+                        <div class="section-badge" style="background: rgba(146, 64, 14, 0.1); color: #92400e;">MEASURABLE IMPACT</div>
+                        <h1>Quantifying ROI: Time Savings & Quality Improvement</h1>
+                        
+                        <p style="font-size: 1.2rem; margin-bottom: 3rem;">AI as a strategic co-pilot delivers tangible returns through reduced analysis time and enhanced output quality.</p>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-title">Time Saved</div>
+                                <div class="metric-value">80%</div>
+                                <div class="metric-description">
+                                    reduction in initial research time<br><br>
+                                    AI can reduce the time spent on initial data gathering and synthesis by up to 80%, freeing up your team for higher-value activities like strategic thinking and relationship building.
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-title">Quality Enhancement</div>
+                                <div style="display: flex; justify-content: space-around; margin: 2rem 0;">
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 600; color: #6366f1;">45%</div>
+                                        <div style="font-size: 0.9rem; opacity: 0.8;">Comprehensiveness</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 600; color: #8b5cf6;">38%</div>
+                                        <div style="font-size: 0.9rem; opacity: 0.8;">Accuracy</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 600; color: #06b6d4;">52%</div>
+                                        <div style="font-size: 0.9rem; opacity: 0.8;">Depth of Insight</div>
+                                    </div>
+                                </div>
+                                <div class="metric-description">
+                                    AI enhances the depth and breadth of analysis, leading to more robust and data-driven strategic decisions.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Card 8: Key Takeaways -->
+                <section class="card takeaway-card" id="card-8">
+                    <div class="card-number">7 of 9</div>
+                    <div class="card-content">
+                        <div class="section-badge" style="background: rgba(6, 78, 59, 0.1); color: #064e3b;">KEY TAKEAWAYS</div>
+                        <h1 style="text-align: center;">Empowering Strategic Decision-Making</h1>
+                        
+                        <div class="takeaways-grid">
+                            <div class="takeaway-item">
+                                <div class="takeaway-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="takeaway-title">Cognitive Delegation</div>
+                                <div class="takeaway-description">AI handles heavy lifting in research and analysis, allowing human strategists to focus on high-level thinking and relationship building.</div>
+                            </div>
+                            <div class="takeaway-item">
+                                <div class="takeaway-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="takeaway-title">Enhanced Insights</div>
+                                <div class="takeaway-description">Deeper, faster, and more comprehensive strategic intelligence that uncovers patterns humans might miss.</div>
+                            </div>
+                            <div class="takeaway-item">
+                                <div class="takeaway-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="takeaway-title">Measurable ROI</div>
+                                <div class="takeaway-description">Significant time savings and improved analysis quality translate directly to competitive advantage.</div>
+                            </div>
+                            <div class="takeaway-item">
+                                <div class="takeaway-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <div class="takeaway-title">Strategic Co-Pilot</div>
+                                <div class="takeaway-description">AI as an indispensable partner for senior leaders navigating complex business environments.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Card 9: Next Steps -->
+                <section class="card title-card" id="card-9">
+                    <div class="card-number">8 of 9</div>
+                    <div class="card-content">
+                        <div class="section-badge" style="background: rgba(255,255,255,0.2); color: rgba(255,255,255,0.9);">NEXT STEPS</div>
+                        <h1>Integrate AI into Your Strategic Workflow</h1>
+                        
+                        <p style="font-size: 1.2rem; margin: 2rem 0; opacity: 0.95;">
+                            Ready to transform your market analysis and planning? Here's how to begin your journey with AI as your strategic co-pilot.
+                        </p>
+
+                        <div class="next-steps-list">
+                            <div class="next-step">
+                                <div class="step-label">🚀 Pilot Program:</div>
+                                <div>Identify a key project for AI-assisted analysis. Start small with a specific use case to build confidence and expertise.</div>
+                            </div>
+                            <div class="next-step">
+                                <div class="step-label">🎯 Team Training:</div>
+                                <div>Equip your planners with prompt engineering skills. Invest in workshops and hands-on practice sessions.</div>
+                            </div>
+                            <div class="next-step">
+                                <div class="step-label">🔧 Platform Integration:</div>
+                                <div>Explore tools and platforms that best suit your organizational needs. Consider security, scalability, and ease of use.</div>
+                            </div>
+                            <div class="next-step">
+                                <div class="step-label">📊 Continuous Feedback:</div>
+                                <div>Iterate and refine your AI workflows for optimal performance. Measure results and adjust strategies accordingly.</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 3rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 16px; backdrop-filter: blur(10px);">
+                            <strong style="font-size: 1.1rem;">📚 Next Session Preview:</strong><br>
+                            Deep dive into competitive intelligence frameworks and AI-powered market research techniques that give you the strategic edge.
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            const toggleBtn = document.querySelector('.toggle-btn i');
+            
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
+            
+            if (sidebar.classList.contains('collapsed')) {
+                toggleBtn.className = 'fas fa-angle-right';
+            } else {
+                toggleBtn.className = 'fas fa-angle-left';
+            }
+        }
+
+        // Mobile sidebar toggle
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Session navigation
+        document.querySelectorAll('.session-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                document.querySelectorAll('.session-item').forEach(i => i.classList.remove('active'));
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Scroll to corresponding card
+                const cardNumber = this.getAttribute('data-card');
+                const card = document.getElementById(`card-${cardNumber}`);
+                if (card) {
+                    card.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Update active session based on scroll position
+        function updateActiveSession() {
+            const cards = document.querySelectorAll('.card');
+            const scrollContainer = document.getElementById('presentationScroll');
+            const scrollTop = scrollContainer.scrollTop;
+            const windowHeight = scrollContainer.clientHeight;
+            
+            cards.forEach((card, index) => {
+                const cardTop = card.offsetTop;
+                const cardHeight = card.offsetHeight;
+                const cardCenter = cardTop + cardHeight / 2;
+                
+                if (scrollTop + windowHeight / 2 >= cardTop && scrollTop + windowHeight / 2 <= cardTop + cardHeight) {
+                    // Update active session
+                    document.querySelectorAll('.session-item').forEach(item => item.classList.remove('active'));
+                    const correspondingSession = document.querySelector(`[data-card="${index + 1}"]`);
+                    if (correspondingSession) {
+                        correspondingSession.classList.add('active');
+                    }
+                }
+            });
+        }
+
+        // Throttled scroll listener
+        let scrollTimeout;
+        document.getElementById('presentationScroll').addEventListener('scroll', function() {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(updateActiveSession, 100);
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateActiveSession();
+            
+            // Add smooth scrolling to all internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            const presentationScroll = document.getElementById('presentationScroll');
+            
+            switch(e.key) {
+                case 'ArrowDown':
+                case 'PageDown':
+                    e.preventDefault();
+                    presentationScroll.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
+                    break;
+                case 'ArrowUp':
+                case 'PageUp':
+                    e.preventDefault();
+                    presentationScroll.scrollBy({ top: -window.innerHeight * 0.9, behavior: 'smooth' });
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    presentationScroll.scrollTo({ top: 0, behavior: 'smooth' });
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    presentationScroll.scrollTo({ top: presentationScroll.scrollHeight, behavior: 'smooth' });
+                    break;
+            }
+        });
+
+        // Add visual feedback for interactions
+        document.querySelectorAll('.process-step, .metric-card, .takeaway-item').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px) scale(1.02)';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        console.log('Enhanced AI Training Presentation System Loaded');
+        console.log('Features: Collapsible navigation, 24 sessions, smooth scrolling, keyboard shortcuts');
+    </script>
+</body>
+</html>

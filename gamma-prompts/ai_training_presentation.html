@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced AI Acumen Program - Gamma AI Implementation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .gamma-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 2rem 2rem;
+        }
+        
+        .setup-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .setup-section h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .prompt-box {
+            background: #f8f9fa;
+            border-left: 4px solid #28a745;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        
+        .gamma-workflow {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        
+        .gamma-workflow h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .workflow-step {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .session-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .session-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f1f3f4;
+        }
+        
+        .session-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+        
+        .session-duration {
+            background: #e8f5e8;
+            color: #2e7d2e;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .session-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .gamma-prompt {
+            background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .gamma-prompt h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .prompt-text {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .customization-tips {
+            background: #fff3cd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .export-guide {
+            background: #d4edda;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .phase-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 1.5rem;
+            margin: 2rem 0 1rem 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .phase-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quick-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-width: 200px;
+        }
+        
+        .quick-nav h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .quick-nav a {
+            display: block;
+            color: #666;
+            text-decoration: none;
+            padding: 0.25rem 0;
+            font-size: 0.8rem;
+        }
+        
+        .quick-nav a:hover {
+            color: #667eea;
+        }
+        
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .template-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .template-card h5 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .break-slide {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 12px;
+        }
+        
+        @media (max-width: 768px) {
+            .quick-nav {
+                display: none;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .session-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quick-nav">
+        <h4>Quick Navigation</h4>
+        <a href="#setup">Setup Guide</a>
+        <a href="#workflow">Gamma Workflow</a>
+        <a href="#phase1">Phase I Sessions</a>
+        <a href="#phase2">Phase II Sessions</a>
+        <a href="#phase3">Phase III Sessions</a>
+        <a href="#phase4">Phase IV Sessions</a>
+        <a href="#templates">Template Library</a>
+    </div>
+
+    <div class="header">
+        <h1>Enhanced AI Acumen Program</h1>
+        <p>Complete Implementation Guide for Gamma AI</p>
+        <div class="gamma-badge">🚀 Optimized for Gamma.app</div>
+    </div>
+
+    <div class="container">
+        
+        <!-- SETUP SECTION -->
+        <div id="setup" class="setup-section">
+            <h2><span class="step-number">1</span> Getting Started with Gamma</h2>
+            
+            <div class="gamma-workflow">
+                <h3>🎯 Why Gamma is Perfect for This Program</h3>
+                <p>Based on our research, Gamma is the clear winner for AI presentation tools with:</p>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <strong>50M+ Users</strong><br>
+                        Proven, stable platform
+                    </div>
+                    <div class="workflow-step">
+                        <strong>Superior AI</strong><br>
+                        Best-in-class content generation
+                    </div>
+                    <div class="workflow-step">
+                        <strong>Professional Output</strong><br>
+                        Business-ready presentations
+                    </div>
+                    <div class="workflow-step">
+                        <strong>Easy Export</strong><br>
+                        PowerPoint & PDF ready
+                    </div>
+                </div>
+            </div>
+            
+            <h3>📋 Setup Steps:</h3>
+            <ol style="margin-left: 2rem; margin-top: 1rem;">
+                <li><strong>Create Account:</strong> Go to <a href="https://gamma.app" target="_blank">gamma.app</a> and sign up (free account works fine)</li>
+                <li><strong>Choose Template:</strong> Select "Business" or "Professional" theme for consistency</li>
+                <li><strong>Set Brand Colors:</strong> Use the recommended color palette (Primary: #667eea, Secondary: #764ba2)</li>
+                <li><strong>Test Run:</strong> Create one session first to familiarize yourself with the workflow</li>
+            </ol>
+        </div>
+
+        <!-- GAMMA WORKFLOW -->
+        <div id="workflow" class="setup-section">
+            <h2><span class="step-number">2</span> Gamma Workflow for Each Session</h2>
+            
+            <div class="gamma-workflow">
+                <h3>🔄 The 5-Step Gamma Process</h3>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <strong>1. Prompt</strong><br>
+                        Use our optimized prompts
+                    </div>
+                    <div class="workflow-step">
+                        <strong>2. Review</strong><br>
+                        Edit the AI-generated outline
+                    </div>
+                    <div class="workflow-step">
+                        <strong>3. Generate</strong><br>
+                        Let Gamma create the cards
+                    </div>
+                    <div class="workflow-step">
+                        <strong>4. Customize</strong><br>
+                        Add your specific content
+                    </div>
+                    <div class="workflow-step">
+                        <strong>5. Export</strong><br>
+                        Download as PowerPoint
+                    </div>
+                </div>
+            </div>
+            
+            <div class="customization-tips">
+                <h4>💡 Pro Tips for Best Results:</h4>
+                <ul>
+                    <li><strong>Always review the outline</strong> before generating - this is where you control the structure</li>
+                    <li><strong>Use the "+" button</strong> to add custom cards for exercises and activities</li>
+                    <li><strong>Leverage the AI chat</strong> to refine content after generation</li>
+                    <li><strong>Add speaker notes</strong> using the notes section in each card</li>
+                    <li><strong>Use consistent branding</strong> by applying the same theme to all sessions</li>
+                </ul>
+            </div>
+            
+            <div class="export-guide">
+                <h4>📤 Export Instructions:</h4>
+                <ol>
+                    <li>Click "Export" in the top-right corner</li>
+                    <li>Choose "PowerPoint (.pptx)" format</li>
+                    <li>Download and open in PowerPoint</li>
+                    <li>Install any missing fonts if prompted</li>
+                    <li>Add your company logo and final customizations</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- PHASE I: FOUNDATIONAL INTELLIGENCE -->
+        <div id="phase1" class="phase-header">
+            <h2>Phase I: Foundational Intelligence</h2>
+            <p>Months 1-3 • Sessions 1-6 • From Models to Business Value</p>
+        </div>
+
+        <!-- SESSION 1 -->
+        <div class="session-card">
+            <div class="session-header">
+                <div class="session-number">Session 1</div>
+                <div class="session-duration">15 minutes</div>
+            </div>
+            <div class="session-title">The AI Landscape: Beyond the Hype</div>
+            
+            <div class="gamma-prompt">
+                <h4>🤖 Gamma AI Prompt:</h4>
+                <div class="prompt-text">Create a business presentation for managers about "The AI Landscape: Strategic Platform Comparison for Decision Makers."
+
+Focus on:
+- Overview of three major AI ecosystems: OpenAI (Reasoning Engine), Google (Integrated Workflow), Anthropic (Trusted Partner)
+- Each platform's core philosophy and business strengths
+- Strategic decision framework for platform selection
+- Platform-problem fit scenarios with real business examples
+- Comparison table showing ideal use cases for each platform
+
+Target audience: Business managers with no AI experience
+Tone: Professional, practical, strategic
+Duration: 15-minute presentation
+Include: Interactive exercise slide for matching business scenarios to platforms</div>
+            </div>
+            
+            <div class="customization-tips">
+                <h4>✏️ Customization After Generation:</h4>
+                <ul>
+                    <li><strong>Add the comparison table</strong> (Gamma might not generate this automatically)</li>
+                    <li><strong>Insert exercise card:</strong> "Match these scenarios: 1) Legal document analysis 2) Creative marketing 3) Google Sheets automation"</li>
+                    <li><strong>Add speaker notes</strong> with specific talking points about each platform</li>
+                    <li><strong>Include logos</strong> of OpenAI, Google, and Anthropic if available</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SESSION 2 -->
+        <div class="session-card">
+            <div class="session-header">
+                <div class="session-number">Session 2</div>
+                <div class="session-duration">15 minutes</div>
+            </div>
+            <div class="session-title">Understanding AI Business Value & ROI</div>
+            
+            <div class="gamma-prompt">
+                <h4>🤖 Gamma AI Prompt:</h4>
+                <div class="prompt-text">Create a business training presentation about "AI ROI Reality Check: Measuring True Business Value."
+
+Cover these key points:
+- Current AI adoption statistics: Only 17% see tangible ROI, 80% struggle to show value
+- Why most AI projects fail to demonstrate ROI
+- Three types of AI value: Direct cost reduction, Revenue enhancement, Strategic advantage
+- Framework for measuring both quantitative and qualitative benefits
+- Common ROI measurement mistakes and how to avoid them
+- Interactive exercise: Identify 3 AI value opportunities in your department
+
+Target audience: Business managers and team leaders
+Tone: Realistic but optimistic, data-driven
+Include: Statistics, framework templates, practical exercises</div>
+            </div>
+            
+            <div class="customization-tips">
+                <h4>✏️ Customization After Generation:</h4>
+                <ul>
+                    <li><strong>Add current statistics</strong> from our research (17% ROI success rate, etc.)</li>
+                    <li><strong>Create ROI framework template</strong> as a downloadable resource</li>
+                    <li><strong>Include real company examples</strong> of successful AI ROI measurement</li>
+                    <li><strong>Add interactive polling questions</strong> about attendees' AI expectations</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SESSION 3 -->
+        <div class="session-card">
+            <div class="session-header">
+                <div class="session-number">Session 3</div>
+                <div class="session-duration">15 minutes</div>
+            </div>
+            <div class="session-title">Context Engineering: The PTCF Framework</div>
+            
+            <div class="gamma-prompt">
+                <h4>🤖 Gamma AI Prompt:</h4>
+                <div class="prompt-text">Create a practical training presentation about "Context Engineering: From Basic Prompts to Strategic AI Instructions."
+
+Structure the presentation around:
+- The limitation of basic prompting vs. context engineering
+- Introduction to PTCF Framework: Persona, Task, Context, Format
+- Side-by-side comparison: Generic prompt vs. PTCF-structured prompt with actual examples
+- Step-by-step guide to building effective prompts using PTCF
+- Hands-on exercise: Transform a basic prompt using PTCF framework
+- Template for systematic prompt construction
+
+Target audience: Managers learning to use AI effectively
+Tone: Practical, hands-on, immediately actionable
+Include: Before/after examples, fillable templates, live demonstration suggestions</div>
+            </div>
+            
+            <div class="customization-tips">
+                <h4>✏️ Customization After Generation:</h4>
+                <ul>
+                    <li><strong>Add specific before/after examples</strong> showing dramatic improvement in AI output quality</li>
+                    <li><strong>Create fillable PTCF template</strong> as a handout</li>
+                    <li><strong>Include industry-specific examples</strong> relevant to your audience</li>
+                    <li><strong>Add timer slides</strong> for the hands-on exercise portion</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BREAK SLIDE TEMPLATE -->
+        <div class="break-slide">
+            <h3>🌟 Session Break Template</h3>
+            <p>Use this Gamma prompt for break slides between sessions:</p>
+            <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 6px; margin-top: 1rem; font-style: italic;">
+                "Create a simple transition slide that says 'End of Session [X]' with the title '[Session Name]' and 'Next: Session [X+1] - [Next Session Title]'. Use a clean, professional design with minimal text and calming colors."
+            </div>
+        </div>
+
+        <!-- CONTINUING WITH OTHER SESSIONS -->
+        <div class="session-card">
+            <div class="session-title">Sessions 4-6: Foundational Intelligence (Continued)</div>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <h5>Session 4: RAG Fundamentals</h5>
+                    <p><strong>Prompt Focus:</strong> "Business explanation of Retrieval-Augmented Generation for secure AI knowledge integration"</p>
+                    <p><strong>Key Elements:</strong> RAG vs Fine-tuning comparison, security benefits, use case identification</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 5: Data Fundamentals</h5>
+                    <p><strong>Prompt Focus:</strong> "Data quality essentials for successful AI implementation in business"</p>
+                    <p><strong>Key Elements:</strong> Data preparation, quality assessment, governance basics</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 6: AI Safety & Risk</h5>
+                    <p><strong>Prompt Focus:</strong> "Practical AI risk management for business managers"</p>
+                    <p><strong>Key Elements:</strong> Risk identification, mitigation strategies, governance frameworks</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE II: FUNCTIONAL INTEGRATION -->
+        <div id="phase2" class="phase-header">
+            <h2>Phase II: Functional Integration</h2>
+            <p>Months 4-6 • Sessions 7-12 • AI in the Manager's Toolkit</p>
+        </div>
+
+        <!-- SESSION 7 - DETAILED EXAMPLE -->
+        <div class="session-card">
+            <div class="session-header">
+                <div class="session-number">Session 7</div>
+                <div class="session-duration">15 minutes</div>
+            </div>
+            <div class="session-title">AI for Strategic Analysis & Planning</div>
+            
+            <div class="gamma-prompt">
+                <h4>🤖 Gamma AI Prompt:</h4>
+                <div class="prompt-text">Create a strategic business presentation about "AI as Your Strategic Co-Pilot: Advanced Market Analysis and Planning."
+
+Include these components:
+- Evolution from information retrieval to complex reasoning with AI
+- Real-world example: OpenAI's Deep Research agent capabilities
+- Step-by-step guide to delegating cognitive-heavy research tasks
+- SWOT analysis generation using structured AI prompts
+- Template library for strategic analysis (SWOT, PESTLE, competitive intelligence)
+- Hands-on exercise: Build a SWOT analysis prompt for your business
+- ROI calculation: Time saved vs. analysis quality improvement
+
+Target audience: Senior managers and strategic planners
+Tone: Sophisticated, strategic, results-oriented
+Include: Practical templates, real examples, measurable outcomes</div>
+            </div>
+            
+            <div class="customization-tips">
+                <h4>✏️ Customization After Generation:</h4>
+                <ul>
+                    <li><strong>Add strategic analysis template library</strong> with SWOT, PESTLE, and competitive frameworks</li>
+                    <li><strong>Include real SWOT example</strong> generated by AI for a sample company</li>
+                    <li><strong>Create fillable prompt templates</strong> attendees can customize for their industry</li>
+                    <li><strong>Add ROI calculator</strong> showing time savings from AI-assisted analysis</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PHASE II SESSIONS SUMMARY -->
+        <div class="session-card">
+            <div class="session-title">Sessions 8-12: Functional Integration Templates</div>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <h5>Session 8: AI-Augmented HR</h5>
+                    <p><strong>Prompt:</strong> "AI transformation in HR: From talent acquisition to performance management for managers"</p>
+                    <p><strong>Focus:</strong> Bias reduction, predictive analytics, feedback improvement</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 9: AI in Finance</h5>
+                    <p><strong>Prompt:</strong> "Financial AI applications: Invoice processing, contract analysis, and forecasting"</p>
+                    <p><strong>Focus:</strong> Automation, accuracy, compliance</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 10: Supply Chain AI</h5>
+                    <p><strong>Prompt:</strong> "Predictive operations: AI for supply chain resilience and optimization"</p>
+                    <p><strong>Focus:</strong> Disruption prediction, scenario planning, automation</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 11: Marketing & Sales AI</h5>
+                    <p><strong>Prompt:</strong> "AI-powered marketing: Personalization, campaigns, and CRM intelligence"</p>
+                    <p><strong>Focus:</strong> Customer insights, automation, ROI measurement</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 12: Legal & Compliance</h5>
+                    <p><strong>Prompt:</strong> "AI in legal operations: Contract review, risk assessment, regulatory monitoring"</p>
+                    <p><strong>Focus:</strong> Accuracy, speed, compliance assurance</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE III: ADVANCED AUGMENTATION -->
+        <div id="phase3" class="phase-header">
+            <h2>Phase III: Advanced Augmentation</h2>
+            <p>Months 7-9 • Sessions 13-18 • Mastering Agentic & Multimodal Workflows</p>
+        </div>
+
+        <!-- SESSION 13 - DETAILED EXAMPLE -->
+        <div class="session-card">
+            <div class="session-header">
+                <div class="session-number">Session 13</div>
+                <div class="session-duration">15 minutes</div>
+            </div>
+            <div class="session-title">Multimodal AI for Business Intelligence</div>
+            
+            <div class="gamma-prompt">
+                <h4>🤖 Gamma AI Prompt:</h4>
+                <div class="prompt-text">Create an advanced business presentation about "Visual Data Intelligence: Leveraging Multimodal AI for Strategic Insights."
+
+Cover these advanced topics:
+- The multimodal revolution: 60% of enterprise apps will be multimodal by 2026
+- Real business applications: Retail analysis, financial chart interpretation, document processing
+- Beyond text limitations: Extracting insights from images, charts, and visual data
+- Step-by-step guide to multimodal prompt engineering
+- Live demonstration: Chart-to-insight analysis workflow
+- Business impact case studies and ROI examples
+- Framework for identifying multimodal opportunities in your organization
+
+Target audience: Advanced managers ready for next-generation AI
+Tone: Forward-looking, technically sophisticated, business-focused
+Include: Visual examples, step-by-step workflows, measurement frameworks</div>
+            </div>
+            
+            <div class="customization-tips">
+                <h4>✏️ Customization After Generation:</h4>
+                <ul>
+                    <li><strong>Add visual examples</strong> of charts and their AI-generated insights</li>
+                    <li><strong>Include multimodal prompt templates</strong> for different data types</li>
+                    <li><strong>Create opportunity assessment checklist</strong> for identifying multimodal use cases</li>
+                    <li><strong>Add ROI calculator</strong> for visual data analysis time savings</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PHASE III SESSIONS SUMMARY -->
+        <div class="session-card">
+            <div class="session-title">Sessions 14-18: Advanced Augmentation Templates</div>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <h5>Session 14: Advanced Data Analysis</h5>
+                    <p><strong>Prompt:</strong> "AI-powered statistical modeling and predictive analytics for business managers"</p>
+                    <p><strong>Focus:</strong> Complex analysis, pattern recognition, forecasting</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 15: Agentic AI Introduction</h5>
+                    <p><strong>Prompt:</strong> "From single prompts to autonomous workflows: Understanding agentic AI systems"</p>
+                    <p><strong>Focus:</strong> Multi-step automation, tool selection, goal decomposition</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 16: Advanced RAG Systems</h5>
+                    <p><strong>Prompt:</strong> "Building enterprise knowledge bases with advanced RAG implementation"</p>
+                    <p><strong>Focus:</strong> Data curation, system design, quality assurance</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 17: AI Integration & APIs</h5>
+                    <p><strong>Prompt:</strong> "Connecting AI to business systems: Integration strategies and workflows"</p>
+                    <p><strong>Focus:</strong> System integration, API usage, workflow automation</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 18: AI Performance Measurement</h5>
+                    <p><strong>Prompt:</strong> "Measuring AI success: KPIs, metrics, and continuous improvement frameworks"</p>
+                    <p><strong>Focus:</strong> Performance tracking, optimization, ROI measurement</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE IV: STRATEGIC LEADERSHIP -->
+        <div id="phase4" class="phase-header">
+            <h2>Phase IV: Strategic Leadership</h2>
+            <p>Months 10-12 • Sessions 19-24 • Building an AI-First Organization</p>
+        </div>
+
+        <!-- SESSION 19 - DETAILED EXAMPLE -->      
+        <div class="session-card">
+            <div class="session-header">
+                <div class="session-number">Session 19</div>
+                <div class="session-duration">15 minutes</div>
+            </div>
+            <div class="session-title">Leading AI Adoption: Change Management</div>
+            
+            <div class="gamma-prompt">
+                <h4>🤖 Gamma AI Prompt:</h4>
+                <div class="prompt-text">Create a leadership-focused presentation about "Leading AI Transformation: Overcoming Resistance and Building Adoption."
+
+Address these critical leadership challenges:
+- The psychology of AI resistance: Fear, uncertainty, and skill gaps
+- Reframing AI as augmentation vs. replacement (85M jobs displaced, 97M created)
+- Proven change management strategies for AI adoption
+- Addressing common objections: "AI will replace me" and "I don't have time to learn"
+- Building AI champions within your organization
+- Communication frameworks for different stakeholder groups
+- Success metrics for AI adoption and team engagement
+
+Target audience: Senior managers and team leaders
+Tone: Empathetic, strategic, action-oriented
+Include: Objection-handling scripts, communication templates, success stories</div>
+            </div>
+            
+            <div class="customization-tips">
+                <h4>✏️ Customization After Generation:</h4>
+                <ul>
+                    <li><strong>Add specific objection-response scripts</strong> for common employee concerns</li>
+                    <li><strong>Include change management toolkit</strong> with communication templates</li>
+                    <li><strong>Add success stories</strong> from companies with positive AI adoption</li>
+                    <li><strong>Create assessment tools</strong> for measuring team readiness and resistance</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PHASE IV SESSIONS SUMMARY -->
+        <div class="session-card">
+            <div class="session-title">Sessions 20-24: Strategic Leadership Templates</div>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <h5>Session 20: Building AI-Ready Teams</h5>
+                    <p><strong>Prompt:</strong> "Organizational design for AI success: Skills, hiring, and team structures"</p>
+                    <p><strong>Focus:</strong> Skill development, recruitment, organizational change</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 21: AI Governance & Ethics</h5>
+                    <p><strong>Prompt:</strong> "Responsible AI leadership: Building governance frameworks and ethical guidelines"</p>
+                    <p><strong>Focus:</strong> Ethics frameworks, compliance, risk management</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 22: Future-Proofing Strategy</h5>
+                    <p><strong>Prompt:</strong> "AI strategy 2027: Preparing for emerging technologies and market evolution"</p>
+                    <p><strong>Focus:</strong> Strategic planning, technology trends, adaptability</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 23: Advanced AI Leadership</h5>
+                    <p><strong>Prompt:</strong> "Executive AI leadership: Strategic decision-making in an AI-augmented world"</p>
+                    <p><strong>Focus:</strong> Executive skills, strategic thinking, competitive advantage</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Session 24: Capstone & Future Vision</h5>
+                    <p><strong>Prompt:</strong> "AI leadership vision 2027: Consolidating learning and planning the future"</p>
+                    <p><strong>Focus:</strong> Future trends, personal development plans, organizational roadmaps</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEMPLATE LIBRARY -->
+        <div id="templates" class="setup-section">
+            <h2><span class="step-number">3</span> Master Template Library</h2>
+            
+            <div class="gamma-prompt">
+                <h4>🎯 Universal Session Template:</h4>
+                <div class="prompt-text">Create a professional business training presentation about "[SESSION TITLE]: [SPECIFIC FOCUS]."
+
+Structure the presentation with:
+- Clear learning objectives for managers
+- Core concepts explained in business terms
+- Real-world applications and examples
+- Hands-on interactive exercise
+- Practical templates or frameworks
+- Implementation guidance
+- Key takeaways and next steps
+
+Target audience: [EXPERIENCE LEVEL] managers in business environment
+Tone: Professional, practical, immediately actionable
+Duration: 15-minute focused session
+Include: Interactive elements, downloadable resources, clear action items</div>
+            </div>
+            
+            <div class="customization-tips">
+                <h4>🛠️ Customization Variables:</h4>
+                <ul>
+                    <li><strong>[SESSION TITLE]:</strong> Insert specific session name</li>
+                    <li><strong>[SPECIFIC FOCUS]:</strong> Add the particular business angle or skill</li>
+                    <li><strong>[EXPERIENCE LEVEL]:</strong> Beginner/Intermediate/Advanced</li>
+                    <li><strong>Interactive Elements:</strong> Polls, exercises, discussions, templates</li>
+                    <li><strong>Industry Examples:</strong> Customize for your specific business sector</li>
+                </ul>
+            </div>
+            
+            <div class="export-guide">
+                <h4>📊 Quality Assurance Checklist:</h4>
+                <ol>
+                    <li><strong>Content Flow:</strong> Each session should build logically on previous ones</li>
+                    <li><strong>Time Management:</strong> Verify 15-minute structure (5-7-3 minute breakdown)</li>
+                    <li><strong>Interactive Elements:</strong> Every session needs hands-on activities</li>
+                    <li><strong>Practical Value:</strong> Attendees should leave with usable tools/templates</li>
+                    <li><strong>Visual Consistency:</strong> Use same theme and branding across all sessions</li>
+                    <li><strong>Export Testing:</strong> Verify PowerPoint export quality before delivery</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- IMPLEMENTATION TIMELINE -->
+        <div class="setup-section">
+            <h2><span class="step-number">4</span> Implementation Timeline</h2>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <h5>Week 1-2: Foundation</h5>
+                    <p>Create Sessions 1-6 (Phase I)</p>
+                    <p>Test Gamma workflow and export process</p>
+                    <p>Establish design templates and branding</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Week 3-4: Integration</h5>
+                    <p>Develop Sessions 7-12 (Phase II)</p>
+                    <p>Add industry-specific customizations</p>
+                    <p>Create interactive exercise templates</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Week 5-6: Advanced Topics</h5>
+                    <p>Build Sessions 13-18 (Phase III)</p>
+                    <p>Develop complex scenarios and examples</p>
+                    <p>Test multimodal content integration</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Week 7-8: Leadership Focus</h5>
+                    <p>Complete Sessions 19-24 (Phase IV)</p>
+                    <p>Add change management resources</p>
+                    <p>Create assessment and measurement tools</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Week 9: Quality Assurance</h5>
+                    <p>Review all presentations for consistency</p>
+                    <p>Test PowerPoint exports and formatting</p>
+                    <p>Validate timing and flow</p>
+                </div>
+                
+                <div class="template-card">
+                    <h5>Week 10: Final Polish</h5>
+                    <p>Add company-specific branding</p>
+                    <p>Create trainer guides and resources</p>
+                    <p>Prepare delivery materials</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FINAL SUCCESS TIPS -->
+        <div class="setup-section">
+            <h2>🎯 Keys to Success with Gamma</h2>
+            
+            <div class="gamma-workflow">
+                <h3>Best Practices for Professional Results</h3>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <strong>Detailed Prompts</strong><br>
+                        More context = better output
+                    </div>
+                    <div class="workflow-step">
+                        <strong>Iterative Refinement</strong><br>
+                        Use AI chat to improve content
+                    </div>
+                    <div class="workflow-step">
+                        <strong>Consistent Branding</strong><br>
+                        Same theme across all sessions
+                    </div>
+                    <div class="workflow-step">
+                        <strong>Export Testing</strong><br>
+                        Always test PowerPoint compatibility
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem; padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Ready to Start Building?</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">You now have everything needed to create professional AI training presentations with Gamma!</p>
+                <p style="color: #666;">🚀 Start with Session 1 and work through each phase systematically</p>
+                <p style="color: #666;">💡 Remember: Gamma's AI will handle the design while you focus on the content strategy</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Add smooth scrolling for navigation
+        document.querySelectorAll('.quick-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add copy-to-clipboard functionality for prompts
+        document.querySelectorAll('.prompt-text').forEach(element => {
+            element.addEventListener('click', function() {
+                navigator.clipboard.writeText(this.textContent).then(function() {
+                    // Could add a toast notification here
+                    console.log('Prompt copied to clipboard!');
+                });
+            });
+            
+            // Add visual indicator that it's clickable
+            element.style.cursor = 'pointer';
+            element.title = 'Click to copy prompt to clipboard';
+        });
+    </script>
+</body>
+</html>

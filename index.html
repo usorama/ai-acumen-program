@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Strategic Co-Pilot Training Program</title>
+    
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.min.css">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary-blue: #667eea;
+            --secondary-purple: #764ba2;
+            --accent-teal: #4facfe;
+            --light-blue: #00f2fe;
+            --dark-navy: #2c3e50;
+            --light-gray: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        .reveal {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .reveal .slides section {
+            text-align: left;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: var(--dark-navy);
+            font-weight: 700;
+            text-transform: none;
+            line-height: 1.2;
+        }
+
+        .reveal h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        .reveal h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .reveal h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Custom slide backgrounds */
+        .title-slide {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            color: white !important;
+        }
+
+        .title-slide h1 {
+            color: white !important;
+            -webkit-text-fill-color: white !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title-slide p {
+            color: rgba(255,255,255,0.9) !important;
+            font-size: 1.3rem;
+            margin-top: 2rem;
+        }
+
+        /* Content cards */
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent-teal);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Step indicators */
+        .step-indicator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-teal) 0%, var(--light-blue) 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Process flow layout */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-top: 3px solid var(--accent-teal);
+        }
+
+        .process-step h4 {
+            color: var(--dark-navy);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Interactive elements */
+        .workshop-box {
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%);
+            border-left: 4px solid var(--accent-teal);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .workshop-box .icon {
+            color: var(--accent-teal);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Key takeaways styling */
+        .takeaway-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .takeaway-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .takeaway-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-teal) 0%, var(--light-blue) 100%);
+            transition: width 0.3s ease;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .reveal h1 {
+                font-size: 2rem;
+            }
+            
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Custom navigation */
+        .reveal .controls {
+            color: var(--accent-teal);
+        }
+
+        .reveal .progress {
+            color: var(--accent-teal);
+        }
+
+        /* Section headers */
+        .section-header {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--accent-teal);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        /* Quote styling */
+        .quote-highlight {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--dark-navy);
+            border-left: 3px solid var(--accent-teal);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        /* Chart container placeholder */
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin: 1.5rem 0;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-navy);
+        }
+
+        /* Session indicator */
+        .session-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+            color: var(--dark-navy);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Session indicator -->
+    <div class="session-indicator" id="sessionIndicator">
+        Session 1 of 24
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Slide 1: Title Slide -->
+            <section class="title-slide" data-background-gradient="linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
+                <div style="text-align: center; padding: 4rem 2rem;">
+                    <h1 data-aos="fade-up">AI as Your Strategic Co-Pilot</h1>
+                    <p data-aos="fade-up" data-aos-delay="200">Advanced Market Analysis and Planning</p>
+                    <p data-aos="fade-up" data-aos-delay="400" style="font-size: 1.1rem; margin-top: 3rem;">
+                        Empowering senior managers and strategic planners with intelligent AI capabilities.
+                    </p>
+                    <div data-aos="fade-up" data-aos-delay="600" style="margin-top: 3rem;">
+                        <small style="opacity: 0.8;">Session 1 • 15 minutes • Interactive Training</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 2: The Shift -->
+            <section>
+                <div class="section-header">THE SHIFT</div>
+                <h2 data-aos="fade-right">From Retrieval to Reasoning: The Evolution of AI</h2>
+                
+                <div class="quote-highlight" data-aos="fade-up" data-aos-delay="200">
+                    AI has evolved beyond simple information retrieval. Today's models engage in complex reasoning, analyzing vast datasets to generate strategic insights, predict trends, and support nuanced decision-making.
+                </div>
+
+                <div class="process-grid" data-aos="fade-up" data-aos-delay="400">
+                    <div class="process-step">
+                        <div class="step-indicator">1</div>
+                        <h4>Early AI</h4>
+                        <p>Information Retrieval & Pattern Recognition</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-indicator">2</div>
+                        <h4>Modern AI</h4>
+                        <p>Complex Reasoning & Strategic Synthesis</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3: Real-World Application -->
+            <section>
+                <div class="section-header">REAL-WORLD APPLICATION</div>
+                <h2 data-aos="fade-right">Deep Research with OpenAI's Agents</h2>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                    <div data-aos="fade-right">
+                        <p>OpenAI's advanced research agents exemplify AI's cognitive capabilities. They can autonomously scour vast information sources, synthesize findings, and generate comprehensive reports on complex topics, mirroring human analysts but at unprecedented speed and scale.</p>
+                        
+                        <ul style="margin-top: 1.5rem;">
+                            <li>Autonomous data aggregation</li>
+                            <li>Cross-referencing diverse sources</li>
+                            <li>Synthesizing complex information</li>
+                            <li>Generating executive summaries</li>
+                        </ul>
+                    </div>
+                    <div data-aos="fade-left" data-aos-delay="300">
+                        <div class="content-card">
+                            <i class="fas fa-robot" style="font-size: 3rem; color: var(--accent-teal); margin-bottom: 1rem;"></i>
+                            <h4>AI Research Assistant</h4>
+                            <p>Processes thousands of documents in minutes, identifying patterns and insights that would take human analysts weeks to discover.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Step-by-Step Guide -->
+            <section>
+                <div class="section-header">DELEGATING COGNITIVE TASKS</div>
+                <h2 data-aos="fade-right">Your AI Research Assistant: A Step-by-Step Guide</h2>
+                
+                <p data-aos="fade-up">Seamlessly integrate AI into your strategic workflow by delegating time-consuming, cognitive-heavy research tasks.</p>
+
+                <div class="process-grid" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-step">
+                        <div class="step-indicator">1</div>
+                        <h4>Define Scope</h4>
+                        <p>Clearly articulate your research question and objectives for the AI.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-indicator">2</div>
+                        <h4>Provide Context</h4>
+                        <p>Supply relevant background data and any specific parameters.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-indicator">3</div>
+                        <h4>Iterate & Refine</h4>
+                        <p>Review initial AI outputs and refine prompts for deeper insights.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-indicator">4</div>
+                        <h4>Synthesize & Act</h4>
+                        <p>Incorporate AI-generated findings into your strategic plan.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: SWOT Framework -->
+            <section>
+                <div class="section-header">STRATEGIC FRAMEWORKS</div>
+                <h2 data-aos="fade-right">AI-Powered SWOT Analysis Generation</h2>
+                
+                <p data-aos="fade-up">Leverage AI's analytical power to rapidly generate robust SWOT analyses using structured prompts. This accelerates your planning cycle and ensures a comprehensive view of internal and external factors.</p>
+
+                <div class="process-grid" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-step">
+                        <div class="step-indicator">S</div>
+                        <h4>Strengths</h4>
+                        <p>Internal capabilities and advantages.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-indicator">W</div>
+                        <h4>Weaknesses</h4>
+                        <p>Internal limitations or disadvantages.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-indicator">O</div>
+                        <h4>Opportunities</h4>
+                        <p>External factors that can be leveraged.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-indicator">T</div>
+                        <h4>Threats</h4>
+                        <p>External factors that could pose challenges.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: Workshop Exercise -->
+            <section>
+                <div class="section-header">WORKSHOP</div>
+                <h2 data-aos="fade-right">Hands-on Exercise: Building Your SWOT Prompt</h2>
+                
+                <p data-aos="fade-up">Practice crafting effective prompts to guide AI in generating a tailored SWOT analysis for your specific business context.</p>
+
+                <div class="workshop-box" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Prompt Example:</h4>
+                    <p style="font-style: italic; margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.8); border-radius: 6px;">
+                        "Generate a SWOT analysis for [Your Company Name], a [Industry] company specializing in [Key Product/Service]. Consider recent market trends in [Specific Market Trends] and the impact of [Recent Industry Event]."
+                    </p>
+                    
+                    <div style="background: rgba(70, 172, 254, 0.1); padding: 1rem; border-radius: 6px; border-left: 3px solid var(--accent-teal);">
+                        <strong><i class="fas fa-tasks"></i> Task:</strong> Work in groups to write a detailed AI prompt for a SWOT analysis relevant to your department or a hypothetical business scenario.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: ROI Metrics -->
+            <section>
+                <div class="section-header">MEASURABLE IMPACT</div>
+                <h2 data-aos="fade-right">Quantifying ROI: Time Savings & Quality Improvement</h2>
+                
+                <p data-aos="fade-up">AI as a strategic co-pilot delivers tangible returns through reduced analysis time and enhanced output quality.</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem;">
+                    <div class="chart-container" data-aos="fade-up" data-aos-delay="200">
+                        <div style="text-align: center;">
+                            <h4>Time Saved</h4>
+                            <div style="margin: 1rem 0;">
+                                <div style="font-size: 2rem; font-weight: bold; color: var(--accent-teal);">80%</div>
+                                <p style="margin: 0.5rem 0;">reduction in initial research time</p>
+                            </div>
+                            <small>AI can reduce the time spent on initial data gathering and synthesis by up to 80%, freeing up your team for higher-value activities.</small>
+                        </div>
+                    </div>
+                    <div class="chart-container" data-aos="fade-up" data-aos-delay="400">
+                        <div style="text-align: center;">
+                            <h4>Quality Improvement</h4>
+                            <div style="margin: 1rem 0;">
+                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--secondary-purple);">Enhanced Analysis</div>
+                                <p style="margin: 0.5rem 0;">Comprehensiveness • Accuracy • Depth of Insight</p>
+                            </div>
+                            <small>AI enhances the depth and breadth of analysis, leading to more robust and data-driven strategic decisions.</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 8: Key Takeaways -->
+            <section>
+                <div class="section-header">KEY TAKEAWAYS</div>
+                <h2 data-aos="fade-right" style="text-align: center;">Empowering Strategic Decision-Making</h2>
+                
+                <div class="takeaway-grid" data-aos="fade-up" data-aos-delay="200">
+                    <div class="takeaway-item">
+                        <div class="takeaway-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>Cognitive Delegation</h4>
+                        <p>AI handles heavy lifting in research and analysis.</p>
+                    </div>
+                    <div class="takeaway-item">
+                        <div class="takeaway-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Enhanced Insights</h4>
+                        <p>Deeper, faster, and more comprehensive strategic intelligence.</p>
+                    </div>
+                    <div class="takeaway-item">
+                        <div class="takeaway-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Measurable ROI</h4>
+                        <p>Significant time savings and improved analysis quality.</p>
+                    </div>
+                    <div class="takeaway-item">
+                        <div class="takeaway-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>Strategic Co-Pilot</h4>
+                        <p>AI as an indispensable partner for senior leaders.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 9: Next Steps -->
+            <section data-background-gradient="linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">
+                <div style="text-align: center; color: white; padding: 2rem;">
+                    <div class="section-header" style="color: rgba(255,255,255,0.9);">NEXT STEPS</div>
+                    <h2 data-aos="fade-up" style="color: white;">Integrate AI into Your Strategic Workflow</h2>
+                    
+                    <p data-aos="fade-up" data-aos-delay="200" style="font-size: 1.1rem; margin: 2rem 0; color: rgba(255,255,255,0.95);">
+                        Ready to transform your market analysis and planning? Here's how to begin your journey with AI as your strategic co-pilot.
+                    </p>
+
+                    <div style="text-align: left; max-width: 600px; margin: 2rem auto;" data-aos="fade-up" data-aos-delay="400">
+                        <div style="margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; border-left: 3px solid white;">
+                            <strong>Pilot Program:</strong> Identify a key project for AI-assisted analysis.
+                        </div>
+                        <div style="margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; border-left: 3px solid white;">
+                            <strong>Team Training:</strong> Equip your planners with prompt engineering skills.
+                        </div>
+                        <div style="margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; border-left: 3px solid white;">
+                            <strong>Platform Integration:</strong> Explore tools and platforms that best suit your organizational needs.
+                        </div>
+                        <div style="margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; border-left: 3px solid white;">
+                            <strong>Continuous Feedback:</strong> Iterate and refine your AI workflows for optimal performance.
+                        </div>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="600" style="margin-top: 3rem;">
+                        <p style="font-size: 1rem; opacity: 0.9;">
+                            <strong>Next Session:</strong> Deep dive into competitive intelligence frameworks and AI-powered market research techniques.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js"></script>
+    <!-- AOS Animation JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize Reveal.js
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: false,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            touch: true,
+            loop: false,
+            rtl: false,
+            navigationMode: 'default',
+            keyboard: true,
+            embedded: false,
+            showNotes: false,
+            autoSlide: 0,
+            autoSlideStoppable: true,
+            mouseWheel: false,
+            hideInactiveCursor: true,
+            hideCursorTime: 5000,
+            previewLinks: false,
+            fragments: true,
+            fragmentInURL: true,
+            width: 1200,
+            height: 700,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+
+        // Update progress bar
+        function updateProgress() {
+            const totalSlides = Reveal.getTotalSlides();
+            const currentSlide = Reveal.getIndices().h + 1;
+            const progress = (currentSlide / totalSlides) * 100;
+            
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('sessionIndicator').textContent = `Session 1 • Slide ${currentSlide} of ${totalSlides}`;
+        }
+
+        // Listen for slide changes
+        Reveal.addEventListener('slidechanged', updateProgress);
+        Reveal.addEventListener('ready', updateProgress);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'f':
+                case 'F':
+                    // Toggle fullscreen
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                    } else {
+                        document.documentElement.requestFullscreen();
+                    }
+                    break;
+                case 'o':
+                case 'O':
+                    // Overview mode
+                    Reveal.toggleOverview();
+                    break;
+                case 's':
+                case 'S':
+                    // Speaker notes (if available)
+                    Reveal.toggleNotes();
+                    break;
+            }
+        });
+
+        // Touch gestures for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        document.addEventListener('touchstart', function(event) {
+            touchStartX = event.touches[0].clientX;
+            touchStartY = event.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function(event) {
+            const touchEndX = event.changedTouches[0].clientX;
+            const touchEndY = event.changedTouches[0].clientY;
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+
+            // Minimum swipe distance
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    // Swipe left - next slide
+                    Reveal.next();
+                } else {
+                    // Swipe right - previous slide
+                    Reveal.prev();
+                }
+            }
+        });
+
+        // Auto-play animations when slide is shown
+        Reveal.addEventListener('slidechanged', function(event) {
+            // Refresh AOS animations for the current slide
+            setTimeout(() => {
+                AOS.refresh();
+            }, 100);
+        });
+
+        // Console logging for development
+        console.log('AI Training Presentation System Loaded');
+        console.log('Total slides:', Reveal.getTotalSlides());
+        console.log('Use keyboard shortcuts: F (fullscreen), O (overview), S (speaker notes)');
+    </script>
+</body>
+</html>
