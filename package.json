@@ -1,0 +1,24 @@
+{
+  "name": "ai-training-program",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ui-analysis.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usorama/ai-acumen-program.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/usorama/ai-acumen-program/issues"
+  },
+  "homepage": "https://github.com/usorama/ai-acumen-program#readme",
+  "dependencies": {
+    "playwright": "^1.54.2"
+  }
+}

@@ -7,20 +7,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Core Color System from colors.md */
+            /* Dark Theme Color System */
             --primary: #1B9AAA;        /* Primary teal blue */
             --primary-light: #6AD5CB;   /* Light cyan-mint */
             --primary-dark: #1C3144;    /* Dark blue-grey */
             --secondary: #58B09C;       /* Teal-green */
             --accent: #A1E8CC;          /* Light mint */
             --success: #BDD9BF;         /* Sage green */
-            --dark: #2E4052;            /* Background dark */
-            --light: #CAF7E2;           /* Very light mint */
-            --neutral: #D2D7DF;         /* Light grey */
-            --text-primary: #1C3144;    /* Dark blue-grey for text */
-            --text-secondary: #6F7D8C;  /* Medium blue-grey */
-            --white: #ffffff;
-            --black: #050505;
+            
+            /* Dark Background System */
+            --bg-primary: #0F172A;      /* Deep navy primary */
+            --bg-secondary: #1E293B;    /* Secondary dark */
+            --bg-tertiary: #334155;     /* Lighter dark */
+            --bg-accent: #2E4052;       /* Accent background */
+            --bg-card: #1E293B;         /* Card backgrounds */
+            
+            /* Text Colors for Dark Theme */
+            --text-primary: #E2E8F0;    /* High contrast white */
+            --text-secondary: #94A3B8;  /* Medium contrast */
+            --text-muted: #64748B;      /* Low contrast */
+            --text-accent: #6AD5CB;     /* Accent text */
+            
+            /* Border & Shadow System */
+            --border-primary: #334155;
+            --border-accent: #1B9AAA;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 20px rgba(27, 154, 170, 0.3);
+            
+            /* Gradient System */
+            --gradient-primary: linear-gradient(135deg, #1B9AAA 0%, #58B09C 100%);
+            --gradient-secondary: linear-gradient(135deg, #2E4052 0%, #1C3144 100%);
+            --gradient-accent: linear-gradient(135deg, #6AD5CB 0%, #A1E8CC 100%);
+            --gradient-bg: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
         }
 
         * {
@@ -31,10 +51,11 @@
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background: var(--white);
+            background: var(--gradient-bg);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         /* Presentation Container */
@@ -45,47 +66,60 @@
 
         /* Slide Navigation Sidebar */
         .slide-nav {
-            width: 280px;
-            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-            border-right: 2px solid var(--neutral);
+            width: 320px;
+            background: var(--bg-secondary);
+            border-right: 2px solid var(--border-primary);
             padding: 1.5rem;
             position: fixed;
             height: 100vh;
             overflow-y: auto;
             z-index: 100;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
         }
 
         .program-header {
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--primary-light);
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-accent);
         }
 
         .program-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: var(--primary);
+            color: white;
             margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .program-subtitle {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
             font-weight: 400;
         }
 
         .session-section {
             margin-bottom: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-primary);
         }
 
         .session-header {
-            background: var(--primary);
-            color: var(--white);
-            padding: 0.5rem 1rem;
+            background: var(--gradient-secondary);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
             border-radius: 8px;
             font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-accent);
         }
 
         .slide-item {
@@ -93,52 +127,90 @@
             align-items: center;
             padding: 0.75rem 1rem;
             margin: 0.25rem 0;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.85rem;
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            font-size: 0.9rem;
             color: var(--text-secondary);
             border-left: 3px solid transparent;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(27, 154, 170, 0.1), transparent);
+            transition: left 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .slide-item:hover::before {
+            left: 100%;
         }
 
         .slide-item:hover {
-            background: var(--light);
+            background: var(--bg-tertiary);
             border-left-color: var(--primary-light);
+            border-color: var(--border-accent);
+            transform: translateX(8px) scale(1.02);
+            box-shadow: var(--shadow-md), 0 0 15px rgba(27, 154, 170, 0.2);
         }
 
         .slide-item.active {
-            background: var(--accent);
-            color: var(--primary-dark);
+            background: var(--gradient-accent);
+            color: var(--bg-primary);
             font-weight: 600;
             border-left-color: var(--primary);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-glow), 0 8px 25px rgba(27, 154, 170, 0.4);
+            transform: translateX(12px) scale(1.03);
+            animation: activeGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes activeGlow {
+            from {
+                box-shadow: var(--shadow-glow), 0 8px 25px rgba(27, 154, 170, 0.4);
+            }
+            to {
+                box-shadow: var(--shadow-glow), 0 10px 30px rgba(27, 154, 170, 0.6);
+            }
         }
 
         .slide-number {
-            background: var(--secondary);
-            color: var(--white);
-            padding: 0.2rem 0.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.3rem 0.6rem;
             border-radius: 12px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            margin-right: 0.5rem;
-            min-width: 25px;
+            margin-right: 0.75rem;
+            min-width: 28px;
             text-align: center;
+            box-shadow: var(--shadow-sm);
         }
 
         /* Main Slide Area */
         .slide-container {
-            margin-left: 280px;
+            margin-left: 320px;
             flex: 1;
             min-height: 100vh;
             position: relative;
+            background: var(--bg-primary);
         }
 
         .slide {
             display: none;
             min-height: 100vh;
-            padding: 3rem 4rem;
+            padding: 2rem 3rem;
             position: relative;
-            background: var(--white);
+            background: var(--bg-primary);
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .slide.active {
@@ -156,59 +228,104 @@
         }
 
         .control-btn {
-            background: var(--primary);
-            color: var(--white);
+            background: var(--gradient-primary);
+            color: white;
             border: none;
             padding: 1rem;
             border-radius: 50%;
             cursor: pointer;
             font-size: 1.2rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(27, 154, 170, 0.3);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: var(--shadow-glow);
+            border: 2px solid var(--border-accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .control-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .control-btn:active::before {
+            width: 300px;
+            height: 300px;
         }
 
         .control-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(27, 154, 170, 0.4);
+            background: var(--gradient-secondary);
+            transform: translateY(-6px) scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 35px rgba(27, 154, 170, 0.6), 0 0 20px rgba(106, 213, 203, 0.4);
+        }
+
+        .control-btn:active {
+            transform: translateY(-2px) scale(1.05) rotate(0deg);
+            transition: all 0.15s ease;
         }
 
         .control-btn:disabled {
-            background: var(--neutral);
+            background: var(--bg-tertiary);
             cursor: not-allowed;
             transform: none;
-            box-shadow: none;
+            box-shadow: var(--shadow-sm);
+            border-color: var(--border-primary);
         }
 
         /* Slide Typography */
         .slide h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
             line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .slide h2 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 600;
-            color: var(--primary);
+            color: var(--text-primary);
             margin-bottom: 1.5rem;
             line-height: 1.3;
+            position: relative;
+        }
+
+        .slide h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
         }
 
         .slide h3 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 600;
-            color: var(--secondary);
+            color: var(--text-accent);
             margin-bottom: 1rem;
         }
 
         .slide p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-primary);
             margin-bottom: 1rem;
-            max-width: 800px;
+            max-width: 1000px;
+            line-height: 1.7;
         }
 
         .slide ul, .slide ol {
@@ -217,57 +334,74 @@
         }
 
         .slide li {
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
             color: var(--text-primary);
+            line-height: 1.6;
         }
 
         /* Content Boxes */
         .content-box {
             padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
+            border-radius: 16px;
+            margin: 1.5rem 0;
             border-left: 6px solid;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-primary);
         }
 
         .objective-box {
-            background: linear-gradient(135deg, var(--light) 0%, var(--accent) 100%);
-            border-left-color: var(--secondary);
-            color: var(--primary-dark);
+            background: linear-gradient(135deg, rgba(27, 154, 170, 0.15) 0%, rgba(88, 176, 156, 0.15) 100%);
+            border-left-color: var(--primary);
+            color: var(--text-primary);
+            border-color: var(--border-accent);
         }
 
         .exercise-box {
-            background: linear-gradient(135deg, #e6f3ff 0%, #cce7ff 100%);
-            border-left-color: var(--primary);
-            color: var(--primary-dark);
+            background: linear-gradient(135deg, rgba(106, 213, 203, 0.15) 0%, rgba(161, 232, 204, 0.15) 100%);
+            border-left-color: var(--primary-light);
+            color: var(--text-primary);
+            border-color: var(--primary-light);
         }
 
         .takeaway-box {
-            background: linear-gradient(135deg, var(--success) 0%, #a8d5aa 100%);
+            background: linear-gradient(135deg, rgba(88, 176, 156, 0.15) 0%, rgba(189, 217, 191, 0.15) 100%);
             border-left-color: var(--secondary);
-            color: var(--primary-dark);
+            color: var(--text-primary);
+            border-color: var(--secondary);
         }
 
         .speaker-notes {
-            background: #fff5f5;
-            border-left-color: #dc3545;
+            background: linear-gradient(135deg, rgba(161, 232, 204, 0.1) 0%, rgba(106, 213, 203, 0.1) 100%);
+            border-left-color: var(--accent);
             color: var(--text-primary);
             font-style: italic;
+            border-color: var(--accent);
         }
 
         /* Interactive Elements */
         .interactive-element {
-            background: var(--white);
-            border: 2px solid var(--primary-light);
-            border-radius: 8px;
-            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 2px solid var(--border-accent);
+            border-radius: 12px;
+            padding: 2rem;
             margin: 1.5rem 0;
             transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
         }
 
         .interactive-element:hover {
             border-color: var(--primary);
-            box-shadow: 0 4px 16px rgba(27, 154, 170, 0.15);
+            box-shadow: var(--shadow-glow), 0 10px 30px rgba(27, 154, 170, 0.3);
+            transform: translateY(-4px) scale(1.01);
+            background: var(--bg-tertiary);
+        }
+
+        .interactive-element:active {
+            transform: translateY(-2px) scale(1.005);
+            transition: all 0.15s ease;
         }
 
         /* Tables */
@@ -275,65 +409,141 @@
             width: 100%;
             border-collapse: collapse;
             margin: 2rem 0;
-            background: var(--white);
-            border-radius: 8px;
+            background: var(--bg-card);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-primary);
         }
 
         th {
-            background: var(--primary);
-            color: var(--white);
-            padding: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.2rem;
             text-align: left;
             font-weight: 600;
             font-size: 1rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--neutral);
-            font-size: 0.95rem;
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--border-primary);
+            font-size: 1rem;
+            color: var(--text-primary);
         }
 
         tr:hover {
-            background: var(--light);
+            background: var(--bg-tertiary);
         }
 
         /* Progress Indicator */
         .progress-bar {
             position: fixed;
             top: 0;
-            left: 280px;
+            left: 320px;
             right: 0;
-            height: 4px;
-            background: var(--neutral);
+            height: 6px;
+            background: var(--bg-secondary);
             z-index: 150;
+            box-shadow: var(--shadow-sm);
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
-            transition: width 0.3s ease;
+            background: var(--gradient-primary);
+            transition: width 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 0 15px rgba(27, 154, 170, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: progressShimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         /* Visual Elements */
         .visual-element {
             text-align: center;
             margin: 2rem 0;
-            padding: 2rem;
-            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
-            border-radius: 12px;
+            padding: 3rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-accent);
+            backdrop-filter: blur(10px);
         }
 
         .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-accent);
+            text-shadow: 0 2px 8px rgba(106, 213, 203, 0.3);
+        }
+
+        /* Two-Column Layout for Information Density */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        /* Glassmorphism Effects */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
         }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
+            .slide-nav {
+                width: 280px;
+            }
+            
+            .slide-container {
+                margin-left: 280px;
+            }
+            
+            .progress-bar {
+                left: 280px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .three-column {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
             .slide-nav {
                 width: 240px;
             }
@@ -345,46 +555,1264 @@
             .progress-bar {
                 left: 240px;
             }
-        }
-
-        @media (max-width: 768px) {
-            .slide-nav {
-                width: 200px;
-            }
-            
-            .slide-container {
-                margin-left: 200px;
-            }
-            
-            .progress-bar {
-                left: 200px;
-            }
             
             .slide {
-                padding: 2rem;
+                padding: 1.5rem;
             }
             
             .slide h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .slide h2 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
+        }
+
+        /* Visual Storytelling Components */
+        .ecosystem-comparison {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .ecosystem-card {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+
+        .ecosystem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            border-radius: 20px 20px 0 0;
+            transition: all 0.4s ease;
+        }
+
+        .ecosystem-card.openai::before {
+            background: linear-gradient(135deg, #1B9AAA 0%, #6AD5CB 100%);
+        }
+
+        .ecosystem-card.google::before {
+            background: linear-gradient(135deg, #58B09C 0%, #A1E8CC 100%);
+        }
+
+        .ecosystem-card.anthropic::before {
+            background: linear-gradient(135deg, #1C3144 0%, #334155 100%);
+        }
+
+        .ecosystem-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: var(--shadow-lg), 0 20px 50px rgba(27, 154, 170, 0.3);
+            border-color: var(--primary-light);
+        }
+
+        .ecosystem-card:hover .ecosystem-icon {
+            animation: celebrationBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .ecosystem-card:active {
+            transform: translateY(-8px) scale(1.01);
+            transition: all 0.15s ease;
+        }
+
+        .ecosystem-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .ecosystem-card:hover .ecosystem-icon {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .ecosystem-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .ecosystem-subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-accent);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .ecosystem-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .strength-indicators {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .strength-bar {
+            position: relative;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .strength-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-radius: 12px;
+            transition: width 1s ease 0.5s;
+        }
+
+        .strength-bar.reasoning::after {
+            background: var(--gradient-primary);
+            width: 95%;
+        }
+
+        .strength-bar.integration::after {
+            background: var(--gradient-accent);
+            width: 90%;
+        }
+
+        .strength-bar.safety::after {
+            background: var(--gradient-secondary);
+            width: 98%;
+        }
+
+        .strength-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Comparison Matrix Visualization */
+        .comparison-matrix {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border-accent);
+            overflow-x: auto;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .matrix-table th {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .matrix-table th:first-child {
+            border-radius: 12px 0 0 0;
+        }
+
+        .matrix-table th:last-child {
+            border-radius: 0 12px 0 0;
+        }
+
+        .matrix-table td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid var(--border-primary);
+            background: var(--bg-card);
+            vertical-align: top;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .matrix-table tr:hover td {
+            background: var(--bg-tertiary);
+            transform: scale(1.01);
+        }
+
+        .matrix-table tr:last-child td:first-child {
+            border-radius: 0 0 0 12px;
+        }
+
+        .matrix-table tr:last-child td:last-child {
+            border-radius: 0 0 12px 0;
+        }
+
+        .platform-name {
+            font-weight: 700;
+            color: var(--text-accent);
+            font-size: 1.1rem;
+        }
+
+        .philosophy-tag {
+            display: inline-block;
+            background: var(--gradient-accent);
+            color: var(--bg-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Interactive Decision Framework */
+        .decision-framework {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid var(--border-accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .decision-framework::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .framework-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .framework-step {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--border-primary);
+            transition: all 0.3s ease;
+        }
+
+        .framework-step:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .step-title {
+            color: var(--text-accent);
+            font-weight: 600;
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .step-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ROI Visualization Components */
+        .roi-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .roi-pillar {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        .roi-pillar:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-glow), 0 15px 40px rgba(27, 154, 170, 0.4);
+        }
+
+        .roi-pillar:hover .pillar-icon {
+            animation: celebrationBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .pillar-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .roi-pillar:hover .pillar-icon {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .pillar-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .pillar-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-meter {
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            height: 12px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .impact-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-radius: 20px;
+            transition: width 1.5s ease 0.3s;
+        }
+
+        .impact-fill.time-savings {
+            background: var(--gradient-secondary);
+            width: 85%;
+        }
+
+        .impact-fill.quality {
+            background: var(--gradient-primary);
+            width: 92%;
+        }
+
+        .impact-fill.revenue {
+            background: var(--gradient-accent);
+            width: 78%;
+        }
+
+        /* Scenario Visualization */
+        .scenario-container {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .scenario-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            border-left: 6px solid;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .scenario-card:hover {
+            transform: translateX(12px) scale(1.02);
+            box-shadow: var(--shadow-md), 0 8px 25px rgba(27, 154, 170, 0.2);
+        }
+
+        .scenario-card:active {
+            transform: translateX(8px) scale(1.01);
+            transition: all 0.15s ease;
+        }
+
+        .scenario-card.scenario-1 {
+            border-left-color: var(--primary-dark);
+            background: linear-gradient(135deg, rgba(28, 49, 68, 0.1) 0%, rgba(51, 65, 85, 0.1) 100%);
+        }
+
+        .scenario-card.scenario-2 {
+            border-left-color: var(--primary);
+            background: linear-gradient(135deg, rgba(27, 154, 170, 0.1) 0%, rgba(106, 213, 203, 0.1) 100%);
+        }
+
+        .scenario-card.scenario-3 {
+            border-left-color: var(--secondary);
+            background: linear-gradient(135deg, rgba(88, 176, 156, 0.1) 0%, rgba(161, 232, 204, 0.1) 100%);
+        }
+
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .scenario-number {
+            background: var(--gradient-primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 1rem;
+        }
+
+        .scenario-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .scenario-description {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .scenario-solution {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid var(--border-accent);
+        }
+
+        .solution-platform {
+            font-weight: 700;
+            color: var(--text-accent);
+            font-size: 1.1rem;
+        }
+
+        .solution-reasoning {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Progress and Achievement Elements */
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 0.25rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .achievement-icon {
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .progress-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+
+        .progress-circle svg {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+
+        .progress-circle circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+
+        .progress-bg {
+            stroke: var(--bg-tertiary);
+        }
+
+        .progress-fill {
+            stroke: url(#gradient);
+            stroke-dasharray: 314;
+            stroke-dashoffset: 314;
+            transition: stroke-dashoffset 2s ease-in-out;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
         /* Utility Classes */
         .text-center { text-align: center; }
-        .text-primary { color: var(--primary); }
-        .text-secondary { color: var(--secondary); }
-        .bg-primary { background-color: var(--primary); }
-        .bg-light { background-color: var(--light); }
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-accent { color: var(--text-accent); }
+        .bg-primary { background: var(--gradient-primary); }
+        .bg-card { background: var(--bg-card); }
+        .mt-1 { margin-top: 1rem; }
         .mt-2 { margin-top: 2rem; }
+        .mb-1 { margin-bottom: 1rem; }
         .mb-2 { margin-bottom: 2rem; }
+        .p-1 { padding: 1rem; }
         .p-2 { padding: 2rem; }
+        .shadow-glow { box-shadow: var(--shadow-glow); }
+        .glass { 
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Premium Animation System */
+        .fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
+            transform: translateX(60px);
+        }
+
+        .scale-in {
+            animation: scaleIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .bounce-in {
+            animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            opacity: 0;
+            transform: scale(0.3);
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .glow-pulse {
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        .celebration-bounce {
+            animation: celebrationBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* Keyframe Definitions */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(27, 154, 170, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(27, 154, 170, 0.6), 0 0 40px rgba(106, 213, 203, 0.3);
+            }
+        }
+
+        @keyframes celebrationBounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            40%, 43% {
+                transform: translateY(-20px) scale(1.1);
+            }
+            70% {
+                transform: translateY(-10px) scale(1.05);
+            }
+            90% {
+                transform: translateY(-3px) scale(1.02);
+            }
+        }
+
+        /* Slide Transition Animations */
+        .slide {
+            transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .slide.entering {
+            animation: slideEnter 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        .slide.exiting {
+            animation: slideExit 0.4s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+        }
+
+        @keyframes slideEnter {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slideExit {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-20px) scale(1.02);
+            }
+        }
+
+        /* Staggered Animation Delays */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+
+        /* Enhanced Interactive States */
+        .framework-step.active {
+            background: var(--gradient-primary);
+            color: white;
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .framework-step.active .step-number {
+            background: white;
+            color: var(--primary);
+        }
+
+        .scenario-card.expanded {
+            transform: translateX(12px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .scenario-solution {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            opacity: 0.7;
+        }
+
+        .scenario-card.expanded .scenario-solution {
+            max-height: 200px;
+            opacity: 1;
+        }
+
+        /* Visual Data Storytelling Enhancements */
+        .data-highlight {
+            position: relative;
+            display: inline-block;
+        }
+
+        .data-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+
+        .data-highlight.animate::after {
+            transform: scaleX(1);
+        }
+
+        .stat-counter {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: var(--text-accent);
+            transition: all 0.3s ease;
+        }
+
+        .stat-counter.counting {
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(106, 213, 203, 0.5);
+        }
+
+        /* Platform Comparison Visual Enhancements */
+        .platform-strength-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 0.5rem;
+            position: relative;
+        }
+
+        .platform-strength-indicator.high {
+            background: var(--success);
+        }
+
+        .platform-strength-indicator.medium {
+            background: var(--accent);
+        }
+
+        .platform-strength-indicator.excellent {
+            background: var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(27, 154, 170, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(27, 154, 170, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(27, 154, 170, 0); }
+        }
+
+        /* Enhanced Visual Feedback */
+        .interactive-highlight {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .interactive-highlight::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: var(--gradient-primary);
+            border-radius: inherit;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .interactive-highlight:hover::before {
+            opacity: 0.1;
+        }
+
+        /* Brand Consistency Enhancements */
+        .brand-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-primary);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .brand-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-glow), 0 12px 35px rgba(27, 154, 170, 0.3);
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .brand-card:active {
+            transform: translateY(-3px) scale(1.01);
+            transition: all 0.15s ease;
+        }
+
+        /* Unified Button System */
+        .brand-button {
+            background: var(--gradient-primary);
+            color: white;
+            border: 2px solid var(--border-accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+            text-transform: none;
+            letter-spacing: 0.025em;
+        }
+
+        .brand-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .brand-button:hover {
+            background: var(--gradient-secondary);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-glow), 0 8px 25px rgba(27, 154, 170, 0.4);
+        }
+
+        .brand-button:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .brand-button:active {
+            transform: translateY(-1px) scale(1.02);
+            transition: all 0.15s ease;
+        }
+
+        /* Executive-Grade Typography */
+        .executive-header {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .executive-header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .professional-subtitle {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--text-accent);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .executive-body {
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            line-height: 1.7;
+            max-width: 1000px;
+        }
+
+        /* Enhanced Status Indicators */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            border-radius: 20px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .status-indicator.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .status-indicator.completed {
+            background: var(--gradient-accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .status-indicator.in-progress {
+            background: var(--gradient-secondary);
+            color: var(--text-primary);
+            border-color: var(--secondary);
+        }
+
+        /* Progress Visualization */
+        .progress-step {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .progress-step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-primary);
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.completed::before {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .progress-step.active::before {
+            background: var(--primary);
+            border-color: var(--primary);
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Brand-Consistent Interactive Cursors */
+        .interactive-cursor {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-cursor:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Premium Loading States */
+        .loading-shimmer {
+            background: linear-gradient(90deg, 
+                var(--bg-tertiary) 0%, 
+                rgba(27, 154, 170, 0.1) 50%, 
+                var(--bg-tertiary) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Executive Focus States */
+        .focus-highlight {
+            position: relative;
+        }
+
+        .focus-highlight::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 2px solid var(--primary-light);
+            border-radius: inherit;
+            opacity: 0;
+            animation: focusPulse 2s ease-in-out infinite;
+        }
+
+        .focus-highlight.active::after {
+            opacity: 1;
+        }
+
+        @keyframes focusPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.02); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .ecosystem-comparison,
+            .roi-pillars {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .framework-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .scenario-container {
+                gap: 1rem;
+            }
+            
+            .comparison-matrix {
+                overflow-x: auto;
+                padding: 1rem;
+            }
+            
+            .executive-header {
+                font-size: 2.2rem;
+            }
+            
+            .professional-subtitle {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ecosystem-card,
+            .roi-pillar,
+            .brand-card {
+                padding: 1.5rem;
+            }
+            
+            .ecosystem-icon,
+            .pillar-icon {
+                font-size: 2.5rem;
+            }
+            
+            .framework-step {
+                padding: 1rem;
+            }
+            
+            .matrix-table th,
+            .matrix-table td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .executive-header {
+                font-size: 1.8rem;
+            }
+            
+            .professional-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .executive-body {
+                font-size: 1rem;
+            }
+            
+            .brand-button {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Brand Accessibility Enhancements */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High Contrast Mode Support */
+        @media (prefers-contrast: high) {
+            :root {
+                --border-primary: #ffffff;
+                --border-accent: #ffffff;
+                --text-secondary: #ffffff;
+            }
+        }
+
+        /* Print Styles for Executive Materials */
+        @media print {
+            .slide-nav,
+            .slide-controls,
+            .progress-bar {
+                display: none;
+            }
+            
+            .slide-container {
+                margin-left: 0;
+            }
+            
+            .slide {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .glass-card,
+            .brand-card {
+                border: 2px solid #333 !important;
+                background: white !important;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- SVG Definitions for Enhanced Visuals -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#1B9AAA;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#6AD5CB;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="successGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#58B09C;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#A1E8CC;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="warningGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#A1E8CC;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#6AD5CB;stop-opacity:1" />
+            </linearGradient>
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge> 
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/> 
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+    
     <div class="presentation-system">
         <!-- Progress Bar -->
         <div class="progress-bar">
@@ -472,14 +1900,18 @@
             <!-- Slide 1: Title & Overview -->
             <section class="slide active">
                 <div class="text-center">
-                    <h1>AI Acumen Program</h1>
-                    <h2 class="text-primary">Session 1: The AI Landscape</h2>
-                    <p class="mt-2" style="font-size: 1.3rem; color: var(--text-secondary);">Beyond the Hype: Strategic Understanding for Managers</p>
+                    <h1 class="slide-up">AI Acumen Program</h1>
+                    <h2 class="text-accent slide-up stagger-2">Session 1: The AI Landscape</h2>
+                    <p class="mt-2 slide-up stagger-3" style="font-size: 1.4rem; color: var(--text-secondary); margin-bottom: 2rem;">Beyond the Hype: Strategic Understanding for Managers</p>
                     
-                    <div class="visual-element mt-2">
-                        <div class="icon">🧠</div>
-                        <h3>15 Minutes • Interactive Learning</h3>
-                        <p>Transform from AI novice to confident strategist</p>
+                    <div class="brand-card mt-2 scale-in stagger-4 glow-pulse focus-highlight">
+                        <div class="icon float">🧠</div>
+                        <h3 class="professional-subtitle" style="margin-bottom: 1rem;">15 Minutes • Interactive Learning</h3>
+                        <p class="executive-body">Transform from AI novice to confident strategist</p>
+                        <div class="status-indicator active" style="margin-top: 1rem;">
+                            <span class="achievement-icon">✨</span>
+                            Executive Training
+                        </div>
                     </div>
                 </div>
             </section>
@@ -487,19 +1919,30 @@
             <!-- Slide 2: Session Objectives -->
             <section class="slide">
                 <h2>Session Objectives</h2>
-                <div class="objective-box">
-                    <h3>🎯 What You'll Achieve Today</h3>
-                    <p><strong>Primary Goal:</strong> Equip managers with strategic understanding of key AI players and their distinct philosophies for informed platform selection decisions.</p>
-                </div>
                 
-                <div class="mt-2">
-                    <h3>Learning Outcomes:</h3>
-                    <ul>
-                        <li>Understand the three major AI ecosystems and their unique strengths</li>
-                        <li>Make informed decisions about AI platform selection for business needs</li>
-                        <li>Apply platform-problem fit methodology to real scenarios</li>
-                        <li>Build your first Manager's AI Playbook entry</li>
-                    </ul>
+                <div class="two-column">
+                    <div class="objective-box focus-highlight">
+                        <h3 class="professional-subtitle">🎯 What You'll Achieve Today</h3>
+                        <p class="executive-body"><strong>Primary Goal:</strong> Equip managers with strategic understanding of key AI players and their distinct philosophies for informed platform selection decisions.</p>
+                        <div class="status-indicator in-progress" style="margin-top: 1rem;">
+                            <span class="achievement-icon">🎯</span>
+                            Strategic Focus
+                        </div>
+                    </div>
+                    
+                    <div class="brand-card">
+                        <h3 class="professional-subtitle" style="margin-bottom: 1rem;">Learning Outcomes:</h3>
+                        <ul style="margin-left: 1rem;" class="executive-body">
+                            <li>Understand the three major AI ecosystems and their unique strengths</li>
+                            <li>Make informed decisions about AI platform selection for business needs</li>
+                            <li>Apply platform-problem fit methodology to real scenarios</li>
+                            <li>Build your first Manager's AI Playbook entry</li>
+                        </ul>
+                        <div class="status-indicator completed" style="margin-top: 1rem;">
+                            <span class="achievement-icon">📈</span>
+                            Executive Ready
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -536,25 +1979,35 @@
             <!-- Slide 4: The Three AI Ecosystems -->
             <section class="slide">
                 <h2>The Three AI Ecosystems</h2>
-                <div class="visual-element">
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem;">
-                        <div style="text-align: center; padding: 1.5rem; background: var(--white); border-radius: 12px; border: 2px solid var(--primary-light);">
-                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🧠</div>
-                            <h3 style="color: var(--primary);">OpenAI</h3>
-                            <p style="font-weight: 600;">"The Reasoning Engine"</p>
-                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Advanced problem-solving & creativity</p>
+                <div class="three-column">
+                    <div class="brand-card text-center slide-in-left stagger-1 interactive-cursor focus-highlight">
+                        <div class="float" style="font-size: 3rem; margin-bottom: 1rem;">🧠</div>
+                        <h3 class="professional-subtitle" style="color: var(--primary); margin-bottom: 0.5rem;">OpenAI</h3>
+                        <p class="executive-body" style="font-weight: 600; color: var(--text-accent); margin-bottom: 1rem;">"The Reasoning Engine"</p>
+                        <p class="executive-body" style="color: var(--text-secondary);">Advanced problem-solving & creativity</p>
+                        <div class="status-indicator active" style="margin-top: 1rem;">
+                            <span class="achievement-icon">🧠</span>
+                            Reasoning Leader
                         </div>
-                        <div style="text-align: center; padding: 1.5rem; background: var(--white); border-radius: 12px; border: 2px solid var(--secondary);">
-                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚙️</div>
-                            <h3 style="color: var(--secondary);">Google</h3>
-                            <p style="font-weight: 600;">"The Integrated Workflow"</p>
-                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Seamless productivity integration</p>
+                    </div>
+                    <div class="brand-card text-center scale-in stagger-2 interactive-cursor focus-highlight">
+                        <div class="float" style="font-size: 3rem; margin-bottom: 1rem; animation-delay: 0.5s;">⚙️</div>
+                        <h3 class="professional-subtitle" style="color: var(--secondary); margin-bottom: 0.5rem;">Google</h3>
+                        <p class="executive-body" style="font-weight: 600; color: var(--text-accent); margin-bottom: 1rem;">"The Integrated Workflow"</p>
+                        <p class="executive-body" style="color: var(--text-secondary);">Seamless productivity integration</p>
+                        <div class="status-indicator in-progress" style="margin-top: 1rem;">
+                            <span class="achievement-icon">⚙️</span>
+                            Integration Expert
                         </div>
-                        <div style="text-align: center; padding: 1.5rem; background: var(--white); border-radius: 12px; border: 2px solid var(--primary-dark);">
-                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛡️</div>
-                            <h3 style="color: var(--primary-dark);">Anthropic</h3>
-                            <p style="font-weight: 600;">"The Trusted Partner"</p>
-                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Safety & reliability focus</p>
+                    </div>
+                    <div class="brand-card text-center slide-in-right stagger-3 interactive-cursor focus-highlight">
+                        <div class="float" style="font-size: 3rem; margin-bottom: 1rem; animation-delay: 1s;">🛡️</div>
+                        <h3 class="professional-subtitle" style="color: var(--primary-dark); margin-bottom: 0.5rem;">Anthropic</h3>
+                        <p class="executive-body" style="font-weight: 600; color: var(--text-accent); margin-bottom: 1rem;">"The Trusted Partner"</p>
+                        <p class="executive-body" style="color: var(--text-secondary);">Safety & reliability focus</p>
+                        <div class="status-indicator completed" style="margin-top: 1rem;">
+                            <span class="achievement-icon">🛡️</span>
+                            Safety First
                         </div>
                     </div>
                 </div>
@@ -563,80 +2016,119 @@
             <!-- Slide 5: OpenAI Deep Dive -->
             <section class="slide">
                 <h2>OpenAI: The Reasoning Engine</h2>
-                <div class="content-box" style="background: linear-gradient(135deg, #e6f3ff 0%, #cce7ff 100%); border-left-color: var(--primary);">
-                    <h3>🧠 Core Philosophy: Advanced Reasoning</h3>
-                    <p>OpenAI focuses on building AI that can think through complex problems step-by-step, similar to human reasoning processes.</p>
-                </div>
                 
-                <div class="mt-2">
-                    <h3>Key Strengths (2025):</h3>
-                    <ul>
-                        <li><strong>o-series Models:</strong> Advanced reasoning and planning capabilities</li>
-                        <li><strong>Creative Generation:</strong> Writing, art, code with high quality</li>
-                        <li><strong>Agentic Capabilities:</strong> AI that can take actions and make decisions</li>
-                        <li><strong>Research Integration:</strong> Deep Research agent for complex analysis</li>
-                    </ul>
-                </div>
-                
-                <div class="takeaway-box">
-                    <h3>💡 Best Use Cases</h3>
-                    <p>Complex problem-solving, strategic research, creative content generation, code development, M&A analysis</p>
+                <div class="two-column">
+                    <div>
+                        <div class="objective-box focus-highlight">
+                            <h3 class="professional-subtitle">🧠 Core Philosophy: Advanced Reasoning</h3>
+                            <p class="executive-body">OpenAI focuses on building AI that can think through complex problems step-by-step, similar to human reasoning processes.</p>
+                            <div class="status-indicator active" style="margin-top: 1rem;">
+                                <span class="achievement-icon">🎯</span>
+                                Strategic AI
+                            </div>
+                        </div>
+                        
+                        <div class="takeaway-box mt-1 focus-highlight">
+                            <h3 class="professional-subtitle">💡 Best Use Cases</h3>
+                            <p class="executive-body">Complex problem-solving, strategic research, creative content generation, code development, M&A analysis</p>
+                        </div>
+                    </div>
+                    
+                    <div class="brand-card">
+                        <h3 class="professional-subtitle" style="margin-bottom: 1rem;">Key Strengths (2025):</h3>
+                        <ul style="margin-left: 1rem;" class="executive-body">
+                            <li><strong>o-series Models:</strong> Advanced reasoning and planning capabilities</li>
+                            <li><strong>Creative Generation:</strong> Writing, art, code with high quality</li>
+                            <li><strong>Agentic Capabilities:</strong> AI that can take actions and make decisions</li>
+                            <li><strong>Research Integration:</strong> Deep Research agent for complex analysis</li>
+                        </ul>
+                        <div class="status-indicator completed" style="margin-top: 1rem;">
+                            <span class="achievement-icon">🚀</span>
+                            Innovation Ready
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <!-- Slide 6: Google Deep Dive -->
             <section class="slide">
                 <h2>Google: The Integrated Workflow</h2>
-                <div class="content-box" style="background: linear-gradient(135deg, var(--light) 0%, var(--accent) 100%); border-left-color: var(--secondary);">
-                    <h3>⚙️ Core Philosophy: Seamless Integration</h3>
-                    <p>Google's AI is designed to work within existing business workflows, especially Google Workspace ecosystem.</p>
-                </div>
                 
-                <div class="mt-2">
-                    <h3>Key Strengths (2025):</h3>
-                    <ul>
-                        <li><strong>Workspace Integration:</strong> Native AI in Gmail, Docs, Sheets</li>
-                        <li><strong>Multimodal Capabilities:</strong> Text, images, video in one model</li>
-                        <li><strong>Enterprise Agents:</strong> Business process automation</li>
-                        <li><strong>Real-time Collaboration:</strong> AI-enhanced team productivity</li>
-                    </ul>
-                </div>
-                
-                <div class="takeaway-box">
-                    <h3>💡 Best Use Cases</h3>
-                    <p>Business process automation, collaborative content creation, data analysis in spreadsheets</p>
+                <div class="two-column">
+                    <div>
+                        <div class="exercise-box focus-highlight">
+                            <h3 class="professional-subtitle">⚙️ Core Philosophy: Seamless Integration</h3>
+                            <p class="executive-body">Google's AI is designed to work within existing business workflows, especially Google Workspace ecosystem.</p>
+                            <div class="status-indicator in-progress" style="margin-top: 1rem;">
+                                <span class="achievement-icon">🔗</span>
+                                Workflow Expert
+                            </div>
+                        </div>
+                        
+                        <div class="takeaway-box mt-1 focus-highlight">
+                            <h3 class="professional-subtitle">💡 Best Use Cases</h3>
+                            <p class="executive-body">Business process automation, collaborative content creation, data analysis in spreadsheets</p>
+                        </div>
+                    </div>
+                    
+                    <div class="brand-card">
+                        <h3 class="professional-subtitle" style="margin-bottom: 1rem;">Key Strengths (2025):</h3>
+                        <ul style="margin-left: 1rem;" class="executive-body">
+                            <li><strong>Workspace Integration:</strong> Native AI in Gmail, Docs, Sheets</li>
+                            <li><strong>Multimodal Capabilities:</strong> Text, images, video in one model</li>
+                            <li><strong>Enterprise Agents:</strong> Business process automation</li>
+                            <li><strong>Real-time Collaboration:</strong> AI-enhanced team productivity</li>
+                        </ul>
+                        <div class="status-indicator completed" style="margin-top: 1rem;">
+                            <span class="achievement-icon">📈</span>
+                            Business Ready
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <!-- Slide 7: Anthropic Deep Dive -->
             <section class="slide">
                 <h2>Anthropic: The Trusted Partner</h2>
-                <div class="content-box" style="background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); border-left-color: var(--primary-dark);">
-                    <h3>🛡️ Core Philosophy: Safety & Reliability</h3>
-                    <p>Anthropic prioritizes constitutional AI with built-in safety measures and transparent reasoning processes for enterprise trust.</p>
-                </div>
                 
-                <div class="mt-2">
-                    <h3>Key Strengths (2025):</h3>
-                    <ul>
-                        <li><strong>Large Context Window:</strong> 200K+ tokens for comprehensive document analysis</li>
-                        <li><strong>Low Hallucination Rate:</strong> Most accurate responses for factual queries</li>
-                        <li><strong>Constitutional AI:</strong> Built-in ethical guidelines and safety measures</li>
-                        <li><strong>Transparent Reasoning:</strong> Shows work and explains decision-making process</li>
-                    </ul>
-                </div>
-                
-                <div class="takeaway-box">
-                    <h3>💡 Best Use Cases</h3>
-                    <p>Legal document analysis, financial compliance, regulatory research, sensitive data processing</p>
+                <div class="two-column">
+                    <div>
+                        <div class="content-box focus-highlight" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(51, 65, 85, 0.5) 100%); border-left-color: var(--primary-dark);">
+                            <h3 class="professional-subtitle">🛡️ Core Philosophy: Safety & Reliability</h3>
+                            <p class="executive-body">Anthropic prioritizes constitutional AI with built-in safety measures and transparent reasoning processes for enterprise trust.</p>
+                            <div class="status-indicator completed" style="margin-top: 1rem;">
+                                <span class="achievement-icon">🛡️</span>
+                                Trust Leader
+                            </div>
+                        </div>
+                        
+                        <div class="takeaway-box mt-1 focus-highlight">
+                            <h3 class="professional-subtitle">💡 Best Use Cases</h3>
+                            <p class="executive-body">Legal document analysis, financial compliance, regulatory research, sensitive data processing</p>
+                        </div>
+                    </div>
+                    
+                    <div class="brand-card">
+                        <h3 class="professional-subtitle" style="margin-bottom: 1rem;">Key Strengths (2025):</h3>
+                        <ul style="margin-left: 1rem;" class="executive-body">
+                            <li><strong>Large Context Window:</strong> 200K+ tokens for comprehensive document analysis</li>
+                            <li><strong>Low Hallucination Rate:</strong> Most accurate responses for factual queries</li>
+                            <li><strong>Constitutional AI:</strong> Built-in ethical guidelines and safety measures</li>
+                            <li><strong>Transparent Reasoning:</strong> Shows work and explains decision-making process</li>
+                        </ul>
+                        <div class="status-indicator active" style="margin-top: 1rem;">
+                            <span class="achievement-icon">⚖️</span>
+                            Compliance Ready
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <!-- Slide 8: Platform Comparison Matrix -->
             <section class="slide">
                 <h2>Platform Comparison Matrix</h2>
-                <div class="interactive-element">
-                    <h3>🔍 Strategic Decision Framework</h3>
+                <div class="brand-card focus-highlight">
+                    <h3 class="professional-subtitle">🔍 Strategic Decision Framework</h3>
                     <table>
                         <tr>
                             <th>Platform</th>
@@ -678,32 +2170,36 @@
             <!-- Slide 9: Exercise - Platform-Problem Fit -->
             <section class="slide">
                 <h2>Exercise: Platform-Problem Fit</h2>
-                <div class="exercise-box">
-                    <h3>🎯 Interactive Challenge (5 minutes)</h3>
-                    <p><strong>Instructions:</strong> Match each business scenario to the optimal AI platform. Consider the unique strengths we just discussed.</p>
+                <div class="exercise-box focus-highlight">
+                    <h3 class="professional-subtitle">🎯 Interactive Challenge (5 minutes)</h3>
+                    <p class="executive-body"><strong>Instructions:</strong> Match each business scenario to the optimal AI platform. Consider the unique strengths we just discussed.</p>
+                    <div class="status-indicator active" style="margin-top: 1rem;">
+                        <span class="achievement-icon">🎮</span>
+                        Hands-On Learning
+                    </div>
                 </div>
                 
                 <div class="mt-2">
-                    <div class="interactive-element" style="margin: 1rem 0;">
-                        <h4>Scenario 1: M&A Due Diligence</h4>
-                        <p><em>Your team needs to analyze 500+ legal documents, contracts, and financial reports for a potential acquisition. Accuracy is critical.</em></p>
-                        <div style="background: var(--light); padding: 1rem; border-radius: 8px; margin-top: 0.5rem;">
+                    <div class="brand-card focus-highlight" style="margin: 1rem 0;">
+                        <h4 class="professional-subtitle">Scenario 1: M&A Due Diligence</h4>
+                        <p class="executive-body"><em>Your team needs to analyze 500+ legal documents, contracts, and financial reports for a potential acquisition. Accuracy is critical.</em></p>
+                        <div class="status-indicator completed" style="margin-top: 1rem;">
                             <strong>Best Platform:</strong> <span style="color: var(--primary-dark);">Anthropic Claude</span> - Large context window, low hallucination rate
                         </div>
                     </div>
                     
-                    <div class="interactive-element" style="margin: 1rem 0;">
-                        <h4>Scenario 2: Creative Marketing Campaign</h4>
-                        <p><em>Marketing needs to generate 50 unique slogans and ad copy variations for a new product launch with innovative messaging.</em></p>
-                        <div style="background: var(--light); padding: 1rem; border-radius: 8px; margin-top: 0.5rem;">
+                    <div class="brand-card focus-highlight" style="margin: 1rem 0;">
+                        <h4 class="professional-subtitle">Scenario 2: Creative Marketing Campaign</h4>
+                        <p class="executive-body"><em>Marketing needs to generate 50 unique slogans and ad copy variations for a new product launch with innovative messaging.</em></p>
+                        <div class="status-indicator active" style="margin-top: 1rem;">
                             <strong>Best Platform:</strong> <span style="color: var(--primary);">OpenAI GPT</span> - Advanced creative generation and reasoning
                         </div>
                     </div>
                     
-                    <div class="interactive-element" style="margin: 1rem 0;">
-                        <h4>Scenario 3: Automated Reporting</h4>
-                        <p><em>Operations needs AI to automatically generate weekly reports from Google Sheets data and share via Gmail.</em></p>
-                        <div style="background: var(--light); padding: 1rem; border-radius: 8px; margin-top: 0.5rem;">
+                    <div class="brand-card focus-highlight" style="margin: 1rem 0;">
+                        <h4 class="professional-subtitle">Scenario 3: Automated Reporting</h4>
+                        <p class="executive-body"><em>Operations needs AI to automatically generate weekly reports from Google Sheets data and share via Gmail.</em></p>
+                        <div class="status-indicator in-progress" style="margin-top: 1rem;">
                             <strong>Best Platform:</strong> <span style="color: var(--secondary);">Google Gemini</span> - Native Workspace integration
                         </div>
                     </div>
@@ -713,74 +2209,128 @@
             <!-- Slide 10: Interactive Scenarios -->
             <section class="slide">
                 <h2>Interactive Scenarios</h2>
-                <div class="exercise-box">
-                    <h3>🎮 Hands-On Practice</h3>
-                    <p><strong>Your Turn:</strong> Apply the platform-problem fit methodology to your own business challenges.</p>
+                <div class="exercise-box focus-highlight">
+                    <h3 class="professional-subtitle">🎮 Hands-On Practice</h3>
+                    <p class="executive-body"><strong>Your Turn:</strong> Apply the platform-problem fit methodology to your own business challenges.</p>
+                    <div class="status-indicator active" style="margin-top: 1rem;">
+                        <span class="achievement-icon">📝</span>
+                        Applied Learning
+                    </div>
                 </div>
                 
-                <div class="visual-element">
-                    <h3>Decision Framework</h3>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
-                        <div class="interactive-element">
-                            <h4>Step 1: Define the Problem</h4>
-                            <ul style="text-align: left; margin-left: 1rem;">
-                                <li>What type of task? (Analysis, Creation, Automation)</li>
-                                <li>What's the required accuracy level?</li>
-                                <li>How complex is the reasoning needed?</li>
-                                <li>What systems need integration?</li>
-                            </ul>
+                <div class="two-column">
+                    <div class="brand-card focus-highlight">
+                        <h4 class="professional-subtitle" style="margin-bottom: 1rem;">Step 1: Define the Problem</h4>
+                        <ul style="margin-left: 1rem;" class="executive-body">
+                            <li>What type of task? (Analysis, Creation, Automation)</li>
+                            <li>What's the required accuracy level?</li>
+                            <li>How complex is the reasoning needed?</li>
+                            <li>What systems need integration?</li>
+                        </ul>
+                        <div class="status-indicator in-progress" style="margin-top: 1rem;">
+                            <span class="achievement-icon">🔍</span>
+                            Problem Analysis
                         </div>
-                        
-                        <div class="interactive-element">
-                            <h4>Step 2: Match Platform Strengths</h4>
-                            <ul style="text-align: left; margin-left: 1rem;">
-                                <li><strong>Complex Analysis:</strong> Anthropic</li>
-                                <li><strong>Creative Work:</strong> OpenAI</li>
-                                <li><strong>Workflow Integration:</strong> Google</li>
-                                <li><strong>Hybrid Needs:</strong> Multi-platform approach</li>
-                            </ul>
+                    </div>
+                    
+                    <div class="brand-card focus-highlight">
+                        <h4 class="professional-subtitle" style="margin-bottom: 1rem;">Step 2: Match Platform Strengths</h4>
+                        <ul style="margin-left: 1rem;" class="executive-body">
+                            <li><strong>Complex Analysis:</strong> Anthropic</li>
+                            <li><strong>Creative Work:</strong> OpenAI</li>
+                            <li><strong>Workflow Integration:</strong> Google</li>
+                            <li><strong>Hybrid Needs:</strong> Multi-platform approach</li>
+                        </ul>
+                        <div class="status-indicator completed" style="margin-top: 1rem;">
+                            <span class="achievement-icon">🎯</span>
+                            Strategic Match
                         </div>
                     </div>
                 </div>
                 
-                <div class="takeaway-box">
-                    <h3>💭 Reflection Exercise</h3>
-                    <p>Think of one specific AI use case in your department. Which platform would you choose and why? Write down your reasoning using the decision framework above.</p>
+                <div class="takeaway-box mt-2 focus-highlight">
+                    <h3 class="professional-subtitle">💭 Reflection Exercise</h3>
+                    <p class="executive-body">Think of one specific AI use case in your department. Which platform would you choose and why? Write down your reasoning using the decision framework above.</p>
+                    <div class="status-indicator active" style="margin-top: 1rem;">
+                        <span class="achievement-icon">💡</span>
+                        Strategic Thinking
+                    </div>
                 </div>
             </section>
 
             <!-- Slide 11: Key Takeaways -->
             <section class="slide">
                 <h2>Key Takeaways</h2>
-                <div class="takeaway-box">
+                <div class="takeaway-box slide-up">
                     <h3>🎯 Strategic Insights from Session 1</h3>
                     <p><strong>Core Learning:</strong> AI platform selection is a strategic decision that should align with specific business needs and organizational context.</p>
                 </div>
                 
-                <div class="mt-2">
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0;">
-                        <div class="content-box objective-box">
-                            <h4>1. Platform Awareness</h4>
-                            <p>Each AI ecosystem has distinct strengths: OpenAI for reasoning, Google for integration, Anthropic for reliability.</p>
+                <div class="three-column mt-2">
+                    <div class="glass-card fade-in interactive-cursor" onclick="celebrateAchievement(this)">
+                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                            <div class="bounce-in" style="background: var(--gradient-primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; color: white; font-weight: 700;">1</div>
+                            <h4 style="color: var(--primary); margin: 0;">Platform Awareness</h4>
                         </div>
-                        
-                        <div class="content-box exercise-box">
-                            <h4>2. Strategic Matching</h4>
-                            <p>Success comes from matching platform capabilities to specific business problems, not choosing based on hype.</p>
+                        <p>Each AI ecosystem has distinct strengths: OpenAI for reasoning, Google for integration, Anthropic for reliability.</p>
+                        <div class="achievement-badge scale-in stagger-4" style="margin-top: 1rem; font-size: 0.8rem;">
+                            <span class="achievement-icon">🎯</span>
+                            Strategic Understanding
                         </div>
-                        
-                        <div class="content-box takeaway-box">
-                            <h4>3. Decision Framework</h4>
-                            <p>Use systematic evaluation: problem type, accuracy needs, integration requirements, and organizational fit.</p>
+                    </div>
+                    
+                    <div class="glass-card fade-in interactive-cursor stagger-2" onclick="celebrateAchievement(this)">
+                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                            <div class="bounce-in stagger-2" style="background: var(--gradient-accent); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; color: var(--bg-primary); font-weight: 700;">2</div>
+                            <h4 style="color: var(--primary-light); margin: 0;">Strategic Matching</h4>
+                        </div>
+                        <p>Success comes from matching platform capabilities to specific business problems, not choosing based on hype.</p>
+                        <div class="achievement-badge scale-in stagger-5" style="margin-top: 1rem; font-size: 0.8rem;">
+                            <span class="achievement-icon">🔗</span>
+                            Problem-Solution Fit
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card fade-in interactive-cursor stagger-3" onclick="celebrateAchievement(this)">
+                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                            <div class="bounce-in stagger-3" style="background: var(--gradient-secondary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; color: white; font-weight: 700;">3</div>
+                            <h4 style="color: var(--secondary); margin: 0;">Decision Framework</h4>
+                        </div>
+                        <p>Use systematic evaluation: problem type, accuracy needs, integration requirements, and organizational fit.</p>
+                        <div class="achievement-badge scale-in stagger-6" style="margin-top: 1rem; font-size: 0.8rem;">
+                            <span class="achievement-icon">⚙️</span>
+                            Systematic Approach
                         </div>
                     </div>
                 </div>
                 
-                <div class="visual-element">
-                    <div class="icon">🧠</div>
-                    <h3>Manager's Mindset Shift</h3>
-                    <p><strong>From:</strong> "Which AI tool is best?"</p>
-                    <p><strong>To:</strong> "Which AI platform best serves this specific business need?"</p>
+                <div class="visual-element glass-card mt-2 fade-in" style="animation-delay: 0.6s;">
+                    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <div class="icon" style="margin-right: 1rem;">🧠</div>
+                        <h3 style="color: var(--text-accent); margin: 0;">Manager's Mindset Shift</h3>
+                    </div>
+                    
+                    <div class="two-column" style="gap: 2rem; align-items: center;">
+                        <div style="text-align: center; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.3);">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">❌</div>
+                            <p style="color: #ef4444; font-weight: 600; margin-bottom: 0.5rem;">Before</p>
+                            <p style="font-style: italic;">"Which AI tool is best?"</p>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: center; align-items: center; font-size: 2rem; color: var(--text-accent);">
+                            ➡️
+                        </div>
+                        
+                        <div style="text-align: center; padding: 1rem; background: rgba(40, 167, 69, 0.1); border-radius: 12px; border: 1px solid rgba(40, 167, 69, 0.3);">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                            <p style="color: var(--success); font-weight: 600; margin-bottom: 0.5rem;">After</p>
+                            <p style="font-style: italic;">"Which AI platform best serves this specific business need?"</p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 1.5rem; padding: 1rem; background: var(--bg-tertiary); border-radius: 8px;">
+                        <p style="color: var(--text-accent); font-weight: 600;">You've mastered strategic AI platform selection!</p>
+                    </div>
                 </div>
             </section>
 
@@ -793,56 +2343,265 @@
                     <p><strong>Purpose:</strong> Quick reference for platform selection decisions</p>
                 </div>
                 
-                <div class="interactive-element mt-2">
-                    <h3>🔧 Actionable Template</h3>
-                    <div style="background: var(--white); border: 2px solid var(--primary-light); border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
-                        <h4>Platform Selection Checklist</h4>
+                <div class="glass-card mt-2">
+                    <h3 style="color: var(--text-accent); margin-bottom: 1rem;">🔧 Platform Selection Checklist</h3>
+                    
+                    <div class="two-column">
+                        <div class="interactive-element">
+                            <h5 style="color: var(--primary); margin-bottom: 0.75rem;">Problem Analysis:</h5>
+                            <ul style="font-size: 1rem; margin-left: 1rem;">
+                                <li>☐ Task type defined (Analysis/Creation/Automation)</li>
+                                <li>☐ Accuracy requirements identified</li>
+                                <li>☐ Integration needs mapped</li>
+                                <li>☐ Risk tolerance assessed</li>
+                            </ul>
+                        </div>
                         
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 1rem;">
-                            <div>
-                                <h5>Problem Analysis:</h5>
-                                <ul style="font-size: 0.9rem; margin-left: 1rem;">
-                                    <li>☐ Task type defined (Analysis/Creation/Automation)</li>
-                                    <li>☐ Accuracy requirements identified</li>
-                                    <li>☐ Integration needs mapped</li>
-                                    <li>☐ Risk tolerance assessed</li>
-                                </ul>
+                        <div class="interactive-element">
+                            <h5 style="color: var(--secondary); margin-bottom: 0.75rem;">Platform Matching:</h5>
+                            <ul style="font-size: 1rem; margin-left: 1rem;">
+                                <li>☐ OpenAI: Complex reasoning needed?</li>
+                                <li>☐ Google: Workspace integration priority?</li>
+                                <li>☐ Anthropic: High accuracy/safety critical?</li>
+                                <li>☐ Multi-platform: Hybrid approach required?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="two-column mt-2">
+                    <div class="speaker-notes content-box">
+                        <h3>🎤 Speaker Notes</h3>
+                        <p><strong>Action Item:</strong> "Take 30 seconds to bookmark this template. You'll use it in real decisions within the next two weeks. This isn't theoretical - this is your practical guide for AI platform decisions."</p>
+                    </div>
+                    
+                    <div class="visual-element glass-card">
+                        <div class="icon">✅</div>
+                        <h3 style="color: var(--text-accent);">Session 1 Complete</h3>
+                        <p><strong>Next Session:</strong> Understanding AI Business Value & ROI</p>
+                        <p><em>Transform from AI awareness to strategic value creation</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 2 Slides -->
+            
+            <!-- Slide 13: Session 2 Title -->
+            <section class="slide">
+                <div class="text-center">
+                    <h1>AI Business Value & ROI</h1>
+                    <h2 class="text-accent">Session 2: Beyond Cost Savings to Strategic Value</h2>
+                    <p class="mt-2" style="font-size: 1.4rem; color: var(--text-secondary); margin-bottom: 2rem;">From Efficiency Gains to Transformational Impact</p>
+                    
+                    <div class="visual-element glass-card mt-2">
+                        <div class="icon">💰</div>
+                        <h3 style="color: var(--text-accent); margin-bottom: 1rem;">15 Minutes • ROI Framework Mastery</h3>
+                        <p style="font-size: 1.2rem;">Learn to measure and communicate AI value beyond simple time savings</p>
+                    </div>
+                </div>
+                
+                <div class="two-column mt-2">
+                    <div class="glass-card">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">🎯 Session Goal</h3>
+                        <p>Establish realistic expectations for AI ROI and learn frameworks for measuring business value that resonate with executives</p>
+                    </div>
+                    <div class="glass-card">
+                        <h3 style="color: var(--secondary); margin-bottom: 1rem;">📊 Key Insight</h3>
+                        <p>Only 17% of organizations see tangible EBIT impact from AI. We'll learn why and how to be in the successful minority.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 14: The AI ROI Reality Check -->
+            <section class="slide">
+                <h2>The AI ROI Reality Check</h2>
+                <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem; text-align: center;">Understanding why most AI projects fail to deliver measurable business value</p>
+                
+                <div class="two-column">
+                    <div class="glass-card fade-in interactive-cursor" onclick="animateStatNumber(this)">
+                        <h3 style="color: #ef4444; margin-bottom: 1rem;">📉 The Challenging Reality</h3>
+                        <div class="stat-number" data-target="17" style="font-size: 3rem; text-align: center; margin: 1rem 0; color: #ef4444;">0%</div>
+                        <p style="text-align: center; font-weight: 600; margin-bottom: 1rem;">of organizations see tangible EBIT impact from AI initiatives</p>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-secondary);">Struggle to show business value</span>
+                                <span style="color: #ef4444; font-weight: 600;">80%</span>
                             </div>
-                            
-                            <div>
-                                <h5>Platform Matching:</h5>
-                                <ul style="font-size: 0.9rem; margin-left: 1rem;">
-                                    <li>☐ OpenAI: Complex reasoning needed?</li>
-                                    <li>☐ Google: Workspace integration priority?</li>
-                                    <li>☐ Anthropic: High accuracy/safety critical?</li>
-                                    <li>☐ Multi-platform: Hybrid approach required?</li>
-                                </ul>
+                            <div style="background: var(--bg-tertiary); height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: #ef4444; height: 100%; width: 80%; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-secondary);">Failed AI pilot projects</span>
+                                <span style="color: #ef4444; font-weight: 600;">63%</span>
+                            </div>
+                            <div style="background: var(--bg-tertiary); height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: #ef4444; height: 100%; width: 63%; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card fade-in interactive-cursor" style="animation-delay: 0.3s;" onclick="animateStatNumber(this)">
+                        <h3 style="color: var(--success); margin-bottom: 1rem;">📈 The Success Pattern</h3>
+                        <div class="stat-number" data-target="80" style="font-size: 3rem; text-align: center; margin: 1rem 0; color: var(--success);">0%</div>
+                        <p style="text-align: center; font-weight: 600; margin-bottom: 1rem;">success rate for companies with formal AI strategies</p>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-secondary);">Clear value measurement</span>
+                                <span style="color: var(--success); font-weight: 600;">80%</span>
+                            </div>
+                            <div style="background: var(--bg-tertiary); height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: var(--success); height: 100%; width: 80%; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-secondary);">Executive buy-in achieved</span>
+                                <span style="color: var(--success); font-weight: 600;">92%</span>
+                            </div>
+                            <div style="background: var(--bg-tertiary); height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: var(--success); height: 100%; width: 92%; border-radius: 4px;"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="speaker-notes content-box">
-                    <h3>🎤 Speaker Notes</h3>
-                    <p><strong>Action Item:</strong> "Take 30 seconds to bookmark this template. You'll use it in real decisions within the next two weeks. This isn't theoretical - this is your practical guide for AI platform decisions."</p>
+                <div class="visual-element glass-card mt-2 fade-in" style="animation-delay: 0.6s;">
+                    <h3 style="color: var(--text-accent); margin-bottom: 1rem;">🔑 The Critical Difference</h3>
+                    <div class="two-column">
+                        <div>
+                            <h4 style="color: #ef4444; margin-bottom: 0.5rem;">❌ Failing Approach</h4>
+                            <ul style="color: var(--text-secondary); margin-left: 1rem;">
+                                <li>Technology-first thinking</li>
+                                <li>"Hours saved" as primary metric</li>
+                                <li>Isolated pilot projects</li>
+                                <li>Unclear success criteria</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--success); margin-bottom: 0.5rem;">✅ Winning Strategy</h4>
+                            <ul style="color: var(--text-secondary); margin-left: 1rem;">
+                                <li>Business-problem first approach</li>
+                                <li>Multi-dimensional value measurement</li>
+                                <li>Strategic integration planning</li>
+                                <li>Clear ROI frameworks</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 15: Three Pillars of AI ROI -->
+            <section class="slide">
+                <h2>Three Pillars of AI ROI</h2>
+                <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem; text-align: center;">A comprehensive framework for measuring and communicating AI business value</p>
+                
+                <div class="roi-pillars">
+                    <div class="roi-pillar slide-up interactive-cursor" onclick="celebrateROIPillar(this)">
+                        <div class="pillar-icon float">⏱️</div>
+                        <h3 class="pillar-title">Time Savings</h3>
+                        <p class="pillar-description">Quantifiable efficiency gains through task automation and process optimization</p>
+                        
+                        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                            <div style="color: var(--text-accent); font-weight: 600; margin-bottom: 0.5rem;">Measurement Examples:</div>
+                            <ul style="color: var(--text-secondary); margin-left: 1rem; font-size: 0.9rem;">
+                                <li>Hours saved per employee per week</li>
+                                <li>Process completion time reduction</li>
+                                <li>Administrative task elimination</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="impact-meter">
+                            <div class="impact-fill time-savings" style="width: 0%;"></div>
+                        </div>
+                        <div style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-accent);">Typical Impact: <span class="data-highlight">15-40% time reduction</span></div>
+                    </div>
+                    
+                    <div class="roi-pillar slide-up interactive-cursor" style="animation-delay: 0.2s;" onclick="celebrateROIPillar(this)">
+                        <div class="pillar-icon float" style="animation-delay: 0.3s;">🎯</div>
+                        <h3 class="pillar-title">Quality Enhancement</h3>
+                        <p class="pillar-description">Improved decision-making, reduced errors, and enhanced output quality</p>
+                        
+                        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                            <div style="color: var(--text-accent); font-weight: 600; margin-bottom: 0.5rem;">Measurement Examples:</div>
+                            <ul style="color: var(--text-secondary); margin-left: 1rem; font-size: 0.9rem;">
+                                <li>Error rate reduction</li>
+                                <li>Customer satisfaction improvements</li>
+                                <li>Decision accuracy increases</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="impact-meter">
+                            <div class="impact-fill quality" style="width: 0%;"></div>
+                        </div>
+                        <div style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-accent);">Typical Impact: <span class="data-highlight">25-60% quality improvement</span></div>
+                    </div>
+                    
+                    <div class="roi-pillar slide-up interactive-cursor" style="animation-delay: 0.4s;" onclick="celebrateROIPillar(this)">
+                        <div class="pillar-icon float" style="animation-delay: 0.6s;">💰</div>
+                        <h3 class="pillar-title">Revenue Growth</h3>
+                        <p class="pillar-description">New business opportunities, enhanced customer value, and competitive advantages</p>
+                        
+                        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                            <div style="color: var(--text-accent); font-weight: 600; margin-bottom: 0.5rem;">Measurement Examples:</div>
+                            <ul style="color: var(--text-secondary); margin-left: 1rem; font-size: 0.9rem;">
+                                <li>New product/service opportunities</li>
+                                <li>Customer retention improvements</li>
+                                <li>Market share gains</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="impact-meter">
+                            <div class="impact-fill revenue" style="width: 0%;"></div>
+                        </div>
+                        <div style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-accent);">Typical Impact: <span class="data-highlight">10-35% revenue increase</span></div>
+                    </div>
                 </div>
                 
-                <div class="visual-element">
-                    <div class="icon">✅</div>
-                    <h3>Session 1 Complete</h3>
-                    <p><strong>Next Session:</strong> Understanding AI Business Value & ROI</p>
-                    <p><em>Transform from AI awareness to strategic value creation</em></p>
+                <div class="decision-framework mt-2 fade-in" style="animation-delay: 0.6s;">
+                    <h3 style="color: var(--text-accent); margin-bottom: 1rem; text-align: center;">💡 ROI Calculation Framework</h3>
+                    <div class="framework-steps">
+                        <div class="framework-step">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Baseline Measurement</div>
+                            <div class="step-content">Current state: time, cost, quality metrics</div>
+                        </div>
+                        <div class="framework-step">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Implementation Cost</div>
+                            <div class="step-content">Platform fees, training, integration expenses</div>
+                        </div>
+                        <div class="framework-step">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Value Quantification</div>
+                            <div class="step-content">Measure all three pillars over 12-month period</div>
+                        </div>
+                        <div class="framework-step">
+                            <div class="step-number">4</div>
+                            <div class="step-title">ROI Communication</div>
+                            <div class="step-content">Present multi-dimensional value story to executives</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visual-element glass-card mt-2 fade-in" style="animation-delay: 0.8s;">
+                    <h3 style="color: var(--text-accent); margin-bottom: 1rem;">🎯 Manager's ROI Mindset</h3>
+                    <p><strong>From:</strong> "How much time did we save?"</p>
+                    <p><strong>To:</strong> "How did AI transform our capability to deliver business value across time, quality, and revenue dimensions?"</p>
                 </div>
             </section>
 
         </main>
-            
-        </main>
 
         <!-- Slide Controls -->
         <div class="slide-controls">
-            <button class="control-btn" id="prevBtn" onclick="changeSlide(-1)">‹</button>
-            <button class="control-btn" id="nextBtn" onclick="changeSlide(1)">›</button>
+            <button class="control-btn" id="prevBtn" onclick="changeSlideEnhanced(-1)">‹</button>
+            <button class="control-btn" id="nextBtn" onclick="changeSlideEnhanced(1)">›</button>
         </div>
     </div>
 
@@ -880,19 +2639,617 @@
             }
         }
 
-        // Keyboard navigation
+        // Enhanced keyboard navigation with celebrations
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') changeSlide(-1);
-            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') {
+                changeSlideEnhanced(-1);
+                // Easter egg: Show achievement for keyboard navigation
+                if (Math.random() < 0.3) {
+                    showAchievementPopup('Keyboard Ninja!', 'Efficient navigation detected.');
+                }
+            }
+            if (e.key === 'ArrowRight') {
+                changeSlideEnhanced(1);
+                if (Math.random() < 0.3) {
+                    showAchievementPopup('Power User!', 'You\'re navigating like a pro.');
+                }
+            }
+            // Easter egg: Press Ctrl+C to create confetti
+            if (e.key === 'c' && e.ctrlKey) {
+                e.preventDefault();
+                createConfetti(20);
+                showAchievementPopup('Confetti Master!', 'You found the celebration shortcut!');
+            }
         });
 
-        // Click navigation
+        // Enhanced click navigation
         slideItems.forEach((item, index) => {
-            item.addEventListener('click', () => showSlide(index));
+            item.addEventListener('click', () => {
+                if (index !== currentSlide) {
+                    showSlideWithTransition(index);
+                }
+            });
         });
+        
+        // Enhanced changeSlide function
+        function changeSlideEnhanced(direction) {
+            const newSlide = currentSlide + direction;
+            if (newSlide >= 0 && newSlide < totalSlides) {
+                showSlideWithTransition(newSlide);
+            }
+        }
+        
+        // Achievement celebration system
+        function celebrateAchievement(element) {
+            // Add celebration animation
+            element.classList.add('celebration-bounce');
+            
+            // Create confetti effect
+            createConfetti(8);
+            
+            // Show achievement popup
+            showAchievementPopup('Concept Mastered!', 'You\'ve successfully engaged with this learning concept.');
+            
+            // Remove celebration class after animation
+            setTimeout(() => {
+                element.classList.remove('celebration-bounce');
+            }, 800);
+        }
+        
+        function celebrateROIPillar(element) {
+            // Animate the impact meter
+            const impactFill = element.querySelector('.impact-fill');
+            if (impactFill) {
+                impactFill.style.transform = 'scaleX(0)';
+                impactFill.style.transformOrigin = 'left';
+                setTimeout(() => {
+                    impactFill.style.transform = 'scaleX(1)';
+                    impactFill.style.transition = 'transform 1.5s cubic-bezier(0.4, 0.0, 0.2, 1)';
+                }, 100);
+            }
+            
+            // Celebration effects
+            element.classList.add('celebration-bounce');
+            createConfetti(6);
+            
+            setTimeout(() => {
+                element.classList.remove('celebration-bounce');
+            }, 800);
+        }
+        
+        function animateStatNumber(element) {
+            const statElement = element.querySelector('.stat-number');
+            const target = parseInt(statElement.dataset.target);
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                    // Celebration effect when number reaches target
+                    statElement.classList.add('celebration-bounce');
+                    createConfetti(4);
+                }
+                statElement.textContent = Math.floor(current) + '%';
+            }, 40);
+        }
+        
+        function createConfetti(count) {
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.background = getRandomColor();
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+        
+        function getRandomColor() {
+            const colors = ['#1B9AAA', '#6AD5CB', '#58B09C', '#A1E8CC', '#BDD9BF'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        function showAchievementPopup(title, message) {
+            const popup = document.createElement('div');
+            popup.className = 'achievement-popup';
+            popup.innerHTML = `
+                <h3>${title}</h3>
+                <p>${message}</p>
+                <div style="font-size: 2rem; margin-top: 1rem;">🎉</div>
+            `;
+            
+            document.body.appendChild(popup);
+            
+            setTimeout(() => {
+                popup.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                popup.classList.remove('show');
+                setTimeout(() => {
+                    popup.remove();
+                }, 600);
+            }, 2000);
+        }
+        
+        function initializeEnhancedInteractions() {
+            let achievementCount = 0;
+            let interactionCount = 0;
+            const maxAchievements = 5;
+            
+            // Track user interactions for achievements
+            document.addEventListener('click', (e) => {
+                interactionCount++;
+                
+                if (e.target.closest('.interactive-cursor') && achievementCount < maxAchievements) {
+                    achievementCount++;
+                    
+                    if (achievementCount === 3) {
+                        showAchievementPopup('Engagement Expert!', 'You\'re actively exploring the content.');
+                    } else if (achievementCount === 5) {
+                        showAchievementPopup('Learning Champion!', 'Outstanding engagement with the material.');
+                        createConfetti(15);
+                    }
+                }
+                
+                // Easter egg for clicking many times
+                if (interactionCount === 50) {
+                    showAchievementPopup('Click Master!', 'You\'ve clicked everything! Here\'s a reward.');
+                    createConfetti(25);
+                }
+            });
+            
+            // Enhanced button feedback
+            document.querySelectorAll('.control-btn, .slide-item').forEach(button => {
+                button.addEventListener('mousedown', function() {
+                    this.style.transform = this.style.transform.replace('scale(1.1)', 'scale(1.05)');
+                });
+                
+                button.addEventListener('mouseup', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+            
+            // Enhanced hover effects
+            document.querySelectorAll('.interactive-cursor').forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.filter = 'brightness(1.1)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.filter = '';
+                });
+            });
+            
+            // Initialize slide entrance animations
+            initializeSlideAnimations();
+        }
+        
+        function initializeSlideAnimations() {
+            // Add entrance animations to all slides when they become active
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animatedElements = entry.target.querySelectorAll('.fade-in, .slide-up, .scale-in, .bounce-in');
+                        animatedElements.forEach((element, index) => {
+                            setTimeout(() => {
+                                element.style.opacity = '1';
+                                element.style.transform = 'none';
+                            }, index * 100);
+                        });
+                        
+                        // Animate impact meters when ROI slide becomes visible
+                        const impactFills = entry.target.querySelectorAll('.impact-fill');
+                        impactFills.forEach((fill, index) => {
+                            setTimeout(() => {
+                                if (fill.classList.contains('time-savings')) {
+                                    fill.style.width = '85%';
+                                } else if (fill.classList.contains('quality')) {
+                                    fill.style.width = '92%';
+                                } else if (fill.classList.contains('revenue')) {
+                                    fill.style.width = '78%';
+                                }
+                            }, 500 + (index * 200));
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            slides.forEach(slide => observer.observe(slide));
+        }
+        
+        // Special celebration for mindset shift
+        function celebrateMindsetShift(element) {
+            element.classList.add('celebration-bounce');
+            createConfetti(12);
+            showAchievementPopup('Mindset Transformed!', 'You\'ve successfully shifted to strategic AI thinking!');
+            
+            // Animate the transformation arrow
+            const arrow = element.querySelector('div:contains("➡️")');
+            if (arrow) {
+                arrow.style.transform = 'scale(1.5) rotate(360deg)';
+                arrow.style.transition = 'transform 1s ease';
+                setTimeout(() => {
+                    arrow.style.transform = '';
+                }, 1000);
+            }
+            
+            setTimeout(() => {
+                element.classList.remove('celebration-bounce');
+            }, 800);
+        }
 
-        // Initialize
+        // Initialize with enhanced animations
         showSlide(0);
+        initializeEnhancedInteractions();
+        
+        // Enhanced slide transition with celebration
+        function showSlideWithTransition(index) {
+            const currentSlideEl = slides[currentSlide];
+            const nextSlideEl = slides[index];
+            
+            // Exit animation for current slide
+            currentSlideEl.classList.add('exiting');
+            
+            setTimeout(() => {
+                // Hide all slides and show new one
+                slides.forEach(slide => {
+                    slide.classList.remove('active', 'entering', 'exiting');
+                });
+                slideItems.forEach(item => item.classList.remove('active'));
+                
+                // Show new slide with entrance animation
+                nextSlideEl.classList.add('active', 'entering');
+                slideItems[index].classList.add('active');
+                
+                // Update progress with celebration
+                updateProgressWithCelebration(index);
+                
+                // Update navigation buttons
+                document.getElementById('prevBtn').disabled = index === 0;
+                document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+                
+                currentSlide = index;
+                
+                // Trigger slide-specific animations
+                triggerSlideAnimations(index);
+            }, 200);
+        }
+        
+        function updateProgressWithCelebration(index) {
+            const progress = ((index + 1) / totalSlides) * 100;
+            progressFill.style.width = progress + '%';
+            
+            // Add celebration effect for milestone progress
+            if (progress === 25 || progress === 50 || progress === 75 || progress === 100) {
+                progressFill.classList.add('progress-celebration');
+                createConfetti(5);
+                setTimeout(() => {
+                    progressFill.classList.remove('progress-celebration');
+                }, 800);
+            }
+        }
+        
+        function triggerSlideAnimations(slideIndex) {
+            const slide = slides[slideIndex];
+            const animatedElements = slide.querySelectorAll('.fade-in, .slide-up, .slide-in-left, .slide-in-right, .scale-in, .bounce-in');
+            
+            // Reset and trigger animations
+            animatedElements.forEach((element, index) => {
+                element.style.animation = 'none';
+                setTimeout(() => {
+                    element.style.animation = '';
+                }, 50 + (index * 100));
+            });
+        }
+
+        // Enhanced Visual Interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate strength bars when ecosystem cards are visible
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const animateStrengthBars = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const strengthBars = entry.target.querySelectorAll('.strength-bar');
+                        strengthBars.forEach((bar, index) => {
+                            setTimeout(() => {
+                                bar.style.opacity = '1';
+                                const afterElement = window.getComputedStyle(bar, '::after');
+                                bar.classList.add('animate');
+                            }, index * 200);
+                        });
+                    }
+                });
+            };
+
+            const strengthObserver = new IntersectionObserver(animateStrengthBars, observerOptions);
+            document.querySelectorAll('.ecosystem-card').forEach(card => {
+                strengthObserver.observe(card);
+            });
+
+            // Animate ROI pillars impact meters
+            const animateImpactMeters = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const impactFills = entry.target.querySelectorAll('.impact-fill');
+                        impactFills.forEach((fill, index) => {
+                            setTimeout(() => {
+                                fill.style.opacity = '1';
+                            }, index * 300);
+                        });
+                    }
+                });
+            };
+
+            const impactObserver = new IntersectionObserver(animateImpactMeters, observerOptions);
+            document.querySelectorAll('.roi-pillar').forEach(pillar => {
+                impactObserver.observe(pillar);
+            });
+
+            // Interactive scenario cards
+            document.querySelectorAll('.scenario-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Toggle expanded state
+                    this.classList.toggle('expanded');
+                    
+                    // Smooth height transition
+                    const solution = this.querySelector('.scenario-solution');
+                    if (this.classList.contains('expanded')) {
+                        solution.style.maxHeight = solution.scrollHeight + 'px';
+                        solution.style.opacity = '1';
+                    } else {
+                        solution.style.maxHeight = '0';
+                        solution.style.opacity = '0.7';
+                    }
+                });
+            });
+
+            // Ecosystem card hover effects with data display
+            document.querySelectorAll('.ecosystem-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    // Pause strength bar animations to show final state
+                    const strengthBars = this.querySelectorAll('.strength-bar');
+                    strengthBars.forEach(bar => {
+                        bar.style.animationPlayState = 'paused';
+                    });
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    // Resume animations
+                    const strengthBars = this.querySelectorAll('.strength-bar');
+                    strengthBars.forEach(bar => {
+                        bar.style.animationPlayState = 'running';
+                    });
+                });
+            });
+
+            // Platform comparison matrix row highlighting
+            document.querySelectorAll('.matrix-table tr').forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.background = 'linear-gradient(135deg, rgba(27, 154, 170, 0.1) 0%, rgba(106, 213, 203, 0.1) 100%)';
+                    this.style.transform = 'scale(1.01)';
+                    this.style.zIndex = '10';
+                });
+
+                row.addEventListener('mouseleave', function() {
+                    this.style.background = '';
+                    this.style.transform = '';
+                    this.style.zIndex = '';
+                });
+            });
+
+            // Framework steps interactive highlighting
+            document.querySelectorAll('.framework-step').forEach((step, index) => {
+                step.addEventListener('click', function() {
+                    // Remove active state from all steps
+                    document.querySelectorAll('.framework-step').forEach(s => s.classList.remove('active'));
+                    // Add active state to clicked step
+                    this.classList.add('active');
+                    
+                    // Show detailed information (could be expanded)
+                    const stepDetails = this.getAttribute('data-details');
+                    if (stepDetails) {
+                        // Could show modal or expand section with more details
+                        console.log('Step details:', stepDetails);
+                    }
+                });
+            });
+
+            // Progress circle animation
+            function animateProgressCircle(circle, targetPercentage) {
+                const circumference = 314; // 2 * π * 50 (radius)
+                const offset = circumference - (targetPercentage / 100) * circumference;
+                circle.style.strokeDashoffset = offset;
+            }
+
+            // ROI pillar hover effects with enhanced visual feedback
+            document.querySelectorAll('.roi-pillar').forEach(pillar => {
+                pillar.addEventListener('mouseenter', function() {
+                    const impactMeter = this.querySelector('.impact-fill');
+                    if (impactMeter) {
+                        impactMeter.style.filter = 'brightness(1.2) saturate(1.3)';
+                        impactMeter.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.3)';
+                    }
+                });
+
+                pillar.addEventListener('mouseleave', function() {
+                    const impactMeter = this.querySelector('.impact-fill');
+                    if (impactMeter) {
+                        impactMeter.style.filter = '';
+                        impactMeter.style.boxShadow = '';
+                    }
+                });
+            });
+        });
+        
+        // Add premium styles for enhanced interactions
+        const enhancedStyles = document.createElement('style');
+        enhancedStyles.textContent = `
+            /* Achievement Popup Styles */
+            .achievement-popup {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                background: var(--gradient-primary);
+                color: white;
+                padding: 2rem;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+                text-align: center;
+                opacity: 0;
+                transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                backdrop-filter: blur(20px);
+                border: 2px solid rgba(255, 255, 255, 0.2);
+                max-width: 400px;
+            }
+            
+            .achievement-popup.show {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            
+            .achievement-popup h3 {
+                margin: 0 0 1rem 0;
+                font-size: 1.5rem;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            
+            .achievement-popup p {
+                margin: 0;
+                opacity: 0.9;
+                font-size: 1rem;
+            }
+            
+            /* Confetti Styles */
+            .confetti {
+                position: fixed;
+                width: 8px;
+                height: 8px;
+                background: var(--primary);
+                pointer-events: none;
+                border-radius: 50%;
+                animation: confettiFall 3s linear forwards;
+                z-index: 999;
+            }
+            
+            @keyframes confettiFall {
+                0% {
+                    transform: translateY(-100vh) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+            
+            /* Enhanced interaction feedback */
+            .celebration-bounce {
+                animation: celebrationBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+            }
+            
+            /* Progress celebration */
+            .progress-celebration {
+                animation: progressCelebration 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards !important;
+            }
+            
+            @keyframes progressCelebration {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.05);
+                    filter: brightness(1.3);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+            
+            /* Interactive cursor enhancement */
+            .interactive-cursor {
+                cursor: pointer;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+            
+            .interactive-cursor:hover {
+                cursor: pointer;
+            }
+            
+            /* Data highlight animation */
+            .data-highlight {
+                position: relative;
+                background: linear-gradient(120deg, transparent 0%, transparent 50%, var(--primary) 50%);
+                background-size: 250% 100%;
+                background-position: 100% 0;
+                transition: background-position 0.8s ease;
+            }
+            
+            .data-highlight:hover {
+                background-position: 0 0;
+                color: white;
+            }
+            
+            /* Enhanced celebration badge */
+            .celebration-badge {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .celebration-badge::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(45deg, transparent 30%, white 50%, transparent 70%);
+                opacity: 0;
+                animation: shimmer 2s ease-in-out infinite;
+            }
+            
+            @keyframes shimmer {
+                0%, 100% {
+                    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+                    opacity: 0;
+                }
+                50% {
+                    transform: translateX(100%) translateY(100%) rotate(45deg);
+                    opacity: 0.1;
+                }
+            }
+            
+            /* Reduced motion accessibility */
+            @media (prefers-reduced-motion: reduce) {
+                .fade-in, .slide-up, .slide-in-left, .slide-in-right, .scale-in, .bounce-in,
+                .float, .glow-pulse, .celebration-bounce {
+                    animation: none !important;
+                    opacity: 1 !important;
+                    transform: none !important;
+                }
+                
+                .confetti {
+                    display: none;
+                }
+            }
+        `;
+        document.head.appendChild(enhancedStyles);
     </script>
 </body>
 </html>
