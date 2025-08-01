@@ -1,0 +1,77 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "match": {
+          "tool": "Write|MultiEdit|Bash|NotebookEdit"
+        },
+        "command": ".claude/hooks/pre-tool-use-safety.sh",
+        "timeout": 30,
+        "description": "Safety checks and MCP validation before risky operations"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "match": {
+          "tool": "Write|MultiEdit|NotebookEdit"
+        },
+        "command": ".claude/hooks/post-tool-use-checkpoint.sh",
+        "timeout": 30,
+        "description": "Automatic checkpoint creation after code changes"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "match": {
+          "prompt": "/orchestrate|/bmad|complex.*task|multi.*agent"
+        },
+        "command": "echo '💡 Consider using /orchestrate for complex multi-agent tasks'",
+        "timeout": 5,
+        "description": "Suggest orchestrator for complex tasks"
+      }
+    ],
+    "SessionStart": [
+      {
+        "match": {},
+        "command": "echo '🚀 GAAL System Active - /orchestrate, /checkpoint, /rollback, /bmad available'",
+        "timeout": 5,
+        "description": "Show available GAAL commands on session start"
+      }
+    ]
+  },
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "description": "Up-to-date documentation and code examples"
+    }
+  },
+  "agentCoordination": {
+    "defaultOrchestrator": "master-orchestrator",
+    "safetyAgent": "git-checkpoint",
+    "conflictResolution": {
+      "bmad-project-manager": "strategic-planning",
+      "sprint-prioritizer": "tactical-execution",
+      "bmad-architect": "system-design", 
+      "backend-architect": "implementation"
+    }
+  },
+  "checkpointSystem": {
+    "enabled": true,
+    "intervalMinutes": 15,
+    "autoCheckpointOnAgentExecution": true,
+    "rollbackOptions": ["soft", "hard", "selective", "recovery-branch"],
+    "emergencyRollback": true
+  },
+  "gaalWorkflow": {
+    "enabled": true,
+    "planningPhase": ["bmad-analyst", "bmad-product-strategist", "strategic-architect"],
+    "decompositionPhase": ["bmad-scrum-master"],
+    "executionPhase": ["git-checkpoint", "specialist-agents", "test-writer-fixer"],
+    "governanceGates": {
+      "planningReview": true,
+      "storyValidation": true,
+      "codeReview": true
+    }
+  }
+}
