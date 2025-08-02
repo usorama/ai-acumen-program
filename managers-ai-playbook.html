@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager's AI Playbook - Interactive Resource Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-card: #0F0F0F;
+            --text-primary: #CCCCCC;
+            --accent-mint: #00FF94;
+            --border: rgba(255, 255, 255, 0.1);
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Disclaimer Modal */
+        .disclaimer-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .disclaimer-content {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-mint);
+            border-radius: 16px;
+            padding: var(--space-2xl);
+            max-width: 600px;
+            margin: var(--space-lg);
+            text-align: center;
+        }
+
+        .disclaimer-content h2 {
+            color: var(--accent-mint);
+            margin-bottom: var(--space-lg);
+            font-size: 1.5rem;
+        }
+
+        .disclaimer-content p {
+            margin-bottom: var(--space-md);
+            opacity: 0.9;
+        }
+
+        .disclaimer-btn {
+            background: var(--accent-mint);
+            color: var(--bg-primary);
+            border: none;
+            padding: var(--space-md) var(--space-xl);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: var(--space-lg);
+            transition: all 0.3s ease;
+        }
+
+        .disclaimer-btn:hover {
+            background: #00E085;
+            transform: translateY(-2px);
+        }
+
+        /* Header */
+        .header {
+            padding: var(--space-2xl) var(--space-lg);
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--accent-mint) 0%, #00CC7A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            padding: var(--space-lg);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .nav-tab {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: var(--space-md) var(--space-lg);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover,
+        .nav-tab.active {
+            border-color: var(--accent-mint);
+            color: var(--accent-mint);
+            background: rgba(0, 255, 148, 0.05);
+        }
+
+        /* Content Container */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .phase-section {
+            display: none;
+        }
+
+        .phase-section.active {
+            display: block;
+        }
+
+        .phase-header {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+        }
+
+        .phase-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--accent-mint);
+        }
+
+        .phase-header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* Session Grid */
+        .sessions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-3xl);
+        }
+
+        .session-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: var(--space-xl);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .session-card:hover {
+            border-color: var(--accent-mint);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 255, 148, 0.1);
+        }
+
+        .session-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .session-number {
+            background: var(--accent-mint);
+            color: var(--bg-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: var(--space-md);
+        }
+
+        .session-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .session-description {
+            opacity: 0.8;
+            margin-bottom: var(--space-lg);
+        }
+
+        .session-artifacts {
+            border-top: 1px solid var(--border);
+            padding-top: var(--space-lg);
+        }
+
+        .session-artifacts h4 {
+            color: var(--accent-mint);
+            margin-bottom: var(--space-md);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .artifact-list {
+            list-style: none;
+        }
+
+        .artifact-item {
+            padding: var(--space-sm) 0;
+            display: flex;
+            align-items: center;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .artifact-item::before {
+            content: "→";
+            color: var(--accent-mint);
+            margin-right: var(--space-sm);
+        }
+
+        /* Resource Viewer */
+        .resource-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            z-index: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .resource-viewer.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .resource-content {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-mint);
+            border-radius: 16px;
+            padding: var(--space-2xl);
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .resource-close {
+            position: absolute;
+            top: var(--space-lg);
+            right: var(--space-lg);
+            background: var(--accent-mint);
+            color: var(--bg-primary);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Utilities */
+        .text-center { text-align: center; }
+        .mb-lg { margin-bottom: var(--space-lg); }
+        .mb-xl { margin-bottom: var(--space-xl); }
+
+        /* Interactive Elements */
+        .interactive-tool {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-mint);
+            border-radius: 12px;
+            padding: var(--space-xl);
+            margin: var(--space-lg) 0;
+        }
+
+        .tool-header {
+            color: var(--accent-mint);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+        }
+
+        .tool-header::before {
+            content: "🛠️";
+            margin-right: var(--space-sm);
+        }
+
+        .input-group {
+            margin-bottom: var(--space-md);
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: var(--space-sm);
+            font-weight: 500;
+            color: var(--accent-mint);
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: var(--space-md);
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-mint);
+            box-shadow: 0 0 0 2px rgba(0, 255, 148, 0.1);
+        }
+
+        .btn {
+            background: var(--accent-mint);
+            color: var(--bg-primary);
+            border: none;
+            padding: var(--space-md) var(--space-lg);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #00E085;
+            transform: translateY(-2px);
+        }
+
+        .output-area {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--space-lg);
+            margin-top: var(--space-lg);
+            white-space: pre-wrap;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .sessions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .resource-content {
+                margin: var(--space-md);
+                padding: var(--space-lg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Disclaimer Modal -->
+    <div class="disclaimer-modal" id="disclaimerModal">
+        <div class="disclaimer-content">
+            <h2>⚠️ Important Disclaimer</h2>
+            <p><strong>NO DATA STORAGE:</strong> This is a demonstration website hosted on Vercel. No personal data, progress, or inputs are saved anywhere.</p>
+            <p><strong>EDUCATIONAL PURPOSE ONLY:</strong> These resources are for learning and demonstration. Any business decisions should involve proper consultation.</p>
+            <p><strong>NO AUTHENTICATION:</strong> Anyone with this link can access all resources. Do not enter sensitive business information.</p>
+            <p><strong>TEMPORARY ACCESS:</strong> Refresh the page and all inputs will be lost. Save anything important externally.</p>
+            <button class="disclaimer-btn" onclick="closeDisclaimer()">I Understand - Continue to Playbook</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Manager's AI Playbook</h1>
+        <p>Interactive Resource Center • 24 Sessions • 4 Phases • Transform from AI Novice to AI Leader</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-tabs">
+        <div class="nav-tab active" onclick="showPhase('overview')">Overview</div>
+        <div class="nav-tab" onclick="showPhase('phase1')">Phase I: Foundation</div>
+        <div class="nav-tab" onclick="showPhase('phase2')">Phase II: Integration</div>
+        <div class="nav-tab" onclick="showPhase('phase3')">Phase III: Advanced</div>
+        <div class="nav-tab" onclick="showPhase('phase4')">Phase IV: Leadership</div>
+        <div class="nav-tab" onclick="showPhase('capstone')">Capstone Resources</div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Overview -->
+        <div class="phase-section active" id="overview">
+            <div class="phase-header">
+                <h2>The Manager's AI Playbook</h2>
+                <p>A living, dynamic portfolio that transforms managers into AI leaders over 12 months</p>
+            </div>
+            
+            <div class="interactive-tool">
+                <div class="tool-header">Program Overview & Your Learning Path</div>
+                <div class="input-group">
+                    <label>Your Role/Title</label>
+                    <input type="text" id="userRole" placeholder="e.g., Operations Manager, HR Director">
+                </div>
+                <div class="input-group">
+                    <label>Industry</label>
+                    <select id="userIndustry">
+                        <option value="">Select your industry</option>
+                        <option value="finance">Financial Services</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="retail">Retail & E-commerce</option>
+                        <option value="technology">Technology</option>
+                        <option value="consulting">Consulting</option>
+                        <option value="education">Education</option>
+                        <option value="government">Government</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Current AI Experience Level</label>
+                    <select id="aiExperience">
+                        <option value="novice">Complete Novice - Never used AI tools</option>
+                        <option value="beginner">Beginner - Used ChatGPT occasionally</option>
+                        <option value="intermediate">Intermediate - Regular AI tool user</option>
+                        <option value="advanced">Advanced - Implementing AI in business processes</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="generateLearningPath()">Generate My Learning Path</button>
+                <div class="output-area" id="learningPathOutput" style="display: none;"></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); margin-top: var(--space-3xl);">
+                <div class="session-card">
+                    <h3 style="color: var(--accent-mint); margin-bottom: var(--space-md);">Phase I: Foundation</h3>
+                    <p>Sessions 1-6 • Months 1-3</p>
+                    <p style="opacity: 0.8; margin-top: var(--space-sm);">From Models to Business Value</p>
+                </div>
+                <div class="session-card">
+                    <h3 style="color: var(--accent-mint); margin-bottom: var(--space-md);">Phase II: Integration</h3>
+                    <p>Sessions 7-12 • Months 4-6</p>
+                    <p style="opacity: 0.8; margin-top: var(--space-sm);">AI in the Manager's Toolkit</p>
+                </div>
+                <div class="session-card">
+                    <h3 style="color: var(--accent-mint); margin-bottom: var(--space-md);">Phase III: Advanced</h3>
+                    <p>Sessions 13-18 • Months 7-9</p>
+                    <p style="opacity: 0.8; margin-top: var(--space-sm);">Mastering Agentic & Multimodal</p>
+                </div>
+                <div class="session-card">
+                    <h3 style="color: var(--accent-mint); margin-bottom: var(--space-md);">Phase IV: Leadership</h3>
+                    <p>Sessions 19-24 • Months 10-12</p>
+                    <p style="opacity: 0.8; margin-top: var(--space-sm);">Building AI-First Organization</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase I: Foundation -->
+        <div class="phase-section" id="phase1">
+            <div class="phase-header">
+                <h2>Phase I: Foundational Intelligence</h2>
+                <p>Sessions 1-6 • Months 1-3 • From Models to Business Value</p>
+            </div>
+
+            <div class="sessions-grid">
+                <div class="session-card" onclick="openResource('session1')">
+                    <div class="session-header">
+                        <div class="session-number">1</div>
+                        <div class="session-title">The AI Landscape: Beyond the Hype</div>
+                    </div>
+                    <div class="session-description">
+                        Equip managers with strategic understanding of key AI players and their distinct philosophies for informed platform selection decisions.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Strategic AI Platform Comparison Guide</li>
+                            <li class="artifact-item">Platform Decision Worksheet</li>
+                            <li class="artifact-item">Manager's AI Playbook Template</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session2')">
+                    <div class="session-header">
+                        <div class="session-number">2</div>
+                        <div class="session-title">Understanding AI Business Value & ROI</div>
+                    </div>
+                    <div class="session-description">
+                        Establish realistic expectations for AI ROI and learn frameworks for measuring business value beyond simple cost savings.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">AI ROI Calculator Tool</li>
+                            <li class="artifact-item">Value Measurement Framework</li>
+                            <li class="artifact-item">Business Case Template</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session3')">
+                    <div class="session-header">
+                        <div class="session-number">3</div>
+                        <div class="session-title">Context Engineering Framework</div>
+                    </div>
+                    <div class="session-description">
+                        Shift mental model from "asking AI questions" to "architecting the information environment" for better results.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">PTCF Prompt Template</li>
+                            <li class="artifact-item">Context Engineering Toolkit</li>
+                            <li class="artifact-item">Prompt Quality Assessment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session4')">
+                    <div class="session-header">
+                        <div class="session-number">4</div>
+                        <div class="session-title">Retrieval-Augmented Generation (RAG)</div>
+                    </div>
+                    <div class="session-description">
+                        Demystify RAG technology that allows AI to securely use organization's private, proprietary knowledge.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">"When to Use RAG" Checklist</li>
+                            <li class="artifact-item">RAG Implementation Guide</li>
+                            <li class="artifact-item">Knowledge Base Design Toolkit</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session5')">
+                    <div class="session-header">
+                        <div class="session-number">5</div>
+                        <div class="session-title">Data Fundamentals for AI Success</div>
+                    </div>
+                    <div class="session-description">
+                        Understanding data quality, preparation, and governance basics that make AI projects succeed or fail.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Data Quality Assessment Framework</li>
+                            <li class="artifact-item">AI Data Strategy Toolkit</li>
+                            <li class="artifact-item">Data Governance Checklist</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session6')">
+                    <div class="session-header">
+                        <div class="session-number">6</div>
+                        <div class="session-title">AI Safety & Risk Management</div>
+                    </div>
+                    <div class="session-description">
+                        Practical approaches to identifying and mitigating AI risks in business contexts.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">AI Risk Assessment Toolkit</li>
+                            <li class="artifact-item">Safety Compliance Framework</li>
+                            <li class="artifact-item">Incident Response Playbook</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase II: Integration -->
+        <div class="phase-section" id="phase2">
+            <div class="phase-header">
+                <h2>Phase II: Functional Integration</h2>
+                <p>Sessions 7-12 • Months 4-6 • AI in the Manager's Toolkit</p>
+            </div>
+
+            <div class="sessions-grid">
+                <div class="session-card" onclick="openResource('session7')">
+                    <div class="session-header">
+                        <div class="session-number">7</div>
+                        <div class="session-title">The Strategic Co-Pilot: AI for Market Analysis</div>
+                    </div>
+                    <div class="session-description">
+                        Empower managers to use AI as sophisticated partner in strategic analysis, moving beyond simple information retrieval.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Strategic Analysis Prompt Library</li>
+                            <li class="artifact-item">Market Intelligence Framework</li>
+                            <li class="artifact-item">Competitive Analysis Templates</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session8')">
+                    <div class="session-header">
+                        <div class="session-number">8</div>
+                        <div class="session-title">AI-Augmented HR</div>
+                    </div>
+                    <div class="session-description">
+                        Provide managers with practical AI tools to improve efficiency and fairness across the entire employee lifecycle.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">HR & People Management Templates</li>
+                            <li class="artifact-item">Bias Detection Framework</li>
+                            <li class="artifact-item">Performance Review Assistant</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session9')">
+                    <div class="session-header">
+                        <div class="session-number">9</div>
+                        <div class="session-title">AI in Finance & Accounting</div>
+                    </div>
+                    <div class="session-description">
+                        Transform financial processes with AI-powered analysis, forecasting, and automated reporting capabilities.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Financial Analysis Toolkit</li>
+                            <li class="artifact-item">Automated Reporting Templates</li>
+                            <li class="artifact-item">Risk Assessment Framework</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session10')">
+                    <div class="session-header">
+                        <div class="session-number">10</div>
+                        <div class="session-title">Supply Chain & Operations</div>
+                    </div>
+                    <div class="session-description">
+                        Demonstrate how AI can inject predictive power and resilience into complex operational and supply chain management.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Operations & Risk Management Templates</li>
+                            <li class="artifact-item">Supply Chain Optimization Tools</li>
+                            <li class="artifact-item">Predictive Analytics Framework</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session11')">
+                    <div class="session-header">
+                        <div class="session-number">11</div>
+                        <div class="session-title">AI-Powered Marketing & Sales</div>
+                    </div>
+                    <div class="session-description">
+                        Drive revenue growth through AI-enhanced marketing automation, personalization, and sales intelligence.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Marketing AI Playbook</li>
+                            <li class="artifact-item">Sales Intelligence Framework</li>
+                            <li class="artifact-item">Content Generation Toolkit</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session12')">
+                    <div class="session-header">
+                        <div class="session-number">12</div>
+                        <div class="session-title">Legal & Compliance Applications</div>
+                    </div>
+                    <div class="session-description">
+                        Enhance legal processes with AI-powered contract analysis, compliance monitoring, and risk assessment.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Legal AI Implementation Guide</li>
+                            <li class="artifact-item">Contract Analysis Framework</li>
+                            <li class="artifact-item">Compliance Automation Toolkit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase III: Advanced -->
+        <div class="phase-section" id="phase3">
+            <div class="phase-header">
+                <h2>Phase III: Advanced Augmentation</h2>
+                <p>Sessions 13-18 • Months 7-9 • Mastering Agentic & Multimodal Workflows</p>
+            </div>
+
+            <div class="sessions-grid">
+                <div class="session-card" onclick="openResource('session13')">
+                    <div class="session-header">
+                        <div class="session-number">13</div>
+                        <div class="session-title">Multimodal AI for Business Intelligence</div>
+                    </div>
+                    <div class="session-description">
+                        Train managers to use image, chart, and data visualization inputs for deeper business insights.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Multimodal Analysis Framework</li>
+                            <li class="artifact-item">Visual Data Processing Tools</li>
+                            <li class="artifact-item">Business Intelligence Toolkit</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session14')">
+                    <div class="session-header">
+                        <div class="session-number">14</div>
+                        <div class="session-title">Advanced Data Analysis with AI</div>
+                    </div>
+                    <div class="session-description">
+                        Perform sophisticated statistical analysis, pattern recognition, and predictive modeling without deep technical expertise.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Advanced Analytics Toolkit</li>
+                            <li class="artifact-item">Statistical Analysis Framework</li>
+                            <li class="artifact-item">Predictive Modeling Guide</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session15')">
+                    <div class="session-header">
+                        <div class="session-number">15</div>
+                        <div class="session-title">Introduction to Agentic AI</div>
+                    </div>
+                    <div class="session-description">
+                        Build clear mental model of shift from executing single prompts to designing multi-step, autonomous workflows.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Agentic Workflow Design Template</li>
+                            <li class="artifact-item">Agent Implementation Guide</li>
+                            <li class="artifact-item">Performance Monitoring Framework</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session16')">
+                    <div class="session-header">
+                        <div class="session-number">16</div>
+                        <div class="session-title">Building Team Knowledge Base with Advanced RAG</div>
+                    </div>
+                    <div class="session-description">
+                        Provide strategic knowledge to create and manage centralized, reliable knowledge source that powers team's AI tools.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Team Knowledge Base Curation Guide</li>
+                            <li class="artifact-item">Enterprise RAG Framework</li>
+                            <li class="artifact-item">Collaboration Enhancement Tools</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session17')">
+                    <div class="session-header">
+                        <div class="session-number">17</div>
+                        <div class="session-title">AI Integration & APIs</div>
+                    </div>
+                    <div class="session-description">
+                        Integrate AI capabilities seamlessly into existing business systems and workflows through strategic API management.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Integration Strategy Guide</li>
+                            <li class="artifact-item">API Management Toolkit</li>
+                            <li class="artifact-item">Workflow Automation Framework</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session18')">
+                    <div class="session-header">
+                        <div class="session-number">18</div>
+                        <div class="session-title">Measuring AI Performance</div>
+                    </div>
+                    <div class="session-description">
+                        Establish comprehensive measurement systems for tracking AI initiative success through KPIs and benchmarking.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">AI Performance Measurement Guide</li>
+                            <li class="artifact-item">Benchmarking Toolkit</li>
+                            <li class="artifact-item">Continuous Improvement Framework</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase IV: Leadership -->
+        <div class="phase-section" id="phase4">
+            <div class="phase-header">
+                <h2>Phase IV: Strategic Leadership</h2>
+                <p>Sessions 19-24 • Months 10-12 • Building an AI-First Organization</p>
+            </div>
+
+            <div class="sessions-grid">
+                <div class="session-card" onclick="openResource('session19')">
+                    <div class="session-header">
+                        <div class="session-number">19</div>
+                        <div class="session-title">Leading AI Adoption</div>
+                    </div>
+                    <div class="session-description">
+                        Equip managers with strategies for overcoming team resistance, managing anxieties, and fostering positive AI adoption culture.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">AI Change Management Talking Points</li>
+                            <li class="artifact-item">Adoption Strategy Framework</li>
+                            <li class="artifact-item">Team Resistance Mitigation Guide</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session20')">
+                    <div class="session-header">
+                        <div class="session-number">20</div>
+                        <div class="session-title">Building AI-Ready Teams</div>
+                    </div>
+                    <div class="session-description">
+                        Develop organizational capabilities and culture for sustained AI success through strategic skill development.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">AI Skills Development Guide</li>
+                            <li class="artifact-item">Training Program Toolkit</li>
+                            <li class="artifact-item">Culture Transformation Framework</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session21')">
+                    <div class="session-header">
+                        <div class="session-number">21</div>
+                        <div class="session-title">AI Governance & Ethics</div>
+                    </div>
+                    <div class="session-description">
+                        Empower managers to create simple, practical, and enforceable governance framework for responsible AI use at team level.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Team AI Governance Policy Template</li>
+                            <li class="artifact-item">Ethics Compliance Framework</li>
+                            <li class="artifact-item">Responsible AI Guidelines</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session22')">
+                    <div class="session-header">
+                        <div class="session-number">22</div>
+                        <div class="session-title">Future-Proofing Your AI Strategy</div>
+                    </div>
+                    <div class="session-description">
+                        Develop adaptive AI strategies that remain effective amid rapid technological change and emerging market conditions.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Future-Proofing Strategy Guide</li>
+                            <li class="artifact-item">Technology Roadmap Toolkit</li>
+                            <li class="artifact-item">Scenario Planning Framework</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session23')">
+                    <div class="session-header">
+                        <div class="session-number">23</div>
+                        <div class="session-title">Advanced AI Leadership</div>
+                    </div>
+                    <div class="session-description">
+                        Make sophisticated AI investment and strategic decisions that create sustainable competitive advantage.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">AI Leadership Excellence Guide</li>
+                            <li class="artifact-item">Investment Strategy Toolkit</li>
+                            <li class="artifact-item">Competitive Advantage Framework</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openResource('session24')">
+                    <div class="session-header">
+                        <div class="session-number">24</div>
+                        <div class="session-title">Capstone: Presenting Your AI Playbook</div>
+                    </div>
+                    <div class="session-description">
+                        Consolidate learning, reflect on AI Playbook value, and create personal roadmap for continued AI leadership development.
+                    </div>
+                    <div class="session-artifacts">
+                        <h4>Playbook Artifacts</h4>
+                        <ul class="artifact-list">
+                            <li class="artifact-item">Personal AI Leadership Development Plan</li>
+                            <li class="artifact-item">Strategic Implementation Roadmap</li>
+                            <li class="artifact-item">Executive Presentation Template</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capstone Resources -->
+        <div class="phase-section" id="capstone">
+            <div class="phase-header">
+                <h2>Capstone Resources</h2>
+                <p>Comprehensive Tools for AI Strategy Implementation</p>
+            </div>
+
+            <div class="interactive-tool">
+                <div class="tool-header">Complete AI Strategy Playbook Generator</div>
+                <p style="margin-bottom: var(--space-lg); opacity: 0.9;">Synthesize all 24 sessions into a comprehensive strategic document ready for organizational implementation.</p>
+                
+                <div class="input-group">
+                    <label>Organization Name</label>
+                    <input type="text" id="orgName" placeholder="Your Organization">
+                </div>
+                
+                <div class="input-group">
+                    <label>AI Maturity Level</label>
+                    <select id="maturityLevel">
+                        <option value="emerging">Emerging - Just starting AI exploration</option>
+                        <option value="developing">Developing - Some AI pilots in progress</option>
+                        <option value="scaling">Scaling - Expanding successful AI initiatives</option>
+                        <option value="optimizing">Optimizing - AI integrated across operations</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label>Primary Strategic Objectives (Select all that apply)</label>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-sm); margin-top: var(--space-sm);">
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" value="cost-reduction" style="margin-right: var(--space-sm); width: auto;">
+                            Cost Reduction
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" value="revenue-growth" style="margin-right: var(--space-sm); width: auto;">
+                            Revenue Growth
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" value="customer-experience" style="margin-right: var(--space-sm); width: auto;">
+                            Customer Experience
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" value="operational-efficiency" style="margin-right: var(--space-sm); width: auto;">
+                            Operational Efficiency
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" value="innovation" style="margin-right: var(--space-sm); width: auto;">
+                            Innovation & Competitive Advantage
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" value="risk-management" style="margin-right: var(--space-sm); width: auto;">
+                            Risk Management
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Implementation Timeline</label>
+                    <select id="timeline">
+                        <option value="6-months">6 Months - Aggressive rollout</option>
+                        <option value="12-months">12 Months - Balanced approach</option>
+                        <option value="18-months">18 Months - Comprehensive transformation</option>
+                        <option value="24-months">24+ Months - Gradual, thorough adoption</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="generateCapstoneStrategy()">Generate Complete AI Strategy Playbook</button>
+                <div class="output-area" id="capstoneOutput" style="display: none;"></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-xl); margin-top: var(--space-3xl);">
+                <div class="session-card" onclick="openResource('executive-presentation')">
+                    <h3 style="color: var(--accent-mint); margin-bottom: var(--space-md);">Executive Presentation Generator</h3>
+                    <p>Create board-ready presentations with strategic AI recommendations, ROI projections, and implementation roadmaps.</p>
+                </div>
+                <div class="session-card" onclick="openResource('implementation-roadmap')">
+                    <h3 style="color: var(--accent-mint); margin-bottom: var(--space-md);">Implementation Roadmap Planner</h3>
+                    <p>Develop detailed, phase-by-phase implementation plans with timelines, milestones, and resource requirements.</p>
+                </div>
+                <div class="session-card" onclick="openResource('roi-tracker')">
+                    <h3 style="color: var(--accent-mint); margin-bottom: var(--space-md);">ROI Success Tracker</h3>
+                    <p>Comprehensive dashboard aggregating all session ROI calculations into organizational success metrics.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resource Viewer Modal -->
+    <div class="resource-viewer" id="resourceViewer">
+        <div class="resource-content">
+            <button class="resource-close" onclick="closeResource()">×</button>
+            <div id="resourceContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Disclaimer Management
+        function closeDisclaimer() {
+            document.getElementById('disclaimerModal').style.display = 'none';
+        }
+
+        // Navigation
+        function showPhase(phaseId) {
+            // Hide all phases
+            const phases = document.querySelectorAll('.phase-section');
+            phases.forEach(phase => phase.classList.remove('active'));
+            
+            // Show selected phase
+            document.getElementById(phaseId).classList.add('active');
+            
+            // Update nav tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Learning Path Generator
+        function generateLearningPath() {
+            const role = document.getElementById('userRole').value || 'Manager';
+            const industry = document.getElementById('userIndustry').value || 'your industry';
+            const experience = document.getElementById('aiExperience').value || 'novice';
+            
+            const output = document.getElementById('learningPathOutput');
+            
+            let path = `PERSONALIZED LEARNING PATH FOR ${role.toUpperCase()}\n\n`;
+            path += `Industry Focus: ${industry.charAt(0).toUpperCase() + industry.slice(1)}\n`;
+            path += `Current Experience: ${experience.charAt(0).toUpperCase() + experience.slice(1)}\n\n`;
+            
+            if (experience === 'novice') {
+                path += `RECOMMENDED FOCUS:\n`;
+                path += `• Spend extra time on Phase I (Foundation) - Sessions 1-6\n`;
+                path += `• Focus heavily on Session 3 (Context Engineering) for prompt basics\n`;
+                path += `• Use Session 1 Platform Guide to choose initial AI tools\n`;
+                path += `• Complete all ROI exercises in Session 2 before advancing\n\n`;
+            } else if (experience === 'advanced') {
+                path += `ACCELERATED PATH:\n`;
+                path += `• Review Phase I quickly, focus on Sessions 3-4 for context/RAG\n`;
+                path += `• Spend more time on Phase III (Advanced) and Phase IV (Leadership)\n`;
+                path += `• Immediately begin implementing Session 15 (Agentic AI)\n`;
+                path += `• Focus on governance and team leadership in Phase IV\n\n`;
+            }
+            
+            path += `INDUSTRY-SPECIFIC RECOMMENDATIONS:\n`;
+            if (industry === 'finance') {
+                path += `• Priority Sessions: 2 (ROI), 4 (RAG), 6 (Risk), 9 (Finance), 12 (Compliance), 21 (Governance)\n`;
+                path += `• Focus on regulatory compliance and risk management frameworks\n`;
+            } else if (industry === 'healthcare') {
+                path += `• Priority Sessions: 6 (Safety), 8 (HR), 12 (Compliance), 21 (Ethics)\n`;
+                path += `• Emphasize ethical AI and patient data protection\n`;
+            } else if (industry === 'manufacturing') {
+                path += `• Priority Sessions: 5 (Data), 10 (Operations), 14 (Analytics), 17 (Integration)\n`;
+                path += `• Focus on operational efficiency and predictive maintenance\n`;
+            } else {
+                path += `• Follow standard progression with emphasis on sessions most relevant to your daily responsibilities\n`;
+            }
+            
+            path += `\nRECOMMENDED SCHEDULE:\n`;
+            path += `• Week 1-6: Phase I Foundation (1 session per week)\n`;
+            path += `• Week 7-12: Phase II Integration (1 session per week)\n`;
+            path += `• Week 13-18: Phase III Advanced (1 session per week)\n`;
+            path += `• Week 19-24: Phase IV Leadership (1 session per week)\n`;
+            path += `\nEach session takes 15 minutes + 30 minutes practice time.`;
+            
+            output.textContent = path;
+            output.style.display = 'block';
+        }
+
+        // Capstone Strategy Generator
+        function generateCapstoneStrategy() {
+            const orgName = document.getElementById('orgName').value || 'Your Organization';
+            const maturity = document.getElementById('maturityLevel').value || 'emerging';
+            const timeline = document.getElementById('timeline').value || '12-months';
+            
+            const objectives = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(cb => cb.value);
+            
+            const output = document.getElementById('capstoneOutput');
+            
+            let strategy = `COMPLETE AI STRATEGY PLAYBOOK\n`;
+            strategy += `${orgName.toUpperCase()}\n`;
+            strategy += `Generated: ${new Date().toLocaleDateString()}\n\n`;
+            
+            strategy += `EXECUTIVE SUMMARY\n`;
+            strategy += `Organization: ${orgName}\n`;
+            strategy += `Current AI Maturity: ${maturity.charAt(0).toUpperCase() + maturity.slice(1)}\n`;
+            strategy += `Implementation Timeline: ${timeline.replace('-', ' ')}\n`;
+            strategy += `Primary Objectives: ${objectives.join(', ') || 'Comprehensive AI transformation'}\n\n`;
+            
+            strategy += `STRATEGIC FRAMEWORK\n`;
+            strategy += `Based on the 24-session Manager's AI Playbook, this strategy synthesizes:\n`;
+            strategy += `• Platform selection guidance (Session 1)\n`;
+            strategy += `• ROI measurement frameworks (Session 2)\n`;
+            strategy += `• Context engineering principles (Session 3)\n`;
+            strategy += `• Knowledge management systems (Session 4)\n`;
+            strategy += `• Data quality foundations (Session 5)\n`;
+            strategy += `• Risk management protocols (Session 6)\n`;
+            strategy += `• Functional integration across all departments (Sessions 7-12)\n`;
+            strategy += `• Advanced multimodal and agentic capabilities (Sessions 13-18)\n`;
+            strategy += `• Leadership and governance frameworks (Sessions 19-24)\n\n`;
+            
+            strategy += `IMPLEMENTATION PHASES\n`;
+            if (timeline === '6-months') {
+                strategy += `PHASE 1 (Months 1-2): Foundation & Quick Wins\n`;
+                strategy += `PHASE 2 (Months 3-4): Department Integration\n`;
+                strategy += `PHASE 3 (Months 5-6): Advanced Deployment & Optimization\n`;
+            } else if (timeline === '12-months') {
+                strategy += `PHASE 1 (Months 1-3): Foundation Building\n`;
+                strategy += `PHASE 2 (Months 4-6): Functional Integration\n`;
+                strategy += `PHASE 3 (Months 7-9): Advanced Capabilities\n`;
+                strategy += `PHASE 4 (Months 10-12): Strategic Leadership & Optimization\n`;
+            } else {
+                strategy += `PHASE 1 (Months 1-6): Comprehensive Foundation\n`;
+                strategy += `PHASE 2 (Months 7-12): Department-by-Department Integration\n`;
+                strategy += `PHASE 3 (Months 13-18): Advanced Capabilities & Scaling\n`;
+                strategy += `PHASE 4 (Months 19-24): Leadership Excellence & Continuous Innovation\n`;
+            }
+            
+            strategy += `\nSUCCESS METRICS\n`;
+            if (objectives.includes('cost-reduction')) {
+                strategy += `• Cost Reduction: Target 15-25% operational cost savings\n`;
+            }
+            if (objectives.includes('revenue-growth')) {
+                strategy += `• Revenue Growth: AI-driven revenue increase of 10-20%\n`;
+            }
+            if (objectives.includes('operational-efficiency')) {
+                strategy += `• Efficiency Gains: 30-40% improvement in process automation\n`;
+            }
+            strategy += `• Manager AI Competency: 100% completion of 24-session program\n`;
+            strategy += `• Employee Adoption: 80%+ active AI tool usage\n`;
+            strategy += `• Innovation Index: 3+ new AI-powered business processes per quarter\n\n`;
+            
+            strategy += `NEXT STEPS\n`;
+            strategy += `1. Present this strategy to executive leadership\n`;
+            strategy += `2. Secure budget and resource allocation\n`;
+            strategy += `3. Begin Phase 1 implementation with pilot departments\n`;
+            strategy += `4. Establish governance framework and success metrics\n`;
+            strategy += `5. Launch manager training program using Playbook resources\n\n`;
+            
+            strategy += `This strategy synthesizes insights from all 24 sessions of the Enhanced AI Acumen Program, providing a comprehensive roadmap for transforming ${orgName} into an AI-first organization.`;
+            
+            output.textContent = strategy;
+            output.style.display = 'block';
+        }
+
+        // Resource Management
+        function openResource(resourceId) {
+            const viewer = document.getElementById('resourceViewer');
+            const content = document.getElementById('resourceContent');
+            
+            // Resource content templates
+            const resources = {
+                'session1': `
+                    <h2>Session 1: The AI Landscape - Beyond the Hype</h2>
+                    <div class="interactive-tool">
+                        <div class="tool-header">Strategic AI Platform Selection Tool</div>
+                        <div class="input-group">
+                            <label>Business Problem Description</label>
+                            <textarea id="businessProblem" rows="3" placeholder="Describe the specific business challenge you need AI to solve..."></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Primary Data Type</label>
+                            <select id="dataType">
+                                <option value="text">Text documents and communications</option>
+                                <option value="structured">Structured data and spreadsheets</option>
+                                <option value="multimodal">Mixed (text, images, documents)</option>
+                                <option value="code">Code and technical content</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Security Requirements</label>
+                            <select id="security">
+                                <option value="standard">Standard business security</option>
+                                <option value="high">High security (financial/legal)</option>
+                                <option value="regulated">Highly regulated industry</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="recommendPlatform()">Get Platform Recommendation</button>
+                        <div class="output-area" id="platformRecommendation" style="display: none;"></div>
+                    </div>
+                    
+                    <h3>Key Concepts</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-lg); margin: var(--space-lg) 0;">
+                        <div style="background: var(--bg-primary); padding: var(--space-lg); border-radius: 8px; border: 1px solid var(--border);">
+                            <h4 style="color: var(--accent-mint);">🧠 OpenAI: The Reasoning Engine</h4>
+                            <p style="opacity: 0.9;">Best for complex problem-solving, creative generation, and advanced reasoning tasks.</p>
+                        </div>
+                        <div style="background: var(--bg-primary); padding: var(--space-lg); border-radius: 8px; border: 1px solid var(--border);">
+                            <h4 style="color: var(--accent-mint);">⚙️ Google: The Integrated Workflow</h4>
+                            <p style="opacity: 0.9;">Ideal for business process automation and Workspace integration.</p>
+                        </div>
+                        <div style="background: var(--bg-primary); padding: var(--space-lg); border-radius: 8px; border: 1px solid var(--border);">
+                            <h4 style="color: var(--accent-mint);">🛡️ Anthropic: The Trusted Partner</h4>
+                            <p style="opacity: 0.9;">Perfect for legal analysis, compliance, and sensitive document processing.</p>
+                        </div>
+                    </div>
+                `,
+                'session2': `
+                    <h2>Session 2: Understanding AI Business Value & ROI</h2>
+                    <div class="interactive-tool">
+                        <div class="tool-header">AI ROI Calculator</div>
+                        <div class="input-group">
+                            <label>Average Hourly Labor Cost ($)</label>
+                            <input type="number" id="laborCost" placeholder="50" value="50">
+                        </div>
+                        <div class="input-group">
+                            <label>Hours Saved Per Week Per Employee</label>
+                            <input type="number" id="hoursSaved" placeholder="5" value="5">
+                        </div>
+                        <div class="input-group">
+                            <label>Number of Employees Affected</label>
+                            <input type="number" id="employeeCount" placeholder="10" value="10">
+                        </div>
+                        <div class="input-group">
+                            <label>AI Tool Monthly Cost ($)</label>
+                            <input type="number" id="toolCost" placeholder="200" value="200">
+                        </div>
+                        <button class="btn" onclick="calculateROI()">Calculate ROI</button>
+                        <div class="output-area" id="roiResults" style="display: none;"></div>
+                    </div>
+                `,
+                'session3': `
+                    <h2>Session 3: Context Engineering Framework</h2>
+                    <div class="interactive-tool">
+                        <div class="tool-header">PTCF Prompt Builder</div>
+                        <div class="input-group">
+                            <label>Persona (Who should the AI be?)</label>
+                            <input type="text" id="persona" placeholder="e.g., Senior Financial Analyst, HR Manager">
+                        </div>
+                        <div class="input-group">
+                            <label>Task (What should it do?)</label>
+                            <input type="text" id="task" placeholder="e.g., Analyze quarterly reports, Draft performance review">
+                        </div>
+                        <div class="input-group">
+                            <label>Context (What information to use?)</label>
+                            <textarea id="context" rows="3" placeholder="e.g., Using Q3 financial data, considering market conditions..."></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Format (How should output be structured?)</label>
+                            <input type="text" id="format" placeholder="e.g., 3 bullet points, Executive summary, Detailed report">
+                        </div>
+                        <button class="btn" onclick="generatePrompt()">Generate Optimized Prompt</button>
+                        <div class="output-area" id="promptOutput" style="display: none;"></div>
+                    </div>
+                `,
+                'executive-presentation': `
+                    <h2>Executive Presentation Generator</h2>
+                    <div class="interactive-tool">
+                        <div class="tool-header">Board-Ready AI Strategy Presentation</div>
+                        <div class="input-group">
+                            <label>Presentation Audience</label>
+                            <select id="audience">
+                                <option value="board">Board of Directors</option>
+                                <option value="c-suite">C-Suite Leadership</option>
+                                <option value="investors">Investors</option>
+                                <option value="department">Department Heads</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Key Message</label>
+                            <select id="keyMessage">
+                                <option value="investment">Request for AI investment approval</option>
+                                <option value="progress">Progress update on AI initiatives</option>
+                                <option value="strategy">Strategic AI roadmap presentation</option>
+                                <option value="competitive">Competitive advantage through AI</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Presentation Length</label>
+                            <select id="presentationLength">
+                                <option value="5-min">5 minutes (Executive summary)</option>
+                                <option value="15-min">15 minutes (Standard board)</option>
+                                <option value="30-min">30 minutes (Detailed strategy)</option>
+                                <option value="45-min">45 minutes (Comprehensive review)</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="generatePresentation()">Generate Presentation Outline</button>
+                        <div class="output-area" id="presentationOutput" style="display: none;"></div>
+                    </div>
+                `,
+                'implementation-roadmap': `
+                    <h2>Implementation Roadmap Planner</h2>
+                    <div class="interactive-tool">
+                        <div class="tool-header">AI Implementation Timeline Generator</div>
+                        <div class="input-group">
+                            <label>Organization Size</label>
+                            <select id="orgSize">
+                                <option value="small">Small (< 100 employees)</option>
+                                <option value="medium">Medium (100-1000 employees)</option>
+                                <option value="large">Large (1000-10000 employees)</option>
+                                <option value="enterprise">Enterprise (10000+ employees)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>AI Readiness Level</label>
+                            <select id="readiness">
+                                <option value="none">No current AI usage</option>
+                                <option value="basic">Basic AI tool adoption</option>
+                                <option value="some">Some departmental initiatives</option>
+                                <option value="advanced">Advanced AI capabilities</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Priority Department for Rollout</label>
+                            <select id="priorityDept">
+                                <option value="it">IT/Technology</option>
+                                <option value="marketing">Marketing/Sales</option>
+                                <option value="operations">Operations</option>
+                                <option value="finance">Finance</option>
+                                <option value="hr">Human Resources</option>
+                                <option value="all">All Departments Simultaneously</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="generateRoadmap()">Generate Implementation Roadmap</button>
+                        <div class="output-area" id="roadmapOutput" style="display: none;"></div>
+                    </div>
+                `
+            };
+            
+            content.innerHTML = resources[resourceId] || '<h2>Resource Coming Soon</h2><p>This resource is being developed and will be available soon.</p>';
+            viewer.classList.add('active');
+        }
+
+        function closeResource() {
+            document.getElementById('resourceViewer').classList.remove('active');
+        }
+
+        // Interactive Tool Functions
+        function recommendPlatform() {
+            const problem = document.getElementById('businessProblem').value;
+            const dataType = document.getElementById('dataType').value;
+            const security = document.getElementById('security').value;
+            const output = document.getElementById('platformRecommendation');
+            
+            let recommendation = 'PLATFORM RECOMMENDATION\n\n';
+            
+            if (security === 'high' || security === 'regulated') {
+                recommendation += 'PRIMARY RECOMMENDATION: Anthropic Claude\n';
+                recommendation += 'REASONING: Your high security requirements make Claude the optimal choice due to:\n';
+                recommendation += '• Constitutional AI for safety and reliability\n';
+                recommendation += '• Lowest hallucination rates in the industry\n';
+                recommendation += '• Large context window for complex document analysis\n';
+                recommendation += '• Strong focus on responsible AI practices\n\n';
+            } else if (dataType === 'structured' || problem.toLowerCase().includes('workflow')) {
+                recommendation += 'PRIMARY RECOMMENDATION: Google Gemini\n';
+                recommendation += 'REASONING: Your workflow focus makes Google ideal due to:\n';
+                recommendation += '• Native Google Workspace integration\n';
+                recommendation += '• Excellent for spreadsheet and data analysis\n';
+                recommendation += '• Enterprise-grade security and compliance\n';
+                recommendation += '• Real-time collaborative features\n\n';
+            } else {
+                recommendation += 'PRIMARY RECOMMENDATION: OpenAI GPT-4\n';
+                recommendation += 'REASONING: Your use case aligns with OpenAI strengths:\n';
+                recommendation += '• Superior reasoning and problem-solving capabilities\n';
+                recommendation += '• Excellent creative and analytical content generation\n';
+                recommendation += '• Strong performance across diverse business tasks\n';
+                recommendation += '• Robust API ecosystem for integration\n\n';
+            }
+            
+            recommendation += 'IMPLEMENTATION STEPS:\n';
+            recommendation += '1. Start with free tier to validate use case\n';
+            recommendation += '2. Run 2-week pilot with 3-5 team members\n';
+            recommendation += '3. Measure results using Session 2 ROI framework\n';
+            recommendation += '4. Scale based on pilot success metrics\n';
+            recommendation += '5. Implement governance using Session 21 guidelines';
+            
+            output.textContent = recommendation;
+            output.style.display = 'block';
+        }
+
+        function calculateROI() {
+            const laborCost = parseFloat(document.getElementById('laborCost').value) || 50;
+            const hoursSaved = parseFloat(document.getElementById('hoursSaved').value) || 5;
+            const employeeCount = parseFloat(document.getElementById('employeeCount').value) || 10;
+            const toolCost = parseFloat(document.getElementById('toolCost').value) || 200;
+            
+            const weeklyLaborSavings = laborCost * hoursSaved * employeeCount;
+            const monthlyLaborSavings = weeklyLaborSavings * 4.33;
+            const annualLaborSavings = monthlyLaborSavings * 12;
+            const annualToolCost = toolCost * 12;
+            const netAnnualSavings = annualLaborSavings - annualToolCost;
+            const roi = ((netAnnualSavings / annualToolCost) * 100);
+            const paybackMonths = annualToolCost / (monthlyLaborSavings - toolCost);
+            
+            const output = document.getElementById('roiResults');
+            let results = 'AI ROI CALCULATION RESULTS\n\n';
+            results += `SAVINGS ANALYSIS:\n`;
+            results += `Monthly Labor Savings: $${monthlyLaborSavings.toLocaleString()}\n`;
+            results += `Annual Labor Savings: $${annualLaborSavings.toLocaleString()}\n`;
+            results += `Annual Tool Cost: $${annualToolCost.toLocaleString()}\n`;
+            results += `Net Annual Savings: $${netAnnualSavings.toLocaleString()}\n\n`;
+            results += `KEY METRICS:\n`;
+            results += `ROI: ${roi.toFixed(0)}%\n`;
+            results += `Payback Period: ${paybackMonths.toFixed(1)} months\n\n`;
+            results += `BUSINESS CASE:\n`;
+            if (roi > 200) {
+                results += `EXCELLENT ROI - Strong business case for immediate implementation\n`;
+            } else if (roi > 100) {
+                results += `GOOD ROI - Solid business case, proceed with implementation\n`;
+            } else if (roi > 50) {
+                results += `MODERATE ROI - Consider optimizing use case or reducing costs\n`;
+            } else {
+                results += `LOW ROI - Reassess use case or explore alternative solutions\n`;
+            }
+            results += `\nBased on industry benchmarks, this represents ${hoursSaved} hours/week savings per employee through AI automation.`;
+            
+            output.textContent = results;
+            output.style.display = 'block';
+        }
+
+        function generatePrompt() {
+            const persona = document.getElementById('persona').value || '[PERSONA]';
+            const task = document.getElementById('task').value || '[TASK]';
+            const context = document.getElementById('context').value || '[CONTEXT]';
+            const format = document.getElementById('format').value || '[FORMAT]';
+            
+            const output = document.getElementById('promptOutput');
+            let prompt = 'OPTIMIZED AI PROMPT\n\n';
+            prompt += `Act as a ${persona}. Your task is to ${task}. `;
+            prompt += `${context} `;
+            prompt += `Please structure your response as ${format}.\n\n`;
+            prompt += `PTCF FRAMEWORK APPLIED:\n`;
+            prompt += `✓ Persona: ${persona}\n`;
+            prompt += `✓ Task: ${task}\n`;
+            prompt += `✓ Context: ${context}\n`;
+            prompt += `✓ Format: ${format}\n\n`;
+            prompt += `QUALITY IMPROVEMENTS:\n`;
+            prompt += `• Clear role definition increases accuracy by ~40%\n`;
+            prompt += `• Specific task reduces ambiguity and improves focus\n`;
+            prompt += `• Rich context provides grounding for better responses\n`;
+            prompt += `• Structured format ensures consistent, usable output\n\n`;
+            prompt += `Copy the optimized prompt above and test it with your chosen AI platform.`;
+            
+            output.textContent = prompt;
+            output.style.display = 'block';
+        }
+
+        function generatePresentation() {
+            const audience = document.getElementById('audience').value;
+            const message = document.getElementById('keyMessage').value;
+            const length = document.getElementById('presentationLength').value;
+            
+            const output = document.getElementById('presentationOutput');
+            let presentation = 'EXECUTIVE PRESENTATION OUTLINE\n\n';
+            presentation += `AUDIENCE: ${audience.charAt(0).toUpperCase() + audience.slice(1)}\n`;
+            presentation += `OBJECTIVE: ${message.charAt(0).toUpperCase() + message.slice(1)}\n`;
+            presentation += `DURATION: ${length}\n\n`;
+            
+            if (length === '5-min') {
+                presentation += 'SLIDE STRUCTURE (5 slides, 1 min each):\n';
+                presentation += '1. Executive Summary & Ask\n';
+                presentation += '2. Market Opportunity & Competitive Threat\n';
+                presentation += '3. Proposed AI Strategy & ROI\n';
+                presentation += '4. Implementation Timeline & Investment\n';
+                presentation += '5. Next Steps & Decision Required\n';
+            } else if (length === '15-min') {
+                presentation += 'SLIDE STRUCTURE (12 slides, ~1.5 min each):\n';
+                presentation += '1. Executive Summary\n';
+                presentation += '2. Current AI Landscape & Opportunity\n';
+                presentation += '3. Organizational Readiness Assessment\n';
+                presentation += '4. Strategic AI Framework\n';
+                presentation += '5. Phase 1: Foundation (Sessions 1-6 insights)\n';
+                presentation += '6. Phase 2: Integration (Sessions 7-12 insights)\n';
+                presentation += '7. Phase 3: Advanced Capabilities (Sessions 13-18)\n';
+                presentation += '8. Phase 4: Leadership Excellence (Sessions 19-24)\n';
+                presentation += '9. Financial Projections & ROI Analysis\n';
+                presentation += '10. Risk Assessment & Mitigation\n';
+                presentation += '11. Implementation Timeline & Milestones\n';
+                presentation += '12. Investment Request & Next Steps\n';
+            } else {
+                presentation += 'COMPREHENSIVE PRESENTATION STRUCTURE:\n';
+                presentation += 'SECTION 1: Strategic Context (5-7 slides)\n';
+                presentation += 'SECTION 2: AI Opportunity Analysis (8-10 slides)\n';
+                presentation += 'SECTION 3: Proposed Strategy & Framework (10-12 slides)\n';
+                presentation += 'SECTION 4: Implementation Roadmap (6-8 slides)\n';
+                presentation += 'SECTION 5: Financial Analysis & Business Case (4-6 slides)\n';
+                presentation += 'SECTION 6: Risk Management & Governance (4-5 slides)\n';
+                presentation += 'SECTION 7: Next Steps & Decision Framework (3-4 slides)\n';
+            }
+            
+            presentation += '\nKEY TALKING POINTS:\n';
+            presentation += '• Reference Manager\'s AI Playbook as strategic foundation\n';
+            presentation += '• Cite specific ROI examples from Session 2 calculations\n';
+            presentation += '• Highlight governance framework from Session 21\n';
+            presentation += '• Emphasize competitive advantage from complete program\n';
+            presentation += '• Include success metrics and measurement framework\n\n';
+            
+            presentation += 'SUPPORTING MATERIALS:\n';
+            presentation += '• Financial models from ROI calculator\n';
+            presentation += '• Implementation timeline from roadmap planner\n';
+            presentation += '• Risk assessment from Session 6 framework\n';
+            presentation += '• Platform selection rationale from Session 1\n';
+            presentation += '• Change management strategy from Session 19';
+            
+            output.textContent = presentation;
+            output.style.display = 'block';
+        }
+
+        function generateRoadmap() {
+            const orgSize = document.getElementById('orgSize').value;
+            const readiness = document.getElementById('readiness').value;
+            const priority = document.getElementById('priorityDept').value;
+            
+            const output = document.getElementById('roadmapOutput');
+            let roadmap = 'AI IMPLEMENTATION ROADMAP\n\n';
+            roadmap += `ORGANIZATION PROFILE:\n`;
+            roadmap += `Size: ${orgSize.charAt(0).toUpperCase() + orgSize.slice(1)}\n`;
+            roadmap += `Current Readiness: ${readiness.charAt(0).toUpperCase() + readiness.slice(1)}\n`;
+            roadmap += `Priority Department: ${priority.charAt(0).toUpperCase() + priority.slice(1)}\n\n`;
+            
+            if (orgSize === 'small' || orgSize === 'medium') {
+                roadmap += 'ACCELERATED TIMELINE (6-9 months):\n\n';
+                roadmap += 'PHASE 1: Foundation (Months 1-2)\n';
+                roadmap += '• Manager training: Sessions 1-6 (Playbook foundation)\n';
+                roadmap += '• Platform selection and pilot setup\n';
+                roadmap += '• Initial data quality assessment\n';
+                roadmap += '• Governance framework establishment\n\n';
+                
+                roadmap += 'PHASE 2: Department Rollout (Months 3-5)\n';
+                roadmap += '• Priority department implementation\n';
+                roadmap += '• Manager training: Sessions 7-12 (Functional integration)\n';
+                roadmap += '• Process automation and workflow integration\n';
+                roadmap += '• Success metrics tracking and optimization\n\n';
+                
+                roadmap += 'PHASE 3: Organization-Wide (Months 6-9)\n';
+                roadmap += '• All-department expansion\n';
+                roadmap += '• Manager training: Sessions 13-24 (Advanced & Leadership)\n';
+                roadmap += '• Advanced AI capabilities deployment\n';
+                roadmap += '• Strategic AI leadership development\n';
+            } else {
+                roadmap += 'ENTERPRISE TIMELINE (12-18 months):\n\n';
+                roadmap += 'PHASE 1: Foundation & Pilot (Months 1-4)\n';
+                roadmap += '• Executive alignment and strategy approval\n';
+                roadmap += '• Manager cohort 1 training: Sessions 1-12\n';
+                roadmap += '• Pilot department implementation and validation\n';
+                roadmap += '• Enterprise governance and compliance framework\n\n';
+                
+                roadmap += 'PHASE 2: Scaled Deployment (Months 5-10)\n';
+                roadmap += '• Manager cohort 2-3 training: Full 24-session program\n';
+                roadmap += '• Department-by-department rollout\n';
+                roadmap += '• Integration with enterprise systems\n';
+                roadmap += '• Change management and adoption programs\n\n';
+                
+                roadmap += 'PHASE 3: Advanced Capabilities (Months 11-15)\n';
+                roadmap += '• Advanced AI capabilities across all departments\n';
+                roadmap += '• Agentic AI and multimodal implementations\n';
+                roadmap += '• Performance optimization and continuous improvement\n';
+                roadmap += '• Innovation and competitive advantage development\n\n';
+                
+                roadmap += 'PHASE 4: Leadership Excellence (Months 16-18)\n';
+                roadmap += '• AI leadership development program\n';
+                roadmap += '• Industry leadership and thought leadership\n';
+                roadmap += '• Continuous innovation and adaptation\n';
+                roadmap += '• Strategic advantage optimization\n';
+            }
+            
+            roadmap += 'SUCCESS MILESTONES:\n';
+            roadmap += '✓ 100% manager completion of relevant Playbook sessions\n';
+            roadmap += '✓ 80%+ employee adoption of AI tools\n';
+            roadmap += '✓ 20%+ productivity improvement in automated processes\n';
+            roadmap += '✓ Positive ROI achievement within first year\n';
+            roadmap += '✓ Established AI governance and risk management\n';
+            roadmap += '✓ Competitive advantage through AI-first operations\n\n';
+            
+            roadmap += 'CRITICAL SUCCESS FACTORS:\n';
+            roadmap += '• Executive sponsorship and clear vision\n';
+            roadmap += '• Manager training using complete Playbook curriculum\n';
+            roadmap += '• Phased approach with measurable milestones\n';
+            roadmap += '• Strong change management and communication\n';
+            roadmap += '• Continuous monitoring and optimization\n';
+            roadmap += '• Cultural transformation toward AI-first mindset';
+            
+            output.textContent = roadmap;
+            output.style.display = 'block';
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(e) {
+            const disclaimerModal = document.getElementById('disclaimerModal');
+            const resourceViewer = document.getElementById('resourceViewer');
+            
+            if (e.target === disclaimerModal) {
+                closeDisclaimer();
+            }
+            if (e.target === resourceViewer) {
+                closeResource();
+            }
+        });
+    </script>
+</body>
+</html>
