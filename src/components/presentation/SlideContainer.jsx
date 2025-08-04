@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '../../lib/utils'
+import { usePresentation } from '../../lib/PresentationContext'
 
 // Import slide type components
 import TitleSlide from './slides/TitleSlide'
@@ -18,6 +19,7 @@ import ActionPlanSlide from './slides/ActionPlanSlide'
  */
 function SlideContainer({ slide, sessionData, isActive = true, direction = 'next' }) {
   const slideRef = useRef(null)
+  const { presentationMode } = usePresentation()
 
   // Scroll to top when slide changes
   useEffect(() => {
@@ -134,7 +136,8 @@ function SlideContainer({ slide, sessionData, isActive = true, direction = 'next
       animate="center"
       exit="exit"
       className={cn(
-        "w-full h-full min-h-screen overflow-y-auto",
+        "w-full h-full slide-container",
+        presentationMode ? "h-screen overflow-hidden" : "min-h-screen overflow-y-auto",
         "bg-dark-bg text-dark-text"
       )}
     >

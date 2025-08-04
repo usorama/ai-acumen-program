@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useParams, useNavigate } from 'react-router-dom'
 import { usePresentation } from '../../lib/PresentationContext'
@@ -22,7 +22,7 @@ function PresentationControls() {
   const sessionNumber = parseInt(sessionId)
   
   const [isVisible, setIsVisible] = useState(true)
-  const [hideTimeout, setHideTimeout] = useState(null)
+  const hideTimeoutRef = useRef(null)
 
   // Get current session data
   const session = getSessionById(sessionNumber)
@@ -34,13 +34,12 @@ function PresentationControls() {
   useEffect(() => {
     const resetHideTimer = () => {
       setIsVisible(true)
-      if (hideTimeout) {
-        clearTimeout(hideTimeout)
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current)
       }
-      const timeout = setTimeout(() => {
+      hideTimeoutRef.current = setTimeout(() => {
         setIsVisible(false)
       }, 3000)
-      setHideTimeout(timeout)
     }
 
     // Show controls on mouse movement
@@ -62,11 +61,11 @@ function PresentationControls() {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('keydown', handleKeyPress)
-      if (hideTimeout) {
-        clearTimeout(hideTimeout)
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current)
       }
     }
-  }, [hideTimeout])
+  }, [])
 
   // Handle keyboard navigation
   useEffect(() => {

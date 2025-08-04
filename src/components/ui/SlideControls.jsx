@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useParams, useNavigate } from 'react-router-dom'
 import { usePresentation } from '../../lib/PresentationContext'
@@ -23,7 +23,7 @@ function SlideControls() {
   const sessionNumber = parseInt(sessionId)
   
   const [isVisible, setIsVisible] = useState(true)
-  const [hideTimeout, setHideTimeout] = useState(null)
+  const hideTimeoutRef = useRef(null)
 
   // Get current session data
   const session = getSessionById(sessionNumber)
@@ -40,21 +40,19 @@ function SlideControls() {
   useEffect(() => {
     const resetHideTimer = () => {
       setIsVisible(true)
-      if (hideTimeout) {
-        clearTimeout(hideTimeout)
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current)
       }
-      const timeout = setTimeout(() => {
+      hideTimeoutRef.current = setTimeout(() => {
         setIsVisible(false)
       }, 3000)
-      setHideTimeout(timeout)
     }
 
     const handleMouseMove = () => resetHideTimer()
     const handleMouseLeave = () => {
-      const timeout = setTimeout(() => {
+      hideTimeoutRef.current = setTimeout(() => {
         setIsVisible(false)
       }, 1000)
-      setHideTimeout(timeout)
     }
 
     document.addEventListener('mousemove', handleMouseMove)
@@ -65,11 +63,11 @@ function SlideControls() {
     return () => {
       document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseleave', handleMouseLeave)
-      if (hideTimeout) {
-        clearTimeout(hideTimeout)
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current)
       }
     }
-  }, [hideTimeout])
+  }, [])
 
   // Keyboard navigation
   useEffect(() => {

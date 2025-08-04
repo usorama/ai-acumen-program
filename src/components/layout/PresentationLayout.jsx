@@ -223,15 +223,7 @@ function PresentationLayout({ children }) {
         </motion.button>
       )}
 
-      {/* Presentation Mode Overlay */}
-      {presentationMode && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/90 z-20 pointer-events-none"
-        />
-      )}
+      {/* Presentation Mode Overlay - Removed to fix black screen issue */}
 
       {/* Loading Overlay (can be used for transitions) */}
       <AnimatePresence>

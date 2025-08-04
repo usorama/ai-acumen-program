@@ -9,7 +9,7 @@ function TitleSlide({ slide, sessionData, isActive }) {
   const { title, subtitle, content } = slide
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-dark-bg via-dark-bg-secondary to-dark-bg overflow-hidden">
+    <div className="slide-container relative flex items-center justify-center bg-gradient-to-br from-dark-bg via-dark-bg-secondary to-dark-bg overflow-hidden h-full">
       {/* Background Elements */}
       <div className="absolute inset-0">
         {/* Animated Background Shapes */}

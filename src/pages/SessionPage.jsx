@@ -123,15 +123,7 @@ function SessionPage() {
         />
       </AnimatePresence>
 
-      {/* Presentation Mode Overlay */}
-      {presentationMode && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/95 pointer-events-none z-10"
-        />
-      )}
+      {/* Removed the black overlay that was covering content in presentation mode */}
 
       {/* Session Metadata (Hidden, for SEO and accessibility) */}
       <div className="sr-only">

@@ -1,0 +1,62 @@
+/* Presentation Mode Styles */
+.presentation-mode {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Ensure slides fit within viewport in presentation mode */
+.presentation-mode .slide-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.presentation-mode .slide-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 2rem;
+}
+
+/* Scale content to fit viewport if needed */
+.presentation-mode .slide-inner {
+  max-height: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Override min-height in presentation mode */
+.presentation-mode .min-h-screen {
+  min-height: unset;
+  height: 100vh;
+}
+
+/* Ensure text scales appropriately */
+@media (max-height: 768px) {
+  .presentation-mode h1 {
+    font-size: 2.5rem;
+  }
+  
+  .presentation-mode h2 {
+    font-size: 2rem;
+  }
+  
+  .presentation-mode p {
+    font-size: 1rem;
+  }
+}
+
+/* Hide scrollbars in presentation mode */
+.presentation-mode::-webkit-scrollbar {
+  display: none;
+}
+
+.presentation-mode {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
