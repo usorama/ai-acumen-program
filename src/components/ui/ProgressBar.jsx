@@ -92,16 +92,17 @@ function ProgressBar() {
             {/* Presentation Mode Toggle */}
             <button
               onClick={() => {
+                console.log('Present button clicked!');
                 setPresentationMode(true)
                 navigate(`/session/${sessionNumber}?mode=presentation`)
               }}
-              className="btn-ghost text-sm px-4 py-2"
+              className="btn-primary flex items-center gap-2 px-4 py-2 bg-brand-primary hover:bg-brand-primary-dark text-white rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
               aria-label="Enter presentation mode"
             >
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m0 0V1a1 1 0 011-1h2a1 1 0 011 1v18a1 1 0 01-1 1H4a1 1 0 01-1-1V1a1 1 0 011-1h2a1 1 0 011 1v3z" />
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.55-2.27A1 1 0 0121 8.618v6.764a1 1 0 01-1.45.894L15 14M5 6a2 2 0 012-2h6a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6z" />
               </svg>
-              Present
+              <span className="font-semibold">Present</span>
             </button>
 
             {/* Settings Menu */}

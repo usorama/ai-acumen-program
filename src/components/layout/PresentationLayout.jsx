@@ -6,6 +6,7 @@ import { cn } from '../../lib/utils'
 import Navigation from '../ui/Navigation'
 import ProgressBar from '../ui/ProgressBar'
 import SlideControls from '../ui/SlideControls'
+import PresentationControls from '../ui/PresentationControls'
 import AchievementPopup from '../ui/AchievementPopup'
 
 /**
@@ -161,6 +162,25 @@ function PresentationLayout({ children }) {
             <SlideControls />
           </motion.div>
         )}
+        
+        {/* Presentation Mode Indicator */}
+        {presentationMode && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-4 right-4 z-50 bg-brand-primary/90 text-white px-4 py-2 rounded-lg backdrop-blur-sm flex items-center gap-2"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.55-2.27A1 1 0 0121 8.618v6.764a1 1 0 01-1.45.894L15 14M5 6a2 2 0 012-2h6a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6z" />
+            </svg>
+            <span className="font-medium">Presentation Mode</span>
+            <span className="text-sm opacity-75">Press ESC to exit</span>
+          </motion.div>
+        )}
+        
+        {/* Presentation Controls */}
+        <PresentationControls />
       </div>
 
       {/* Achievement Notifications */}
