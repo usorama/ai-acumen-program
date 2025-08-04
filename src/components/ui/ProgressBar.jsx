@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { usePresentation } from '../../lib/PresentationContext'
 import { getSessionById, getNextSession, getPreviousSession } from '../../data/sessions'
 import { cn, formatSessionTitle, getSessionPhase } from '../../lib/utils'
@@ -19,6 +19,7 @@ function ProgressBar() {
   } = usePresentation()
   
   const { sessionId } = useParams()
+  const navigate = useNavigate()
   const sessionNumber = parseInt(sessionId) || currentSession
 
   // Get current session data
@@ -90,7 +91,10 @@ function ProgressBar() {
 
             {/* Presentation Mode Toggle */}
             <button
-              onClick={() => setPresentationMode(true)}
+              onClick={() => {
+                setPresentationMode(true)
+                navigate(`/session/${sessionNumber}?mode=presentation`)
+              }}
               className="btn-ghost text-sm px-4 py-2"
               aria-label="Enter presentation mode"
             >

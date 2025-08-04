@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { usePresentation } from '../../lib/PresentationContext'
 import { cn } from '../../lib/utils'
 import Navigation from '../ui/Navigation'
@@ -12,11 +13,14 @@ import AchievementPopup from '../ui/AchievementPopup'
  * Provides the overall structure with navigation, progress tracking, and controls
  */
 function PresentationLayout({ children }) {
+  const navigate = useNavigate()
+  const location = useLocation()
   const { 
     isNavigationOpen, 
     presentationMode, 
     achievements,
-    toggleNavigation 
+    toggleNavigation,
+    setPresentationMode 
   } = usePresentation()
 
   // Handle keyboard shortcuts
@@ -32,6 +36,15 @@ function PresentationLayout({ children }) {
           if (presentationMode) {
             // Exit presentation mode
             event.preventDefault()
+            setPresentationMode(false)
+            // Remove query parameter if present
+            const searchParams = new URLSearchParams(location.search)
+            searchParams.delete('mode')
+            const newSearch = searchParams.toString()
+            navigate({
+              pathname: location.pathname,
+              search: newSearch ? `?${newSearch}` : ''
+            }, { replace: true })
           }
           break
         case 'F11':
@@ -57,14 +70,36 @@ function PresentationLayout({ children }) {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [presentationMode, toggleNavigation])
+  }, [presentationMode, toggleNavigation, setPresentationMode, navigate, location])
+
+  // Handle URL query parameter for presentation mode
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search)
+    const modeParam = searchParams.get('mode')
+    
+    if (modeParam === 'presentation' && !presentationMode) {
+      setPresentationMode(true)
+    }
+  }, [location.search, presentationMode, setPresentationMode])
 
   // Handle presentation mode changes
   useEffect(() => {
     if (presentationMode) {
       document.body.classList.add('presentation-mode')
+      // Request fullscreen when entering presentation mode
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {
+          // Fullscreen failed, but continue in presentation mode
+        })
+      }
     } else {
       document.body.classList.remove('presentation-mode')
+      // Exit fullscreen when leaving presentation mode
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {
+          // Exit fullscreen failed
+        })
+      }
     }
 
     return () => {

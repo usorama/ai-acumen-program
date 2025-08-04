@@ -36,6 +36,19 @@
     scrollbar-width: thin;
     scrollbar-color: #D2D7DF #1E293B;
   }
+  
+  /* Presentation mode styles */
+  body.presentation-mode {
+    @apply overflow-hidden;
+  }
+  
+  .presentation-mode {
+    @apply cursor-none;
+  }
+  
+  .presentation-mode:hover {
+    @apply cursor-auto;
+  }
 }
 
 @layer components {
