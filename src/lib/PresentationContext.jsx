@@ -43,7 +43,7 @@ function presentationReducer(state, action) {
         currentSlide: Math.max(0, state.currentSlide - 1),
       }
     
-    case 'COMPLETE_SESSION':
+    case 'COMPLETE_SESSION': {
       const isAlreadyCompleted = state.completedSessions.includes(action.payload)
       if (isAlreadyCompleted) return state
       
@@ -55,6 +55,7 @@ function presentationReducer(state, action) {
           sessionsCompleted: state.completedSessions.length + 1,
         }
       }
+    }
     
     case 'ADD_ACHIEVEMENT':
       return {

@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sessions 10-12: Specialized AI Applications - Ultra Clean Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Ultra-Clean 3-Color Design System */
+        :root {
+            /* 3-Color System - Pitch Deck Inspired */
+            --bg-primary: #000000;           /* Pure black background */
+            --bg-card: #0F0F0F;              /* 95% black cards (barely visible) */
+            --text-primary: #CCCCCC;         /* Light gray primary text */
+            --accent-mint: #00FF94;          /* Bright mint accent */
+            
+            /* Typography System - Single Font Family */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            
+            /* Font Sizes - Clean Hierarchy */
+            --text-hero: 4rem;               /* Hero titles */
+            --text-title: 2.5rem;           /* Section titles */  
+            --text-heading: 1.75rem;        /* Headings */
+            --text-large: 1.25rem;          /* Large body */
+            --text-body: 1rem;              /* Regular body */
+            --text-small: 0.875rem;         /* Small text */
+            
+            /* Spacing System - 8px Grid */
+            --space-xs: 0.5rem;   /* 8px */
+            --space-sm: 1rem;     /* 16px */
+            --space-md: 1.5rem;   /* 24px */
+            --space-lg: 2rem;     /* 32px */
+            --space-xl: 3rem;     /* 48px */
+            --space-2xl: 4rem;    /* 64px */
+            --space-3xl: 6rem;    /* 96px */
+        }
+
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: var(--text-body);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Presentation Container */
+        .presentation-system {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Ultra-Clean Navigation */
+        .slide-navigation {
+            width: 320px;
+            background: var(--bg-primary);
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: var(--space-lg);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-header {
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid rgba(204, 204, 204, 0.1);
+        }
+
+        .program-title {
+            font-size: var(--text-heading);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .program-subtitle {
+            font-size: var(--text-small);
+            color: var(--text-primary);
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        /* Session Navigation */
+        .session-list {
+            list-style: none;
+        }
+
+        .session-group {
+            margin-bottom: var(--space-xl);
+        }
+
+        .phase-title {
+            font-size: var(--text-large);
+            font-weight: 600;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-md);
+        }
+
+        .session-item {
+            padding: var(--space-md);
+            margin-bottom: var(--space-sm);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 8px;
+            background: var(--bg-card);
+            box-shadow: 
+                2px 2px 8px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.02);
+        }
+
+        .session-item:hover {
+            background: #1A1A1A;
+            box-shadow: 
+                4px 4px 12px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .session-item.active {
+            background: #1A1A1A;
+            color: var(--accent-mint);
+            box-shadow: 
+                4px 4px 12px rgba(0, 0, 0, 0.6),
+                0 0 0 1px var(--accent-mint),
+                0 0 8px rgba(0, 255, 148, 0.2);
+        }
+
+        .session-number {
+            font-size: var(--text-small);
+            font-weight: 600;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-xs);
+        }
+
+        .session-title {
+            font-size: var(--text-body);
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .session-item.active .session-title {
+            color: var(--accent-mint);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 320px;
+            min-height: 100vh;
+        }
+
+        .slide-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-3xl) var(--space-xl);
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            max-width: 1000px;
+            text-align: left;
+        }
+
+        /* Slide Types */
+        .slide.hero {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .slide.content {
+            text-align: left;
+            max-width: 1000px;
+        }
+
+        /* Typography Styles */
+        .hero-title {
+            font-size: var(--text-hero);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: var(--text-title);
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xl);
+            opacity: 0.8;
+        }
+
+        .slide-title {
+            font-size: var(--text-title);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.2;
+        }
+
+        .slide-objective {
+            font-size: var(--text-large);
+            font-weight: 500;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-xl);
+        }
+
+        .content-section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .section-title {
+            font-size: var(--text-heading);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-subtitle {
+            font-size: var(--text-large);
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            opacity: 0.8;
+        }
+
+        /* Emphasis Styles */
+        .accent {
+            color: var(--accent-mint);
+            font-weight: 600;
+        }
+
+        .bold {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .highlight {
+            color: var(--accent-mint);
+            font-weight: 700;
+        }
+
+        /* Code Block Styling */
+        .code-block {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: 12px;
+            margin: var(--space-lg) 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-title {
+            font-size: var(--text-small);
+            font-weight: 600;
+            color: var(--accent-mint);
+        }
+
+        .copy-button {
+            background: rgba(0, 255, 148, 0.1);
+            border: 1px solid var(--accent-mint);
+            color: var(--accent-mint);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 6px;
+            font-size: var(--text-small);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-button:hover {
+            background: rgba(0, 255, 148, 0.2);
+        }
+
+        .code-content {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            white-space: pre-wrap;
+        }
+
+        /* Technology Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-xl);
+            margin: var(--space-2xl) 0;
+        }
+
+        .tech-card {
+            background: var(--bg-card);
+            padding: var(--space-xl);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 
+                4px 4px 16px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        .tech-card:hover {
+            background: #1A1A1A;
+            transform: translateY(-4px);
+            box-shadow: 
+                8px 8px 24px rgba(0, 0, 0, 0.8),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-md);
+        }
+
+        .tech-name {
+            font-size: var(--text-heading);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .tech-description {
+            font-size: var(--text-body);
+            color: var(--text-primary);
+            opacity: 0.7;
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+        }
+
+        .tech-use-cases {
+            font-size: var(--text-small);
+            color: var(--accent-mint);
+            font-weight: 600;
+        }
+
+        /* Implementation Template */
+        .template-container {
+            background: var(--bg-card);
+            padding: var(--space-2xl);
+            border-radius: 16px;
+            margin: var(--space-2xl) 0;
+            box-shadow: 
+                4px 4px 24px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 255, 255, 0.02);
+        }
+
+        .template-title {
+            font-size: var(--text-title);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+
+        .template-description {
+            font-size: var(--text-large);
+            color: var(--text-primary);
+            margin-bottom: var(--space-xl);
+            opacity: 0.8;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        .download-item {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .download-item:hover {
+            background: #1A1A1A;
+            border-color: var(--accent-mint);
+            box-shadow: 0 0 16px rgba(0, 255, 148, 0.2);
+        }
+
+        .download-icon {
+            font-size: 2rem;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-sm);
+        }
+
+        .download-title {
+            font-size: var(--text-body);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .download-description {
+            font-size: var(--text-small);
+            color: var(--text-primary);
+            opacity: 0.7;
+        }
+
+        /* Assessment Section */
+        .assessment-container {
+            background: var(--bg-card);
+            padding: var(--space-2xl);
+            border-radius: 16px;
+            margin: var(--space-2xl) 0;
+            box-shadow: 
+                4px 4px 24px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 255, 255, 0.02);
+        }
+
+        .assessment-criteria {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-xl);
+            margin: var(--space-xl) 0;
+        }
+
+        .criteria-item {
+            background: rgba(0, 255, 148, 0.05);
+            padding: var(--space-lg);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 148, 0.1);
+        }
+
+        .criteria-title {
+            font-size: var(--text-large);
+            font-weight: 600;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-sm);
+        }
+
+        .criteria-description {
+            font-size: var(--text-body);
+            color: var(--text-primary);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Key Takeaways */
+        .takeaways-list {
+            list-style: none;
+            margin: var(--space-xl) 0;
+        }
+
+        .takeaway-item {
+            font-size: var(--text-large);
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            padding-left: var(--space-lg);
+            position: relative;
+        }
+
+        .takeaway-item::before {
+            content: '→';
+            color: var(--accent-mint);
+            font-weight: 700;
+            font-size: var(--text-large);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Navigation Controls */
+        .slide-controls {
+            position: fixed;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            display: flex;
+            gap: var(--space-sm);
+            z-index: 1000;
+        }
+
+        .control-btn {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-card);
+            border: none;
+            border-radius: 50%;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                4px 4px 16px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        .control-btn:hover {
+            background: #1A1A1A;
+            color: var(--accent-mint);
+            box-shadow: 
+                6px 6px 20px rgba(0, 0, 0, 0.7),
+                0 0 0 1px var(--accent-mint),
+                0 0 12px rgba(0, 255, 148, 0.3);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Progress Bar */
+        .progress-indicator {
+            position: fixed;
+            top: 0;
+            left: 320px;
+            right: 0;
+            height: 2px;
+            background: var(--bg-card);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-mint);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Utility Classes */
+        .hidden { display: none; }
+        .visible { display: block; }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .slide-navigation {
+                width: 300px;
+            }
+            
+            .main-content {
+                margin-left: 300px;
+            }
+            
+            .progress-indicator {
+                left: 300px;
+            }
+            
+            .tech-grid,
+            .download-grid,
+            .assessment-criteria {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide-navigation {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .slide-navigation.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .progress-indicator {
+                left: 0;
+            }
+            
+            .slide-container {
+                padding: var(--space-xl) var(--space-md);
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .slide-title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="presentation-system">
+        <!-- Ultra-Clean Navigation -->
+        <nav class="slide-navigation" id="slideNav">
+            <div class="nav-header">
+                <h1 class="program-title">AI Acumen Program</h1>
+                <p class="program-subtitle">Sessions 10-12: Specialized AI Applications</p>
+            </div>
+            
+            <div class="session-list">
+                <div class="session-group">
+                    <h3 class="phase-title">Session 10: Voice AI</h3>
+                    <div class="session-item active" data-slide="session-10-intro">
+                        <div class="session-number">10.1</div>
+                        <div class="session-title">Voice AI Implementation</div>
+                    </div>
+                    <div class="session-item" data-slide="voice-technologies">
+                        <div class="session-number">10.2</div>
+                        <div class="session-title">Speech Technologies</div>
+                    </div>
+                    <div class="session-item" data-slide="voice-interfaces">
+                        <div class="session-number">10.3</div>
+                        <div class="session-title">Voice Interface Design</div>
+                    </div>
+                    <div class="session-item" data-slide="voice-demo">
+                        <div class="session-number">10.4</div>
+                        <div class="session-title">Practical Voice Demo</div>
+                    </div>
+                </div>
+                
+                <div class="session-group">
+                    <h3 class="phase-title">Session 11: Computer Vision</h3>
+                    <div class="session-item" data-slide="session-11-intro">
+                        <div class="session-number">11.1</div>
+                        <div class="session-title">Computer Vision Overview</div>
+                    </div>
+                    <div class="session-item" data-slide="vision-applications">
+                        <div class="session-number">11.2</div>
+                        <div class="session-title">Business Applications</div>
+                    </div>
+                    <div class="session-item" data-slide="document-processing">
+                        <div class="session-number">11.3</div>
+                        <div class="session-title">Document Processing</div>
+                    </div>
+                    <div class="session-item" data-slide="vision-implementation">
+                        <div class="session-number">11.4</div>
+                        <div class="session-title">Implementation Guide</div>
+                    </div>
+                </div>
+                
+                <div class="session-group">
+                    <h3 class="phase-title">Session 12: Assessment</h3>
+                    <div class="session-item" data-slide="session-12-intro">
+                        <div class="session-number">12.1</div>
+                        <div class="session-title">Technical Assessment</div>
+                    </div>
+                    <div class="session-item" data-slide="project-criteria">
+                        <div class="session-number">12.2</div>
+                        <div class="session-title">Project Evaluation</div>
+                    </div>
+                    <div class="session-item" data-slide="assessment-framework">
+                        <div class="session-number">12.3</div>
+                        <div class="session-title">Assessment Framework</div>
+                    </div>
+                    <div class="session-item" data-slide="next-steps">
+                        <div class="session-number">12.4</div>
+                        <div class="session-title">Program Progression</div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Session 10.1: Voice AI Introduction -->
+            <section class="slide-container" id="session-10-intro">
+                <div class="slide hero fade-in">
+                    <h1 class="hero-title">
+                        Session <span class="accent">10</span>: Voice AI Implementation
+                    </h1>
+                    <p class="hero-subtitle">
+                        From <span class="bold">speech recognition</span> to <span class="highlight">conversational interfaces</span>
+                    </p>
+                    
+                    <div class="content-section">
+                        <p class="section-subtitle">
+                            <span class="bold">Objective:</span> Implement practical voice AI solutions using <span class="accent">speech-to-text</span>, <span class="accent">text-to-speech</span>, and <span class="highlight">voice interface design</span> for business applications.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 10.2: Voice Technologies -->
+            <section class="slide-container hidden" id="voice-technologies">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Voice AI <span class="accent">Technology Stack</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Understanding the <span class="bold">core technologies</span> that power voice interfaces
+                    </p>
+                    
+                    <div class="tech-grid">
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-microphone"></i>
+                            </div>
+                            <h3 class="tech-name">Speech-to-Text</h3>
+                            <p class="tech-description">
+                                Convert spoken language into written text using advanced neural networks and acoustic models.
+                            </p>
+                            <p class="tech-use-cases">
+                                → Transcription services<br>
+                                → Voice commands<br>
+                                → Meeting notes automation
+                            </p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-volume-up"></i>
+                            </div>
+                            <h3 class="tech-name">Text-to-Speech</h3>
+                            <p class="tech-description">
+                                Generate natural-sounding speech from text using neural voice synthesis and voice cloning.
+                            </p>
+                            <p class="tech-use-cases">
+                                → Customer service bots<br>
+                                → Content accessibility<br>
+                                → Interactive tutorials
+                            </p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3 class="tech-name">Voice Assistants</h3>
+                            <p class="tech-description">
+                                Complete conversational AI systems that understand context and maintain dialogue flow.
+                            </p>
+                            <p class="tech-use-cases">
+                                → Virtual receptionists<br>
+                                → Support automation<br>
+                                → Voice-controlled apps
+                            </p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3 class="tech-name">Natural Language Understanding</h3>
+                            <p class="tech-description">
+                                Extract intent and entities from spoken language to trigger appropriate business actions.
+                            </p>
+                            <p class="tech-use-cases">
+                                → Intent recognition<br>
+                                → Entity extraction<br>
+                                → Workflow automation
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 10.3: Voice Interface Design -->
+            <section class="slide-container hidden" id="voice-interfaces">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Voice Interface <span class="accent">Design Principles</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Creating <span class="bold">natural</span> and <span class="accent">effective</span> voice experiences
+                    </p>
+                    
+                    <div class="content-section">
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">Conversational Flow:</span> Design dialogue patterns that feel <span class="accent">natural and intuitive</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Error Handling:</span> Graceful recovery from <span class="accent">misunderstandings and errors</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Context Awareness:</span> Maintain conversation <span class="accent">context and user intent</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Multimodal Integration:</span> Combine voice with <span class="accent">visual and text interfaces</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Accessibility:</span> Ensure voice interfaces work for <span class="accent">diverse user needs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="template-container">
+                        <h3 class="template-title">Voice Interface <span class="accent">Implementation Template</span></h3>
+                        <p class="template-description">
+                            Complete implementation guide with <span class="bold">code examples</span> and <span class="accent">best practices</span>
+                        </p>
+                        
+                        <div class="download-grid">
+                            <div class="download-item" onclick="downloadTemplate('voice-interface-starter')">
+                                <div class="download-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="download-title">Voice Interface Starter</div>
+                                <div class="download-description">JavaScript/HTML5 template</div>
+                            </div>
+                            
+                            <div class="download-item" onclick="downloadTemplate('speech-recognition-demo')">
+                                <div class="download-icon">
+                                    <i class="fas fa-microphone-alt"></i>
+                                </div>
+                                <div class="download-title">Speech Recognition Demo</div>
+                                <div class="download-description">Real-time transcription</div>
+                            </div>
+                            
+                            <div class="download-item" onclick="downloadTemplate('voice-assistant-framework')">
+                                <div class="download-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="download-title">Voice Assistant Framework</div>
+                                <div class="download-description">Complete conversation system</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 10.4: Voice Demo -->
+            <section class="slide-container hidden" id="voice-demo">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Practical Voice AI <span class="accent">Implementation</span>
+                    </h2>
+                    <p class="slide-objective">
+                        <span class="bold">Live demonstration</span> of voice-powered business applications
+                    </p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-title">Speech-to-Text Implementation</div>
+                            <button class="copy-button" onclick="copyCode('speech-to-text')">Copy Code</button>
+                        </div>
+                        <div class="code-content" id="speech-to-text">// Speech Recognition Setup
+const recognition = new webkitSpeechRecognition();
+recognition.continuous = true;
+recognition.interimResults = true;
+recognition.lang = 'en-US';
+
+recognition.onresult = function(event) {
+    let transcript = '';
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+    }
+    
+    // Process the transcript for business logic
+    processVoiceCommand(transcript);
+};
+
+function processVoiceCommand(command) {
+    const intent = extractIntent(command);
+    
+    switch(intent.action) {
+        case 'schedule_meeting':
+            scheduleMeeting(intent.parameters);
+            break;
+        case 'create_task':
+            createTask(intent.parameters);
+            break;
+        case 'search_documents':
+            searchDocuments(intent.parameters);
+            break;
+    }
+}</div>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-title">Text-to-Speech Response System</div>
+                            <button class="copy-button" onclick="copyCode('text-to-speech')">Copy Code</button>
+                        </div>
+                        <div class="code-content" id="text-to-speech">// Text-to-Speech Response
+function speakResponse(text, voice = 'natural') {
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Configure voice parameters
+    utterance.rate = 0.9;
+    utterance.pitch = 1.0;
+    utterance.volume = 0.8;
+    
+    // Select appropriate voice
+    const voices = speechSynthesis.getVoices();
+    utterance.voice = voices.find(v => v.name.includes(voice)) || voices[0];
+    
+    speechSynthesis.speak(utterance);
+}
+
+// Business response examples
+function confirmAction(action, details) {
+    const responses = {
+        meeting_scheduled: `Meeting scheduled for ${details.date} at ${details.time}`,
+        task_created: `Task "${details.title}" added to your list`,
+        document_found: `Found ${details.count} documents matching "${details.query}"`
+    };
+    
+    speakResponse(responses[action]);
+}</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 11.1: Computer Vision Introduction -->
+            <section class="slide-container hidden" id="session-11-intro">
+                <div class="slide hero fade-in">
+                    <h1 class="hero-title">
+                        Session <span class="accent">11</span>: Computer Vision Applications
+                    </h1>
+                    <p class="hero-subtitle">
+                        From <span class="bold">image recognition</span> to <span class="highlight">automated document processing</span>
+                    </p>
+                    
+                    <div class="content-section">
+                        <p class="section-subtitle">
+                            <span class="bold">Objective:</span> Implement computer vision solutions for <span class="accent">business automation</span>, including <span class="accent">document processing</span> and <span class="highlight">visual recognition systems</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 11.2: Vision Applications -->
+            <section class="slide-container hidden" id="vision-applications">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Computer Vision <span class="accent">Business Applications</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Practical applications that deliver <span class="bold">immediate business value</span>
+                    </p>
+                    
+                    <div class="tech-grid">
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-file-image"></i>
+                            </div>
+                            <h3 class="tech-name">Document Analysis</h3>
+                            <p class="tech-description">
+                                Extract text, tables, and data from documents, invoices, and forms automatically.
+                            </p>
+                            <p class="tech-use-cases">
+                                → Invoice processing<br>
+                                → Form digitization<br>
+                                → Contract analysis
+                            </p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h3 class="tech-name">Visual Recognition</h3>
+                            <p class="tech-description">
+                                Identify objects, people, and scenes in images and video streams for automation.
+                            </p>
+                            <p class="tech-use-cases">
+                                → Quality control<br>
+                                → Security monitoring<br>
+                                → Inventory management
+                            </p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="tech-name">Visual Analytics</h3>
+                            <p class="tech-description">
+                                Analyze visual data to extract insights and patterns for business intelligence.
+                            </p>
+                            <p class="tech-use-cases">
+                                → Crowd analysis<br>
+                                → Behavior tracking<br>
+                                → Performance metrics
+                            </p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3 class="tech-name">Mobile Vision</h3>
+                            <p class="tech-description">
+                                Deploy computer vision capabilities directly on mobile devices for real-time processing.
+                            </p>
+                            <p class="tech-use-cases">
+                                → Receipt scanning<br>
+                                → Product identification<br>
+                                → Augmented reality
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 11.3: Document Processing -->
+            <section class="slide-container hidden" id="document-processing">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Automated Document <span class="accent">Processing</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Transform paper-based processes into <span class="bold">digital workflows</span>
+                    </p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-title">OCR and Document Analysis</div>
+                            <button class="copy-button" onclick="copyCode('document-ocr')">Copy Code</button>
+                        </div>
+                        <div class="code-content" id="document-ocr">// Document Processing with Google Cloud Vision
+import { ImageAnnotatorClient } from '@google-cloud/vision';
+
+class DocumentProcessor {
+    constructor() {
+        this.client = new ImageAnnotatorClient();
+    }
+    
+    async processDocument(imagePath) {
+        try {
+            // Extract text using OCR
+            const [textResult] = await this.client.textDetection(imagePath);
+            const text = textResult.textAnnotations[0]?.description || '';
+            
+            // Extract structured data
+            const structuredData = this.extractStructuredData(text);
+            
+            // Classify document type
+            const documentType = this.classifyDocument(text);
+            
+            return {
+                text,
+                structuredData,
+                documentType,
+                confidence: textResult.textAnnotations[0]?.confidence || 0
+            };
+        } catch (error) {
+            console.error('Document processing error:', error);
+            throw error;
+        }
+    }
+    
+    extractStructuredData(text) {
+        const patterns = {
+            email: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g,
+            phone: /\b\d{3}-\d{3}-\d{4}\b/g,
+            date: /\b\d{1,2}\/\d{1,2}\/\d{4}\b/g,
+            amount: /\$\d+(?:,\d{3})*(?:\.\d{2})?/g
+        };
+        
+        return {
+            emails: text.match(patterns.email) || [],
+            phones: text.match(patterns.phone) || [],
+            dates: text.match(patterns.date) || [],
+            amounts: text.match(patterns.amount) || []
+        };
+    }
+}</div>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-title">Invoice Processing Automation</div>
+                            <button class="copy-button" onclick="copyCode('invoice-processing')">Copy Code</button>
+                        </div>
+                        <div class="code-content" id="invoice-processing">// Automated Invoice Processing
+class InvoiceProcessor extends DocumentProcessor {
+    async processInvoice(invoiceImage) {
+        const result = await this.processDocument(invoiceImage);
+        
+        // Extract specific invoice fields
+        const invoiceData = this.extractInvoiceFields(result.text);
+        
+        // Validate extracted data
+        const validation = this.validateInvoiceData(invoiceData);
+        
+        // Store in database if valid
+        if (validation.isValid) {
+            await this.storeInvoiceData(invoiceData);
+            await this.triggerApprovalWorkflow(invoiceData);
+        }
+        
+        return {
+            ...invoiceData,
+            validation,
+            processingStatus: validation.isValid ? 'processed' : 'requires_review'
+        };
+    }
+    
+    extractInvoiceFields(text) {
+        return {
+            invoiceNumber: this.extractPattern(text, /Invoice #?:?\s*([A-Z0-9-]+)/i),
+            vendor: this.extractPattern(text, /From:?\s*([^\n]+)/i),
+            amount: this.extractPattern(text, /Total:?\s*\$?([\d,]+\.?\d*)/i),
+            dueDate: this.extractPattern(text, /Due:?\s*(\d{1,2}\/\d{1,2}\/\d{4})/i),
+            description: this.extractDescription(text)
+        };
+    }
+    
+    async triggerApprovalWorkflow(invoiceData) {
+        if (parseFloat(invoiceData.amount.replace(/[$,]/g, '')) > 1000) {
+            await this.sendApprovalRequest(invoiceData);
+        } else {
+            await this.autoApprove(invoiceData);
+        }
+    }
+}</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 11.4: Vision Implementation -->
+            <section class="slide-container hidden" id="vision-implementation">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Computer Vision <span class="accent">Implementation Guide</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Complete templates for <span class="bold">real-world</span> computer vision applications
+                    </p>
+                    
+                    <div class="template-container">
+                        <h3 class="template-title">Computer Vision <span class="accent">Implementation Toolkit</span></h3>
+                        <p class="template-description">
+                            Production-ready templates with <span class="bold">complete implementation</span> examples
+                        </p>
+                        
+                        <div class="download-grid">
+                            <div class="download-item" onclick="downloadTemplate('document-processor')">
+                                <div class="download-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="download-title">Document Processor</div>
+                                <div class="download-description">Complete OCR solution</div>
+                            </div>
+                            
+                            <div class="download-item" onclick="downloadTemplate('image-classifier')">
+                                <div class="download-icon">
+                                    <i class="fas fa-images"></i>
+                                </div>
+                                <div class="download-title">Image Classifier</div>
+                                <div class="download-description">Custom vision models</div>
+                            </div>
+                            
+                            <div class="download-item" onclick="downloadTemplate('visual-search')">
+                                <div class="download-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="download-title">Visual Search Engine</div>
+                                <div class="download-description">Image similarity search</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="section-title">Implementation <span class="accent">Best Practices</span></h3>
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">Data Quality:</span> Ensure high-quality training data and <span class="accent">proper preprocessing</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Model Selection:</span> Choose appropriate models based on <span class="accent">accuracy vs performance</span> requirements
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Edge Deployment:</span> Optimize models for <span class="accent">mobile and edge devices</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Continuous Learning:</span> Implement feedback loops for <span class="accent">model improvement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 12.1: Technical Assessment -->
+            <section class="slide-container hidden" id="session-12-intro">
+                <div class="slide hero fade-in">
+                    <h1 class="hero-title">
+                        Session <span class="accent">12</span>: Mid-Program Technical Assessment
+                    </h1>
+                    <p class="hero-subtitle">
+                        Hands-on <span class="bold">project evaluation</span> and <span class="highlight">skills validation</span>
+                    </p>
+                    
+                    <div class="content-section">
+                        <p class="section-subtitle">
+                            <span class="bold">Objective:</span> Evaluate technical progress through <span class="accent">practical project implementation</span> and demonstrate mastery of core AI concepts.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 12.2: Project Criteria -->
+            <section class="slide-container hidden" id="project-criteria">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Assessment <span class="accent">Project Criteria</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Demonstrate mastery through <span class="bold">practical implementation</span>
+                    </p>
+                    
+                    <div class="assessment-criteria">
+                        <div class="criteria-item">
+                            <h3 class="criteria-title">Technical Implementation</h3>
+                            <p class="criteria-description">
+                                Successfully implement at least two AI technologies (LLM integration, voice AI, or computer vision) in a working application.
+                            </p>
+                        </div>
+                        
+                        <div class="criteria-item">
+                            <h3 class="criteria-title">Business Value</h3>
+                            <p class="criteria-description">
+                                Demonstrate clear business value proposition with measurable outcomes and ROI justification.
+                            </p>
+                        </div>
+                        
+                        <div class="criteria-item">
+                            <h3 class="criteria-title">User Experience</h3>
+                            <p class="criteria-description">
+                                Design intuitive interfaces that enhance rather than complicate existing workflows.
+                            </p>
+                        </div>
+                        
+                        <div class="criteria-item">
+                            <h3 class="criteria-title">Scalability Design</h3>
+                            <p class="criteria-description">
+                                Architecture that can scale from proof-of-concept to production deployment.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="section-title">Project <span class="accent">Options</span></h3>
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">Voice-Powered Dashboard:</span> Create a voice-controlled business intelligence dashboard
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Document Processing System:</span> Build automated document analysis and workflow
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">AI Customer Service:</span> Implement intelligent customer support automation
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Custom Business Solution:</span> Address a specific business challenge in your organization
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 12.3: Assessment Framework -->
+            <section class="slide-container hidden" id="assessment-framework">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Assessment <span class="accent">Framework</span> & Evaluation
+                    </h2>
+                    <p class="slide-objective">
+                        Comprehensive evaluation across <span class="bold">technical</span> and <span class="accent">business dimensions</span>
+                    </p>
+                    
+                    <div class="assessment-container">
+                        <h3 class="template-title">Evaluation <span class="accent">Rubric</span></h3>
+                        
+                        <div class="assessment-criteria">
+                            <div class="criteria-item">
+                                <h3 class="criteria-title">AI Integration (25%)</h3>
+                                <p class="criteria-description">
+                                    • Correct API implementation<br>
+                                    • Error handling and resilience<br>
+                                    • Performance optimization<br>
+                                    • Security considerations
+                                </p>
+                            </div>
+                            
+                            <div class="criteria-item">
+                                <h3 class="criteria-title">Business Logic (25%)</h3>
+                                <p class="criteria-description">
+                                    • Clear problem definition<br>
+                                    • Measurable success metrics<br>
+                                    • ROI calculation<br>
+                                    • Implementation roadmap
+                                </p>
+                            </div>
+                            
+                            <div class="criteria-item">
+                                <h3 class="criteria-title">User Experience (25%)</h3>
+                                <p class="criteria-description">
+                                    • Intuitive interface design<br>
+                                    • Accessibility considerations<br>
+                                    • Error states and feedback<br>
+                                    • Mobile responsiveness
+                                </p>
+                            </div>
+                            
+                            <div class="criteria-item">
+                                <h3 class="criteria-title">Technical Excellence (25%)</h3>
+                                <p class="criteria-description">
+                                    • Code quality and structure<br>
+                                    • Documentation completeness<br>
+                                    • Testing coverage<br>
+                                    • Deployment considerations
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="section-title">Submission <span class="accent">Requirements</span></h3>
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">Working Demo:</span> Live demonstration of implemented solution
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Source Code:</span> Complete implementation with documentation
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Business Case:</span> ROI analysis and implementation plan
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Presentation:</span> 10-minute technical presentation to peers
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 12.4: Next Steps -->
+            <section class="slide-container hidden" id="next-steps">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Program <span class="accent">Progression</span> & Next Steps
+                    </h2>
+                    <p class="slide-objective">
+                        Transitioning from <span class="bold">foundation</span> to <span class="accent">advanced specialization</span>
+                    </p>
+                    
+                    <div class="content-section">
+                        <h3 class="section-title">Advanced Track <span class="accent">Options</span></h3>
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">AI Architecture Track:</span> Advanced system design and deployment patterns
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">ML Engineering Track:</span> Model training, optimization, and MLOps
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">AI Product Management:</span> Strategic AI implementation and team leadership
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Industry Specialization:</span> Domain-specific AI applications
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="template-container">
+                        <h3 class="template-title">Continued Learning <span class="accent">Resources</span></h3>
+                        <p class="template-description">
+                            Curated resources for <span class="bold">ongoing skill development</span> and <span class="accent">industry updates</span>
+                        </p>
+                        
+                        <div class="download-grid">
+                            <div class="download-item" onclick="downloadTemplate('advanced-curriculum')">
+                                <div class="download-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="download-title">Advanced Curriculum</div>
+                                <div class="download-description">Specialized learning paths</div>
+                            </div>
+                            
+                            <div class="download-item" onclick="downloadTemplate('project-portfolio')">
+                                <div class="download-icon">
+                                    <i class="fas fa-folder-open"></i>
+                                </div>
+                                <div class="download-title">Project Portfolio</div>
+                                <div class="download-description">Showcase templates</div>
+                            </div>
+                            
+                            <div class="download-item" onclick="downloadTemplate('industry-resources')">
+                                <div class="download-icon">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                                <div class="download-title">Industry Resources</div>
+                                <div class="download-description">Tools and communities</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section" style="margin-top: var(--space-2xl); text-align: center;">
+                        <p class="section-subtitle">
+                            <span class="accent">Congratulations!</span> You've completed the foundational AI Acumen Program.<br>
+                            Ready to tackle <span class="bold">advanced AI implementation challenges</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="slide-controls">
+        <button class="control-btn" id="prevBtn" disabled>
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="control-btn" id="nextBtn">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <script>
+        // Ultra-Clean Presentation System
+        class UltraCleanPresentation {
+            constructor() {
+                this.currentSlideIndex = 0;
+                this.slides = [];
+                this.sessionItems = [];
+                this.init();
+            }
+
+            init() {
+                this.slides = Array.from(document.querySelectorAll('.slide-container'));
+                this.sessionItems = Array.from(document.querySelectorAll('.session-item'));
+                this.setupEventListeners();
+                this.updateProgress();
+            }
+
+            setupEventListeners() {
+                // Session navigation
+                this.sessionItems.forEach((item, index) => {
+                    item.addEventListener('click', () => {
+                        this.goToSlide(index);
+                    });
+                });
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight' || e.key === ' ') {
+                        e.preventDefault();
+                        this.nextSlide();
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        this.prevSlide();
+                    }
+                });
+
+                // Control buttons
+                document.getElementById('nextBtn').addEventListener('click', () => this.nextSlide());
+                document.getElementById('prevBtn').addEventListener('click', () => this.prevSlide());
+            }
+
+            goToSlide(index) {
+                if (index < 0 || index >= this.slides.length) return;
+                
+                // Hide current slide
+                this.slides[this.currentSlideIndex].classList.add('hidden');
+                this.sessionItems[this.currentSlideIndex].classList.remove('active');
+                
+                // Show new slide
+                this.currentSlideIndex = index;
+                this.slides[this.currentSlideIndex].classList.remove('hidden');
+                this.sessionItems[this.currentSlideIndex].classList.add('active');
+                
+                // Update controls and progress
+                this.updateControls();
+                this.updateProgress();
+                
+                // Add animation
+                const currentSlide = this.slides[this.currentSlideIndex].querySelector('.slide');
+                currentSlide.classList.remove('fade-in');
+                setTimeout(() => currentSlide.classList.add('fade-in'), 10);
+            }
+
+            nextSlide() {
+                if (this.currentSlideIndex < this.slides.length - 1) {
+                    this.goToSlide(this.currentSlideIndex + 1);
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlideIndex > 0) {
+                    this.goToSlide(this.currentSlideIndex - 1);
+                }
+            }
+
+            updateControls() {
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                
+                prevBtn.disabled = this.currentSlideIndex === 0;
+                nextBtn.disabled = this.currentSlideIndex === this.slides.length - 1;
+            }
+
+            updateProgress() {
+                const progressBar = document.getElementById('progressBar');
+                const progress = ((this.currentSlideIndex + 1) / this.slides.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+        }
+
+        // Code copying functionality
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const text = codeElement.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                // Visual feedback
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = 'rgba(0, 255, 148, 0.3)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'rgba(0, 255, 148, 0.1)';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy code:', err);
+            });
+        }
+
+        // Template download functionality
+        function downloadTemplate(templateType) {
+            const templates = {
+                'voice-interface-starter': {
+                    filename: 'voice-interface-starter.html',
+                    content: generateVoiceInterfaceTemplate()
+                },
+                'speech-recognition-demo': {
+                    filename: 'speech-recognition-demo.js',
+                    content: generateSpeechRecognitionTemplate()
+                },
+                'voice-assistant-framework': {
+                    filename: 'voice-assistant-framework.js',
+                    content: generateVoiceAssistantTemplate()
+                },
+                'document-processor': {
+                    filename: 'document-processor.js',
+                    content: generateDocumentProcessorTemplate()
+                },
+                'image-classifier': {
+                    filename: 'image-classifier.js',
+                    content: generateImageClassifierTemplate()
+                },
+                'visual-search': {
+                    filename: 'visual-search-engine.js',
+                    content: generateVisualSearchTemplate()
+                },
+                'advanced-curriculum': {
+                    filename: 'advanced-ai-curriculum.md',
+                    content: generateAdvancedCurriculumGuide()
+                },
+                'project-portfolio': {
+                    filename: 'project-portfolio-template.html',
+                    content: generateProjectPortfolioTemplate()
+                },
+                'industry-resources': {
+                    filename: 'ai-industry-resources.md',
+                    content: generateIndustryResourcesGuide()
+                }
+            };
+
+            const template = templates[templateType];
+            if (template) {
+                downloadFile(template.filename, template.content);
+                
+                // Visual feedback
+                const downloadItem = event.currentTarget;
+                const originalBg = downloadItem.style.background;
+                downloadItem.style.background = '#1A1A1A';
+                downloadItem.style.borderColor = 'var(--accent-mint)';
+                
+                setTimeout(() => {
+                    downloadItem.style.background = originalBg;
+                    downloadItem.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+                }, 1000);
+            }
+        }
+
+        function downloadFile(filename, content) {
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Template generation functions
+        function generateVoiceInterfaceTemplate() {
+            return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Interface Starter</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #ccc;
+            padding: 2rem;
+        }
+        .voice-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .voice-button {
+            background: #00FF94;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 1rem;
+        }
+        .voice-output {
+            background: #0F0F0F;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="voice-container">
+        <h1>Voice Interface Starter</h1>
+        <button id="startListening" class="voice-button">Start Listening</button>
+        <button id="stopListening" class="voice-button">Stop Listening</button>
+        <div id="voiceOutput" class="voice-output">Voice commands will appear here...</div>
+    </div>
+    
+    <script>
+        // Voice recognition implementation
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        
+        const startButton = document.getElementById('startListening');
+        const stopButton = document.getElementById('stopListening');
+        const output = document.getElementById('voiceOutput');
+        
+        recognition.onresult = function(event) {
+            let transcript = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                transcript += event.results[i][0].transcript;
+            }
+            output.textContent = transcript;
+            
+            // Process voice commands here
+            processVoiceCommand(transcript);
+        };
+        
+        function processVoiceCommand(command) {
+            // Add your business logic here
+            console.log('Processing command:', command);
+        }
+        
+        startButton.addEventListener('click', () => recognition.start());
+        stopButton.addEventListener('click', () => recognition.stop());
+    </script>
+</body>
+</html>`;
+        }
+
+        function generateSpeechRecognitionTemplate() {
+            return `// Speech Recognition Demo
+class SpeechRecognitionDemo {
+    constructor() {
+        this.recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        this.setupRecognition();
+    }
+    
+    setupRecognition() {
+        this.recognition.continuous = true;
+        this.recognition.interimResults = true;
+        this.recognition.lang = 'en-US';
+        
+        this.recognition.onresult = (event) => {
+            this.handleResult(event);
+        };
+        
+        this.recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+        };
+    }
+    
+    handleResult(event) {
+        let transcript = '';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+            transcript += event.results[i][0].transcript;
+        }
+        
+        // Real-time transcription display
+        this.updateTranscription(transcript);
+        
+        // Command processing
+        if (event.results[event.resultIndex].isFinal) {
+            this.processCommand(transcript);
+        }
+    }
+    
+    processCommand(command) {
+        const intent = this.extractIntent(command.toLowerCase());
+        
+        switch(intent.action) {
+            case 'create_task':
+                this.createTask(intent.parameters);
+                break;
+            case 'schedule_meeting':
+                this.scheduleMeeting(intent.parameters);
+                break;
+            case 'search_documents':
+                this.searchDocuments(intent.parameters);
+                break;
+            default:
+                this.handleUnknownCommand(command);
+        }
+    }
+    
+    extractIntent(command) {
+        // Simple intent extraction - extend with NLP
+        const patterns = {
+            create_task: /create.*task|add.*todo|new.*task/,
+            schedule_meeting: /schedule.*meeting|book.*meeting|set.*meeting/,
+            search_documents: /search.*document|find.*file|look.*for/
+        };
+        
+        for (const [action, pattern] of Object.entries(patterns)) {
+            if (pattern.test(command)) {
+                return {
+                    action,
+                    parameters: this.extractParameters(command, action)
+                };
+            }
+        }
+        
+        return { action: 'unknown', parameters: {} };
+    }
+}`;
+        }
+
+        function generateDocumentProcessorTemplate() {
+            return `// Document Processing with OCR
+class DocumentProcessor {
+    constructor(apiKey) {
+        this.apiKey = apiKey;
+        this.baseUrl = 'https://vision.googleapis.com/v1/images:annotate';
+    }
+    
+    async processDocument(imageFile) {
+        try {
+            const base64Image = await this.convertToBase64(imageFile);
+            const response = await this.callVisionAPI(base64Image);
+            
+            return {
+                text: this.extractText(response),
+                structuredData: this.extractStructuredData(response),
+                confidence: this.calculateConfidence(response)
+            };
+        } catch (error) {
+            console.error('Document processing error:', error);
+            throw error;
+        }
+    }
+    
+    async convertToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const base64 = reader.result.split(',')[1];
+                resolve(base64);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+    
+    async callVisionAPI(base64Image) {
+        const requestBody = {
+            requests: [{
+                image: {
+                    content: base64Image
+                },
+                features: [
+                    { type: 'TEXT_DETECTION', maxResults: 1 },
+                    { type: 'DOCUMENT_TEXT_DETECTION', maxResults: 1 }
+                ]
+            }]
+        };
+        
+        const response = await fetch(\`\${this.baseUrl}?key=\${this.apiKey}\`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+        
+        return await response.json();
+    }
+    
+    extractText(response) {
+        const textAnnotations = response.responses[0]?.textAnnotations;
+        return textAnnotations?.[0]?.description || '';
+    }
+    
+    extractStructuredData(response) {
+        const text = this.extractText(response);
+        
+        return {
+            emails: this.extractEmails(text),
+            phones: this.extractPhones(text),
+            dates: this.extractDates(text),
+            amounts: this.extractAmounts(text)
+        };
+    }
+    
+    extractEmails(text) {
+        const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
+        return text.match(emailRegex) || [];
+    }
+}`;
+        }
+
+        function generateAdvancedCurriculumGuide() {
+            return `# Advanced AI Curriculum Guide
+
+## AI Architecture Track
+
+### Module 1: Scalable AI Systems
+- Microservices architecture for AI
+- Load balancing and auto-scaling
+- Container orchestration (Docker/Kubernetes)
+- API gateway patterns
+
+### Module 2: MLOps and Deployment
+- CI/CD for machine learning
+- Model versioning and rollback
+- A/B testing for AI models
+- Monitoring and observability
+
+### Module 3: Edge AI and Mobile
+- Model optimization and quantization
+- Edge deployment strategies
+- Real-time inference optimization
+- Battery and performance considerations
+
+## ML Engineering Track
+
+### Module 1: Advanced Model Training
+- Transfer learning strategies
+- Hyperparameter optimization
+- Distributed training
+- Custom loss functions
+
+### Module 2: Data Engineering
+- Feature stores and pipelines
+- Data versioning and lineage
+- Real-time data processing
+- Data quality monitoring
+
+### Module 3: Model Optimization
+- Pruning and compression
+- Knowledge distillation
+- Hardware acceleration (GPU/TPU)
+- Inference optimization
+
+## AI Product Management Track
+
+### Module 1: AI Strategy
+- AI transformation roadmaps
+- Stakeholder alignment
+- Risk assessment and mitigation
+- Ethical AI frameworks
+
+### Module 2: Team Leadership
+- Building AI teams
+- Cross-functional collaboration
+- Agile methodologies for AI
+- Change management
+
+### Module 3: Business Development
+- AI use case identification
+- ROI measurement and KPIs
+- Customer discovery for AI products
+- Go-to-market strategies
+
+## Recommended Learning Path
+
+1. Complete foundational modules (Sessions 1-12)
+2. Choose specialization track based on career goals
+3. Complete hands-on projects in chosen track
+4. Participate in industry mentorship program
+5. Contribute to open-source AI projects
+
+## Industry Certifications
+
+- AWS Certified Machine Learning
+- Google Cloud Professional ML Engineer
+- Microsoft Azure AI Engineer
+- NVIDIA Deep Learning Institute
+- Coursera AI for Everyone Specialization
+
+## Next Steps
+
+1. Schedule track selection consultation
+2. Join specialized learning cohort
+3. Begin advanced project work
+4. Connect with industry mentors`;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            new UltraCleanPresentation();
+        });
+    </script>
+</body>
+</html>

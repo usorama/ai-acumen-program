@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Card V3 - Glassmorphism</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #000000;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background elements for glassmorphism effect */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(139, 69, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(236, 72, 153, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -30px) rotate(1deg); }
+            50% { transform: translate(-15px, 20px) rotate(-1deg); }
+            75% { transform: translate(25px, 10px) rotate(0.5deg); }
+        }
+
+        .exercise-card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .exercise-card.selected {
+            background: rgba(139, 69, 255, 0.15);
+            border-color: rgba(139, 69, 255, 0.4);
+            box-shadow: 
+                0 20px 60px rgba(139, 69, 255, 0.3),
+                0 0 0 1px rgba(139, 69, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-type {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .match-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .match-indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .exercise-card.selected .match-indicator {
+            border-color: rgba(139, 69, 255, 0.8);
+            background: rgba(139, 69, 255, 0.2);
+            box-shadow: 
+                0 0 20px rgba(139, 69, 255, 0.4),
+                inset 0 0 10px rgba(139, 69, 255, 0.1);
+        }
+
+        .exercise-card.selected .match-indicator::after {
+            transform: translate(-50%, -50%) scale(1);
+            background: #8B45FF;
+        }
+
+        .scenario-section {
+            margin-bottom: 2rem;
+        }
+
+        .scenario-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .scenario-text {
+            font-size: 1.125rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-section {
+            position: relative;
+        }
+
+        .solution-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .solution-tag {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(139, 69, 255, 0.2) 0%, rgba(59, 130, 246, 0.15) 100%);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(139, 69, 255, 0.3);
+            border-radius: 16px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .exercise-card:hover .solution-tag::before {
+            left: 100%;
+        }
+
+        .solution-tag::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .glow-effect {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, rgba(139, 69, 255, 0.3), rgba(59, 130, 246, 0.2));
+            border-radius: 26px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+            filter: blur(8px);
+        }
+
+        .exercise-card:hover .glow-effect {
+            opacity: 1;
+        }
+
+        .exercise-card.selected .glow-effect {
+            opacity: 1;
+            background: linear-gradient(135deg, rgba(139, 69, 255, 0.5), rgba(59, 130, 246, 0.3));
+        }
+
+        /* Subtle floating animation */
+        .exercise-card {
+            animation: subtleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .exercise-card:hover {
+            animation: none;
+        }
+
+        /* Enhanced inner lighting */
+        .inner-light {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            border-radius: 24px 24px 0 0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .exercise-card {
+                padding: 1.5rem;
+                max-width: 100%;
+            }
+            
+            .scenario-text {
+                font-size: 1rem;
+            }
+            
+            .solution-tag {
+                font-size: 0.875rem;
+                padding: 0.625rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="exercise-card" id="exerciseCard">
+        <div class="glow-effect"></div>
+        <div class="inner-light"></div>
+        
+        <div class="card-header">
+            <div class="card-type">AI Matching Exercise</div>
+            <div class="match-indicator"></div>
+        </div>
+        
+        <div class="scenario-section">
+            <div class="scenario-label">Scenario</div>
+            <div class="scenario-text">
+                M&A due diligence document analysis requiring comprehensive review of legal documents, financial statements, and operational data across multiple companies and jurisdictions.
+            </div>
+        </div>
+        
+        <div class="solution-section">
+            <div class="solution-label">Target Solution</div>
+            <div class="solution-tag">
+                Claude (Anthropic)
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const exerciseCard = document.getElementById('exerciseCard');
+        let isSelected = false;
+
+        exerciseCard.addEventListener('click', function() {
+            isSelected = !isSelected;
+            
+            if (isSelected) {
+                this.classList.add('selected');
+                
+                // Haptic feedback simulation
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+                
+                // Create ripple effect
+                createRippleEffect(event);
+            } else {
+                this.classList.remove('selected');
+            }
+        });
+
+        // Enhanced hover effects with cursor tracking
+        exerciseCard.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+            
+            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+        });
+
+        exerciseCard.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+
+        function createRippleEffect(e) {
+            const ripple = document.createElement('div');
+            const rect = exerciseCard.getBoundingClientRect();
+            const size = 60;
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(139, 69, 255, 0.6) 0%, transparent 70%);
+                left: ${x}px;
+                top: ${y}px;
+                transform: scale(0);
+                animation: rippleAnimation 0.6s ease-out;
+                pointer-events: none;
+                z-index: 10;
+            `;
+            
+            exerciseCard.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rippleAnimation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add subtle parallax effect to background
+        document.addEventListener('mousemove', function(e) {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            document.body.style.background = `
+                radial-gradient(circle at ${mouseX * 100}% ${mouseY * 100}%, rgba(139, 69, 255, 0.1) 0%, transparent 50%),
+                #000000
+            `;
+        });
+    </script>
+</body>
+</html>

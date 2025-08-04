@@ -33,7 +33,7 @@
     "SessionStart": [
       {
         "match": {},
-        "command": "echo '🚀 GAAL System Active - /orchestrate, /checkpoint, /rollback, /bmad available'",
+        "command": "echo '🚀 GAAL System Active - /orchestrate, /so, /checkpoint, /rollback, /bmad available'",
         "timeout": 5,
         "description": "Show available GAAL commands on session start"
       }
@@ -47,13 +47,13 @@
     }
   },
   "agentCoordination": {
-    "defaultOrchestrator": "master-orchestrator",
+    "defaultOrchestrator": "super-orchestrator",
     "safetyAgent": "git-checkpoint",
     "conflictResolution": {
-      "bmad-project-manager": "strategic-planning",
-      "sprint-prioritizer": "tactical-execution",
-      "bmad-architect": "system-design", 
-      "backend-architect": "implementation"
+      "bmad-product-strategist": "strategic-planning",
+      "tactical-sprint-manager": "tactical-execution",
+      "strategic-architect": "system-design", 
+      "implementation-architect": "backend-implementation"
     }
   },
   "checkpointSystem": {
@@ -65,6 +65,11 @@
   },
   "gaalWorkflow": {
     "enabled": true,
+    "coordinationPatterns": {
+      "single": "Simple domain-specific tasks",
+      "multi": "Complex cross-domain coordination", 
+      "sequential": "Dependent task chains with context passing"
+    },
     "planningPhase": ["bmad-analyst", "bmad-product-strategist", "strategic-architect"],
     "decompositionPhase": ["bmad-scrum-master"],
     "executionPhase": ["git-checkpoint", "specialist-agents", "test-writer-fixer"],
@@ -72,6 +77,12 @@
       "planningReview": true,
       "storyValidation": true,
       "codeReview": true
+    },
+    "coordination": {
+      "intelligentRouting": true,
+      "contextEnrichment": true,
+      "resultSynthesis": true,
+      "workflowStateManagement": true
     }
   }
 }

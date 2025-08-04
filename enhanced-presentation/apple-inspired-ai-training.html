@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Acumen Program - Apple-Inspired Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=SF+Pro+Text:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Apple-Inspired Design System */
+        :root {
+            /* Pure Black Background System - Apple Style */
+            --bg-black: #000000;
+            --bg-near-black: #0A0A0A;
+            --bg-card: #111111;
+            --bg-elevated: #1A1A1A;
+            --bg-overlay: rgba(0, 0, 0, 0.85);
+            
+            /* Pure White and Light Pastels for Contrast */
+            --text-primary: #FFFFFF;
+            --text-secondary: #E5E5E7;
+            --text-tertiary: #B0B0B3;
+            --text-quaternary: #8E8E93;
+            
+            /* Apple-Inspired Pastel Accent System */
+            --accent-blue: #007AFF;         /* iOS Blue */
+            --accent-mint: #00C7BE;         /* Fresh Mint */
+            --accent-purple: #AF52DE;       /* iOS Purple */
+            --accent-pink: #FF2D92;         /* Hot Pink */
+            --accent-orange: #FF9500;       /* iOS Orange */
+            --accent-green: #30D158;        /* iOS Green */
+            --accent-yellow: #FFD60A;       /* iOS Yellow */
+            --accent-red: #FF3B30;          /* iOS Red */
+            
+            /* Soft Pastel Variations for Visual Elements */
+            --pastel-blue: rgba(0, 122, 255, 0.15);
+            --pastel-mint: rgba(0, 199, 190, 0.15);
+            --pastel-purple: rgba(175, 82, 222, 0.15);
+            --pastel-pink: rgba(255, 45, 146, 0.15);
+            --pastel-orange: rgba(255, 149, 0, 0.15);
+            --pastel-green: rgba(48, 209, 88, 0.15);
+            
+            /* Apple Typography System */
+            --font-primary: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            --font-secondary: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            
+            /* Typography Scale - Apple's Golden Ratios */
+            --text-display: 4.5rem;         /* 72px - Hero titles */
+            --text-large: 3.375rem;         /* 54px - Section titles */
+            --text-title1: 2.25rem;         /* 36px - Primary headings */
+            --text-title2: 1.75rem;         /* 28px - Secondary headings */
+            --text-title3: 1.375rem;        /* 22px - Tertiary headings */
+            --text-body: 1.125rem;          /* 18px - Body text */
+            --text-caption: 0.9375rem;      /* 15px - Captions */
+            --text-footnote: 0.8125rem;     /* 13px - Footnotes */
+            
+            /* Apple's Spacing System (8pt grid) */
+            --spacing-xs: 0.25rem;   /* 4px */
+            --spacing-sm: 0.5rem;    /* 8px */
+            --spacing-md: 1rem;      /* 16px */
+            --spacing-lg: 1.5rem;    /* 24px */
+            --spacing-xl: 2rem;      /* 32px */
+            --spacing-2xl: 3rem;     /* 48px */
+            --spacing-3xl: 4rem;     /* 64px */
+            --spacing-4xl: 6rem;     /* 96px */
+            
+            /* Shadows and Effects */
+            --shadow-soft: 0 4px 20px rgba(255, 255, 255, 0.05);
+            --shadow-medium: 0 8px 40px rgba(255, 255, 255, 0.08);
+            --shadow-glow: 0 0 30px rgba(0, 122, 255, 0.3);
+            --border-subtle: 1px solid rgba(255, 255, 255, 0.1);
+            --border-accent: 1px solid var(--accent-blue);
+            
+            /* Animation Curves - Apple's Easing */
+            --ease-in-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Global Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background: var(--bg-black);
+            color: var(--text-primary);
+            font-size: var(--text-body);
+            line-height: 1.47;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Presentation Container */
+        .presentation-system {
+            min-height: 100vh;
+            display: flex;
+            position: relative;
+        }
+
+        /* Apple-Style Sidebar Navigation */
+        .slide-navigation {
+            width: 360px;
+            background: var(--bg-card);
+            border-right: var(--border-subtle);
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .nav-header {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            border-bottom: var(--border-subtle);
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-mint));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                var(--pastel-blue) 0%, 
+                var(--pastel-mint) 100%);
+            opacity: 0.1;
+        }
+
+        .program-title {
+            font-family: var(--font-primary);
+            font-size: var(--text-title2);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+            z-index: 2;
+        }
+
+        .program-subtitle {
+            font-size: var(--text-caption);
+            color: var(--text-secondary);
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Session Navigation List */
+        .session-list {
+            padding: var(--spacing-lg);
+        }
+
+        .session-group {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .phase-title {
+            font-family: var(--font-primary);
+            font-size: var(--text-title3);
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: var(--border-subtle);
+        }
+
+        .session-item {
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            background: var(--bg-elevated);
+            border: var(--border-subtle);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .session-item:hover {
+            background: var(--bg-card);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .session-item.active {
+            background: var(--pastel-blue);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .session-number {
+            font-size: var(--text-footnote);
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .session-title {
+            font-size: var(--text-caption);
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            margin-left: 360px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .slide-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-4xl) var(--spacing-3xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Apple-Style Slide Layouts */
+        .slide {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Slide */
+        .slide.hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .hero-title {
+            font-family: var(--font-primary);
+            font-size: var(--text-display);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.05;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-subtitle {
+            font-size: var(--text-title2);
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-2xl);
+            max-width: 800px;
+            line-height: 1.25;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-3xl);
+            font-size: var(--text-body);
+            color: var(--text-tertiary);
+        }
+
+        /* Content Slides */
+        .slide-header {
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .slide-title {
+            font-family: var(--font-primary);
+            font-size: var(--text-large);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.1;
+        }
+
+        .slide-objective {
+            font-size: var(--text-title3);
+            font-weight: 400;
+            color: var(--accent-blue);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Apple-Style Grid Layouts */
+        .content-grid {
+            display: grid;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+        .content-card {
+            background: var(--bg-elevated);
+            border: var(--border-subtle);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            transition: all 0.3s var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--accent-blue);
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-mint));
+            opacity: 0;
+            transition: opacity 0.3s var(--ease-out);
+        }
+
+        .content-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-mint));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-title {
+            font-family: var(--font-primary);
+            font-size: var(--text-title3);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: var(--text-body);
+        }
+
+        /* Infographic Elements */
+        .infographic-container {
+            margin: var(--spacing-3xl) 0;
+            padding: var(--spacing-xl);
+            background: var(--bg-elevated);
+            border-radius: 20px;
+            border: var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .infographic-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                var(--pastel-blue) 0%, 
+                var(--pastel-mint) 50%, 
+                var(--pastel-purple) 100%);
+            opacity: 0.05;
+        }
+
+        .comparison-matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: var(--spacing-md);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .matrix-header {
+            font-family: var(--font-primary);
+            font-size: var(--text-title3);
+            font-weight: 600;
+            color: var(--text-primary);
+            padding: var(--spacing-lg);
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: var(--border-subtle);
+        }
+
+        .matrix-cell {
+            padding: var(--spacing-lg);
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            border: var(--border-subtle);
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .matrix-cell:hover {
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .platform-name {
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .platform-philosophy {
+            font-size: var(--text-caption);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .platform-strengths {
+            font-size: var(--text-footnote);
+            color: var(--text-tertiary);
+        }
+
+        /* Enhanced Interactive Exercise Styles - Dribbble Inspired */
+        .exercise-container {
+            background: var(--bg-black);
+            border-radius: 16px;
+            padding: var(--spacing-3xl);
+            margin: var(--spacing-3xl) 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            box-shadow: 
+                0 4px 24px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .exercise-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-mint), var(--accent-purple));
+            border-radius: 16px 16px 0 0;
+        }
+
+        .exercise-title {
+            font-family: var(--font-primary);
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .exercise-title i {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-mint));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--bg-black);
+        }
+
+        .exercise-subtitle {
+            font-size: var(--text-body);
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-2xl);
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .exercise-scenarios {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-xl);
+            margin: var(--spacing-2xl) 0;
+        }
+
+        /* Dribbble-Inspired Scenario Cards */
+        .scenario-card {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            padding: var(--spacing-xl);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                4px 4px 16px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .scenario-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 122, 255, 0.03) 0%, 
+                rgba(175, 82, 222, 0.03) 100%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+            box-shadow: 
+                8px 8px 32px rgba(0, 0, 0, 0.6),
+                0 0 0 1px var(--accent-blue),
+                0 0 24px rgba(0, 122, 255, 0.2);
+        }
+
+        .scenario-card:hover::before {
+            opacity: 1;
+        }
+
+        .scenario-card.selected {
+            border-color: var(--accent-green);
+            background: rgba(48, 209, 88, 0.05);
+            box-shadow: 
+                8px 8px 32px rgba(0, 0, 0, 0.6),
+                0 0 0 2px var(--accent-green),
+                0 0 24px rgba(48, 209, 88, 0.3);
+        }
+
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .scenario-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-mint));
+            color: var(--bg-black);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: var(--text-caption);
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+        }
+
+        .scenario-status {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.25s ease;
+        }
+
+        .scenario-card.selected .scenario-status {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 4px rgba(48, 209, 88, 0.2);
+        }
+
+        .scenario-card.selected .scenario-status::after {
+            content: '✓';
+            color: var(--bg-black);
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .scenario-text {
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-size: var(--text-body);
+            font-weight: 500;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .scenario-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 20%, 
+                rgba(255, 255, 255, 0.1) 80%, 
+                transparent 100%);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .scenario-solution {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+            font-size: var(--text-caption);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.25s ease;
+        }
+
+        .scenario-card.selected .scenario-solution {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-mint));
+            color: var(--bg-black);
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(48, 209, 88, 0.3);
+        }
+
+        /* Platform Badge Styles */
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--bg-elevated);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: var(--text-footnote);
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-top: var(--spacing-md);
+        }
+
+        .platform-badge.openai {
+            background: rgba(116, 75, 162, 0.1);
+            border-color: rgba(116, 75, 162, 0.3);
+            color: #AF52DE;
+        }
+
+        .platform-badge.google {
+            background: rgba(0, 199, 190, 0.1);
+            border-color: rgba(0, 199, 190, 0.3);
+            color: #00C7BE;
+        }
+
+        .platform-badge.anthropic {
+            background: rgba(0, 122, 255, 0.1);
+            border-color: rgba(0, 122, 255, 0.3);
+            color: #007AFF;
+        }
+
+        .platform-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        /* Slide Controls */
+        .slide-controls {
+            position: fixed;
+            bottom: var(--spacing-xl);
+            right: var(--spacing-xl);
+            display: flex;
+            gap: var(--spacing-md);
+            z-index: 1000;
+        }
+
+        .control-btn {
+            width: 56px;
+            height: 56px;
+            background: var(--bg-elevated);
+            border: var(--border-subtle);
+            border-radius: 50%;
+            color: var(--text-primary);
+            font-size: var(--text-body);
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .control-btn:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            position: fixed;
+            top: 0;
+            left: 360px;
+            right: 0;
+            height: 4px;
+            background: var(--bg-elevated);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-mint));
+            width: 0%;
+            transition: width 0.5s var(--ease-out);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .slide-navigation {
+                width: 300px;
+            }
+            
+            .main-content {
+                margin-left: 300px;
+            }
+            
+            .progress-indicator {
+                left: 300px;
+            }
+            
+            .hero-title {
+                font-size: var(--text-large);
+            }
+            
+            .slide-title {
+                font-size: var(--text-title1);
+            }
+            
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .comparison-matrix {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .exercise-scenarios {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide-navigation {
+                transform: translateX(-100%);
+                transition: transform 0.3s var(--ease-out);
+            }
+            
+            .slide-navigation.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .progress-indicator {
+                left: 0;
+            }
+            
+            .slide-container {
+                padding: var(--spacing-xl);
+            }
+            
+            .hero-title {
+                font-size: var(--text-title1);
+            }
+            
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-matrix {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s var(--ease-out);
+        }
+
+        .slide-in-up {
+            animation: slideInUp 0.8s var(--ease-out);
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s var(--ease-out);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        @keyframes slideInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0); 
+            }
+        }
+
+        /* Utility Classes */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-mint));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .accent-blue { color: var(--accent-blue); }
+        .accent-mint { color: var(--accent-mint); }
+        .accent-purple { color: var(--accent-purple); }
+        .accent-green { color: var(--accent-green); }
+        .accent-orange { color: var(--accent-orange); }
+
+        .hidden { display: none; }
+        .visible { display: block; }
+    </style>
+</head>
+<body>
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="presentation-system">
+        <!-- Apple-Style Navigation Sidebar -->
+        <nav class="slide-navigation" id="slideNav">
+            <div class="nav-header">
+                <h1 class="program-title">AI Acumen Program</h1>
+                <p class="program-subtitle">24 Sessions • 15 Minutes Each • Strategic Framework 2025-2026</p>
+            </div>
+            
+            <div class="session-list">
+                <!-- Phase I: Foundational Intelligence -->
+                <div class="session-group">
+                    <h3 class="phase-title">Phase I: Foundational Intelligence</h3>
+                    <div class="session-item active" data-slide="hero">
+                        <div class="session-number">START</div>
+                        <div class="session-title">Program Introduction</div>
+                    </div>
+                    <div class="session-item" data-slide="session-1">
+                        <div class="session-number">SESSION 1</div>
+                        <div class="session-title">The AI Landscape: Beyond the Hype</div>
+                    </div>
+                    <div class="session-item" data-slide="session-2">
+                        <div class="session-number">SESSION 2</div>
+                        <div class="session-title">Understanding AI Business Value & ROI</div>
+                    </div>
+                    <div class="session-item" data-slide="session-3">
+                        <div class="session-number">SESSION 3</div>
+                        <div class="session-title">Context Engineering Framework</div>
+                    </div>
+                    <div class="session-item" data-slide="session-4">
+                        <div class="session-number">SESSION 4</div>
+                        <div class="session-title">Retrieval-Augmented Generation (RAG)</div>
+                    </div>
+                    <div class="session-item" data-slide="session-5">
+                        <div class="session-number">SESSION 5</div>
+                        <div class="session-title">Data Fundamentals for AI Success</div>
+                    </div>
+                    <div class="session-item" data-slide="session-6">
+                        <div class="session-number">SESSION 6</div>
+                        <div class="session-title">AI Safety & Risk Management</div>
+                    </div>
+                </div>
+
+                <!-- Phase II: Functional Integration -->
+                <div class="session-group">
+                    <h3 class="phase-title">Phase II: Functional Integration</h3>
+                    <div class="session-item" data-slide="session-7">
+                        <div class="session-number">SESSION 7</div>
+                        <div class="session-title">AI for Market Analysis & Planning</div>
+                    </div>
+                    <!-- Additional sessions 8-12 would be added here -->
+                </div>
+
+                <!-- Phase III: Advanced Augmentation -->
+                <div class="session-group">
+                    <h3 class="phase-title">Phase III: Advanced Augmentation</h3>
+                    <div class="session-item" data-slide="session-13">
+                        <div class="session-number">SESSION 13</div>
+                        <div class="session-title">Multimodal AI for Business Intelligence</div>
+                    </div>
+                    <!-- Additional sessions 14-18 would be added here -->
+                </div>
+
+                <!-- Phase IV: Strategic Leadership -->
+                <div class="session-group">
+                    <h3 class="phase-title">Phase IV: Strategic Leadership</h3>
+                    <div class="session-item" data-slide="session-19">
+                        <div class="session-number">SESSION 19</div>
+                        <div class="session-title">Leading AI Adoption</div>
+                    </div>
+                    <!-- Additional sessions 20-24 would be added here -->
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Hero Slide -->
+            <section class="slide-container" id="hero">
+                <div class="slide hero fade-in">
+                    <h1 class="hero-title">
+                        Enhanced AI <span class="text-gradient">Acumen</span> Program
+                    </h1>
+                    <p class="hero-subtitle">
+                        Transform from AI novice to confident orchestrator of human-AI collaboration
+                    </p>
+                    <div class="hero-meta">
+                        <span><i class="fas fa-clock accent-blue"></i> 24 Sessions</span>
+                        <span><i class="fas fa-users accent-mint"></i> Management Training</span>
+                        <span><i class="fas fa-calendar accent-purple"></i> 2025-2026</span>
+                    </div>
+                    
+                    <!-- Instructor Information Card -->
+                    <div class="content-card" style="max-width: 800px; text-align: left;">
+                        <div class="card-icon"><i class="fas fa-user-tie"></i></div>
+                        <h3 class="card-title">Your Instructor: Umasankr Udhya</h3>
+                        <div class="card-description">
+                            <p><strong>25 years</strong> in technology & strategy • <strong>20 years at Deloitte</strong></p>
+                            <p>ML & AI Specialist • Texas McCombs School of Business</p>
+                            <p>$3,000+ invested in AI experimentation since ChatGPT's release</p>
+                            <p><em>"Transforming complex AI concepts into practical business advantages"</em></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session 1: AI Landscape -->
+            <section class="slide-container hidden" id="session-1">
+                <div class="slide slide-in-up">
+                    <div class="slide-header">
+                        <h2 class="slide-title">Session 1: The AI Landscape</h2>
+                        <p class="slide-objective">🎯 Strategic understanding of key AI players for informed platform decisions</p>
+                    </div>
+
+                    <!-- Three AI Ecosystems -->
+                    <div class="content-grid grid-3">
+                        <div class="content-card">
+                            <div class="card-icon"><i class="fas fa-brain"></i></div>
+                            <h3 class="card-title accent-blue">OpenAI</h3>
+                            <div class="platform-philosophy">"The Reasoning Engine"</div>
+                            <div class="card-description">
+                                Advanced problem-solving with o-series models. Ideal for complex reasoning and creative generation.
+                            </div>
+                        </div>
+                        
+                        <div class="content-card">
+                            <div class="card-icon"><i class="fas fa-cog"></i></div>
+                            <h3 class="card-title accent-mint">Google</h3>
+                            <div class="platform-philosophy">"The Integrated Workflow"</div>
+                            <div class="card-description">
+                                Seamless productivity integration with Workspace. Perfect for business process automation.
+                            </div>
+                        </div>
+                        
+                        <div class="content-card">
+                            <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                            <h3 class="card-title accent-purple">Anthropic</h3>
+                            <div class="platform-philosophy">"The Trusted Partner"</div>
+                            <div class="card-description">
+                                Safety & reliability focus with Claude. Best for legal/financial analysis and compliance.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Platform Comparison Matrix -->
+                    <div class="infographic-container">
+                        <h3 style="text-align: center; margin-bottom: 2rem; font-size: var(--text-title2); color: var(--text-primary);">
+                            AI Platform Comparison Matrix
+                        </h3>
+                        <div class="comparison-matrix">
+                            <div class="matrix-header">Platform</div>
+                            <div class="matrix-header">Core Philosophy</div>
+                            <div class="matrix-header">Key Strengths</div>
+                            <div class="matrix-header">Ideal Use Cases</div>
+                            
+                            <div class="matrix-cell">
+                                <div class="platform-name">OpenAI</div>
+                            </div>
+                            <div class="matrix-cell">
+                                <div class="platform-philosophy">Reasoning Engine</div>
+                            </div>
+                            <div class="matrix-cell">
+                                <div class="platform-strengths">Advanced reasoning, creative generation, agentic capabilities</div>
+                            </div>
+                            <div class="matrix-cell">
+                                <div class="platform-strengths">Complex problem-solving, research, code generation</div>
+                            </div>
+                            
+                            <div class="matrix-cell">
+                                <div class="platform-name">Google</div>
+                            </div>
+                            <div class="matrix-cell">
+                                <div class="platform-philosophy">Integrated Workflow</div>
+                            </div>
+                            <div class="matrix-cell">
+                                <div class="platform-strengths">Workspace integration, multimodal capabilities, enterprise agents</div>
+                            </div>
+                            <div class="matrix-cell">
+                                <div class="platform-strengths">Business process automation, collaborative content</div>
+                            </div>
+                            
+                            <div class="matrix-cell">
+                                <div class="platform-name">Anthropic</div>
+                            </div>
+                            <div class="matrix-cell">
+                                <div class="platform-philosophy">Trusted Partner</div>
+                            </div>
+                            <div class="matrix-cell">
+                                <div class="platform-strengths">Large context window, low hallucination, safety focus</div>
+                            </div>
+                            <div class="matrix-cell">
+                                <div class="platform-strengths">Legal/financial analysis, compliance monitoring</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Interactive Exercise -->
+                    <div class="exercise-container">
+                        <h3 class="exercise-title">
+                            <i class="fas fa-puzzle-piece"></i>
+                            Platform-Problem Fit Exercise
+                        </h3>
+                        <p class="exercise-subtitle">
+                            Match these business scenarios to the optimal AI platform by clicking each card:
+                        </p>
+                        
+                        <div class="exercise-scenarios">
+                            <div class="scenario-card" onclick="toggleScenario(this, 'anthropic')" data-platform="anthropic">
+                                <div class="scenario-header">
+                                    <div class="scenario-number">1</div>
+                                    <div class="scenario-status"></div>
+                                </div>
+                                <div class="scenario-text">M&A due diligence document analysis</div>
+                                <div class="scenario-divider"></div>
+                                <div class="scenario-solution">Click to reveal solution</div>
+                                <div class="platform-badge anthropic" style="display: none;">
+                                    <div class="platform-icon" style="background: linear-gradient(135deg, #007AFF, #00C7BE);"></div>
+                                    Claude (Anthropic)
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this, 'openai')" data-platform="openai">
+                                <div class="scenario-header">
+                                    <div class="scenario-number">2</div>
+                                    <div class="scenario-status"></div>
+                                </div>
+                                <div class="scenario-text">Creative marketing slogans and campaigns</div>
+                                <div class="scenario-divider"></div>
+                                <div class="scenario-solution">Click to reveal solution</div>
+                                <div class="platform-badge openai" style="display: none;">
+                                    <div class="platform-icon" style="background: linear-gradient(135deg, #AF52DE, #FF2D92);"></div>
+                                    GPT (OpenAI)
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this, 'google')" data-platform="google">
+                                <div class="scenario-header">
+                                    <div class="scenario-number">3</div>
+                                    <div class="scenario-status"></div>
+                                </div>
+                                <div class="scenario-text">Automated Google Sheets reports</div>
+                                <div class="scenario-divider"></div>
+                                <div class="scenario-solution">Click to reveal solution</div>
+                                <div class="platform-badge google" style="display: none;">
+                                    <div class="platform-icon" style="background: linear-gradient(135deg, #00C7BE, #30D158);"></div>
+                                    Gemini (Google)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Additional session slides would be added here -->
+            <!-- Session 2, 3, 4, etc. following the same pattern -->
+
+        </main>
+    </div>
+
+    <!-- Slide Controls -->
+    <div class="slide-controls">
+        <button class="control-btn" id="prevBtn" disabled>
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="control-btn" id="nextBtn">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <script>
+        // Presentation Navigation System
+        class ApplePresentationSystem {
+            constructor() {
+                this.currentSlideIndex = 0;
+                this.slides = [];
+                this.sessionItems = [];
+                this.init();
+            }
+
+            init() {
+                // Gather all slides and session items
+                this.slides = Array.from(document.querySelectorAll('.slide-container'));
+                this.sessionItems = Array.from(document.querySelectorAll('.session-item'));
+                
+                // Set up event listeners
+                this.setupEventListeners();
+                
+                // Initialize progress
+                this.updateProgress();
+                
+                // Add entrance animations
+                this.addEntranceAnimations();
+            }
+
+            setupEventListeners() {
+                // Session navigation clicks
+                this.sessionItems.forEach((item, index) => {
+                    item.addEventListener('click', () => {
+                        this.goToSlide(index);
+                    });
+                });
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight' || e.key === ' ') {
+                        e.preventDefault();
+                        this.nextSlide();
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        this.prevSlide();
+                    }
+                });
+
+                // Control buttons
+                document.getElementById('nextBtn').addEventListener('click', () => this.nextSlide());
+                document.getElementById('prevBtn').addEventListener('click', () => this.prevSlide());
+
+                // Touch/swipe support
+                let startX = 0;
+                let startY = 0;
+                
+                document.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                }, { passive: true });
+
+                document.addEventListener('touchend', (e) => {
+                    if (!startX || !startY) return;
+                    
+                    const endX = e.changedTouches[0].clientX;
+                    const endY = e.changedTouches[0].clientY;
+                    
+                    const diffX = startX - endX;
+                    const diffY = startY - endY;
+                    
+                    // Only trigger if horizontal swipe is greater than vertical
+                    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                        if (diffX > 0) {
+                            this.nextSlide(); // Swipe left = next
+                        } else {
+                            this.prevSlide(); // Swipe right = prev
+                        }
+                    }
+                    
+                    startX = 0;
+                    startY = 0;
+                }, { passive: true });
+            }
+
+            goToSlide(index) {
+                if (index < 0 || index >= this.slides.length) return;
+                
+                // Hide current slide
+                this.slides[this.currentSlideIndex].classList.add('hidden');
+                this.sessionItems[this.currentSlideIndex].classList.remove('active');
+                
+                // Show new slide
+                this.currentSlideIndex = index;
+                this.slides[this.currentSlideIndex].classList.remove('hidden');
+                this.sessionItems[this.currentSlideIndex].classList.add('active');
+                
+                // Update controls and progress
+                this.updateControls();
+                this.updateProgress();
+                
+                // Add entrance animation
+                this.addSlideAnimation();
+            }
+
+            nextSlide() {
+                if (this.currentSlideIndex < this.slides.length - 1) {
+                    this.goToSlide(this.currentSlideIndex + 1);
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlideIndex > 0) {
+                    this.goToSlide(this.currentSlideIndex - 1);
+                }
+            }
+
+            updateControls() {
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                
+                prevBtn.disabled = this.currentSlideIndex === 0;
+                nextBtn.disabled = this.currentSlideIndex === this.slides.length - 1;
+            }
+
+            updateProgress() {
+                const progressBar = document.getElementById('progressBar');
+                const progress = ((this.currentSlideIndex + 1) / this.slides.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            addSlideAnimation() {
+                const currentSlide = this.slides[this.currentSlideIndex].querySelector('.slide');
+                
+                // Remove existing animation classes
+                currentSlide.classList.remove('fade-in', 'slide-in-up', 'slide-in-left');
+                
+                // Force reflow
+                currentSlide.offsetHeight;
+                
+                // Add animation class
+                currentSlide.classList.add('slide-in-up');
+            }
+
+            addEntranceAnimations() {
+                // Stagger animations for content cards
+                const cards = document.querySelectorAll('.content-card');
+                cards.forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    card.classList.add('slide-in-left');
+                });
+            }
+        }
+
+        // Initialize the presentation system when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new ApplePresentationSystem();
+        });
+
+        // Interactive Exercise Functionality
+        function toggleScenario(cardElement, platform) {
+            const isSelected = cardElement.classList.contains('selected');
+            
+            if (!isSelected) {
+                // Add selected state
+                cardElement.classList.add('selected');
+                
+                // Update solution text
+                const solutionElement = cardElement.querySelector('.scenario-solution');
+                const platformBadge = cardElement.querySelector('.platform-badge');
+                
+                // Hide solution text and show platform badge
+                solutionElement.style.display = 'none';
+                platformBadge.style.display = 'flex';
+                
+                // Add completion animation
+                setTimeout(() => {
+                    cardElement.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        cardElement.style.transform = '';
+                    }, 200);
+                }, 100);
+                
+                // Check if all scenarios are completed
+                checkExerciseCompletion();
+            } else {
+                // Reset to initial state
+                cardElement.classList.remove('selected');
+                const solutionElement = cardElement.querySelector('.scenario-solution');
+                const platformBadge = cardElement.querySelector('.platform-badge');
+                
+                solutionElement.style.display = 'block';
+                platformBadge.style.display = 'none';
+                solutionElement.textContent = 'Click to reveal solution';
+            }
+        }
+
+        function checkExerciseCompletion() {
+            const allCards = document.querySelectorAll('.scenario-card');
+            const selectedCards = document.querySelectorAll('.scenario-card.selected');
+            
+            if (selectedCards.length === allCards.length) {
+                // All scenarios completed - show success feedback
+                const exerciseContainer = document.querySelector('.exercise-container');
+                const successMessage = document.createElement('div');
+                successMessage.className = 'exercise-success';
+                successMessage.style.cssText = `
+                    margin-top: 2rem;
+                    padding: 1.5rem;
+                    background: linear-gradient(135deg, rgba(48, 209, 88, 0.1), rgba(0, 199, 190, 0.1));
+                    border: 1px solid var(--accent-green);
+                    border-radius: 12px;
+                    text-align: center;
+                    color: var(--accent-green);
+                    font-weight: 600;
+                    animation: slideInUp 0.5s ease;
+                `;
+                successMessage.innerHTML = `
+                    <i class="fas fa-check-circle" style="margin-right: 0.5rem; font-size: 1.2rem;"></i>
+                    Excellent! You've successfully matched all scenarios to their optimal AI platforms.
+                `;
+                
+                // Remove existing success message if any
+                const existingSuccess = exerciseContainer.querySelector('.exercise-success');
+                if (existingSuccess) {
+                    existingSuccess.remove();
+                }
+                
+                exerciseContainer.appendChild(successMessage);
+            }
+        }
+
+        // Auto-save presentation state
+        window.addEventListener('beforeunload', () => {
+            const currentSlide = document.querySelector('.session-item.active');
+            if (currentSlide) {
+                localStorage.setItem('ai-acumen-last-slide', currentSlide.dataset.slide);
+            }
+        });
+
+        // Restore presentation state
+        window.addEventListener('load', () => {
+            const lastSlide = localStorage.getItem('ai-acumen-last-slide');
+            if (lastSlide) {
+                const slideIndex = Array.from(document.querySelectorAll('.session-item'))
+                    .findIndex(item => item.dataset.slide === lastSlide);
+                if (slideIndex >= 0) {
+                    setTimeout(() => {
+                        window.presentationSystem?.goToSlide(slideIndex);
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

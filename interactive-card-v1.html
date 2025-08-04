@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Exercise Card - VERSION 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #ffffff;
+            padding: 2rem;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Main Interactive Card */
+        .exercise-card {
+            position: relative;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            max-width: 380px;
+            cursor: grab;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            
+            /* Key Design: Only bottom and right shadows for depth */
+            box-shadow: 
+                8px 8px 32px rgba(0, 0, 0, 0.6),
+                4px 4px 16px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+            
+            /* Subtle inner glow for modern feel */
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 16px;
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-8px) rotateX(5deg) rotateY(2deg);
+            box-shadow: 
+                12px 12px 48px rgba(0, 0, 0, 0.8),
+                6px 6px 24px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                0 0 40px rgba(138, 43, 226, 0.2);
+        }
+
+        .exercise-card:hover::before {
+            opacity: 1;
+        }
+
+        .exercise-card:active {
+            cursor: grabbing;
+            transform: translateY(-4px) rotateX(2deg) rotateY(1deg) scale(0.98);
+        }
+
+        /* Card Header */
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .card-type {
+            background: linear-gradient(90deg, #8a2be2, #4b0082);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(138, 43, 226, 0.3);
+        }
+
+        .drag-indicator {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .drag-dot {
+            width: 4px;
+            height: 4px;
+            background-color: #666;
+            border-radius: 50%;
+        }
+
+        .exercise-card:hover .drag-indicator {
+            opacity: 1;
+        }
+
+        /* Card Content */
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            color: #ffffff;
+            letter-spacing: -0.025em;
+        }
+
+        .card-scenario {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #b3b3b3;
+            margin-bottom: 20px;
+        }
+
+        /* Interactive Elements */
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .target-solution {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #e0e0e0;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .exercise-card:hover .target-solution {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .match-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .exercise-card.matched .match-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .exercise-card {
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            .card-title {
+                font-size: 16px;
+            }
+        }
+
+        /* Demo Area */
+        .demo-area {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #666;
+            transition: all 0.3s ease;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .demo-area.drag-over {
+            border-color: rgba(138, 43, 226, 0.5);
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(75, 0, 130, 0.1) 100%);
+            color: #8a2be2;
+        }
+
+        .demo-instructions {
+            margin-top: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Interactive Exercise Card -->
+        <div class="exercise-card" draggable="true" id="exerciseCard">
+            <div class="card-header">
+                <div class="card-type">Business Scenario</div>
+                <div class="drag-indicator">
+                    <div class="drag-dot"></div>
+                    <div class="drag-dot"></div>
+                    <div class="drag-dot"></div>
+                    <div class="drag-dot"></div>
+                    <div class="drag-dot"></div>
+                    <div class="drag-dot"></div>
+                </div>
+            </div>
+            
+            <h3 class="card-title">M&A Due Diligence Document Analysis</h3>
+            <p class="card-scenario">
+                A private equity firm needs to analyze thousands of legal documents, contracts, and financial statements during a merger acquisition. The AI must identify risks, extract key terms, and summarize findings across multiple document types with high accuracy and confidentiality.
+            </p>
+            
+            <div class="card-footer">
+                <div class="target-solution">Claude (Anthropic)</div>
+                <div class="match-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20,6 9,17 4,12"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drop Area for Demo -->
+        <div class="demo-area" id="dropArea">
+            <h3>Drop Zone</h3>
+            <p>Drag the card here to match with the AI platform</p>
+        </div>
+    </div>
+
+    <div class="demo-instructions">
+        <p><strong>VERSION 1 Interactive Exercise Card</strong></p>
+        <p>Features: Pure black background, bottom/right shadows only, modern gradients, smooth hover effects, and drag-and-drop functionality</p>
+    </div>
+
+    <script>
+        const exerciseCard = document.getElementById('exerciseCard');
+        const dropArea = document.getElementById('dropArea');
+
+        // Drag and Drop Functionality
+        exerciseCard.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', 'exercise-card');
+            exerciseCard.style.opacity = '0.8';
+        });
+
+        exerciseCard.addEventListener('dragend', (e) => {
+            exerciseCard.style.opacity = '1';
+        });
+
+        dropArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropArea.classList.add('drag-over');
+        });
+
+        dropArea.addEventListener('dragleave', (e) => {
+            dropArea.classList.remove('drag-over');
+        });
+
+        dropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropArea.classList.remove('drag-over');
+            
+            if (e.dataTransfer.getData('text/plain') === 'exercise-card') {
+                exerciseCard.classList.add('matched');
+                dropArea.innerHTML = '<h3>Correct Match!</h3><p>Claude (Anthropic) is the right choice for document analysis</p>';
+                dropArea.style.background = 'linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 204, 106, 0.1) 100%)';
+                dropArea.style.borderColor = 'rgba(0, 255, 136, 0.5)';
+                dropArea.style.color = '#00ff88';
+            }
+        });
+
+        // Click interaction for touch devices
+        exerciseCard.addEventListener('click', (e) => {
+            if (!exerciseCard.classList.contains('matched')) {
+                exerciseCard.classList.add('matched');
+                setTimeout(() => {
+                    dropArea.innerHTML = '<h3>Correct Match!</h3><p>Claude (Anthropic) is the right choice for document analysis</p>';
+                    dropArea.style.background = 'linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 204, 106, 0.1) 100%)';
+                    dropArea.style.borderColor = 'rgba(0, 255, 136, 0.5)';
+                    dropArea.style.color = '#00ff88';
+                }, 300);
+            }
+        });
+
+        // Mouse tracking for enhanced hover effect
+        exerciseCard.addEventListener('mousemove', (e) => {
+            const card = e.currentTarget;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        exerciseCard.addEventListener('mouseleave', (e) => {
+            e.currentTarget.style.transform = '';
+        });
+    </script>
+</body>
+</html>

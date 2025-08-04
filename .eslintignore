@@ -1,0 +1,10 @@
+dist/
+node_modules/
+.cache/
+build/
+public/
+*.min.js
+*.config.js
+vite.config.js
+tailwind.config.js
+postcss.config.js

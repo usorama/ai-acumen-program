@@ -111,7 +111,7 @@ function SlideContainer({ slide, sessionData, isActive = true, direction = 'next
               </div>
               <h2 className="text-xl font-bold text-dark-text mb-2">Unknown Slide Type</h2>
               <p className="text-dark-text-secondary">
-                Slide type "{slide.type}" is not supported yet.
+                Slide type &quot;{slide.type}&quot; is not supported yet.
               </p>
               <div className="mt-4 p-4 bg-dark-bg-secondary rounded-lg text-left">
                 <h3 className="font-semibold text-dark-text mb-2">Slide Data:</h3>

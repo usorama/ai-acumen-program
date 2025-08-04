@@ -1,0 +1,556 @@
+{
+  "files": [
+    {
+      "path": "gamma-prompts/ai_training_presentation.html",
+      "screenshot": "analysis-gamma-prompts-ai_training_presentation.png",
+      "title": "Enhanced AI Acumen Program - Gamma AI Implementation",
+      "bodyBackground": "rgba(0, 0, 0, 0)",
+      "bodyColor": "rgb(51, 51, 51)",
+      "fontFamily": "\"Open Sans\", sans-serif",
+      "hasGrid": true,
+      "hasFlex": true,
+      "colorCount": 8,
+      "backgroundCount": 9,
+      "colors": [
+        "rgb(0, 0, 0)",
+        "rgb(51, 51, 51)",
+        "rgb(102, 126, 234)",
+        "rgb(102, 102, 102)",
+        "rgb(255, 255, 255)",
+        "rgb(0, 0, 238)",
+        "rgb(46, 125, 46)",
+        "rgb(44, 62, 80)"
+      ],
+      "backgrounds": [
+        "rgba(255, 255, 255, 0.95)",
+        "rgb(255, 255, 255)",
+        "rgb(102, 126, 234)",
+        "rgba(255, 255, 255, 0.1)",
+        "rgb(255, 243, 205)",
+        "rgb(212, 237, 218)",
+        "rgb(232, 245, 232)",
+        "rgba(255, 255, 255, 0.2)",
+        "rgb(248, 249, 250)"
+      ],
+      "textLength": 86570,
+      "wordCount": 29205,
+      "navElementsCount": 9,
+      "interactiveElementsCount": 0,
+      "fontFamilies": [
+        "\"Times New Roman\"",
+        "\"Open Sans\", sans-serif",
+        "\"Courier New\", monospace"
+      ],
+      "fontSizes": [
+        "16px",
+        "14.4px",
+        "12.8px",
+        "40px",
+        "19.2px",
+        "28.8px",
+        "22.4px",
+        "18.72px",
+        "17.6px",
+        "13.28px"
+      ],
+      "viewportWidth": 1920,
+      "viewportHeight": 1080,
+      "scrollHeight": 11064,
+      "hasFixedElements": true,
+      "headingCount": 58,
+      "paragraphCount": 64,
+      "listItemCount": 49,
+      "imageCount": 0,
+      "linkCount": 8
+    },
+    {
+      "path": "program-guide/ai_training_presentation.html",
+      "screenshot": "analysis-program-guide-ai_training_presentation.png",
+      "title": "Enhanced AI Acumen Program - 24 Sessions",
+      "bodyBackground": "rgb(248, 249, 250)",
+      "bodyColor": "rgb(51, 51, 51)",
+      "fontFamily": "\"Open Sans\", sans-serif",
+      "hasGrid": false,
+      "hasFlex": true,
+      "colorCount": 6,
+      "backgroundCount": 11,
+      "colors": [
+        "rgb(0, 0, 0)",
+        "rgb(51, 51, 51)",
+        "rgb(102, 126, 234)",
+        "rgb(255, 255, 255)",
+        "rgb(44, 62, 80)",
+        "rgb(46, 125, 46)"
+      ],
+      "backgrounds": [
+        "rgb(248, 249, 250)",
+        "rgba(255, 255, 255, 0.95)",
+        "rgb(255, 255, 255)",
+        "rgb(232, 244, 253)",
+        "rgb(255, 245, 245)",
+        "rgb(243, 229, 245)",
+        "rgb(102, 126, 234)",
+        "rgb(232, 245, 232)",
+        "rgb(255, 243, 205)",
+        "rgb(231, 243, 255)"
+      ],
+      "textLength": 77542,
+      "wordCount": 27797,
+      "navElementsCount": 5,
+      "interactiveElementsCount": 0,
+      "fontFamilies": [
+        "\"Times New Roman\"",
+        "\"Open Sans\", sans-serif"
+      ],
+      "fontSizes": [
+        "16px",
+        "14.4px",
+        "40px",
+        "19.2px",
+        "22.4px",
+        "28.8px",
+        "24px"
+      ],
+      "viewportWidth": 1920,
+      "viewportHeight": 1080,
+      "scrollHeight": 13063,
+      "hasFixedElements": true,
+      "headingCount": 38,
+      "paragraphCount": 92,
+      "listItemCount": 11,
+      "imageCount": 0,
+      "linkCount": 4
+    },
+    {
+      "path": "program-html-slides/ai_training_presentation.html",
+      "screenshot": "analysis-program-html-slides-ai_training_presentation.png",
+      "title": "Enhanced AI Acumen Program - Session 1",
+      "bodyBackground": "rgb(254, 254, 254)",
+      "bodyColor": "rgb(0, 0, 0)",
+      "fontFamily": "\"Open Sans\", sans-serif",
+      "hasGrid": true,
+      "hasFlex": true,
+      "colorCount": 37,
+      "backgroundCount": 32,
+      "colors": [
+        "rgb(0, 0, 0)",
+        "rgb(45, 55, 72)",
+        "rgb(99, 102, 241)",
+        "rgb(74, 85, 104)",
+        "rgb(49, 46, 129)",
+        "rgb(100, 116, 139)",
+        "rgb(26, 32, 44)",
+        "rgb(6, 78, 59)",
+        "rgb(4, 120, 87)",
+        "rgb(5, 150, 105)"
+      ],
+      "backgrounds": [
+        "rgb(254, 254, 254)",
+        "rgb(165, 180, 252)",
+        "rgb(241, 245, 249)",
+        "rgb(255, 255, 255)",
+        "rgb(204, 251, 241)",
+        "rgb(254, 242, 242)",
+        "rgb(240, 253, 244)",
+        "rgb(248, 250, 252)",
+        "rgb(236, 253, 245)",
+        "rgb(240, 249, 255)"
+      ],
+      "textLength": 408246,
+      "wordCount": 237693,
+      "navElementsCount": 5,
+      "interactiveElementsCount": 2,
+      "fontFamilies": [
+        "Times",
+        "\"Open Sans\", sans-serif",
+        "monospace",
+        "Arial"
+      ],
+      "fontSizes": [
+        "16px",
+        "19.2px",
+        "14.4px",
+        "17.6px",
+        "12.8px",
+        "11.2px",
+        "40px",
+        "32px",
+        "24px",
+        "22.4px"
+      ],
+      "viewportWidth": 1920,
+      "viewportHeight": 1080,
+      "scrollHeight": 1080,
+      "hasFixedElements": true,
+      "headingCount": 120,
+      "paragraphCount": 126,
+      "listItemCount": 124,
+      "imageCount": 0,
+      "linkCount": 0
+    },
+    {
+      "path": "enhanced-presentation/ai_training_presentation.html",
+      "screenshot": "analysis-enhanced-presentation-ai_training_presentation.png",
+      "title": "Enhanced AI Acumen Program - Session 1",
+      "bodyBackground": "rgb(254, 254, 254)",
+      "bodyColor": "rgb(0, 0, 0)",
+      "fontFamily": "\"Open Sans\", sans-serif",
+      "hasGrid": true,
+      "hasFlex": true,
+      "colorCount": 37,
+      "backgroundCount": 32,
+      "colors": [
+        "rgb(0, 0, 0)",
+        "rgb(45, 55, 72)",
+        "rgb(99, 102, 241)",
+        "rgb(74, 85, 104)",
+        "rgb(49, 46, 129)",
+        "rgb(100, 116, 139)",
+        "rgb(26, 32, 44)",
+        "rgb(6, 78, 59)",
+        "rgb(4, 120, 87)",
+        "rgb(5, 150, 105)"
+      ],
+      "backgrounds": [
+        "rgb(254, 254, 254)",
+        "rgb(165, 180, 252)",
+        "rgb(241, 245, 249)",
+        "rgb(255, 255, 255)",
+        "rgb(204, 251, 241)",
+        "rgb(254, 242, 242)",
+        "rgb(240, 253, 244)",
+        "rgb(248, 250, 252)",
+        "rgb(236, 253, 245)",
+        "rgb(240, 249, 255)"
+      ],
+      "textLength": 408246,
+      "wordCount": 237693,
+      "navElementsCount": 5,
+      "interactiveElementsCount": 2,
+      "fontFamilies": [
+        "Times",
+        "\"Open Sans\", sans-serif",
+        "monospace",
+        "Arial"
+      ],
+      "fontSizes": [
+        "16px",
+        "19.2px",
+        "14.4px",
+        "17.6px",
+        "12.8px",
+        "11.2px",
+        "40px",
+        "32px",
+        "24px",
+        "22.4px"
+      ],
+      "viewportWidth": 1920,
+      "viewportHeight": 1080,
+      "scrollHeight": 1080,
+      "hasFixedElements": true,
+      "headingCount": 120,
+      "paragraphCount": 126,
+      "listItemCount": 124,
+      "imageCount": 0,
+      "linkCount": 0
+    },
+    {
+      "path": "enhanced-presentation/presentation.html",
+      "screenshot": "analysis-enhanced-presentation-presentation.png",
+      "title": "AI Acumen Program - Enhanced Presentation System",
+      "bodyBackground": "rgba(0, 0, 0, 0)",
+      "bodyColor": "rgb(226, 232, 240)",
+      "fontFamily": "\"Open Sans\", sans-serif",
+      "hasGrid": true,
+      "hasFlex": true,
+      "colorCount": 12,
+      "backgroundCount": 8,
+      "colors": [
+        "rgb(0, 0, 0)",
+        "rgb(226, 232, 240)",
+        "rgb(255, 255, 255)",
+        "rgba(255, 255, 255, 0.9)",
+        "rgb(15, 23, 42)",
+        "rgb(148, 163, 184)",
+        "rgb(106, 213, 203)",
+        "rgb(27, 154, 170)",
+        "rgb(88, 176, 156)",
+        "rgb(28, 49, 68)"
+      ],
+      "backgrounds": [
+        "rgb(30, 41, 59)",
+        "rgb(15, 23, 42)",
+        "rgba(30, 41, 59, 0.7)",
+        "rgba(239, 68, 68, 0.1)",
+        "rgba(40, 167, 69, 0.1)",
+        "rgb(51, 65, 85)",
+        "rgb(239, 68, 68)",
+        "rgb(189, 217, 191)"
+      ],
+      "textLength": 79944,
+      "wordCount": 44899,
+      "navElementsCount": 1,
+      "interactiveElementsCount": 10,
+      "fontFamilies": [
+        "Times",
+        "\"Open Sans\", sans-serif",
+        "Arial"
+      ],
+      "fontSizes": [
+        "16px",
+        "22.4px",
+        "15.2px",
+        "14.4px",
+        "12px",
+        "56px",
+        "40px",
+        "64px",
+        "28.8px",
+        "18.4px"
+      ],
+      "viewportWidth": 1920,
+      "viewportHeight": 1080,
+      "scrollHeight": 1080,
+      "hasFixedElements": true,
+      "headingCount": 68,
+      "paragraphCount": 50,
+      "listItemCount": 49,
+      "imageCount": 0,
+      "linkCount": 0
+    },
+    {
+      "path": "enhanced-presentation/professional-training.html",
+      "screenshot": "analysis-enhanced-presentation-professional-training.png",
+      "title": "Enhanced AI Acumen Program - Professional Training System",
+      "bodyBackground": "rgb(248, 250, 252)",
+      "bodyColor": "rgb(107, 114, 128)",
+      "fontFamily": "Inter, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, sans-serif",
+      "hasGrid": true,
+      "hasFlex": true,
+      "colorCount": 9,
+      "backgroundCount": 14,
+      "colors": [
+        "rgb(0, 0, 0)",
+        "rgb(107, 114, 128)",
+        "rgb(255, 255, 255)",
+        "rgb(37, 99, 235)",
+        "rgb(29, 78, 216)",
+        "rgb(245, 158, 11)",
+        "rgb(14, 165, 233)",
+        "rgb(16, 185, 129)",
+        "rgb(6, 95, 70)"
+      ],
+      "backgrounds": [
+        "rgb(248, 250, 252)",
+        "rgb(37, 99, 235)",
+        "rgba(255, 255, 255, 0.2)",
+        "rgb(239, 246, 255)",
+        "rgb(29, 78, 216)",
+        "rgb(243, 244, 246)",
+        "rgb(207, 250, 254)",
+        "rgb(249, 250, 251)",
+        "rgb(255, 255, 255)",
+        "rgba(255, 255, 255, 0.3)"
+      ],
+      "textLength": 61795,
+      "wordCount": 34919,
+      "navElementsCount": 5,
+      "interactiveElementsCount": 13,
+      "fontFamilies": [
+        "Times",
+        "Inter, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, sans-serif",
+        "Arial",
+        "\"Font Awesome 6 Free\""
+      ],
+      "fontSizes": [
+        "16px",
+        "19.2px",
+        "28.8px",
+        "13.3333px",
+        "14.4px",
+        "17.6px",
+        "48px",
+        "20.8px",
+        "31.2px",
+        "64px"
+      ],
+      "viewportWidth": 1920,
+      "viewportHeight": 1080,
+      "scrollHeight": 1080,
+      "hasFixedElements": true,
+      "headingCount": 10,
+      "paragraphCount": 13,
+      "listItemCount": 22,
+      "imageCount": 0,
+      "linkCount": 0
+    }
+  ],
+  "summary": {
+    "colorSchemes": [
+      "rgb(0, 0, 0)",
+      "rgb(51, 51, 51)",
+      "rgb(102, 126, 234)",
+      "rgb(102, 102, 102)",
+      "rgb(255, 255, 255)",
+      "rgb(0, 0, 238)",
+      "rgb(46, 125, 46)",
+      "rgb(44, 62, 80)",
+      "rgb(45, 55, 72)",
+      "rgb(99, 102, 241)",
+      "rgb(74, 85, 104)",
+      "rgb(49, 46, 129)",
+      "rgb(100, 116, 139)",
+      "rgb(26, 32, 44)",
+      "rgb(6, 78, 59)",
+      "rgb(4, 120, 87)",
+      "rgb(5, 150, 105)",
+      "rgb(226, 232, 240)",
+      "rgba(255, 255, 255, 0.9)",
+      "rgb(15, 23, 42)",
+      "rgb(148, 163, 184)",
+      "rgb(106, 213, 203)",
+      "rgb(27, 154, 170)",
+      "rgb(88, 176, 156)",
+      "rgb(28, 49, 68)",
+      "rgb(107, 114, 128)",
+      "rgb(37, 99, 235)",
+      "rgb(29, 78, 216)",
+      "rgb(245, 158, 11)",
+      "rgb(14, 165, 233)",
+      "rgb(16, 185, 129)",
+      "rgb(6, 95, 70)"
+    ],
+    "layouts": [
+      {
+        "file": "gamma-prompts/ai_training_presentation.html",
+        "hasGrid": true,
+        "hasFlex": true,
+        "hasFixed": true
+      },
+      {
+        "file": "program-guide/ai_training_presentation.html",
+        "hasGrid": false,
+        "hasFlex": true,
+        "hasFixed": true
+      },
+      {
+        "file": "program-html-slides/ai_training_presentation.html",
+        "hasGrid": true,
+        "hasFlex": true,
+        "hasFixed": true
+      },
+      {
+        "file": "enhanced-presentation/ai_training_presentation.html",
+        "hasGrid": true,
+        "hasFlex": true,
+        "hasFixed": true
+      },
+      {
+        "file": "enhanced-presentation/presentation.html",
+        "hasGrid": true,
+        "hasFlex": true,
+        "hasFixed": true
+      },
+      {
+        "file": "enhanced-presentation/professional-training.html",
+        "hasGrid": true,
+        "hasFlex": true,
+        "hasFixed": true
+      }
+    ],
+    "contentDensity": [
+      {
+        "file": "gamma-prompts/ai_training_presentation.html",
+        "wordsPerPage": 29205,
+        "scrollHeight": 11064,
+        "density": 2639.642082429501
+      },
+      {
+        "file": "program-guide/ai_training_presentation.html",
+        "wordsPerPage": 27797,
+        "scrollHeight": 13063,
+        "density": 2127.9185485723033
+      },
+      {
+        "file": "program-html-slides/ai_training_presentation.html",
+        "wordsPerPage": 237693,
+        "scrollHeight": 1080,
+        "density": 220086.1111111111
+      },
+      {
+        "file": "enhanced-presentation/ai_training_presentation.html",
+        "wordsPerPage": 237693,
+        "scrollHeight": 1080,
+        "density": 220086.1111111111
+      },
+      {
+        "file": "enhanced-presentation/presentation.html",
+        "wordsPerPage": 44899,
+        "scrollHeight": 1080,
+        "density": 41573.148148148146
+      },
+      {
+        "file": "enhanced-presentation/professional-training.html",
+        "wordsPerPage": 34919,
+        "scrollHeight": 1080,
+        "density": 32332.407407407405
+      }
+    ],
+    "interactionPatterns": [
+      {
+        "file": "gamma-prompts/ai_training_presentation.html",
+        "navigation": 9,
+        "interactive": 0,
+        "links": 8
+      },
+      {
+        "file": "program-guide/ai_training_presentation.html",
+        "navigation": 5,
+        "interactive": 0,
+        "links": 4
+      },
+      {
+        "file": "program-html-slides/ai_training_presentation.html",
+        "navigation": 5,
+        "interactive": 2,
+        "links": 0
+      },
+      {
+        "file": "enhanced-presentation/ai_training_presentation.html",
+        "navigation": 5,
+        "interactive": 2,
+        "links": 0
+      },
+      {
+        "file": "enhanced-presentation/presentation.html",
+        "navigation": 1,
+        "interactive": 10,
+        "links": 0
+      },
+      {
+        "file": "enhanced-presentation/professional-training.html",
+        "navigation": 5,
+        "interactive": 13,
+        "links": 0
+      }
+    ],
+    "issues": [
+      "gamma-prompts/ai_training_presentation.html: High content density (29205 words) - may overwhelm users",
+      "gamma-prompts/ai_training_presentation.html: Too many font sizes (10) - inconsistent typography",
+      "gamma-prompts/ai_training_presentation.html: No interactive elements - static experience",
+      "program-guide/ai_training_presentation.html: High content density (27797 words) - may overwhelm users",
+      "program-guide/ai_training_presentation.html: No interactive elements - static experience",
+      "program-html-slides/ai_training_presentation.html: High content density (237693 words) - may overwhelm users",
+      "program-html-slides/ai_training_presentation.html: Too many font sizes (10) - inconsistent typography",
+      "program-html-slides/ai_training_presentation.html: Too many colors (37) - may appear cluttered",
+      "enhanced-presentation/ai_training_presentation.html: High content density (237693 words) - may overwhelm users",
+      "enhanced-presentation/ai_training_presentation.html: Too many font sizes (10) - inconsistent typography",
+      "enhanced-presentation/ai_training_presentation.html: Too many colors (37) - may appear cluttered",
+      "enhanced-presentation/presentation.html: High content density (44899 words) - may overwhelm users",
+      "enhanced-presentation/presentation.html: Too many font sizes (10) - inconsistent typography",
+      "enhanced-presentation/professional-training.html: High content density (34919 words) - may overwhelm users",
+      "enhanced-presentation/professional-training.html: Too many font sizes (10) - inconsistent typography"
+    ]
+  }
+}

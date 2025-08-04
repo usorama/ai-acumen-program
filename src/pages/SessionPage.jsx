@@ -155,7 +155,7 @@ function SessionPage() {
             </div>
             <h2 className="text-xl font-bold text-dark-text mb-2">No Slides Available</h2>
             <p className="text-dark-text-secondary mb-6">
-              This session doesn't have any slides configured yet.
+              This session doesn&apos;t have any slides configured yet.
             </p>
             <div className="space-y-2">
               <button

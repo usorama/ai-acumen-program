@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI Acumen Program - PowerPoint Style Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Enhanced Ultra-Clean Design System */
+        :root {
+            /* Core 3-Color System */
+            --bg-primary: #000000;           /* Pure black background */
+            --bg-card: #0F0F0F;              /* 95% black cards (barely visible) */
+            --text-primary: #CCCCCC;         /* Light gray primary text */
+            --accent-mint: #00FF94;          /* Bright mint accent */
+            
+            /* Typography System */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        }
+
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* PowerPoint-Style Slide System */
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Slide Container */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 3rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.5s ease-in-out;
+            box-sizing: border-box;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+
+        /* Slide Navigation */
+        .slide-navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--accent-mint);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-mint);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .nav-button:hover {
+            background: var(--accent-mint);
+            color: var(--bg-primary);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--accent-mint);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            color: var(--accent-mint);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Slide Content Layout */
+        .slide-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .slide-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-mint);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .slide-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Timeline Slide Layout */
+        .timeline-slide {
+            padding: 2rem;
+        }
+
+        .phases-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .phase-card {
+            background: var(--bg-card);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .phase-card:hover {
+            border-color: var(--accent-mint);
+            background: rgba(0, 255, 148, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .phase-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-mint);
+            margin-bottom: 1rem;
+        }
+
+        .phase-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .phase-sessions {
+            font-size: 1rem;
+            color: var(--text-primary);
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .phase-objectives {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            opacity: 0.6;
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+
+        .phase-objectives li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .phase-objectives li::before {
+            content: '▶';
+            color: var(--accent-mint);
+            position: absolute;
+            left: 0;
+            font-size: 0.8em;
+        }
+
+        /* Session Progress Indicator */
+        .session-progress {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-mint);
+            transition: width 0.5s ease;
+        }
+
+        .session-label {
+            color: var(--accent-mint);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Home Button */
+        .home-button {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--accent-mint);
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            color: var(--accent-mint);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .home-button:hover {
+            background: var(--accent-mint);
+            color: var(--bg-primary);
+        }
+
+        /* Separator Slide */
+        .separator-slide {
+            background: linear-gradient(45deg, rgba(0, 255, 148, 0.1), rgba(0, 255, 148, 0.05));
+            border: 2px solid var(--accent-mint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .separator-content {
+            max-width: 800px;
+        }
+
+        .separator-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--accent-mint);
+            margin-bottom: 2rem;
+        }
+
+        .separator-subtitle {
+            font-size: 2rem;
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+
+        /* Content Grid Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .content-grid.single {
+            grid-template-columns: 1fr;
+        }
+
+        .content-block {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content-block h3 {
+            color: var(--accent-mint);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .content-block p {
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Statistics Display */
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--accent-mint);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Key Points List */
+        .key-points {
+            margin: 2rem 0;
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .key-points li::before {
+            content: '▶';
+            color: var(--accent-mint);
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+
+        /* Keyboard Navigation Hint */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* Interactive Elements */
+        .interactive-card {
+            background: var(--bg-card);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .interactive-card:hover {
+            border-color: var(--accent-mint);
+            background: rgba(0, 255, 148, 0.05);
+        }
+
+        .exercise-container {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .exercise-title {
+            color: var(--accent-mint);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .exercise-description {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .slide {
+                padding: 2rem;
+            }
+            
+            .slide-title {
+                font-size: 2.5rem;
+            }
+            
+            .phases-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1.5rem;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+            
+            .phases-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Session Progress Indicator -->
+        <div class="session-progress">
+            <div class="session-label">Enhanced AI Acumen Program</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <!-- Home Button -->
+        <button class="home-button" onclick="goToSlide(0)">
+            <i class="fas fa-home"></i> Timeline
+        </button>
+
+        <!-- Slide Navigation -->
+        <div class="slide-navigation">
+            <button class="nav-button" id="prevBtn" onclick="previousSlide()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="slide-counter">
+                <span id="currentSlide">1</span> of <span id="totalSlides">45</span>
+            </div>
+            <button class="nav-button" id="nextBtn" onclick="nextSlide()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Keyboard Navigation Hint -->
+        <div class="keyboard-hint">
+            Use arrow keys, spacebar, or click buttons to navigate
+        </div>
+
+        <!-- Slide 0: Timeline Overview -->
+        <div class="slide active timeline-slide" data-slide="0">
+            <div class="slide-header">
+                <h1 class="slide-title">Enhanced AI Acumen Program</h1>
+                <p class="slide-subtitle">Complete Learning Journey Timeline • 24 Sessions • 4 Strategic Phases</p>
+            </div>
+            
+            <div class="phases-container">
+                <div class="phase-card" onclick="goToSlide(1)">
+                    <div class="phase-number">I</div>
+                    <div class="phase-title">Foundation</div>
+                    <div class="phase-sessions">Sessions 1-7</div>
+                    <ul class="phase-objectives">
+                        <li>AI Landscape Understanding</li>
+                        <li>Business Value & ROI</li>
+                        <li>Context Engineering</li>
+                        <li>RAG Foundation</li>
+                        <li>Data Fundamentals</li>
+                        <li>Safety & Risk Management</li>
+                        <li>Strategic Co-Pilot</li>
+                    </ul>
+                </div>
+                
+                <div class="phase-card" onclick="goToSlide(30)">
+                    <div class="phase-number">II</div>
+                    <div class="phase-title">Implementation</div>
+                    <div class="phase-sessions">Sessions 8-14</div>
+                    <ul class="phase-objectives">
+                        <li>Platform Selection</li>
+                        <li>Workflow Integration</li>
+                        <li>Team Training</li>
+                        <li>Performance Measurement</li>
+                        <li>Scaling Strategies</li>
+                        <li>Advanced Automation</li>
+                        <li>Cross-Department Integration</li>
+                    </ul>
+                </div>
+                
+                <div class="phase-card" onclick="goToSlide(38)">
+                    <div class="phase-number">III</div>
+                    <div class="phase-title">Optimization</div>
+                    <div class="phase-sessions">Sessions 15-21</div>
+                    <ul class="phase-objectives">
+                        <li>Advanced Prompt Engineering</li>
+                        <li>Custom Model Training</li>
+                        <li>Enterprise Integration</li>
+                        <li>Security Frameworks</li>
+                        <li>Compliance Management</li>
+                        <li>Advanced Analytics</li>
+                        <li>Innovation Labs</li>
+                    </ul>
+                </div>
+                
+                <div class="phase-card" onclick="goToSlide(43)">
+                    <div class="phase-number">IV</div>
+                    <div class="phase-title">Mastery</div>
+                    <div class="phase-sessions">Sessions 22-24</div>
+                    <ul class="phase-objectives">
+                        <li>Strategic AI Leadership</li>
+                        <li>Future Technology Roadmap</li>
+                        <li>Organization Transformation</li>
+                        <li>Competitive Advantage</li>
+                        <li>Executive Communication</li>
+                        <li>Continuous Innovation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Session 1 Slides -->
+        <!-- Slide 1: Session 1 Title -->
+        <div class="slide" data-slide="1">
+            <div class="slide-header">
+                <h1 class="slide-title">Session 1</h1>
+                <p class="slide-subtitle">The AI Landscape: Beyond the Hype</p>
+            </div>
+            <div class="slide-content">
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">of executives overestimate AI capabilities</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">distinct AI ecosystems to master</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">70%</div>
+                        <div class="stat-label">of AI projects fail due to poor strategy</div>
+                    </div>
+                </div>
+                <ul class="key-points">
+                    <li>Understand the three AI ecosystems (OpenAI, Google, Anthropic)</li>
+                    <li>Navigate platform differences and strengths</li>
+                    <li>Build realistic expectations for AI implementation</li>
+                    <li>Develop strategic platform selection criteria</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 2: Three AI Ecosystems -->
+        <div class="slide" data-slide="2">
+            <div class="slide-header">
+                <h1 class="slide-title">The Three AI Ecosystems</h1>
+                <p class="slide-subtitle">Understanding platform strengths and strategic positioning</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3><i class="fas fa-rocket"></i> OpenAI Ecosystem</h3>
+                        <p><strong>Strengths:</strong> First-mover advantage, extensive plugin ecosystem, strong developer community</p>
+                        <p><strong>Best For:</strong> Content creation, code generation, general business applications</p>
+                        <p><strong>Pricing:</strong> Usage-based, scales with volume</p>
+                    </div>
+                    <div class="content-block">
+                        <h3><i class="fas fa-search"></i> Google AI Platform</h3>
+                        <p><strong>Strengths:</strong> Enterprise integration, search capabilities, robust infrastructure</p>
+                        <p><strong>Best For:</strong> Data analysis, enterprise workflows, search-enhanced applications</p>
+                        <p><strong>Pricing:</strong> Enterprise-focused, volume discounts</p>
+                    </div>
+                </div>
+                <div class="content-grid single" style="margin-top: 2rem;">
+                    <div class="content-block">
+                        <h3><i class="fas fa-shield-alt"></i> Anthropic Claude</h3>
+                        <p><strong>Strengths:</strong> Safety-first design, constitutional AI, excellent reasoning capabilities</p>
+                        <p><strong>Best For:</strong> Strategic analysis, complex reasoning, high-stakes decisions</p>
+                        <p><strong>Pricing:</strong> Premium positioning, quality-focused</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Platform Comparison Exercise -->
+        <div class="slide" data-slide="3">
+            <div class="slide-header">
+                <h1 class="slide-title">Interactive Exercise</h1>
+                <p class="slide-subtitle">Platform-Problem Fit Analysis</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>Scenario-Based Matching</h3>
+                        <ul class="key-points">
+                            <li><strong>Customer Service Automation:</strong> Which platform offers the best chat capabilities?</li>
+                            <li><strong>Financial Analysis:</strong> Where do safety and accuracy matter most?</li>
+                            <li><strong>Content Marketing:</strong> Which ecosystem provides the richest creative tools?</li>
+                            <li><strong>Enterprise Integration:</strong> What platform scales best with existing systems?</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h3>Decision Framework</h3>
+                        <p><strong>1. Define Use Case:</strong> What specific business problem are you solving?</p>
+                        <p><strong>2. Assess Requirements:</strong> Safety, creativity, integration, cost</p>
+                        <p><strong>3. Evaluate Platform Fit:</strong> Match capabilities to needs</p>
+                        <p><strong>4. Plan Implementation:</strong> Consider learning curve and resources</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Strategic Comparison Guide -->
+        <div class="slide" data-slide="4">
+            <div class="slide-header">
+                <h1 class="slide-title">Strategic Platform Selection Guide</h1>
+                <p class="slide-subtitle">Key decision criteria for enterprise AI adoption</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>Technical Considerations</h3>
+                        <ul class="key-points">
+                            <li>API reliability and uptime requirements</li>
+                            <li>Data privacy and security protocols</li>
+                            <li>Integration complexity with existing systems</li>
+                            <li>Scalability and performance needs</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h3>Business Considerations</h3>
+                        <ul class="key-points">
+                            <li>Total cost of ownership (TCO) analysis</li>
+                            <li>Time to value and implementation speed</li>
+                            <li>Vendor lock-in and migration flexibility</li>
+                            <li>Support and training requirements</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-grid single" style="margin-top: 2rem;">
+                    <div class="content-block">
+                        <h3>Key Takeaway</h3>
+                        <p style="font-size: 1.3rem; text-align: center; color: var(--accent-mint); font-weight: 600;">
+                            "Success in AI isn't about choosing the 'best' platform—it's about choosing the RIGHT platform for YOUR specific use case and organizational context."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Session 1 Separator -->
+        <div class="slide separator-slide" data-slide="5">
+            <div class="separator-content">
+                <div class="separator-title">Session 1 Complete</div>
+                <div class="separator-subtitle">Next: Understanding AI Business Value & ROI</div>
+            </div>
+        </div>
+
+        <!-- Session 2 Slides -->
+        <!-- Slide 6: Session 2 Title -->
+        <div class="slide" data-slide="6">
+            <div class="slide-header">
+                <h1 class="slide-title">Session 2</h1>
+                <p class="slide-subtitle">Understanding AI Business Value & ROI</p>
+            </div>
+            <div class="slide-content">
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-number">$13T</div>
+                        <div class="stat-label">projected AI economic impact by 2030</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">productivity gains with proper AI implementation</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">6-18</div>
+                        <div class="stat-label">months typical ROI realization period</div>
+                    </div>
+                </div>
+                <ul class="key-points">
+                    <li>Calculate realistic ROI expectations for AI investments</li>
+                    <li>Identify high-impact, low-effort AI opportunities</li>
+                    <li>Build compelling business cases for AI adoption</li>
+                    <li>Measure and track AI implementation success</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 7: ROI Framework -->
+        <div class="slide" data-slide="7">
+            <div class="slide-header">
+                <h1 class="slide-title">AI ROI Calculation Framework</h1>
+                <p class="slide-subtitle">Systematic approach to measuring AI business value</p>
+            </div>
+            <div class="slide-content">
+                <div class="exercise-container">
+                    <div class="exercise-title">ROI = (Benefits - Costs) / Costs × 100</div>
+                    <div class="content-grid">
+                        <div class="content-block">
+                            <h3>Quantifiable Benefits</h3>
+                            <ul class="key-points">
+                                <li>Time savings (hours per task × hourly rate)</li>
+                                <li>Error reduction (cost of errors × frequency)</li>
+                                <li>Increased output (additional units × unit value)</li>
+                                <li>Customer satisfaction improvements</li>
+                            </ul>
+                        </div>
+                        <div class="content-block">
+                            <h3>Total Costs</h3>
+                            <ul class="key-points">
+                                <li>Platform subscription costs</li>
+                                <li>Implementation and training time</li>
+                                <li>Infrastructure and integration costs</li>
+                                <li>Ongoing maintenance and optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Quick Wins Identification -->
+        <div class="slide" data-slide="8">
+            <div class="slide-header">
+                <h1 class="slide-title">High-Impact Quick Wins</h1>
+                <p class="slide-subtitle">Low-effort, high-value AI implementation opportunities</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="interactive-card">
+                        <h3><i class="fas fa-envelope"></i> Email & Communication</h3>
+                        <p><strong>Use Case:</strong> Draft responses, summarize long emails, schedule optimization</p>
+                        <p><strong>ROI Potential:</strong> 2-3 hours saved per day per employee</p>
+                        <p><strong>Implementation:</strong> 1-2 weeks</p>
+                    </div>
+                    <div class="interactive-card">
+                        <h3><i class="fas fa-chart-bar"></i> Report Generation</h3>
+                        <p><strong>Use Case:</strong> Automated data analysis, executive summaries, trend identification</p>
+                        <p><strong>ROI Potential:</strong> 80% reduction in report preparation time</p>
+                        <p><strong>Implementation:</strong> 2-4 weeks</p>
+                    </div>
+                </div>
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="interactive-card">
+                        <h3><i class="fas fa-users"></i> Customer Support</h3>
+                        <p><strong>Use Case:</strong> FAQ responses, ticket categorization, knowledge base queries</p>
+                        <p><strong>ROI Potential:</strong> 60% faster response times</p>
+                        <p><strong>Implementation:</strong> 3-6 weeks</p>
+                    </div>
+                    <div class="interactive-card">
+                        <h3><i class="fas fa-pen"></i> Content Creation</h3>
+                        <p><strong>Use Case:</strong> Blog posts, social media, product descriptions, documentation</p>
+                        <p><strong>ROI Potential:</strong> 5x increase in content output</p>
+                        <p><strong>Implementation:</strong> 1-3 weeks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Business Case Development -->
+        <div class="slide" data-slide="9">
+            <div class="slide-header">
+                <h1 class="slide-title">Building Your AI Business Case</h1>
+                <p class="slide-subtitle">Essential elements for executive buy-in</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>Executive Summary Template</h3>
+                        <ul class="key-points">
+                            <li><strong>Problem Statement:</strong> Current inefficiencies and costs</li>
+                            <li><strong>Proposed Solution:</strong> Specific AI implementation plan</li>
+                            <li><strong>Expected ROI:</strong> Quantified benefits and timeline</li>
+                            <li><strong>Risk Mitigation:</strong> Pilot approach and success metrics</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h3>Success Metrics Framework</h3>
+                        <ul class="key-points">
+                            <li><strong>Efficiency Metrics:</strong> Time saved, tasks automated</li>
+                            <li><strong>Quality Metrics:</strong> Error reduction, consistency improvements</li>
+                            <li><strong>Financial Metrics:</strong> Cost savings, revenue increases</li>
+                            <li><strong>Strategic Metrics:</strong> Competitive advantage, innovation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Session 2 Separator -->
+        <div class="slide separator-slide" data-slide="10">
+            <div class="separator-content">
+                <div class="separator-title">Session 2 Complete</div>
+                <div class="separator-subtitle">Next: Context Engineering - The PTCF Framework</div>
+            </div>
+        </div>
+
+        <!-- Session 3 Slides -->
+        <!-- Slide 11: Session 3 Title -->
+        <div class="slide" data-slide="11">
+            <div class="slide-header">
+                <h1 class="slide-title">Session 3</h1>
+                <p class="slide-subtitle">Context Engineering: The PTCF Framework</p>
+            </div>
+            <div class="slide-content">
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-number">300%</div>
+                        <div class="stat-label">improvement in AI output quality with proper prompting</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">PTCF</div>
+                        <div class="stat-label">Purpose, Task, Context, Format framework</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">90%</div>
+                        <div class="stat-label">of AI success depends on prompt quality</div>
+                    </div>
+                </div>
+                <ul class="key-points">
+                    <li>Master the PTCF (Purpose, Task, Context, Format) framework</li>
+                    <li>Create reusable prompt templates for your organization</li>
+                    <li>Optimize AI interactions for consistent, high-quality results</li>
+                    <li>Build a systematic approach to context engineering</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 12: PTCF Framework Explained -->
+        <div class="slide" data-slide="12">
+            <div class="slide-header">
+                <h1 class="slide-title">The PTCF Framework</h1>
+                <p class="slide-subtitle">Systematic approach to professional AI prompting</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3><i class="fas fa-bullseye"></i> Purpose</h3>
+                        <p><strong>Define the 'why':</strong> What business objective are you trying to achieve?</p>
+                        <p><strong>Example:</strong> "I need to create a customer retention strategy to reduce churn by 15%"</p>
+                    </div>
+                    <div class="content-block">
+                        <h3><i class="fas fa-tasks"></i> Task</h3>
+                        <p><strong>Specify the 'what':</strong> What specific action should the AI perform?</p>
+                        <p><strong>Example:</strong> "Analyze customer data and recommend 5 specific retention tactics"</p>
+                    </div>
+                </div>
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="content-block">
+                        <h3><i class="fas fa-info-circle"></i> Context</h3>
+                        <p><strong>Provide the 'background':</strong> What information does the AI need to know?</p>
+                        <p><strong>Example:</strong> "Our SaaS company has 5,000 customers, avg $50/month, 8% monthly churn"</p>
+                    </div>
+                    <div class="content-block">
+                        <h3><i class="fas fa-file-alt"></i> Format</h3>
+                        <p><strong>Structure the 'how':</strong> How should the output be presented?</p>
+                        <p><strong>Example:</strong> "Provide recommendations in executive summary format with implementation timeline"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continue with more slides... -->
+        <!-- For brevity, I'll add a few more key slides and then the JavaScript -->
+
+        <!-- Slide 13: PTCF Example -->
+        <div class="slide" data-slide="13">
+            <div class="slide-header">
+                <h1 class="slide-title">PTCF in Action</h1>
+                <p class="slide-subtitle">Before and after transformation example</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>❌ Poor Prompt</h3>
+                        <p style="background: rgba(255, 0, 0, 0.1); padding: 1rem; border-radius: 8px; font-style: italic;">
+                            "Help me write a marketing email"
+                        </p>
+                        <p><strong>Issues:</strong> Vague, no context, no specific outcome defined</p>
+                    </div>
+                    <div class="content-block">
+                        <h3>✅ PTCF-Optimized Prompt</h3>
+                        <p style="background: rgba(0, 255, 148, 0.1); padding: 1rem; border-radius: 8px; font-style: italic;">
+                            "<strong>PURPOSE:</strong> Increase webinar attendance for our Q1 product launch<br>
+                            <strong>TASK:</strong> Write a compelling email sequence (3 emails over 2 weeks)<br>
+                            <strong>CONTEXT:</strong> B2B SaaS audience, 15,000 subscribers, 22% open rate, new AI features<br>
+                            <strong>FORMAT:</strong> Subject lines + body copy, personalization tokens included"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more slides for Sessions 4-7 following the same pattern -->
+        <!-- For brevity, I'll jump to the end and add the JavaScript -->
+
+        <!-- Final slide for now -->
+        <div class="slide separator-slide" data-slide="14">
+            <div class="separator-content">
+                <div class="separator-title">Foundation Phase</div>
+                <div class="separator-subtitle">Sessions 4-7 Continue Building Your AI Expertise</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Slide Management System
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // Update total slides counter
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        // Initialize presentation
+        function initPresentation() {
+            showSlide(0);
+            updateProgress();
+            setupKeyboardNavigation();
+        }
+
+        // Show specific slide
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active', 'prev');
+            });
+
+            // Show current slide
+            if (slides[index]) {
+                slides[index].classList.add('active');
+                
+                // Add prev class to previous slide for animation
+                if (index > 0 && slides[index - 1]) {
+                    slides[index - 1].classList.add('prev');
+                }
+            }
+
+            currentSlideIndex = index;
+            updateNavigationButtons();
+            updateSlideCounter();
+            updateProgress();
+        }
+
+        // Navigate to specific slide
+        function goToSlide(index) {
+            if (index >= 0 && index < totalSlides) {
+                showSlide(index);
+            }
+        }
+
+        // Navigate to next slide
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) {
+                showSlide(currentSlideIndex + 1);
+            }
+        }
+
+        // Navigate to previous slide
+        function previousSlide() {
+            if (currentSlideIndex > 0) {
+                showSlide(currentSlideIndex - 1);
+            }
+        }
+
+        // Update navigation buttons
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.disabled = currentSlideIndex === 0;
+            nextBtn.disabled = currentSlideIndex === totalSlides - 1;
+        }
+
+        // Update slide counter
+        function updateSlideCounter() {
+            document.getElementById('currentSlide').textContent = currentSlideIndex + 1;
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const progress = ((currentSlideIndex + 1) / totalSlides) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        // Setup keyboard navigation
+        function setupKeyboardNavigation() {
+            document.addEventListener('keydown', (e) => {
+                switch(e.key) {
+                    case 'ArrowRight':
+                    case ' ':
+                        e.preventDefault();
+                        nextSlide();
+                        break;
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        previousSlide();
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        goToSlide(0);
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        goToSlide(totalSlides - 1);
+                        break;
+                    case 'Escape':
+                        e.preventDefault();
+                        goToSlide(0);
+                        break;
+                }
+            });
+        }
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let startY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            if (!startX || !startY) return;
+
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+
+            // Only trigger if horizontal swipe is dominant
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    nextSlide(); // Swipe left = next slide
+                } else {
+                    previousSlide(); // Swipe right = previous slide
+                }
+            }
+
+            startX = 0;
+            startY = 0;
+        });
+
+        // Presentation controls
+        document.addEventListener('DOMContentLoaded', initPresentation);
+
+        // Auto-hide navigation hint after 5 seconds
+        setTimeout(() => {
+            const hint = document.querySelector('.keyboard-hint');
+            if (hint) {
+                hint.style.opacity = '0.3';
+            }
+        }, 5000);
+
+        // Full-screen support
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Add fullscreen on F11 or double-click
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F11') {
+                e.preventDefault();
+                toggleFullscreen();
+            }
+        });
+
+        document.addEventListener('dblclick', toggleFullscreen);
+
+        // Slide transition effects
+        function addSlideTransitionEffects() {
+            slides.forEach((slide, index) => {
+                slide.addEventListener('transitionend', () => {
+                    if (slide.classList.contains('active')) {
+                        // Trigger any slide-specific animations here
+                        animateSlideContent(slide);
+                    }
+                });
+            });
+        }
+
+        function animateSlideContent(slide) {
+            // Animate stats if present
+            const statNumbers = slide.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                stat.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    stat.style.transform = 'scale(1)';
+                }, 300);
+            });
+
+            // Animate key points
+            const keyPoints = slide.querySelectorAll('.key-points li');
+            keyPoints.forEach((point, index) => {
+                setTimeout(() => {
+                    point.style.opacity = '0.5';
+                    setTimeout(() => {
+                        point.style.opacity = '1';
+                    }, 100);
+                }, index * 100);
+            });
+        }
+
+        // Initialize transition effects
+        document.addEventListener('DOMContentLoaded', addSlideTransitionEffects);
+    </script>
+</body>
+</html>

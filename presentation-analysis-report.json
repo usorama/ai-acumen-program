@@ -1,0 +1,2412 @@
+{
+  "timestamp": "2025-08-02T08:41:19.410Z",
+  "url": "http://localhost:8147/complete-ai-acumen-presentation.html",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "summary": {
+    "totalSlides": 9,
+    "analyzedSlides": 9,
+    "errors": 0,
+    "totalIssues": 10,
+    "averageScores": {
+      "readability": 10,
+      "viewportFit": 10,
+      "contentDensity": 7.111111111111111,
+      "professional": 9.555555555555555
+    },
+    "overallScore": 9.166666666666666
+  },
+  "commonIssues": {
+    "Text line too long": 7,
+    "Improper heading hierarchy detected": 1,
+    "High content density": 2
+  },
+  "slides": [
+    {
+      "slideId": "hero",
+      "screenshot": "presentation-screenshots/hero.png",
+      "analysis": {
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "viewportFit": true,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        "content": {
+          "headings": 2,
+          "paragraphs": 2,
+          "lists": 0,
+          "images": 0,
+          "textElements": 20,
+          "hasOverflow": false,
+          "totalElements": 20
+        },
+        "textAnalysis": [
+          {
+            "tag": "div",
+            "text": "Enhanced AI Acumen Program\n                    \n                    \n                        Transfo",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 900,
+            "height": 566.375,
+            "visible": true
+          },
+          {
+            "tag": "h1",
+            "text": "Enhanced AI Acumen Program",
+            "fontSize": 40,
+            "lineHeight": "44px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "800",
+            "width": 900,
+            "height": 44,
+            "visible": true
+          },
+          {
+            "tag": "span",
+            "text": "Acumen",
+            "fontSize": 40,
+            "lineHeight": "44px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 160.453125,
+            "height": 49,
+            "visible": true
+          },
+          {
+            "tag": "p",
+            "text": "Transform from AI novice to confident orchestrator of human-AI collaboration",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 900,
+            "height": 30,
+            "visible": true
+          },
+          {
+            "tag": "span",
+            "text": "human-AI collaboration",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 229.5,
+            "height": 24,
+            "visible": true
+          },
+          {
+            "tag": "div",
+            "text": "Program Overview\n                        \n                            The Enhanced AI Acumen Program",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 900,
+            "height": 444.375,
+            "visible": true
+          },
+          {
+            "tag": "h3",
+            "text": "Program Overview",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 852,
+            "height": 30,
+            "visible": true
+          },
+          {
+            "tag": "span",
+            "text": "Overview",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 92.125,
+            "height": 24,
+            "visible": true
+          },
+          {
+            "tag": "p",
+            "text": "The Enhanced AI Acumen Program is designed to transform managers from AI novices to confident orches",
+            "fontSize": 20,
+            "lineHeight": "32px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 852,
+            "height": 128,
+            "visible": true
+          },
+          {
+            "tag": "span",
+            "text": "12 months",
+            "fontSize": 20,
+            "lineHeight": "32px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 99.96875,
+            "height": 24,
+            "visible": true
+          },
+          {
+            "tag": "span",
+            "text": "2026 business landscape",
+            "fontSize": 20,
+            "lineHeight": "32px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 449.625,
+            "height": 56,
+            "visible": true
+          },
+          {
+            "tag": "div",
+            "text": "24 Sessions • 15 minutes each • Strategic focus\n                            4 Phases • From foundati",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 852,
+            "height": 150.375,
+            "visible": true
+          },
+          {
+            "tag": "div",
+            "text": "24 Sessions • 15 minutes each • Strategic focus",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 852,
+            "height": 25.59375,
+            "visible": true
+          },
+          {
+            "tag": "span",
+            "text": "24 Sessions",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 95.453125,
+            "height": 20,
+            "visible": true
+          },
+          {
+            "tag": "div",
+            "text": "4 Phases • From foundations to strategic leadership",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 852,
+            "height": 25.59375,
+            "visible": true
+          },
+          {
+            "tag": "span",
+            "text": "4 Phases",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 71.703125,
+            "height": 20,
+            "visible": true
+          },
+          {
+            "tag": "div",
+            "text": "Practical Tools • Manager's AI Playbook with templates",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 852,
+            "height": 25.59375,
+            "visible": true
+          },
+          {
+            "tag": "span",
+            "text": "Practical Tools",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 114.921875,
+            "height": 20,
+            "visible": true
+          },
+          {
+            "tag": "div",
+            "text": "Real Applications • Immediate business value implementation",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 852,
+            "height": 25.59375,
+            "visible": true
+          },
+          {
+            "tag": "span",
+            "text": "Real Applications",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 136.015625,
+            "height": 20,
+            "visible": true
+          }
+        ],
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "issues": [
+        "Text line too long: ~94 characters (max 75 recommended)",
+        "Text line too long: ~94 characters (max 75 recommended)",
+        "Text line too long: ~89 characters (max 75 recommended)",
+        "Text line too long: ~89 characters (max 75 recommended)",
+        "Text line too long: ~89 characters (max 75 recommended)",
+        "Text line too long: ~89 characters (max 75 recommended)",
+        "Text line too long: ~89 characters (max 75 recommended)",
+        "Improper heading hierarchy detected"
+      ],
+      "recommendations": [
+        "Use proper heading hierarchy (h1 > h2 > h3, etc.)"
+      ],
+      "scores": {
+        "readability": 10,
+        "viewportFit": 10,
+        "contentDensity": 8,
+        "professional": 6
+      }
+    },
+    {
+      "slideId": "instructor",
+      "screenshot": "presentation-screenshots/instructor.png",
+      "analysis": {
+        "dimensions": {
+          "width": 0,
+          "height": 0,
+          "viewportFit": true,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        "content": {
+          "headings": 3,
+          "paragraphs": 1,
+          "lists": 0,
+          "images": 1,
+          "textElements": 21,
+          "hasOverflow": false,
+          "totalElements": 33
+        },
+        "textAnalysis": [
+          {
+            "tag": "div",
+            "text": "Umasankr Udhya\n                            Lead Strategy & Innovation, AI/ML Specialist\n            ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Umasankr Udhya\n                            Lead Strategy & Innovation, AI/ML Specialist\n            ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Umasankr Udhya\n                            Lead Strategy & Innovation, AI/ML Specialist",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h2",
+            "text": "Umasankr Udhya",
+            "fontSize": 40,
+            "lineHeight": "60px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Lead Strategy & Innovation, AI/ML Specialist",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "500",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Who I Am\n                                \n                                    25 years in technology",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Who I Am\n                                \n                                    25 years in technology",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "Who I Am",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Am",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "25 years in technology & strategy, with 20 years at Deloitte\n                                    ML ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "25 years in technology & strategy, with 20 years at Deloitte",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "25 years",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "20 years at Deloitte",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "ML & AI Specialist with deep expertise in Natural Language Processing",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "ML & AI Specialist",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Academic Foundation: Texas McCombs School of Business - AI/ML",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Academic Foundation:",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Active Practitioner: Kaggle competitor and ML community contributor",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Active Practitioner:",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Why I'm Giving This Talk\n                                \n                                    $3,000",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "Why I'm Giving This Talk",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        ],
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "issues": [],
+      "recommendations": [],
+      "scores": {
+        "readability": 10,
+        "viewportFit": 10,
+        "contentDensity": 8,
+        "professional": 10
+      }
+    },
+    {
+      "slideId": "timeline",
+      "screenshot": "presentation-screenshots/timeline.png",
+      "analysis": {
+        "dimensions": {
+          "width": 0,
+          "height": 0,
+          "viewportFit": true,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        "content": {
+          "headings": 5,
+          "paragraphs": 8,
+          "lists": 0,
+          "images": 0,
+          "textElements": 21,
+          "hasOverflow": false,
+          "totalElements": 25
+        },
+        "textAnalysis": [
+          {
+            "tag": "div",
+            "text": "Enhanced AI Acumen Program Timeline\n                        \n                        \n              ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Enhanced AI Acumen Program Timeline\n                        \n                        \n              ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h2",
+            "text": "Enhanced AI Acumen Program Timeline",
+            "fontSize": 28,
+            "lineHeight": "42px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Timeline",
+            "fontSize": 28,
+            "lineHeight": "42px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Phase I\n                                Foundational Intelligence\n                                Mo",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Phase I\n                                Foundational Intelligence\n                                Mo",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Phase I",
+            "fontSize": 14,
+            "lineHeight": "21px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "Foundational Intelligence",
+            "fontSize": 28,
+            "lineHeight": "42px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Months 1-3 (Sessions 1-6)",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "From Models to Business Value",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Phase II\n                                Functional Integration\n                                Mont",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Phase II",
+            "fontSize": 14,
+            "lineHeight": "21px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "Functional Integration",
+            "fontSize": 28,
+            "lineHeight": "42px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Months 4-6 (Sessions 7-12)",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "AI in the Manager's Toolkit",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Phase III\n                                Advanced Augmentation\n                                Mont",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Phase III",
+            "fontSize": 14,
+            "lineHeight": "21px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "Advanced Augmentation",
+            "fontSize": 28,
+            "lineHeight": "42px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Months 7-9 (Sessions 13-18)",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Mastering Agentic & Multimodal Workflows",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Phase IV\n                                Strategic Leadership\n                                Months",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        ],
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "issues": [
+        "High content density: 13 major content blocks"
+      ],
+      "recommendations": [
+        "Consider splitting content across multiple slides"
+      ],
+      "scores": {
+        "readability": 10,
+        "viewportFit": 10,
+        "contentDensity": 4,
+        "professional": 10
+      }
+    },
+    {
+      "slideId": "session-1",
+      "screenshot": "presentation-screenshots/session-1.png",
+      "analysis": {
+        "dimensions": {
+          "width": 0,
+          "height": 0,
+          "viewportFit": true,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        "content": {
+          "headings": 5,
+          "paragraphs": 8,
+          "lists": 0,
+          "images": 0,
+          "textElements": 21,
+          "hasOverflow": false,
+          "totalElements": 56
+        },
+        "textAnalysis": [
+          {
+            "tag": "div",
+            "text": "Session 1: The AI Landscape\n                    \n                    \n                        Beyond",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h2",
+            "text": "Session 1: The AI Landscape",
+            "fontSize": 28,
+            "lineHeight": "33.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "1",
+            "fontSize": 28,
+            "lineHeight": "33.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Beyond the hype to strategic clarity",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "500",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "hype",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "strategic clarity",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "OpenAI\n                            \"The Reasoning Engine\"\n                            \n             ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "OpenAI\n                            \"The Reasoning Engine\"\n                            \n             ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "OpenAI",
+            "fontSize": 28,
+            "lineHeight": "42px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "\"The Reasoning Engine\"",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Reasoning",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Advanced problem-solving with o-series models. \n                                Ideal for complex re",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "o-series models",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "creative generation",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Google\n                            \"The Integrated Workflow\"\n                            \n          ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "Google",
+            "fontSize": 28,
+            "lineHeight": "42px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "\"The Integrated Workflow\"",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Integrated",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Seamless productivity integration with Workspace. \n                                Perfect for busin",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Workspace",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "business process automation",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        ],
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "issues": [
+        "High content density: 13 major content blocks"
+      ],
+      "recommendations": [
+        "Consider splitting content across multiple slides"
+      ],
+      "scores": {
+        "readability": 10,
+        "viewportFit": 10,
+        "contentDensity": 4,
+        "professional": 10
+      }
+    },
+    {
+      "slideId": "session-2",
+      "screenshot": "presentation-screenshots/session-2.png",
+      "analysis": {
+        "dimensions": {
+          "width": 0,
+          "height": 0,
+          "viewportFit": true,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        "content": {
+          "headings": 3,
+          "paragraphs": 2,
+          "lists": 0,
+          "images": 0,
+          "textElements": 21,
+          "hasOverflow": false,
+          "totalElements": 27
+        },
+        "textAnalysis": [
+          {
+            "tag": "div",
+            "text": "Session 2: AI Business Value & ROI\n                    Establishing realistic expectations and measu",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h2",
+            "text": "Session 2: AI Business Value & ROI",
+            "fontSize": 28,
+            "lineHeight": "33.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Establishing realistic expectations and measurement frameworks",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "500",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Reality Check: Current AI Adoption\n                        \n                            Only 17% of ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "Reality Check: Current AI Adoption",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Current AI Adoption",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Only 17% of organizations report measurable EBIT impact from AI\n                            80% stru",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Only 17% of organizations report measurable EBIT impact from AI",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "17% of organizations",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "80% struggle with proving AI business value beyond cost savings",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "80% struggle",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Average ROI timeline: 18-24 months for meaningful results",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "18-24 months",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "ROI Calculator Framework\n                        4-Pillar AI Value Measurement\n                     ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "ROI Calculator Framework",
+            "fontSize": 40,
+            "lineHeight": "60px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Calculator",
+            "fontSize": 40,
+            "lineHeight": "60px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "4-Pillar AI Value Measurement",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Efficiency\n                                Time saved × hourly rate × frequency\n                    ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Efficiency\n                                Time saved × hourly rate × frequency",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Efficiency",
+            "fontSize": 14,
+            "lineHeight": "21px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Time saved × hourly rate × frequency",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        ],
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "issues": [],
+      "recommendations": [],
+      "scores": {
+        "readability": 10,
+        "viewportFit": 10,
+        "contentDensity": 8,
+        "professional": 10
+      }
+    },
+    {
+      "slideId": "session-3",
+      "screenshot": "presentation-screenshots/session-3.png",
+      "analysis": {
+        "dimensions": {
+          "width": 0,
+          "height": 0,
+          "viewportFit": true,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        "content": {
+          "headings": 3,
+          "paragraphs": 1,
+          "lists": 0,
+          "images": 0,
+          "textElements": 21,
+          "hasOverflow": false,
+          "totalElements": 25
+        },
+        "textAnalysis": [
+          {
+            "tag": "div",
+            "text": "Session 3: Context Engineering Framework\n                    Master the PTCF methodology for consist",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h2",
+            "text": "Session 3: Context Engineering Framework",
+            "fontSize": 28,
+            "lineHeight": "33.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Master the PTCF methodology for consistent AI results",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "500",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "PTCF Framework\n                        \n                            Persona: Who is the AI acting as",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "PTCF Framework",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Framework",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Persona: Who is the AI acting as?\n                            Task: What specific outcome do you wan",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Persona: Who is the AI acting as?",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "P",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Task: What specific outcome do you want?",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "T",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Context: What background information is needed?",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "C",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Format: How should the output be structured?",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "F",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Before/After Comparison\n                        \n                        \n                          ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "Before/After Comparison",
+            "fontSize": 40,
+            "lineHeight": "60px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Comparison",
+            "fontSize": 40,
+            "lineHeight": "60px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Before\n                                \"Write a marketing email\"\n                            \n      ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Before\n                                \"Write a marketing email\"",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Before",
+            "fontSize": 14,
+            "lineHeight": "21px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        ],
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "issues": [],
+      "recommendations": [],
+      "scores": {
+        "readability": 10,
+        "viewportFit": 10,
+        "contentDensity": 8,
+        "professional": 10
+      }
+    },
+    {
+      "slideId": "session-4",
+      "screenshot": "presentation-screenshots/session-4.png",
+      "analysis": {
+        "dimensions": {
+          "width": 0,
+          "height": 0,
+          "viewportFit": true,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        "content": {
+          "headings": 3,
+          "paragraphs": 1,
+          "lists": 0,
+          "images": 0,
+          "textElements": 21,
+          "hasOverflow": false,
+          "totalElements": 29
+        },
+        "textAnalysis": [
+          {
+            "tag": "div",
+            "text": "Session 4: RAG Foundation\n                    Understanding Retrieval-Augmented Generation for busin",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h2",
+            "text": "Session 4: RAG Foundation",
+            "fontSize": 28,
+            "lineHeight": "33.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Understanding Retrieval-Augmented Generation for business applications",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "500",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "RAG in Simple Terms\n                        \n                            Think of RAG as a \"just-in-",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "RAG in Simple Terms",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Simple Terms",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Think of RAG as a \"just-in-time library\" for AI\n                            AI retrieves relevant do",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Think of RAG as a \"just-in-time library\" for AI",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "\"just-in-time library\"",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "AI retrieves relevant documents before generating responses",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "before",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Combines your data with AI's general knowledge",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "your data",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Perfect for company-specific information",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "company-specific information",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "RAG vs Fine-tuning Decision Matrix\n                        \n                        \n               ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "RAG vs Fine-tuning Decision Matrix",
+            "fontSize": 40,
+            "lineHeight": "60px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Decision Matrix",
+            "fontSize": 40,
+            "lineHeight": "60px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Use RAG When\n                                • Frequently changing information• Multiple document so",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Use RAG When\n                                • Frequently changing information• Multiple document so",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Use RAG When",
+            "fontSize": 14,
+            "lineHeight": "21px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        ],
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "issues": [],
+      "recommendations": [],
+      "scores": {
+        "readability": 10,
+        "viewportFit": 10,
+        "contentDensity": 8,
+        "professional": 10
+      }
+    },
+    {
+      "slideId": "session-5",
+      "screenshot": "presentation-screenshots/session-5.png",
+      "analysis": {
+        "dimensions": {
+          "width": 0,
+          "height": 0,
+          "viewportFit": true,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        "content": {
+          "headings": 3,
+          "paragraphs": 2,
+          "lists": 0,
+          "images": 0,
+          "textElements": 21,
+          "hasOverflow": false,
+          "totalElements": 27
+        },
+        "textAnalysis": [
+          {
+            "tag": "div",
+            "text": "Session 5: Data Fundamentals\n                    Building AI-ready data foundations\n                ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h2",
+            "text": "Session 5: Data Fundamentals",
+            "fontSize": 28,
+            "lineHeight": "33.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Building AI-ready data foundations",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "500",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Data Quality Triangle\n                        \n                            Accuracy: Is the data cor",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "Data Quality Triangle",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Triangle",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Accuracy: Is the data correct and up-to-date?\n                            Completeness: Are there mi",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Accuracy: Is the data correct and up-to-date?",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Accuracy:",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Completeness: Are there missing fields or records?",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Completeness:",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Consistency: Same format across all sources?",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Consistency:",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "AI Readiness Assessment\n                        Rate your organization (1-5 scale)\n                 ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "AI Readiness Assessment",
+            "fontSize": 40,
+            "lineHeight": "60px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Assessment",
+            "fontSize": 40,
+            "lineHeight": "60px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Rate your organization (1-5 scale)",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Data Access\n                                Can you easily access the data you need for analysis?\n  ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Data Access\n                                Can you easily access the data you need for analysis?",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Data Access",
+            "fontSize": 14,
+            "lineHeight": "21px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Can you easily access the data you need for analysis?",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        ],
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "issues": [],
+      "recommendations": [],
+      "scores": {
+        "readability": 10,
+        "viewportFit": 10,
+        "contentDensity": 8,
+        "professional": 10
+      }
+    },
+    {
+      "slideId": "session-6",
+      "screenshot": "presentation-screenshots/session-6.png",
+      "analysis": {
+        "dimensions": {
+          "width": 0,
+          "height": 0,
+          "viewportFit": true,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        "content": {
+          "headings": 3,
+          "paragraphs": 1,
+          "lists": 0,
+          "images": 0,
+          "textElements": 21,
+          "hasOverflow": false,
+          "totalElements": 37
+        },
+        "textAnalysis": [
+          {
+            "tag": "div",
+            "text": "Session 6: AI Safety & Risk Management\n                    Implementing responsible AI practices\n   ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h2",
+            "text": "Session 6: AI Safety & Risk Management",
+            "fontSize": 28,
+            "lineHeight": "33.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "p",
+            "text": "Implementing responsible AI practices",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "500",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Four Pillars of AI Risk\n                        \n                            Security: Data breaches",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "Four Pillars of AI Risk",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "AI Risk",
+            "fontSize": 20,
+            "lineHeight": "30px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Security: Data breaches, prompt injection attacks\n                            Compliance: Regulatory",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Security: Data breaches, prompt injection attacks",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Security:",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Compliance: Regulatory requirements, industry standards",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Compliance:",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Operational: System failures, unexpected outputs",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Operational:",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Ethical: Bias, fairness, transparency concerns",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Ethical:",
+            "fontSize": 16,
+            "lineHeight": "25.6px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Risk Assessment Framework\n                        \n                        \n                        ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "h3",
+            "text": "Risk Assessment Framework",
+            "fontSize": 40,
+            "lineHeight": "60px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "span",
+            "text": "Assessment",
+            "fontSize": 40,
+            "lineHeight": "60px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "600",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Scenario 1\n                                AI chatbot gives incorrect legal advice to customers\n    ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Scenario 1\n                                AI chatbot gives incorrect legal advice to customers\n    ",
+            "fontSize": 16,
+            "lineHeight": "24px",
+            "color": "rgb(204, 204, 204)",
+            "fontWeight": "400",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          {
+            "tag": "div",
+            "text": "Scenario 1",
+            "fontSize": 14,
+            "lineHeight": "21px",
+            "color": "rgb(0, 255, 148)",
+            "fontWeight": "700",
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        ],
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "issues": [],
+      "recommendations": [],
+      "scores": {
+        "readability": 10,
+        "viewportFit": 10,
+        "contentDensity": 8,
+        "professional": 10
+      }
+    }
+  ]
+}

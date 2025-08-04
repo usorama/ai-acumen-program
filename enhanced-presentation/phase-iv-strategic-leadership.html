@@ -1,0 +1,2089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase IV: Strategic Leadership - Ultra Clean Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Ultra-Clean 3-Color Design System */
+        :root {
+            /* 3-Color System - Pitch Deck Inspired */
+            --bg-primary: #000000;           /* Pure black background */
+            --bg-card: #0F0F0F;              /* 95% black cards (barely visible) */
+            --text-primary: #CCCCCC;         /* Light gray primary text */
+            --accent-mint: #00FF94;          /* Bright mint accent */
+            
+            /* Typography System - Single Font Family */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            
+            /* Font Sizes - Clean Hierarchy */
+            --text-hero: 4rem;               /* Hero titles */
+            --text-title: 2.5rem;           /* Section titles */  
+            --text-heading: 1.75rem;        /* Headings */
+            --text-large: 1.25rem;          /* Large body */
+            --text-body: 1rem;              /* Regular body */
+            --text-small: 0.875rem;         /* Small text */
+            
+            /* Spacing System - 8px Grid */
+            --space-xs: 0.5rem;   /* 8px */
+            --space-sm: 1rem;     /* 16px */
+            --space-md: 1.5rem;   /* 24px */
+            --space-lg: 2rem;     /* 32px */
+            --space-xl: 3rem;     /* 48px */
+            --space-2xl: 4rem;    /* 64px */
+            --space-3xl: 6rem;    /* 96px */
+        }
+
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: var(--text-body);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Presentation Container */
+        .presentation-system {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Ultra-Clean Navigation */
+        .slide-navigation {
+            width: 300px;
+            background: var(--bg-primary);
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: var(--space-lg);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-header {
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid rgba(204, 204, 204, 0.1);
+        }
+
+        .program-title {
+            font-size: var(--text-heading);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .program-subtitle {
+            font-size: var(--text-small);
+            color: var(--text-primary);
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        /* Session Navigation */
+        .session-list {
+            list-style: none;
+        }
+
+        .session-group {
+            margin-bottom: var(--space-xl);
+        }
+
+        .phase-title {
+            font-size: var(--text-large);
+            font-weight: 600;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-md);
+        }
+
+        .session-item {
+            padding: var(--space-md);
+            margin-bottom: var(--space-sm);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 8px;
+            background: var(--bg-card);
+            box-shadow: 
+                2px 2px 8px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.02);
+        }
+
+        .session-item:hover {
+            background: #1A1A1A;
+            box-shadow: 
+                4px 4px 12px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .session-item.active {
+            background: #1A1A1A;
+            color: var(--accent-mint);
+            box-shadow: 
+                4px 4px 12px rgba(0, 0, 0, 0.6),
+                0 0 0 1px var(--accent-mint),
+                0 0 8px rgba(0, 255, 148, 0.2);
+        }
+
+        .session-number {
+            font-size: var(--text-small);
+            font-weight: 600;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-xs);
+        }
+
+        .session-title {
+            font-size: var(--text-body);
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .session-item.active .session-title {
+            color: var(--accent-mint);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 300px;
+            min-height: 100vh;
+        }
+
+        .slide-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-3xl) var(--space-xl);
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            max-width: 1000px;
+            text-align: left;
+        }
+
+        /* Slide Types */
+        .slide.hero {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .slide.content {
+            text-align: left;
+            max-width: 1000px;
+        }
+
+        /* Typography Styles */
+        .hero-title {
+            font-size: var(--text-hero);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: var(--text-title);
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xl);
+            opacity: 0.8;
+        }
+
+        .slide-title {
+            font-size: var(--text-title);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.2;
+        }
+
+        .slide-objective {
+            font-size: var(--text-large);
+            font-weight: 500;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-xl);
+        }
+
+        .content-section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .section-title {
+            font-size: var(--text-heading);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-subtitle {
+            font-size: var(--text-large);
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            opacity: 0.8;
+        }
+
+        /* Emphasis Styles */
+        .accent {
+            color: var(--accent-mint);
+            font-weight: 600;
+        }
+
+        .bold {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .highlight {
+            color: var(--accent-mint);
+            font-weight: 700;
+        }
+
+        /* Exercise Section */
+        .exercise-container {
+            background: var(--bg-card);
+            padding: var(--space-2xl);
+            border-radius: 16px;
+            margin: var(--space-2xl) 0;
+            box-shadow: 
+                4px 4px 24px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 255, 255, 0.02);
+        }
+
+        .exercise-title {
+            font-size: var(--text-title);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+
+        .exercise-subtitle {
+            font-size: var(--text-large);
+            color: var(--text-primary);
+            margin-bottom: var(--space-xl);
+            opacity: 0.8;
+        }
+
+        /* Scenario Cards Grid */
+        .scenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        .scenario-card {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 
+                4px 4px 16px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        .scenario-card:hover {
+            background: #1A1A1A;
+            transform: translateY(-2px);
+            box-shadow: 
+                6px 6px 20px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .scenario-card.revealed {
+            background: #1A1A1A;
+            border: 1px solid var(--accent-mint);
+            box-shadow: 
+                6px 6px 20px rgba(0, 0, 0, 0.7),
+                0 0 0 1px var(--accent-mint),
+                0 0 16px rgba(0, 255, 148, 0.2);
+        }
+
+        .scenario-number {
+            font-size: var(--text-small);
+            font-weight: 700;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-sm);
+        }
+
+        .scenario-text {
+            font-size: var(--text-body);
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            line-height: 1.5;
+        }
+
+        .scenario-prompt {
+            font-size: var(--text-small);
+            color: var(--text-primary);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .scenario-solution {
+            font-size: var(--text-body);
+            font-weight: 600;
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: rgba(0, 255, 148, 0.1);
+            border-radius: 8px;
+            display: none;
+        }
+
+        .scenario-card.revealed .scenario-prompt {
+            display: none;
+        }
+
+        .scenario-card.revealed .scenario-solution {
+            display: block;
+        }
+
+        /* Key Takeaways */
+        .takeaways-list {
+            list-style: none;
+            margin: var(--space-xl) 0;
+        }
+
+        .takeaway-item {
+            font-size: var(--text-large);
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            padding-left: var(--space-lg);
+            position: relative;
+        }
+
+        .takeaway-item::before {
+            content: '→';
+            color: var(--accent-mint);
+            font-weight: 700;
+            font-size: var(--text-large);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Challenge Cards */
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        .challenge-card {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: 12px;
+            box-shadow: 
+                4px 4px 16px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        .challenge-title {
+            font-size: var(--text-large);
+            font-weight: 600;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-md);
+        }
+
+        .challenge-text {
+            font-size: var(--text-body);
+            color: var(--text-primary);
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* Strategy Framework */
+        .strategy-framework {
+            background: var(--bg-card);
+            padding: var(--space-xl);
+            border-radius: 16px;
+            margin: var(--space-xl) 0;
+            box-shadow: 
+                4px 4px 24px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 255, 255, 0.02);
+        }
+
+        .framework-step {
+            margin-bottom: var(--space-lg);
+            padding: var(--space-md);
+            border-left: 3px solid var(--accent-mint);
+            background: rgba(0, 255, 148, 0.05);
+        }
+
+        .step-number {
+            font-size: var(--text-small);
+            font-weight: 700;
+            color: var(--accent-mint);
+            margin-bottom: var(--space-xs);
+        }
+
+        .step-title {
+            font-size: var(--text-large);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .step-description {
+            font-size: var(--text-body);
+            color: var(--text-primary);
+            opacity: 0.8;
+        }
+
+        /* Navigation Controls */
+        .slide-controls {
+            position: fixed;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            display: flex;
+            gap: var(--space-sm);
+            z-index: 1000;
+        }
+
+        .control-btn {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-card);
+            border: none;
+            border-radius: 50%;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                4px 4px 16px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        .control-btn:hover {
+            background: #1A1A1A;
+            color: var(--accent-mint);
+            box-shadow: 
+                6px 6px 20px rgba(0, 0, 0, 0.7),
+                0 0 0 1px var(--accent-mint),
+                0 0 12px rgba(0, 255, 148, 0.3);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Progress Bar */
+        .progress-indicator {
+            position: fixed;
+            top: 0;
+            left: 300px;
+            right: 0;
+            height: 2px;
+            background: var(--bg-card);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-mint);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Utility Classes */
+        .hidden { display: none; }
+        .visible { display: block; }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .slide-navigation {
+                width: 280px;
+            }
+            
+            .main-content {
+                margin-left: 280px;
+            }
+            
+            .progress-indicator {
+                left: 280px;
+            }
+            
+            .scenarios-grid,
+            .challenges-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide-navigation {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .slide-navigation.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .progress-indicator {
+                left: 0;
+            }
+            
+            .slide-container {
+                padding: var(--space-xl) var(--space-md);
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .slide-title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="presentation-system">
+        <!-- Ultra-Clean Navigation -->
+        <nav class="slide-navigation" id="slideNav">
+            <div class="nav-header">
+                <h1 class="program-title">AI Acumen Program</h1>
+                <p class="program-subtitle">Phase IV: Strategic Leadership</p>
+            </div>
+            
+            <div class="session-list">
+                <div class="session-group">
+                    <h3 class="phase-title">Sessions 19-24</h3>
+                    
+                    <!-- Session 19 Navigation -->
+                    <div class="session-item active" data-slide="s19-intro">
+                        <div class="session-number">19</div>
+                        <div class="session-title">Leading AI Adoption</div>
+                    </div>
+                    <div class="session-item" data-slide="s19-agenda">
+                        <div class="session-number">19.1</div>
+                        <div class="session-title">Change Management Challenge</div>
+                    </div>
+                    <div class="session-item" data-slide="s19-human-element">
+                        <div class="session-number">19.2</div>
+                        <div class="session-title">The Human Element</div>
+                    </div>
+                    <div class="session-item" data-slide="s19-exercise">
+                        <div class="session-number">19.3</div>
+                        <div class="session-title">Objection Response Exercise</div>
+                    </div>
+                    <div class="session-item" data-slide="s19-takeaways">
+                        <div class="session-number">19.4</div>
+                        <div class="session-title">Change Management Playbook</div>
+                    </div>
+                    
+                    <!-- Session 20 Navigation -->
+                    <div class="session-item" data-slide="s20-intro">
+                        <div class="session-number">20</div>
+                        <div class="session-title">Building AI-Ready Teams</div>
+                    </div>
+                    <div class="session-item" data-slide="s20-agenda">
+                        <div class="session-number">20.1</div>
+                        <div class="session-title">Team Readiness Framework</div>
+                    </div>
+                    <div class="session-item" data-slide="s20-skills">
+                        <div class="session-number">20.2</div>
+                        <div class="session-title">Essential AI Skills</div>
+                    </div>
+                    <div class="session-item" data-slide="s20-exercise">
+                        <div class="session-number">20.3</div>
+                        <div class="session-title">Team Assessment Exercise</div>
+                    </div>
+                    <div class="session-item" data-slide="s20-takeaways">
+                        <div class="session-number">20.4</div>
+                        <div class="session-title">Development Roadmap</div>
+                    </div>
+                    
+                    <!-- Session 21 Navigation -->
+                    <div class="session-item" data-slide="s21-intro">
+                        <div class="session-number">21</div>
+                        <div class="session-title">AI Governance & Ethics</div>
+                    </div>
+                    <div class="session-item" data-slide="s21-agenda">
+                        <div class="session-number">21.1</div>
+                        <div class="session-title">Governance Framework</div>
+                    </div>
+                    <div class="session-item" data-slide="s21-principles">
+                        <div class="session-number">21.2</div>
+                        <div class="session-title">Ethical AI Principles</div>
+                    </div>
+                    <div class="session-item" data-slide="s21-exercise">
+                        <div class="session-number">21.3</div>
+                        <div class="session-title">Ethics Scenario Planning</div>
+                    </div>
+                    <div class="session-item" data-slide="s21-takeaways">
+                        <div class="session-number">21.4</div>
+                        <div class="session-title">Governance Checklist</div>
+                    </div>
+                    
+                    <!-- Session 22 Navigation -->
+                    <div class="session-item" data-slide="s22-intro">
+                        <div class="session-number">22</div>
+                        <div class="session-title">Future-Proofing Strategy</div>
+                    </div>
+                    <div class="session-item" data-slide="s22-agenda">
+                        <div class="session-number">22.1</div>
+                        <div class="session-title">Future Trends Analysis</div>
+                    </div>
+                    <div class="session-item" data-slide="s22-trends">
+                        <div class="session-number">22.2</div>
+                        <div class="session-title">Emerging Technologies</div>
+                    </div>
+                    <div class="session-item" data-slide="s22-exercise">
+                        <div class="session-number">22.3</div>
+                        <div class="session-title">Strategy Adaptation Exercise</div>
+                    </div>
+                    <div class="session-item" data-slide="s22-takeaways">
+                        <div class="session-number">22.4</div>
+                        <div class="session-title">Future-Proof Playbook</div>
+                    </div>
+                    
+                    <!-- Session 23 Navigation -->
+                    <div class="session-item" data-slide="s23-intro">
+                        <div class="session-number">23</div>
+                        <div class="session-title">Advanced AI Leadership</div>
+                    </div>
+                    <div class="session-item" data-slide="s23-agenda">
+                        <div class="session-number">23.1</div>
+                        <div class="session-title">Leadership Evolution</div>
+                    </div>
+                    <div class="session-item" data-slide="s23-decisions">
+                        <div class="session-number">23.2</div>
+                        <div class="session-title">AI-Augmented Decisions</div>
+                    </div>
+                    <div class="session-item" data-slide="s23-exercise">
+                        <div class="session-number">23.3</div>
+                        <div class="session-title">Leadership Challenge</div>
+                    </div>
+                    <div class="session-item" data-slide="s23-takeaways">
+                        <div class="session-number">23.4</div>
+                        <div class="session-title">Leadership Framework</div>
+                    </div>
+                    
+                    <!-- Session 24 Navigation -->
+                    <div class="session-item" data-slide="s24-intro">
+                        <div class="session-number">24</div>
+                        <div class="session-title">Capstone: Your AI Playbook</div>
+                    </div>
+                    <div class="session-item" data-slide="s24-agenda">
+                        <div class="session-number">24.1</div>
+                        <div class="session-title">Future AI Trends</div>
+                    </div>
+                    <div class="session-item" data-slide="s24-future">
+                        <div class="session-number">24.2</div>
+                        <div class="session-title">Next Wave of AI</div>
+                    </div>
+                    <div class="session-item" data-slide="s24-exercise">
+                        <div class="session-number">24.3</div>
+                        <div class="session-title">2027 Vision Exercise</div>
+                    </div>
+                    <div class="session-item" data-slide="s24-completion">
+                        <div class="session-number">24.4</div>
+                        <div class="session-title">Program Completion</div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- SESSION 19: Leading AI Adoption -->
+            
+            <!-- Slide 1: Session 19 Introduction -->
+            <section class="slide-container" id="s19-intro">
+                <div class="slide hero fade-in">
+                    <h1 class="hero-title">
+                        Session <span class="accent">19</span>: Leading AI Adoption
+                    </h1>
+                    <p class="hero-subtitle">
+                        The <span class="bold">change management</span> challenge
+                    </p>
+                    
+                    <div class="content-section">
+                        <p class="section-subtitle">
+                            <span class="bold">Objective:</span> Equip managers with strategies for overcoming team <span class="accent">resistance</span> and fostering positive AI <span class="highlight">adoption culture</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 2: Session 19 Agenda -->
+            <section class="slide-container hidden" id="s19-agenda">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Session <span class="accent">19</span> Agenda
+                    </h2>
+                    <p class="slide-objective">
+                        <span class="bold">15 minutes</span> to master AI <span class="accent">change management</span>
+                    </p>
+                    
+                    <div class="content-section">
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">5 minutes:</span> The <span class="accent">Human Element</span> of AI<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Frame AI as augmentation, not replacement</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">7 minutes:</span> <span class="accent">Constructive Responses</span> to Objections<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Interactive exercise addressing team concerns</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">3 minutes:</span> <span class="accent">Change Management</span> Playbook<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Talking points for difficult conversations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3: The Human Element -->
+            <section class="slide-container hidden" id="s19-human-element">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        The <span class="accent">Human Element</span> of AI
+                    </h2>
+                    <p class="slide-objective">
+                        Position AI as <span class="bold">enhancement</span>, not <span class="accent">replacement</span>
+                    </p>
+                    
+                    <div class="content-section">
+                        <h3 class="section-title">Frame the <span class="accent">Conversation</span></h3>
+                        
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">Augmentation Focus:</span> AI handles tedious tasks, humans handle <span class="accent">strategic thinking</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Eliminate the Mundane:</span> Free up time for <span class="accent">creative problem-solving</span> and relationship building
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Uniquely Human Strengths:</span> Empathy, intuition, <span class="accent">complex judgment</span> remain irreplaceable
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Future Job Market:</span> 85M jobs displaced, <span class="accent">97M new roles</span> emerging
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-framework">
+                        <div class="framework-step">
+                            <div class="step-number">Key Message</div>
+                            <div class="step-title">We're preparing for the future, not fighting it</div>
+                            <div class="step-description">
+                                Research shows AI adoption improves employee satisfaction by reducing mundane tasks and increasing focus on meaningful work.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Objection Response Exercise -->
+            <section class="slide-container hidden" id="s19-exercise">
+                <div class="slide content fade-in">
+                    <div class="exercise-container">
+                        <h2 class="exercise-title">
+                            Constructive Responses to <span class="accent">Objections</span>
+                        </h2>
+                        <p class="exercise-subtitle">
+                            Practice responding to these <span class="bold">common concerns</span> with <span class="accent">empathy and facts</span>:
+                        </p>
+                        
+                        <div class="scenarios-grid">
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Objection 1</div>
+                                <div class="scenario-text">
+                                    <span class="bold">"AI will make my job obsolete"</span>
+                                </div>
+                                <div class="scenario-prompt">Click to reveal response strategy</div>
+                                <div class="scenario-solution">
+                                    <strong>Response:</strong> "I understand that concern. Actually, AI will eliminate the repetitive parts of your job so you can focus on the strategic work that only humans can do. Think of it as having a highly capable assistant that never gets tired."
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Objection 2</div>
+                                <div class="scenario-text">
+                                    <span class="bold">"I don't have time to learn another tool"</span>
+                                </div>
+                                <div class="scenario-prompt">Click to reveal response strategy</div>
+                                <div class="scenario-solution">
+                                    <strong>Response:</strong> "The 2 hours you invest learning this will save you 2 hours every week. Modern AI tools are designed to be intuitive - we'll start with just one simple use case that directly addresses your biggest time drain."
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Objection 3</div>
+                                <div class="scenario-text">
+                                    <span class="bold">"AI makes too many mistakes"</span>
+                                </div>
+                                <div class="scenario-prompt">Click to reveal response strategy</div>
+                                <div class="scenario-solution">
+                                    <strong>Response:</strong> "You're right to be cautious. That's why we use AI as a first draft, not the final answer. It gives you a strong starting point that you review and refine with your expertise."
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Objection 4</div>
+                                <div class="scenario-text">
+                                    <span class="bold">"Our clients won't trust AI-generated work"</span>
+                                </div>
+                                <div class="scenario-prompt">Click to reveal response strategy</div>
+                                <div class="scenario-solution">
+                                    <strong>Response:</strong> "Our clients care about quality and speed. AI helps us deliver both by handling research and initial drafts, while you add the human insight and client-specific knowledge they value."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: Session 19 Takeaways -->
+            <section class="slide-container hidden" id="s19-takeaways">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        AI Change Management <span class="accent">Playbook</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Your <span class="bold">conversation toolkit</span> for leading AI adoption
+                    </p>
+                    
+                    <div class="content-section">
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                Always lead with <span class="accent">empathy</span> - acknowledge concerns before addressing them
+                            </div>
+                            <div class="takeaway-item">
+                                Frame AI as <span class="bold">augmentation</span>, not replacement - emphasize human strengths
+                            </div>
+                            <div class="takeaway-item">
+                                Use <span class="accent">specific examples</span> of time savings and quality improvements
+                            </div>
+                            <div class="takeaway-item">
+                                Start small with <span class="bold">low-risk</span> use cases to build confidence
+                            </div>
+                            <div class="takeaway-item">
+                                Share success stories from <span class="accent">similar teams</span> and roles
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SESSION 20: Building AI-Ready Teams -->
+            
+            <!-- Slide 6: Session 20 Introduction -->
+            <section class="slide-container hidden" id="s20-intro">
+                <div class="slide hero fade-in">
+                    <h1 class="hero-title">
+                        Session <span class="accent">20</span>: Building AI-Ready Teams
+                    </h1>
+                    <p class="hero-subtitle">
+                        Skills development and <span class="bold">organizational design</span>
+                    </p>
+                    
+                    <div class="content-section">
+                        <p class="section-subtitle">
+                            <span class="bold">Objective:</span> Create a framework for developing AI capabilities across your team through <span class="accent">strategic skills development</span> and smart <span class="highlight">hiring strategies</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: Session 20 Agenda -->
+            <section class="slide-container hidden" id="s20-agenda">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Building an AI-Ready <span class="accent">Organization</span>
+                    </h2>
+                    <p class="slide-objective">
+                        <span class="bold">15 minutes</span> to team transformation strategy
+                    </p>
+                    
+                    <div class="content-section">
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">5 minutes:</span> Essential <span class="accent">AI Skills</span> Framework<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Technical, collaborative, and strategic competencies</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">7 minutes:</span> Team <span class="accent">Readiness Assessment</span><br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Interactive evaluation of current capabilities</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">3 minutes:</span> <span class="accent">Development Roadmap</span><br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Actionable plan for skills development</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 8: Essential AI Skills -->
+            <section class="slide-container hidden" id="s20-skills">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Essential <span class="accent">AI Skills</span> Framework
+                    </h2>
+                    <p class="slide-objective">
+                        Three categories of capabilities for <span class="bold">AI-ready teams</span>
+                    </p>
+                    
+                    <div class="challenges-grid">
+                        <div class="challenge-card">
+                            <div class="challenge-title">Technical Fluency</div>
+                            <div class="challenge-text">
+                                • Prompt engineering fundamentals<br>
+                                • Platform navigation & optimization<br>
+                                • Data preparation & interpretation<br>
+                                • Quality assessment & validation
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Collaborative Intelligence</div>
+                            <div class="challenge-text">
+                                • Human-AI workflow design<br>
+                                • Cross-functional AI integration<br>
+                                • Knowledge sharing & documentation<br>
+                                • Continuous improvement mindset
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Strategic Application</div>
+                            <div class="challenge-text">
+                                • Business problem identification<br>
+                                • ROI evaluation & measurement<br>
+                                • Risk assessment & mitigation<br>
+                                • Innovation opportunity recognition
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Ethical Leadership</div>
+                            <div class="challenge-text">
+                                • Bias identification & prevention<br>
+                                • Privacy & security considerations<br>
+                                • Transparent decision-making<br>
+                                • Responsible AI implementation
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 9: Team Assessment Exercise -->
+            <section class="slide-container hidden" id="s20-exercise">
+                <div class="slide content fade-in">
+                    <div class="exercise-container">
+                        <h2 class="exercise-title">
+                            Team AI Readiness <span class="accent">Assessment</span>
+                        </h2>
+                        <p class="exercise-subtitle">
+                            Evaluate your team's current capabilities in each <span class="bold">skill category</span>:
+                        </p>
+                        
+                        <div class="scenarios-grid">
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Technical Fluency</div>
+                                <div class="scenario-text">
+                                    How comfortable is your team with <span class="bold">AI tool interfaces</span> and basic prompt engineering?
+                                </div>
+                                <div class="scenario-prompt">Click to assess</div>
+                                <div class="scenario-solution">
+                                    <strong>Assessment:</strong><br>
+                                    High: Team regularly uses AI tools effectively<br>
+                                    Medium: Some experience, needs structured training<br>
+                                    Low: Minimal AI exposure, requires foundation building
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Collaborative Intelligence</div>
+                                <div class="scenario-text">
+                                    Does your team effectively <span class="bold">integrate AI</span> into collaborative workflows?
+                                </div>
+                                <div class="scenario-prompt">Click to assess</div>
+                                <div class="scenario-solution">
+                                    <strong>Assessment:</strong><br>
+                                    High: AI seamlessly integrated into team processes<br>
+                                    Medium: Ad-hoc AI use, needs workflow optimization<br>
+                                    Low: Individual AI use only, lacks collaboration
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Strategic Application</div>
+                                <div class="scenario-text">
+                                    Can your team identify and evaluate <span class="bold">AI opportunities</span> for business impact?
+                                </div>
+                                <div class="scenario-prompt">Click to assess</div>
+                                <div class="scenario-solution">
+                                    <strong>Assessment:</strong><br>
+                                    High: Proactively identifies AI opportunities<br>
+                                    Medium: Recognizes obvious applications<br>
+                                    Low: Reactive to AI suggestions from others
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Ethical Leadership</div>
+                                <div class="scenario-text">
+                                    Does your team consider <span class="bold">ethical implications</span> and responsible AI practices?
+                                </div>
+                                <div class="scenario-prompt">Click to assess</div>
+                                <div class="scenario-solution">
+                                    <strong>Assessment:</strong><br>
+                                    High: Systematic ethical evaluation<br>
+                                    Medium: Basic awareness, needs framework<br>
+                                    Low: Limited ethical consideration
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 10: Session 20 Takeaways -->
+            <section class="slide-container hidden" id="s20-takeaways">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        AI Team Development <span class="accent">Roadmap</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Your <span class="bold">90-day plan</span> for building AI capabilities
+                    </p>
+                    
+                    <div class="strategy-framework">
+                        <div class="framework-step">
+                            <div class="step-number">Days 1-30</div>
+                            <div class="step-title">Foundation Building</div>
+                            <div class="step-description">
+                                Technical fluency training, platform access setup, basic prompt engineering workshops
+                            </div>
+                        </div>
+                        
+                        <div class="framework-step">
+                            <div class="step-number">Days 31-60</div>
+                            <div class="step-title">Collaborative Integration</div>
+                            <div class="step-description">
+                                Workflow optimization, team AI projects, knowledge sharing sessions
+                            </div>
+                        </div>
+                        
+                        <div class="framework-step">
+                            <div class="step-number">Days 61-90</div>
+                            <div class="step-title">Strategic Application</div>
+                            <div class="step-description">
+                                Business impact measurement, ethical framework implementation, innovation exploration
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SESSION 21: AI Governance & Ethics -->
+            
+            <!-- Slide 11: Session 21 Introduction -->
+            <section class="slide-container hidden" id="s21-intro">
+                <div class="slide hero fade-in">
+                    <h1 class="hero-title">
+                        Session <span class="accent">21</span>: AI Governance & Ethics
+                    </h1>
+                    <p class="hero-subtitle">
+                        Building <span class="bold">responsible</span> AI frameworks
+                    </p>
+                    
+                    <div class="content-section">
+                        <p class="section-subtitle">
+                            <span class="bold">Objective:</span> Establish governance frameworks that ensure <span class="accent">ethical AI implementation</span> while maintaining <span class="highlight">business agility</span> and innovation.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 12: Session 21 Agenda -->
+            <section class="slide-container hidden" id="s21-agenda">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Responsible AI <span class="accent">Implementation</span>
+                    </h2>
+                    <p class="slide-objective">
+                        <span class="bold">15 minutes</span> to ethical AI governance
+                    </p>
+                    
+                    <div class="content-section">
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">5 minutes:</span> <span class="accent">Ethical AI Principles</span><br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Fairness, transparency, accountability framework</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">7 minutes:</span> <span class="accent">Ethics Scenario</span> Planning<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Interactive assessment of ethical challenges</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">3 minutes:</span> <span class="accent">Governance Checklist</span><br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Practical implementation framework</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 13: Ethical AI Principles -->
+            <section class="slide-container hidden" id="s21-principles">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Ethical AI <span class="accent">Principles</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Four pillars of <span class="bold">responsible</span> AI implementation
+                    </p>
+                    
+                    <div class="challenges-grid">
+                        <div class="challenge-card">
+                            <div class="challenge-title">Fairness & Bias Prevention</div>
+                            <div class="challenge-text">
+                                • Regular bias audits and testing<br>
+                                • Diverse training data validation<br>
+                                • Equitable outcome monitoring<br>
+                                • Inclusive development processes
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Transparency & Explainability</div>
+                            <div class="challenge-text">
+                                • Clear AI usage disclosure<br>
+                                • Decision process documentation<br>
+                                • Stakeholder communication protocols<br>
+                                • Audit trail maintenance
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Privacy & Data Security</div>
+                            <div class="challenge-text">
+                                • Data minimization principles<br>
+                                • Consent management frameworks<br>
+                                • Secure data handling protocols<br>
+                                • Regular security assessments
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Accountability & Oversight</div>
+                            <div class="challenge-text">
+                                • Clear responsibility assignment<br>
+                                • Regular performance reviews<br>
+                                • Impact assessment processes<br>
+                                • Corrective action protocols
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 14: Ethics Scenario Planning -->
+            <section class="slide-container hidden" id="s21-exercise">
+                <div class="slide content fade-in">
+                    <div class="exercise-container">
+                        <h2 class="exercise-title">
+                            Ethics Scenario <span class="accent">Planning</span>
+                        </h2>
+                        <p class="exercise-subtitle">
+                            Evaluate these <span class="bold">ethical challenges</span> and develop response strategies:
+                        </p>
+                        
+                        <div class="scenarios-grid">
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Scenario 1</div>
+                                <div class="scenario-text">
+                                    Your AI hiring tool shows <span class="bold">bias against certain demographics</span>. What's your response?
+                                </div>
+                                <div class="scenario-prompt">Click to reveal strategy</div>
+                                <div class="scenario-solution">
+                                    <strong>Strategy:</strong><br>
+                                    1. Immediately pause the tool's use<br>
+                                    2. Conduct thorough bias audit<br>
+                                    3. Retrain with diverse, balanced data<br>
+                                    4. Implement ongoing monitoring
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Scenario 2</div>
+                                <div class="scenario-text">
+                                    Employees are using AI to generate <span class="bold">client proposals</span> without disclosure. Address this.
+                                </div>
+                                <div class="scenario-prompt">Click to reveal strategy</div>
+                                <div class="scenario-solution">
+                                    <strong>Strategy:</strong><br>
+                                    1. Establish clear AI disclosure policy<br>
+                                    2. Train team on transparency requirements<br>
+                                    3. Create client communication templates<br>
+                                    4. Monitor compliance regularly
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Scenario 3</div>
+                                <div class="scenario-text">
+                                    AI analysis reveals <span class="bold">sensitive customer insights</span> not originally consented for. Handle this.
+                                </div>
+                                <div class="scenario-prompt">Click to reveal strategy</div>
+                                <div class="scenario-solution">
+                                    <strong>Strategy:</strong><br>
+                                    1. Stop using the insights immediately<br>
+                                    2. Review consent frameworks<br>
+                                    3. Seek additional permissions if appropriate<br>
+                                    4. Implement data usage controls
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Scenario 4</div>
+                                <div class="scenario-text">
+                                    Your AI system makes a <span class="bold">costly business decision</span> with unclear reasoning. Respond appropriately.
+                                </div>
+                                <div class="scenario-prompt">Click to reveal strategy</div>
+                                <div class="scenario-solution">
+                                    <strong>Strategy:</strong><br>
+                                    1. Document the incident thoroughly<br>
+                                    2. Analyze decision pathways<br>
+                                    3. Implement explainability requirements<br>
+                                    4. Establish human oversight protocols
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 15: Session 21 Takeaways -->
+            <section class="slide-container hidden" id="s21-takeaways">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        AI Governance <span class="accent">Checklist</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Your <span class="bold">implementation framework</span> for responsible AI
+                    </p>
+                    
+                    <div class="content-section">
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                Establish clear <span class="accent">AI usage policies</span> and disclosure requirements
+                            </div>
+                            <div class="takeaway-item">
+                                Implement regular <span class="bold">bias audits</span> and fairness assessments
+                            </div>
+                            <div class="takeaway-item">
+                                Create <span class="accent">transparency protocols</span> for AI-assisted decisions
+                            </div>
+                            <div class="takeaway-item">
+                                Maintain strict <span class="bold">data privacy</span> and security standards
+                            </div>
+                            <div class="takeaway-item">
+                                Assign clear <span class="accent">accountability</span> for AI outcomes and decisions
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SESSION 22: Future-Proofing Strategy -->
+            
+            <!-- Slide 16: Session 22 Introduction -->
+            <section class="slide-container hidden" id="s22-intro">
+                <div class="slide hero fade-in">
+                    <h1 class="hero-title">
+                        Session <span class="accent">22</span>: Future-Proofing Strategy
+                    </h1>
+                    <p class="hero-subtitle">
+                        Preparing for <span class="bold">emerging</span> technologies
+                    </p>
+                    
+                    <div class="content-section">
+                        <p class="section-subtitle">
+                            <span class="bold">Objective:</span> Build adaptive strategies that prepare your organization for <span class="accent">AI evolution</span> and emerging <span class="highlight">market changes</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 17: Session 22 Agenda -->
+            <section class="slide-container hidden" id="s22-agenda">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Adaptive AI <span class="accent">Strategy</span>
+                    </h2>
+                    <p class="slide-objective">
+                        <span class="bold">15 minutes</span> to future-ready planning
+                    </p>
+                    
+                    <div class="content-section">
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">5 minutes:</span> <span class="accent">Emerging Technologies</span> Landscape<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">AI trends and breakthrough predictions</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">7 minutes:</span> Strategy <span class="accent">Adaptation</span> Exercise<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Build flexible, responsive AI strategies</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">3 minutes:</span> <span class="accent">Future-Proof</span> Playbook<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Adaptive framework for continuous evolution</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 18: Emerging Technologies -->
+            <section class="slide-container hidden" id="s22-trends">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        The Next Wave of <span class="accent">AI</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Key trends shaping the <span class="bold">2025-2027</span> landscape
+                    </p>
+                    
+                    <div class="challenges-grid">
+                        <div class="challenge-card">
+                            <div class="challenge-title">Agentic AI Systems</div>
+                            <div class="challenge-text">
+                                • Autonomous task execution<br>
+                                • Multi-step reasoning chains<br>
+                                • Self-improving workflows<br>
+                                • Cross-platform integration
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Specialized Language Models</div>
+                            <div class="challenge-text">
+                                • Industry-specific AI assistants<br>
+                                • Domain-expert knowledge bases<br>
+                                • Compliance-aware models<br>
+                                • Role-optimized interfaces
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">AI in Scientific Discovery</div>
+                            <div class="challenge-text">
+                                • Drug discovery acceleration<br>
+                                • Materials science breakthroughs<br>
+                                • Climate modeling advances<br>
+                                • Research automation
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Advanced Reasoning</div>
+                            <div class="challenge-text">
+                                • Multi-modal intelligence<br>
+                                • Complex problem solving<br>
+                                • Strategic planning capabilities<br>
+                                • Human-level reasoning
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 19: Strategy Adaptation Exercise -->
+            <section class="slide-container hidden" id="s22-exercise">
+                <div class="slide content fade-in">
+                    <div class="exercise-container">
+                        <h2 class="exercise-title">
+                            Strategy Adaptation <span class="accent">Exercise</span>
+                        </h2>
+                        <p class="exercise-subtitle">
+                            How would these <span class="bold">emerging trends</span> impact your current AI strategy?
+                        </p>
+                        
+                        <div class="scenarios-grid">
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Trend Impact 1</div>
+                                <div class="scenario-text">
+                                    <span class="bold">Agentic AI</span> can now autonomously manage your email, calendar, and basic customer inquiries.
+                                </div>
+                                <div class="scenario-prompt">Click to explore adaptation</div>
+                                <div class="scenario-solution">
+                                    <strong>Strategic Adaptation:</strong><br>
+                                    • Redesign roles to focus on relationship building<br>
+                                    • Implement AI agent oversight protocols<br>
+                                    • Upskill team in agent management<br>
+                                    • Develop human-agent collaboration workflows
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Trend Impact 2</div>
+                                <div class="scenario-text">
+                                    <span class="bold">Industry-specific AI</span> emerges that understands your sector's regulations and best practices.
+                                </div>
+                                <div class="scenario-prompt">Click to explore adaptation</div>
+                                <div class="scenario-solution">
+                                    <strong>Strategic Adaptation:</strong><br>
+                                    • Evaluate specialized AI vendors<br>
+                                    • Plan migration from general tools<br>
+                                    • Develop domain-specific use cases<br>
+                                    • Create competitive advantage through early adoption
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Trend Impact 3</div>
+                                <div class="scenario-text">
+                                    <span class="bold">AI reasoning capabilities</span> now match human strategic thinking in your field.
+                                </div>
+                                <div class="scenario-prompt">Click to explore adaptation</div>
+                                <div class="scenario-solution">
+                                    <strong>Strategic Adaptation:</strong><br>
+                                    • Redefine human value proposition<br>
+                                    • Focus on creativity and innovation<br>
+                                    • Develop AI-human collaboration models<br>
+                                    • Prepare for strategic AI partnerships
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Trend Impact 4</div>
+                                <div class="scenario-text">
+                                    <span class="bold">Competitors</span> begin using AI for scientific breakthroughs and product innovation.
+                                </div>
+                                <div class="scenario-prompt">Click to explore adaptation</div>
+                                <div class="scenario-solution">
+                                    <strong>Strategic Adaptation:</strong><br>
+                                    • Accelerate AI R&D investments<br>
+                                    • Form strategic AI partnerships<br>
+                                    • Develop rapid prototyping capabilities<br>
+                                    • Create innovation-focused AI teams
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 20: Session 22 Takeaways -->
+            <section class="slide-container hidden" id="s22-takeaways">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Future-Proof AI <span class="accent">Framework</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Your <span class="bold">adaptive strategy</span> for continuous evolution
+                    </p>
+                    
+                    <div class="strategy-framework">
+                        <div class="framework-step">
+                            <div class="step-number">Monitor</div>
+                            <div class="step-title">Continuous Trend Scanning</div>
+                            <div class="step-description">
+                                Regular assessment of emerging AI capabilities and market shifts
+                            </div>
+                        </div>
+                        
+                        <div class="framework-step">
+                            <div class="step-number">Evaluate</div>
+                            <div class="step-title">Impact Assessment</div>
+                            <div class="step-description">
+                                Analyze how new technologies could disrupt or enhance current strategies
+                            </div>
+                        </div>
+                        
+                        <div class="framework-step">
+                            <div class="step-number">Adapt</div>
+                            <div class="step-title">Strategic Pivoting</div>
+                            <div class="step-description">
+                                Flexible strategy adjustment based on technological developments
+                            </div>
+                        </div>
+                        
+                        <div class="framework-step">
+                            <div class="step-number">Execute</div>
+                            <div class="step-title">Rapid Implementation</div>
+                            <div class="step-description">
+                                Quick deployment of new AI capabilities and organizational changes
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SESSION 23: Advanced AI Leadership -->
+            
+            <!-- Slide 21: Session 23 Introduction -->
+            <section class="slide-container hidden" id="s23-intro">
+                <div class="slide hero fade-in">
+                    <h1 class="hero-title">
+                        Session <span class="accent">23</span>: Advanced AI Leadership
+                    </h1>
+                    <p class="hero-subtitle">
+                        Leading in an <span class="bold">AI-augmented</span> world
+                    </p>
+                    
+                    <div class="content-section">
+                        <p class="section-subtitle">
+                            <span class="bold">Objective:</span> Master advanced leadership skills for managing <span class="accent">AI-augmented teams</span> and making strategic decisions in an <span class="highlight">AI-driven landscape</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 22: Session 23 Agenda -->
+            <section class="slide-container hidden" id="s23-agenda">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Leadership <span class="accent">Evolution</span>
+                    </h2>
+                    <p class="slide-objective">
+                        <span class="bold">15 minutes</span> to advanced AI leadership
+                    </p>
+                    
+                    <div class="content-section">
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">5 minutes:</span> AI-Augmented <span class="accent">Decision Making</span><br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Strategic frameworks for AI-human collaboration</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">7 minutes:</span> <span class="accent">Leadership Challenge</span> Simulation<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Complex scenarios requiring AI leadership skills</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">3 minutes:</span> <span class="accent">Leadership Framework</span><br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Advanced competencies for AI leaders</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 23: AI-Augmented Decision Making -->
+            <section class="slide-container hidden" id="s23-decisions">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        AI-Augmented <span class="accent">Decision Making</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Strategic frameworks for <span class="bold">human-AI collaboration</span>
+                    </p>
+                    
+                    <div class="challenges-grid">
+                        <div class="challenge-card">
+                            <div class="challenge-title">Data-Informed Intuition</div>
+                            <div class="challenge-text">
+                                • AI provides comprehensive analysis<br>
+                                • Human intuition guides interpretation<br>
+                                • Combined insights drive decisions<br>
+                                • Continuous feedback loops
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Strategic AI Partnership</div>
+                            <div class="challenge-text">
+                                • AI handles pattern recognition<br>
+                                • Humans provide context and judgment<br>
+                                • Collaborative scenario planning<br>
+                                • Enhanced strategic foresight
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Risk-Aware Innovation</div>
+                            <div class="challenge-text">
+                                • AI identifies potential risks<br>
+                                • Human wisdom weighs trade-offs<br>
+                                • Balanced innovation approaches<br>
+                                • Adaptive risk management
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Ethical Decision Framework</div>
+                            <div class="challenge-text">
+                                • AI suggests multiple options<br>
+                                • Human values guide selection<br>
+                                • Stakeholder impact consideration<br>
+                                • Long-term consequence evaluation
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 24: Leadership Challenge -->
+            <section class="slide-container hidden" id="s23-exercise">
+                <div class="slide content fade-in">
+                    <div class="exercise-container">
+                        <h2 class="exercise-title">
+                            Advanced Leadership <span class="accent">Challenge</span>
+                        </h2>
+                        <p class="exercise-subtitle">
+                            Navigate these <span class="bold">complex scenarios</span> using AI leadership principles:
+                        </p>
+                        
+                        <div class="scenarios-grid">
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Challenge 1</div>
+                                <div class="scenario-text">
+                                    Your AI system recommends <span class="bold">laying off 30% of staff</span> for efficiency. The data is compelling but team morale is critical.
+                                </div>
+                                <div class="scenario-prompt">Click to explore leadership approach</div>
+                                <div class="scenario-solution">
+                                    <strong>Leadership Approach:</strong><br>
+                                    • Validate AI analysis with human insights<br>
+                                    • Explore alternative efficiency strategies<br>
+                                    • Consider retraining and redeployment<br>
+                                    • Balance data with human values
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Challenge 2</div>
+                                <div class="scenario-text">
+                                    Two AI systems provide <span class="bold">conflicting strategic recommendations</span>. Your board expects a unified decision.
+                                </div>
+                                <div class="scenario-prompt">Click to explore leadership approach</div>
+                                <div class="scenario-solution">
+                                    <strong>Leadership Approach:</strong><br>
+                                    • Analyze underlying assumptions of each system<br>
+                                    • Seek third-party AI validation<br>
+                                    • Apply human judgment to resolve conflicts<br>
+                                    • Create hybrid strategy combining insights
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Challenge 3</div>
+                                <div class="scenario-text">
+                                    Your team is <span class="bold">over-relying on AI</span> and losing critical thinking skills. Performance is declining.
+                                </div>
+                                <div class="scenario-prompt">Click to explore leadership approach</div>
+                                <div class="scenario-solution">
+                                    <strong>Leadership Approach:</strong><br>
+                                    • Implement AI-free decision exercises<br>
+                                    • Redesign workflows for human-AI balance<br>
+                                    • Provide critical thinking training<br>
+                                    • Establish AI usage guidelines
+                                </div>
+                            </div>
+                            
+                            <div class="scenario-card" onclick="toggleScenario(this)">
+                                <div class="scenario-number">Challenge 4</div>
+                                <div class="scenario-text">
+                                    A competitor's AI breakthrough threatens your market position. Your team wants to <span class="bold">rush AI deployment</span>.
+                                </div>
+                                <div class="scenario-prompt">Click to explore leadership approach</div>
+                                <div class="scenario-solution">
+                                    <strong>Leadership Approach:</strong><br>
+                                    • Conduct thorough competitive analysis<br>
+                                    • Balance speed with quality and ethics<br>
+                                    • Identify unique differentiation opportunities<br>
+                                    • Plan strategic AI acceleration
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 25: Session 23 Takeaways -->
+            <section class="slide-container hidden" id="s23-takeaways">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        Advanced AI Leadership <span class="accent">Framework</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Core competencies for <span class="bold">AI-era leaders</span>
+                    </p>
+                    
+                    <div class="content-section">
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                Master <span class="accent">AI-human collaboration</span> for enhanced decision-making
+                            </div>
+                            <div class="takeaway-item">
+                                Balance <span class="bold">data insights</span> with human wisdom and values
+                            </div>
+                            <div class="takeaway-item">
+                                Maintain <span class="accent">critical thinking</span> while leveraging AI capabilities
+                            </div>
+                            <div class="takeaway-item">
+                                Lead with <span class="bold">ethical considerations</span> in all AI applications
+                            </div>
+                            <div class="takeaway-item">
+                                Foster <span class="accent">adaptive leadership</span> for rapid technological change
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SESSION 24: Capstone -->
+            
+            <!-- Slide 26: Session 24 Introduction -->
+            <section class="slide-container hidden" id="s24-intro">
+                <div class="slide hero fade-in">
+                    <h1 class="hero-title">
+                        Session <span class="accent">24</span>: Capstone
+                    </h1>
+                    <p class="hero-subtitle">
+                        Your <span class="bold">AI Playbook</span> & Future Strategy
+                    </p>
+                    
+                    <div class="content-section">
+                        <p class="section-subtitle">
+                            <span class="bold">Objective:</span> Consolidate learning, reflect on AI Playbook value, and create personal roadmap for <span class="accent">continued AI leadership</span> development.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 27: Session 24 Agenda -->
+            <section class="slide-container hidden" id="s24-agenda">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        The Next Wave of <span class="accent">AI</span>
+                    </h2>
+                    <p class="slide-objective">
+                        <span class="bold">15 minutes</span> to complete your AI leadership journey
+                    </p>
+                    
+                    <div class="content-section">
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">5 minutes:</span> <span class="accent">Future AI Trends</span> through 2027<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Scientific discovery, advanced reasoning, specialized models</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">7 minutes:</span> <span class="accent">My 2027 AI Vision</span> Exercise<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Write your ambitious but achievable AI goal</span>
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">3 minutes:</span> <span class="accent">Personal Development</span> Plan<br>
+                                <span style="opacity: 0.7; font-size: var(--text-body);">Final playbook entry and next-year commitments</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 28: Future AI Trends -->
+            <section class="slide-container hidden" id="s24-future">
+                <div class="slide content fade-in">
+                    <h2 class="slide-title">
+                        The Next Wave of AI: <span class="accent">2025-2027</span>
+                    </h2>
+                    <p class="slide-objective">
+                        Breakthrough trends reshaping <span class="bold">business and society</span>
+                    </p>
+                    
+                    <div class="challenges-grid">
+                        <div class="challenge-card">
+                            <div class="challenge-title">AI in Scientific Discovery</div>
+                            <div class="challenge-text">
+                                • Accelerated drug development<br>
+                                • Climate change solutions<br>
+                                • Materials science breakthroughs<br>
+                                • Energy efficiency innovations
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Advanced Reasoning & Planning</div>
+                            <div class="challenge-text">
+                                • Multi-step strategic thinking<br>
+                                • Complex problem decomposition<br>
+                                • Long-term planning capabilities<br>
+                                • Human-level reasoning chains
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">Specialized Language Models</div>
+                            <div class="challenge-text">
+                                • Industry-specific AI assistants<br>
+                                • Role-optimized interfaces<br>
+                                • Domain expert knowledge<br>
+                                • Compliance-aware systems
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-title">AI-Human Symbiosis</div>
+                            <div class="challenge-text">
+                                • Seamless collaboration workflows<br>
+                                • Augmented decision-making<br>
+                                • Enhanced creativity partnerships<br>
+                                • Collective intelligence systems
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 29: 2027 Vision Exercise -->
+            <section class="slide-container hidden" id="s24-exercise">
+                <div class="slide content fade-in">
+                    <div class="exercise-container">
+                        <h2 class="exercise-title">
+                            My <span class="accent">2027 AI Vision</span>
+                        </h2>
+                        <p class="exercise-subtitle">
+                            Write your <span class="bold">ambitious but achievable</span> AI leadership goal:
+                        </p>
+                        
+                        <div class="strategy-framework">
+                            <div class="framework-step">
+                                <div class="step-number">Vision Statement</div>
+                                <div class="step-title">Your 2027 AI Leadership Goal</div>
+                                <div class="step-description">
+                                    "Based on future trends, outline one ambitious but achievable goal for leveraging AI in your role/department by 2027. Be specific about the impact you want to create."
+                                </div>
+                            </div>
+                            
+                            <div class="framework-step">
+                                <div class="step-number">Success Metrics</div>
+                                <div class="step-title">How You'll Measure Achievement</div>
+                                <div class="step-description">
+                                    Define 3-5 specific, measurable outcomes that will indicate you've achieved your 2027 vision.
+                                </div>
+                            </div>
+                            
+                            <div class="framework-step">
+                                <div class="step-number">Key Milestones</div>
+                                <div class="step-title">Major Checkpoint Goals</div>
+                                <div class="step-description">
+                                    Identify 2-3 significant milestones you'll need to reach by 2025 and 2026 to achieve your 2027 vision.
+                                </div>
+                            </div>
+                            
+                            <div class="framework-step">
+                                <div class="step-number">First Steps</div>
+                                <div class="step-title">Your Next 90 Days</div>
+                                <div class="step-description">
+                                    List the specific actions you'll take in the next 90 days to begin working toward your 2027 vision.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 30: Program Completion -->
+            <section class="slide-container hidden" id="s24-completion">
+                <div class="slide hero fade-in">
+                    <h1 class="hero-title">
+                        <span class="accent">Congratulations!</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        You've completed the <span class="bold">AI Acumen Program</span>
+                    </p>
+                    
+                    <div class="content-section">
+                        <h3 class="section-title">Your <span class="accent">Achievement</span></h3>
+                        
+                        <div class="takeaways-list">
+                            <div class="takeaway-item">
+                                <span class="bold">Completed Manager's AI Playbook</span> with 24 comprehensive sections
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Strategic AI implementation roadmap</span> for your organization
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Personal leadership development plan</span> for continued growth
+                            </div>
+                            <div class="takeaway-item">
+                                <span class="bold">Network of AI-savvy managers</span> across your organization
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section" style="margin-top: var(--space-2xl); text-align: center;">
+                        <p class="section-subtitle">
+                            You're now equipped to lead with <span class="accent">AI confidence</span> and drive <span class="bold">strategic transformation</span> in your organization.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="slide-controls">
+        <button class="control-btn" id="prevBtn" disabled>
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="control-btn" id="nextBtn">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <script>
+        // Ultra-Clean Presentation System
+        class UltraCleanPresentation {
+            constructor() {
+                this.currentSlideIndex = 0;
+                this.slides = [];
+                this.sessionItems = [];
+                this.init();
+            }
+
+            init() {
+                this.slides = Array.from(document.querySelectorAll('.slide-container'));
+                this.sessionItems = Array.from(document.querySelectorAll('.session-item'));
+                this.setupEventListeners();
+                this.updateProgress();
+            }
+
+            setupEventListeners() {
+                // Session navigation
+                this.sessionItems.forEach((item, index) => {
+                    item.addEventListener('click', () => {
+                        this.goToSlide(index);
+                    });
+                });
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight' || e.key === ' ') {
+                        e.preventDefault();
+                        this.nextSlide();
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        this.prevSlide();
+                    }
+                });
+
+                // Control buttons
+                document.getElementById('nextBtn').addEventListener('click', () => this.nextSlide());
+                document.getElementById('prevBtn').addEventListener('click', () => this.prevSlide());
+            }
+
+            goToSlide(index) {
+                if (index < 0 || index >= this.slides.length) return;
+                
+                // Hide current slide
+                this.slides[this.currentSlideIndex].classList.add('hidden');
+                this.sessionItems[this.currentSlideIndex].classList.remove('active');
+                
+                // Show new slide
+                this.currentSlideIndex = index;
+                this.slides[this.currentSlideIndex].classList.remove('hidden');
+                this.sessionItems[this.currentSlideIndex].classList.add('active');
+                
+                // Update controls and progress
+                this.updateControls();
+                this.updateProgress();
+                
+                // Add animation
+                const currentSlide = this.slides[this.currentSlideIndex].querySelector('.slide');
+                currentSlide.classList.remove('fade-in');
+                setTimeout(() => currentSlide.classList.add('fade-in'), 10);
+            }
+
+            nextSlide() {
+                if (this.currentSlideIndex < this.slides.length - 1) {
+                    this.goToSlide(this.currentSlideIndex + 1);
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlideIndex > 0) {
+                    this.goToSlide(this.currentSlideIndex - 1);
+                }
+            }
+
+            updateControls() {
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                
+                prevBtn.disabled = this.currentSlideIndex === 0;
+                nextBtn.disabled = this.currentSlideIndex === this.slides.length - 1;
+            }
+
+            updateProgress() {
+                const progressBar = document.getElementById('progressBar');
+                const progress = ((this.currentSlideIndex + 1) / this.slides.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+        }
+
+        // Interactive Exercise Functions
+        function toggleScenario(cardElement) {
+            const isRevealed = cardElement.classList.contains('revealed');
+            
+            if (!isRevealed) {
+                cardElement.classList.add('revealed');
+            } else {
+                cardElement.classList.remove('revealed');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            new UltraCleanPresentation();
+        });
+    </script>
+</body>
+</html>
